@@ -13,6 +13,8 @@
 | csv (map)                     |  `0.37`  |
 | Faster_than_csv               |  `0.10`  |
 
+- This CSV Lib is ~130 Lines of Code.
+
 <details>
 
 - Benchmarks run on Docker from Dockerfile on this repo.
