@@ -63,15 +63,16 @@ proc csv2json*(csv_file_path: string, has_header: bool = true, separator: char =
   if has_header:
     parser.readHeaderRow()
     while parser.readRow():
-      temp = ""
+
       for column in parser.headers.items:
+        temp = ""
         temp.toUgly %*{$column: parser.rowEntry(column)}
         result.add temp
   else:
     var counter: int
     while parser.readRow():
-      temp = ""
       for value in parser.row.items:
+        temp = ""
         temp.toUgly %*{$counter: $value}
         result.add temp
   parser.close()
@@ -104,15 +105,15 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = tru
   if has_header:
     parser.readHeaderRow()
     while parser.readRow():
-      temp = ""
       for column in parser.headers.items:
+        temp = ""
         temp.toUgly %*{$column: parser.rowEntry(column)}
         ndjson.writeLine temp
   else:
     var counter: int
     while parser.readRow():
-      temp = ""
       for value in parser.row.items:
+        temp = ""
         temp.toUgly %*{$counter: $value}
         ndjson.writeLine temp
   parser.close()
