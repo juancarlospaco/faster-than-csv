@@ -13,4 +13,3 @@ ADD benchmark.py /tmp/
 ADD sample.csv /tmp/
 ADD run-benchmark.sh /tmp/
 RUN rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/nimblecache/ /tmp/*.nim
-EXPOSE 5000
