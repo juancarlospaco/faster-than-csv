@@ -31,6 +31,12 @@ import faster_than_csv as csv
 print(csv.csv2list("sample.csv"))  # See Docs for more info.
 ```
 
+- `csv2dict()` :arrow_right: `dict()`.
+- `csv2json()` :arrow_right: JSON.
+- `csv2json_pretty()` :arrow_right: JSON Pretty-Printed.
+- `csv2ndjson()` :arrow_right: JSON of NDJSON https://github.com/ndjson/ndjson-spec
+- `csv2htmltable()` :arrow_right: HTML Table.
+
 
 # FAQ
 
