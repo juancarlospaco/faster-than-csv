@@ -41,6 +41,17 @@ print(csv.csv2list("sample.csv"))  # See Docs for more info.
 - `csv2custom(separator="💩")` :arrow_right: Poo Separated Values.
 
 
+# Docker
+
+- Make a quick test drive on Docker!.
+
+```bash
+$ ./build-docker.sh
+$ ./run-docker.sh
+$ ./run-benchmark.sh  # Inside Docker.
+```
+
+
 # FAQ
 
 - Whats the idea, inspiration, reason, etc ?.
