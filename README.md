@@ -39,6 +39,7 @@ print(csv.csv2list("sample.csv"))  # See Docs for more info.
 - `csv2htmlfile()` :arrow_right: [HTML file, ready to display on the Web.](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/example/sample.html)
 - `csv2tsv()` :arrow_right: TSV.
 - `csv2custom(separator="💩")` :arrow_right: Poo Separated Values.
+<meta name='keywords' content='csv, tsv, csvwriter, csvreader, dictreader, dictwriter, python, faster, speed, benchmark, rapido, velocidad, optimizacion, cython, pypy, cpython, docker, json, ndjson, rapido, veloz, performance, critical, compiled, module, modulo, loc, minimalismo, minimalism, simple, small, tiny, argentina, spanish, compare, mejora'>
 
 
 # Docker
