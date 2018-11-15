@@ -53,6 +53,17 @@ $ ./run-benchmark.sh  # Inside Docker.
 ```
 
 
+# Platforms
+
+- ✅ Linux
+- ✅ Windows
+- ✅ Mac
+- ✅ Android
+- ✅ Raspberry Pi
+- ✅ BSD
+- ✅ ReactOS
+
+
 # FAQ
 
 - Whats the idea, inspiration, reason, etc ?.
