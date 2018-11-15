@@ -36,6 +36,8 @@ print(csv.csv2list("sample.csv"))  # See Docs for more info.
 - `csv2json_pretty()` :arrow_right: JSON Pretty-Printed.
 - `csv2ndjson()` :arrow_right: JSON of NDJSON https://github.com/ndjson/ndjson-spec
 - `csv2htmltable()` :arrow_right: HTML Table.
+- `csv2tsv()` :arrow_right: TSV.
+- `csv2custom(separator="💩")` :arrow_right: Poo Separated Values.
 
 
 # FAQ
