@@ -18,6 +18,6 @@ print(csv.csv2tsv("sample.csv"))  # CSV to TSV.
 
 print(csv.csv2custom("sample.csv", "|"))  # CSV to Custom Separator (no  separator colission).
 
-print(csv.custom2csv("sample.csv", "|"))  # Custom Separator to CSV (no  separator colission).
+# print(csv.custom2csv("sample.csv", "|"))  # Custom Separator to CSV (no  separator colission).
 
-print(csv.tsv2csv("sample.csv"))  # TSV to CSV.
+# print(csv.tsv2csv("sample.csv"))  # TSV to CSV.
