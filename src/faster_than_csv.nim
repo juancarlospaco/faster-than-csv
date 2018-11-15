@@ -160,12 +160,12 @@ proc tsv2csv*(csv_file_path: string): string {.inline, exportpy.} =
   for line in csv_file_path.lines:
     result.add line.replace('\t', ',')
 
-proc csv2custom*(csv_file_path: string, separator: char): string {.inline, exportpy.} =
+proc csv2custom*(csv_file_path: string, separator: string): string {.inline, exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
-    result.add line.replace(',', separator)
+    result.add line.replace(",", separator)
 
-proc custom2csv*(csv_file_path: string, separator: char): string {.inline, exportpy.} =
+proc custom2csv*(csv_file_path: string, separator: string): string {.inline, exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
-    result.add line.replace(separator, ',')
+    result.add line.replace(separator, ",")
