@@ -6,7 +6,7 @@ RUN apt-get clean -y
 RUN pip3 install --upgrade pip==18.1
 RUN pip3 install --upgrade pandas==0.23.4
 RUN nimble -y refresh
-RUN nimble -y install nimpy
+RUN nimble -y install nimpy@0.1.0
 ADD src/faster_than_csv.nim /tmp/
 RUN nim c -d:release --app:lib --out:/tmp/faster_than_csv.so /tmp/faster_than_csv.nim
 ADD benchmark.py /tmp/
