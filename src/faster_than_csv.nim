@@ -1,22 +1,3 @@
-## Faster Than CSV
-## ===============
-##
-## - Faster & simpler CSV replacement for Python, less options & more speed.
-##
-## API
-## ---
-##
-## - ``faster_than_csv.csv2list()`` CSV to list of strings.
-## - ``faster_than_csv.csv2dict()`` CSV to list of dictionaries.
-## - ``faster_than_csv.csv2json()`` CSV to list of JSON.
-## - ``faster_than_csv.csv2json_pretty()`` CSV to list of JSON Pretty-Printed.
-## - ``faster_than_csv.csv2ndjson()`` CSV to NDJSON.
-## - ``faster_than_csv.csv2htmltable()`` CSV to HTML Table.
-## - ``faster_than_csv.csv2tsv()`` CSV to TSV.
-## - ``faster_than_csv.tsv2csv()`` TSV to CSV.
-## - ``faster_than_csv.csv2custom()`` CSV to Custom Separator (no  separator colission).
-## - ``faster_than_csv.custom2csv()`` Custom Separator to CSV (no  separator colission).
-## - Recommended way of importing is ``import faster_than_csv as csv``
 import parsecsv, json, tables, strutils, nimpy
 {.passL: "-s", optimization: speed.}
 const html_table_header = """<!DOCTYPE html>
