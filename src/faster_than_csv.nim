@@ -1,18 +1,20 @@
 import parsecsv, json, tables, strutils, nimpy
-{.passL: "-s", optimization: speed.}
+
+
 const html_table_header = """<!DOCTYPE html>
 <html style="background-color:lightcyan">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
 </head>
 <body><br><br>
   <div class="container is-fluid">
     <table class="table is-bordered is-striped is-hoverable is-fullwidth">"""
 
+
 proc csv2list*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false): seq[string] {.inline, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false): seq[string] {.exportpy.} =
   ## Stream Read CSV to a list of strings.
   var parser: CsvParser
   parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
@@ -27,8 +29,9 @@ proc csv2list*(csv_file_path: string, has_header: bool = true, separator: char =
         result.add $value
   parser.close()
 
+
 proc csv2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false): seq[Table[string, string]] {.inline, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries.
   var parser: CsvParser
   parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
@@ -44,8 +47,9 @@ proc csv2dict*(csv_file_path: string, has_header: bool = true, separator: char =
         result.add {$counter: $value}.toTable
   parser.close()
 
+
 proc csv2json*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false): seq[string] {.inline, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false): seq[string] {.exportpy.} =
   ## Stream Read CSV to JSON.
   var
     parser: CsvParser
@@ -68,8 +72,9 @@ proc csv2json*(csv_file_path: string, has_header: bool = true, separator: char =
         result.add temp
   parser.close()
 
+
 proc csv2json_pretty*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false): seq[string] {.inline, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false): seq[string] {.exportpy.} =
   ## Stream Read CSV to JSON Pretty-printed.
   var parser: CsvParser
   parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
@@ -85,8 +90,9 @@ proc csv2json_pretty*(csv_file_path: string, has_header: bool = true, separator:
         result.add pretty( %*{$counter: $value} )
   parser.close()
 
+
 proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false) {.inline, discardable, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false) {.discardable, exportpy.} =
   ## Stream Read CSV to NDJSON https://github.com/ndjson/ndjson-spec
   var
     parser: CsvParser
@@ -110,8 +116,9 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = tru
   ndjson.close()
   parser.close()
 
+
 proc csv2htmltable*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false): string {.inline, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false): string {.exportpy.} =
   ## Stream Read CSV to HTML Table string.
   var
     parser: CsvParser
@@ -142,8 +149,9 @@ proc csv2htmltable*(csv_file_path: string, has_header: bool = true, separator: c
   result.add "</table>"
   parser.close()
 
+
 proc csv2htmlfile*(csv_file_path, html_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false) {.inline, discardable, exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false) {.discardable, exportpy.} =
   ## Stream Read CSV to HTML Table file.
   var
     parser: CsvParser
@@ -175,22 +183,25 @@ proc csv2htmlfile*(csv_file_path, html_file_path: string, has_header: bool = tru
   parser.close()
   writeFile(html_file_path , html_content)
 
-proc csv2tsv*(csv_file_path: string): string {.inline, exportpy.} =
+
+proc csv2tsv*(csv_file_path: string): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
     result.add line.replace(',', '\t')
 
-proc tsv2csv*(csv_file_path: string): string {.inline, exportpy.} =
+
+proc tsv2csv*(csv_file_path: string): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
     result.add line.replace('\t', ',')
 
-proc csv2custom*(csv_file_path: string, separator: string): string {.inline, exportpy.} =
+proc csv2custom*(csv_file_path: string, separator: string): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
     result.add line.replace(",", separator)
 
-proc custom2csv*(csv_file_path: string, separator: string): string {.inline, exportpy.} =
+
+proc custom2csv*(csv_file_path: string, separator: string): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
     result.add line.replace(separator, ",")
