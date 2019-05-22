@@ -36,14 +36,164 @@ import faster_than_csv as csv
 print(csv.csv2list("sample.csv"))  # See Docs for more info.
 ```
 
-- `csv2dict()` :arrow_right: `dict()`.
-- `csv2json()` :arrow_right: JSON.
-- `csv2json_pretty()` :arrow_right: JSON Pretty-Printed.
-- `csv2ndjson()` :arrow_right: JSON of NDJSON https://github.com/ndjson/ndjson-spec
-- `csv2htmltable()` :arrow_right: HTML Table.
-- `csv2htmlfile()` :arrow_right: [HTML file, ready to display on the Web.](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/example/sample.html)
-- `csv2tsv()` :arrow_right: TSV.
+
+# csv2dict()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns a list of dictionaries.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV, `dict` type.
+
+</details>
+
+
+# csv2json()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns JSON.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV as JSON Minified Single-line string computer-friendly, `str` type.
+
+</details>
+
+
+# csv2json_pretty()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns JSON.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV as JSON Pretty-Printed Multi-line string human-friendly, `str` type.
+
+</details>
+
+
+# csv2ndjson()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns NDJSON.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `ndjson_file_path` path of the NDJSON file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:** None.
+Data from the CSV as NDJSON https://github.com/ndjson/ndjson-spec, `str` type.
+
+</details>
+
+
+# csv2htmltable()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns the data rendered on HTML Table.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV as HTML Table, `str` type, raw HTML (no style at all).
+
+</details>
+
+
+# csv2htmlfile()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns the data rendered on HTML Table.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `csv_file_path` path of the HTML file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV as HTML Table, `str` type, [human-friendly, ready for display (basic style so is usable).](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/example/sample.html)
+
+</details>
+
+
+# csv2tsv()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns a TSV.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV as TSV, `str` type.
+
+</details>
+
+
+# csv2custom()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns the data rendered as Custom formatted values.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+Examples:
+
 - `csv2custom(separator="💩")` :arrow_right: Poo Separated Values.
+
+**Returns:**
+Data from the CSV as Custom formatted values, `str` type.
+
+</details>
+
 
 [**For more Examples check the Examples and Tests.**](https://github.com/juancarlospaco/faster-than-csv/blob/master/examples/example.py)
 
