@@ -19,7 +19,11 @@
 
 - Benchmarks run on Docker from Dockerfile on this repo.
 - Speed is IRL time to complete 10000 CSV Parsings.
-- Stats as of year 2018.
+- Lines Of Code counted using [CLOC](https://github.com/AlDanial/cloc).
+- Direct dependencies of the package when ready to run.
+- Benchmarks run on Docker from Dockerfile on this repo.
+- Stats as of year 2019.
+- x86_64 64Bit AMD, SSD, Arch Linux.
 
 </details>
 
