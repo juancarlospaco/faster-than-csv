@@ -28,6 +28,7 @@
 
 ```python
 import faster_than_csv as csv
+
 print(csv.csv2list("sample.csv"))  # See Docs for more info.
 ```
 
@@ -39,7 +40,11 @@ print(csv.csv2list("sample.csv"))  # See Docs for more info.
 - `csv2htmlfile()` :arrow_right: [HTML file, ready to display on the Web.](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/example/sample.html)
 - `csv2tsv()` :arrow_right: TSV.
 - `csv2custom(separator="💩")` :arrow_right: Poo Separated Values.
-<meta name='keywords' content='csv, tsv, csvwriter, csvreader, dictreader, dictwriter, python, faster, speed, benchmark, rapido, velocidad, optimizacion, cython, pypy, cpython, docker, json, ndjson, rapido, veloz, performance, critical, compiled, module, modulo, loc, minimalismo, minimalism, simple, small, tiny, argentina, spanish, compare, mejora'>
+
+[**For more Examples check the Examples and Tests.**](https://github.com/juancarlospaco/faster-than-csv/blob/master/examples/example.py)
+
+Instead of having a pair of functions with a lot of arguments that you should provide to make it work,
+we have tiny functions with very few arguments that do one thing and do it as fast as possible.
 
 
 # Install
@@ -58,6 +63,11 @@ $ ./run-benchmark.sh  # Inside Docker.
 ```
 
 
+# Dependencies
+
+- **None**
+
+
 # Platforms
 
 - ✅ Linux
@@ -67,6 +77,13 @@ $ ./run-benchmark.sh  # Inside Docker.
 - ✅ Raspberry Pi
 - ✅ BSD
 - ✅ ReactOS
+
+
+# Requisites
+
+- Python 3.
+- GCC.
+- 64 Bit.
 
 
 # FAQ
@@ -105,3 +122,42 @@ I dunno.
 - How can be faster than Pandas ?.
 
 I dunno.
+
+- Why needs 64Bit ?.
+
+Maybe it works on 32Bit, but is not supported, integer sizes are too small, and performance can be worse.
+
+- Why needs Python 3 ?.
+
+Maybe it works on Python 2, but is not supported, and performance can be worse, we suggest to migrate to Python3.
+
+- Can I wrap the functions on a `try: except:` block ?.
+
+Functions do not have internal `try: except:` blocks,
+so you can wrap them inside `try: except:` blocks if you need very resilient code.
+
+- PIP fails to install or fails build the wheel ?.
+
+Add at the end of the PIP install command:
+
+` --isolated --disable-pip-version-check --no-cache-dir --no-binary :all: `
+
+Not my Bug.
+
+- How to Build the project ?.
+
+`build.sh`
+
+- How to Package the project ?.
+
+`package.sh`
+
+- This requires Nimble ?.
+
+No.
+
+- Whats the unit of measurement for speed ?.
+
+Unmmodified raw output of Python `timeit` module.
+
+Please send Pull Request to Python to improve the output of `timeit`.
