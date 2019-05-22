@@ -42,6 +42,11 @@ print(csv.csv2list("sample.csv"))  # See Docs for more info.
 <meta name='keywords' content='csv, tsv, csvwriter, csvreader, dictreader, dictwriter, python, faster, speed, benchmark, rapido, velocidad, optimizacion, cython, pypy, cpython, docker, json, ndjson, rapido, veloz, performance, critical, compiled, module, modulo, loc, minimalismo, minimalism, simple, small, tiny, argentina, spanish, compare, mejora'>
 
 
+# Install
+
+- `pip install faster_than_csv`
+
+
 # Docker
 
 - Make a quick test drive on Docker!.

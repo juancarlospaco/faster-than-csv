@@ -18,7 +18,7 @@
 ## - ``faster_than_csv.custom2csv()`` Custom Separator to CSV (no  separator colission).
 ## - Recommended way of importing is ``import faster_than_csv as csv``
 import parsecsv, json, tables, strutils, nimpy
-{.passL: "-s", passC: "-flto -ffast-math", optimization: speed.}
+{.passL: "-s", optimization: speed.}
 const html_table_header = """<!DOCTYPE html>
 <html style="background-color:lightcyan">
 <head>
