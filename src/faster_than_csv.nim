@@ -1,4 +1,5 @@
-import parsecsv, json, tables, strutils, nimpy
+import parsecsv, json, tables, nimpy
+from strutils import replace
 
 
 const html_table_header = """<!DOCTYPE html>
