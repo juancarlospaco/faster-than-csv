@@ -42,9 +42,29 @@ print(csv.csv2list("sample.csv"))  # See Docs for more info.
 
 **Description:**
 Takes a path of a CSV file string, process CSV and returns a list of dictionaries.
+This is very similar to `pandas.read_csv(filename)`.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV, `dict` type.
+
+</details>
+
+
+# read_clipboard()
+<details>
+
+**Description:**
+Reads CSV string from Clipboard, process CSV and returns a list of dictionaries.
+This is very similar to `pandas.read_clipboard()`.
+
+**Arguments:**
 - `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
@@ -191,6 +211,21 @@ Examples:
 
 **Returns:**
 Data from the CSV as Custom formatted values, `str` type.
+
+</details>
+
+
+# diff_csvs()
+<details>
+
+**Description:**
+Takes 2 paths of 2 CSV files, process CSV and returns the Diff of the 2 CSV.
+
+**Arguments:**
+- `csv_file_path0` path of the CSV file, `str` type, required, must not be empty string.
+- `csv_file_path1` path of the CSV file, `str` type, required, must not be empty string.
+
+**Returns:** Diff.
 
 </details>
 
