@@ -62,7 +62,7 @@ Data from the CSV, `dict` type.
 
 **Description:**
 Reads CSV string from Clipboard, process CSV and returns a list of dictionaries.
-This is very similar to `pandas.read_clipboard()`.
+This is very similar to `pandas.read_clipboard()`. This works on Linux and Mac.
 
 **Arguments:**
 - `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
