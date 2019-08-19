@@ -58,8 +58,8 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
   let (output, exitCode) = execCmdEx(
-    when defined(linux): "xclip -out"
-    elif defined(macos): "pbpaste"
+    when defined(linux):   "xclip -out"
+    elif defined(macos):   "pbpaste"
     elif defined(windows): "Get-Clipboard"
     else: "")
   if likely(exitCode == 0):
