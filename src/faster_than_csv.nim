@@ -57,25 +57,28 @@ proc csv2dict*(csv_file_path: string, has_header: bool = true, separator: char =
 proc read_clipboard*(has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
-  when not defined(windows):
-    let (output, exitCode) = execCmdEx(when defined(linux): "xclip -out" else: "pbpaste")
-    if likely(exitCode == 0):
-      let csv = newStringStream()
-      var parser: CsvParser
-      parser.open(newStringStream(output), "read_clipboard", separator, quote, skipInitialSpace=skipInitialSpace)
-      if has_header:
-        parser.readHeaderRow()
-        while parser.readRow():
-          for column in parser.headers.items:
-            result.add {$column: parser.rowEntry(column)}.toTable
-          if unlikely(verbose): echo parser.processedRows()
-      else:
-        var counter: int
-        while parser.readRow():
-          for value in parser.row.items:
-            result.add {$counter: $value}.toTable
-          if unlikely(verbose): echo parser.processedRows()
-      parser.close()
+  let (output, exitCode) = execCmdEx(
+    when defined(linux): "xclip -out"
+    elif defined(macos): "pbpaste"
+    elif defined(windows): "Get-Clipboard"
+    else: "")
+  if likely(exitCode == 0):
+    let csv = newStringStream()
+    var parser: CsvParser
+    parser.open(newStringStream(output), "read_clipboard", separator, quote, skipInitialSpace=skipInitialSpace)
+    if has_header:
+      parser.readHeaderRow()
+      while parser.readRow():
+        for column in parser.headers.items:
+          result.add {$column: parser.rowEntry(column)}.toTable
+        if unlikely(verbose): echo parser.processedRows()
+    else:
+      var counter: int
+      while parser.readRow():
+        for value in parser.row.items:
+          result.add {$counter: $value}.toTable
+        if unlikely(verbose): echo parser.processedRows()
+    parser.close()
 
 
 proc csv2json*(csv_file_path: string, has_header: bool = true, separator: char = ',',
