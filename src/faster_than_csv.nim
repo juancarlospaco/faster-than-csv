@@ -238,4 +238,6 @@ proc custom2csv*(csv_file_path: string, separator: string): string {.exportpy.} 
 
 proc diff_csvs*(csv_file_path0, csv_file_path1: string): seq[Item] {.exportpy.} =
   ## Diff 2 CSV files.
-  diffText(readFile(csv_file_path0), readFile(csv_file_path0))
+  doAssert existsFile(csv_file_path0), "File not found: " & csv_file_path0
+  doAssert existsFile(csv_file_path1), "File not found: " & csv_file_path1
+  diffText(readFile(csv_file_path0), readFile(csv_file_path1))
