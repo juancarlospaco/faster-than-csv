@@ -11,7 +11,7 @@
 | csv (std lib)                 |  `0.40`  |
 | csv (list)                    |  `0.38`  |
 | csv (map)                     |  `0.37`  |
-| Faster_than_csv               |  `0.10`  |
+| Faster_than_csv               |  `0.09`  |
 
 - This CSV Lib is ~130 Lines of Code.
 
