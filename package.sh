@@ -11,5 +11,5 @@ rm --verbose --force nimbase.h
 
 
 # pip3 uninstall faster_than_csv --yes
-# pip3 install dist/faster_than_csv-0.5.zip --no-binary :all:
+# pip3 --verbose install dist/faster_than_csv-0.5.zip --no-binary :all:
 # python -c "import faster_than_csv"
