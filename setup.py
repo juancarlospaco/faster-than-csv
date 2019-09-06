@@ -15,7 +15,7 @@ for c_source_file in listdir():
 setup(
     ext_modules = [
         Extension(
-            name               = "faster_than_requests",
+            name               = "faster_than_csv",
             sources            = sources,
             extra_compile_args = ["-flto", "-ffast-math", "-march=native", "-mtune=native", "-O3", "-fno-ident", "-fsingle-precision-constant"],
             extra_link_args    = ["-s"],
