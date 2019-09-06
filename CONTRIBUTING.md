@@ -12,7 +12,7 @@ Please note we have a Code Of Conduct, please follow it in all your interactions
 
 Whats Nim?
 
-- Its just like Cython, but faster and more elegant syntax, we can say Nim is more Pythonic than Cython, 
+- Its just like Cython, but faster and more elegant syntax, we can say Nim is more Pythonic than Cython,
 is a proper programming language instead of an experimental pseudo-lang alternative syntax, it also runs on the Browser Frontend.
 
 
