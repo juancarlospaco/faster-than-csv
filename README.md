@@ -13,7 +13,7 @@
 | csv (map)                     |  `0.37`  |
 | Faster_than_csv               |  `0.09`  |
 
-- This CSV Lib is ~130 Lines of Code.
+- This CSV Lib is ~200 Lines of Code.
 
 <details>
 
