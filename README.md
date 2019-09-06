@@ -33,11 +33,11 @@
 ```python
 import faster_than_csv as csv
 
-csv.csv2list("example.csv")  # See Docs for more info. Custom Separators supported.
-
-csv.csv2json("example.csv", indentation=4)  # CSV to JSON, Pretty-Printed.
-
-csv.csv2htmltable("example.csv")  # CSV to HTML+CSS Table (No JavaScript).
+csv.csv2list("example.csv")                     # See Docs for more info.
+                                                # Custom Separators supported.
+csv.csv2json("example.csv", indentation=4)      # CSV to JSON, Pretty-Printed.
+                                                # JSON, HTML, Dict, List output.
+csv.csv2htmltable("example.csv")                # CSV to HTML+CSS Table (No JavaScript).
 
 csv.read_clipboard()                            # CSV from the Clipboard.
 
