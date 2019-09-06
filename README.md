@@ -88,28 +88,10 @@ Takes a path of a CSV file string, process CSV and returns JSON.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+- `indentation` Pretty-Printed or Minified JSON output, `int` type, optional, `0` is Minified, `4` is Pretty-Printed, you can use any integer to adjust the indentation.
 
 **Returns:**
 Data from the CSV as JSON Minified Single-line string computer-friendly, `str` type.
-
-</details>
-
-
-# csv2json_pretty()
-<details>
-
-**Description:**
-Takes a path of a CSV file string, process CSV and returns JSON.
-
-**Arguments:**
-- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
-- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
-- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
-- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
-
-**Returns:**
-Data from the CSV as JSON Pretty-Printed Multi-line string human-friendly, `str` type.
 
 </details>
 
