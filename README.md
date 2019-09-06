@@ -255,7 +255,6 @@ $ ./run-benchmark.sh  # Inside Docker.
 - ✅ Android
 - ✅ Raspberry Pi
 - ✅ BSD
-- ✅ ReactOS
 
 
 # Requisites
@@ -263,6 +262,17 @@ $ ./run-benchmark.sh  # Inside Docker.
 - Python 3.
 - GCC.
 - 64 Bit.
+
+
+# Windows
+
+- If installation fails on Windows, just use the Source Code:
+
+![win-compile](https://user-images.githubusercontent.com/1189414/63147831-b8bf6100-bfd5-11e9-9e6e-91d61040f139.png "Git Clone and Compile on Windows 10 with only Git and Nim installed, just 2 commands!")
+
+- Git Clone and Compile on Windows 10 on just 2 commands!.
+- [Alternatively you can try Docker for Windows.](https://docs.docker.com/docker-for-windows)
+- **The file extension must be `.pyd`, NOT `.dll`.**
 
 
 # FAQ
