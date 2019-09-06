@@ -81,9 +81,10 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
     parser.close()
 
 
-proc csv2json*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[string] {.exportpy.} =
-  ## Stream Read CSV to JSON.
+proc csv2json*(csv_file_path: string, has_header: bool = true,
+  separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
+  verbose: bool = false, indentation: int = 0): seq[string] {.exportpy.} =
+  ## Stream Read CSV to JSON, Pretty-printed or Minified.
   var
     parser: CsvParser
     temp: string
@@ -91,38 +92,26 @@ proc csv2json*(csv_file_path: string, has_header: bool = true, separator: char =
   if has_header:
     parser.readHeaderRow()
     while parser.readRow():
-      for column in parser.headers.items:
-        temp = ""
-        temp.toUgly %*{$column: parser.rowEntry(column)}
-        result.add temp
+      if unlikely(indentation != 0):
+        for column in parser.headers.items:
+          result.add json.pretty(%*{$column: parser.rowEntry(column)}, indentation)
+      else:
+        for column in parser.headers.items:
+          temp = ""
+          temp.toUgly %*{$column: parser.rowEntry(column)}
+          result.add temp
       if unlikely(verbose): echo parser.processedRows()
   else:
     var counter: int
     while parser.readRow():
-      for value in parser.row.items:
-        temp = ""
-        temp.toUgly %*{$counter: $value}
-        result.add temp
-      if unlikely(verbose): echo parser.processedRows()
-  parser.close()
-
-
-proc csv2json_pretty*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[string] {.exportpy.} =
-  ## Stream Read CSV to JSON Pretty-printed.
-  var parser: CsvParser
-  parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  if has_header:
-    parser.readHeaderRow()
-    while parser.readRow():
-      for column in parser.headers.items:
-        result.add pretty(%*{$column: parser.rowEntry(column)})
-      if unlikely(verbose): echo parser.processedRows()
-  else:
-    var counter: int
-    while parser.readRow():
-      for value in parser.row.items:
-        result.add pretty(%*{$counter: $value})
+      if unlikely(indentation != 0):
+        for value in parser.row.items:
+          result.add json.pretty(%*{$counter: $value}, indentation)
+      else:
+        for value in parser.row.items:
+          temp = ""
+          temp.toUgly %*{$counter: $value}
+          result.add temp
       if unlikely(verbose): echo parser.processedRows()
   parser.close()
 
