@@ -81,7 +81,7 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
 
 proc csv2json*(csv_file_path: string, has_header: bool = true,
   separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
-  verbose: bool = false, indentation: int = 0): seq[string] {.exportpy.} =
+  verbose: bool = false, indentation: Natural = 0): seq[string] {.exportpy.} =
   ## Stream Read CSV to JSON, Pretty-printed or Minified.
   var
     parser: CsvParser
