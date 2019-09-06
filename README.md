@@ -43,8 +43,8 @@ csv.read_clipboard()                            # CSV from the Clipboard.
 
 csv.diff_csvs("example.csv", "anotherfile.csv") # Diff optimized for CSVs.
 ```
-- Input:  CSV, TSV, Clipboard, Custom.
-- Output: CSV, TSV, HTML, JSON, NDJSON, Diff, Custom.
+- Input:  CSV, TSV, Clipboard, File, Custom.
+- Output: CSV, TSV, HTML, JSON, NDJSON, Diff, File, Custom.
 
 
 # csv2dict()
