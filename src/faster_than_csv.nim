@@ -1,6 +1,4 @@
-import parsecsv, json, tables, streams, experimental/diff, nimpy
-from strutils import replace
-from osproc import execCmdEx
+import experimental/diff, nimpy
 
 
 const html_table_header = """<!DOCTYPE html>
