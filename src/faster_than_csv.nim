@@ -61,7 +61,6 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
     elif defined(windows): "Get-Clipboard"
     else: "")
   if likely(exitCode == 0):
-    let csv = newStringStream()
     var parser: CsvParser
     parser.open(newStringStream(output), "read_clipboard", separator, quote, skipInitialSpace=skipInitialSpace)
     if has_header:
