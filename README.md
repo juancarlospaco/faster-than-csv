@@ -133,11 +133,13 @@ Data from the CSV as NDJSON https://github.com/ndjson/ndjson-spec, `str` type.
 Takes a path of a CSV file string, process CSV and returns the data rendered on HTML Table.
 
 **Arguments:**
-- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string, defaults to `""`, if its empty string then No file is written.
+- `html_file_path` path of the CSV file, `str` type, optional, can be empty string.
 - `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+- `header_html` HTML Header, `str` type, optional, defaults to Bulma CSS, can be empty string.
 
 **Returns:**
 Data from the CSV as HTML Table, `str` type, raw HTML (no style at all).
