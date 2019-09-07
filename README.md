@@ -165,6 +165,24 @@ Data from the CSV as HTML Table, `str` type, [human-friendly, ready for display 
 </details>
 
 
+# csv2xml()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns a Valid XML string.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+- `header_xml` XML Header of the XML string, `str` type, optional, can be empty string, defaults to `"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"`.
+
+**Returns:** XML, `str` type.
+
+</details>
+
 # csv2tsv()
 <details>
 
