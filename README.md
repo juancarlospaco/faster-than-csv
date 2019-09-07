@@ -170,6 +170,7 @@ Data from the CSV as HTML Table, `str` type, [human-friendly, ready for display 
 
 **Description:**
 Takes a path of a CSV file string, process CSV and returns a Valid XML string.
+Output is guaranteed to be always Valid XML.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
