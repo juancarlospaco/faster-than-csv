@@ -196,6 +196,7 @@ Takes a path of a CSV file string, process CSV and returns a TSV.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+- `reversed` Set to `True` for the opposite behaviour TSV-to-CSV, `bool` type, optional, defaults to `False`.
 
 **Returns:**
 Data from the CSV as TSV, `str` type.
@@ -215,6 +216,7 @@ Takes a path of a CSV file string, process CSV and returns the data rendered as 
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+- `reversed` Set to `True` for the opposite behaviour Custom-to-CSV, `bool` type, optional, defaults to `False`.
 
 Examples:
 
