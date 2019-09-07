@@ -233,8 +233,8 @@ Data from the CSV as Custom formatted values, `str` type.
 Takes 2 paths of 2 CSV files, process CSV and returns the Diff of the 2 CSV.
 
 **Arguments:**
-- `csv_file_path0` path of the CSV file, `str` type, required, must not be empty string.
-- `csv_file_path1` path of the CSV file, `str` type, required, must not be empty string.
+- `csv_file_path0` path of the CSV file, `str` type, required, must not be empty string, file must exist.
+- `csv_file_path1` path of the CSV file, `str` type, required, must not be empty string, file must exist.
 
 **Returns:** Diff.
 
