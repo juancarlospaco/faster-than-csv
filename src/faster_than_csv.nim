@@ -242,27 +242,24 @@ proc csv2xml*(csv_file_path: string, has_header: bool = true,
   result = header_xml & $newXmlTree("csv", temp)
 
 
-proc csv2tsv*(csv_file_path: string): string {.exportpy.} =
+proc csv2tsv*(csv_file_path: string, reversed: bool = false): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
-  for line in csv_file_path.lines:
-    result.add line.replace(',', '\t')
+  if unlikely(reversed):
+    for line in csv_file_path.lines:
+      result.add line.replace(',', '\t')
+  else:
+    for line in csv_file_path.lines:
+      result.add line.replace('\t', ',')
 
 
-proc tsv2csv*(csv_file_path: string): string {.exportpy.} =
+proc csv2custom*(csv_file_path: string, separator: string, reversed: bool = false): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
-  for line in csv_file_path.lines:
-    result.add line.replace('\t', ',')
-
-proc csv2custom*(csv_file_path: string, separator: string): string {.exportpy.} =
-  ## Stream Read CSV to TSV, simple replace of "," to "\t".
-  for line in csv_file_path.lines:
-    result.add line.replace(",", separator)
-
-
-proc custom2csv*(csv_file_path: string, separator: string): string {.exportpy.} =
-  ## Stream Read CSV to TSV, simple replace of "," to "\t".
-  for line in csv_file_path.lines:
-    result.add line.replace(separator, ",")
+  if unlikely(reversed):
+    for line in csv_file_path.lines:
+      result.add line.replace(separator, ",")
+  else:
+    for line in csv_file_path.lines:
+      result.add line.replace(",", separator)
 
 
 proc diff_csvs*(csv_file_path0, csv_file_path1: string): seq[Item] {.exportpy.} =
