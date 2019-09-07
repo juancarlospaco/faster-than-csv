@@ -213,6 +213,35 @@ proc csv2htmlfile*(csv_file_path, html_file_path: string, has_header: bool = tru
   writeFile(html_file_path , html_content)
 
 
+proc csv2xml*(csv_file_path: string, has_header: bool = true,
+  separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
+  verbose: bool = false, header_xml: string = xmlHeader): string {.exportpy.} =
+  ## Stream Read CSV to XML.
+  var
+    parser: CsvParser
+    temp: seq[XmlNode]
+    e: XmlNode
+  parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
+  if has_header:
+    parser.readHeaderRow()
+    while parser.readRow():
+      for column in parser.headers.items:
+        e = newElement($column)
+        e.add newText(parser.rowEntry(column))
+        temp.add e
+      if unlikely(verbose): echo parser.processedRows()
+  else:
+    var counter: int
+    while parser.readRow():
+      for column in parser.headers.items:
+        e = newElement($counter)
+        e.add newText(parser.rowEntry(column))
+        temp.add e
+      if unlikely(verbose): echo parser.processedRows()
+  parser.close()
+  result = header_xml & $newXmlTree("csv", temp)
+
+
 proc csv2tsv*(csv_file_path: string): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   for line in csv_file_path.lines:
