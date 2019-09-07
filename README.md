@@ -2,16 +2,16 @@
 
 [![screenshot](https://source.unsplash.com/eH_ftJYhaTY/800x402)](https://youtu.be/QiKwnlyhKrk?t=5)
 
-| Library                       | Speed    |
-|-------------------------------|----------|
-| Pandas `read_csv()`           | `20.09`  |
-| NumPy `fromfile()`            | `3.88`   |
-| NumPy `genfromtxt()`          |  `4.00`  |
-| NumPy `loadtxt()`             |  `1.26`  |
-| csv (std lib)                 |  `0.40`  |
-| csv (list)                    |  `0.38`  |
-| csv (map)                     |  `0.37`  |
-| Faster_than_csv               |  `0.09`  |
+| Library                       | Time (Speed) |
+|-------------------------------|--------------|
+| Pandas `read_csv()`           | `20.09`      |
+| NumPy `fromfile()`            | `3.88`       |
+| NumPy `genfromtxt()`          |  `4.00`      |
+| NumPy `loadtxt()`             |  `1.26`      |
+| csv (std lib)                 |  `0.40`      |
+| csv (list)                    |  `0.38`      |
+| csv (map)                     |  `0.37`      |
+| Faster_than_csv               |  `0.09`      |
 
 - This CSV Lib is ~200 Lines of Code.
 
