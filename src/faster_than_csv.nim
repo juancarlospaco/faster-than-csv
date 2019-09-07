@@ -142,49 +142,16 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = tru
   parser.close()
 
 
-proc csv2htmltable*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): string {.exportpy.} =
-  ## Stream Read CSV to HTML Table string.
-  var
-    parser: CsvParser
-    temp: string
-  parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  result.add "<table>"
-  if has_header:
-    parser.readHeaderRow()
-    result.add "<thead><tr>"
-    for column in parser.headers.items:
-      result.add "<th>" & $column & "</th>"
-    result.add "</tr></thead><tfoot><tr>"
-    for column in parser.headers.items:
-      result.add "<th>" & $column & "</th>"
-    result.add "</tr></tfoot><tbody>"
-    while parser.readRow():
-      result.add "<tr>"
-      for column in parser.headers.items:
-        result.add "<td>" & parser.rowEntry(column) & "</td>"
-      result.add "</tr>"
-      if unlikely(verbose): echo parser.processedRows()
-    result.add "</tbody>"
-  else:
-    while parser.readRow():
-      result.add "<tbody>"
-      for value in parser.row.items:
-        result.add "<td>" & $value & "</td>"
-      result.add "</tbody>"
-      if unlikely(verbose): echo parser.processedRows()
-  result.add "</table>"
-  parser.close()
-
-
-proc csv2htmlfile*(csv_file_path, html_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false) {.discardable, exportpy.} =
-  ## Stream Read CSV to HTML Table file.
+proc csv2htmltable*(csv_file_path, html_file_path: string = "",
+    has_header: bool = true, separator: char = ',', quote: char = '"',
+    skipInitialSpace: bool = false, verbose: bool = false,
+    header_html: string = html_table_header): string {.exportpy.} =
+  ## Stream Read CSV to HTML Table file and string.
   var
     parser: CsvParser
     html_content: string
   parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  html_content.add html_table_header
+  html_content.add header_html
   if has_header:
     parser.readHeaderRow()
     html_content.add "<thead class='thead'><tr>"
@@ -208,9 +175,11 @@ proc csv2htmlfile*(csv_file_path, html_file_path: string, has_header: bool = tru
         html_content.add "<td>" & $value & "</td>"
       html_content.add "</tbody>"
       if unlikely(verbose): echo parser.processedRows()
-  html_content.add "</table></div></body></html>"
+  html_content.add "</table></div></body></html>\n"
   parser.close()
-  writeFile(html_file_path , html_content)
+  if html_file_path.len > 0:
+    writeFile(html_file_path , html_content)
+  result = html_content
 
 
 proc csv2xml*(csv_file_path: string, has_header: bool = true,
