@@ -186,6 +186,29 @@ Output is guaranteed to be always Valid XML.
 
 </details>
 
+
+# csv_punycode2dict()
+<details>
+
+**Description:**
+Takes a path of a [PunyCode encoded](http://wikipedia.org/wiki/Punycode) CSV file string,
+process CSV, Decodes [PunyCode](http://wikipedia.org/wiki/Punycode) and returns a list of dictionaries.
+[PunyCode](http://wikipedia.org/wiki/Punycode) encodes Unicode as ASCII,
+is used on system where Unicode is not fully supported (IoT, Legacy, Embebed, etc).
+
+**Arguments:**
+- `csv_file_path` path of the [PunyCode encoded](http://wikipedia.org/wiki/Punycode) CSV file, `str` type, required, must not be empty string.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:**
+Data from the CSV, `dict` type.
+
+</details>
+
+
 # csv2tsv()
 <details>
 
