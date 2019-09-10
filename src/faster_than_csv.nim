@@ -210,6 +210,26 @@ proc csv2xml*(csv_file_path: string, has_header: bool = true,
   result = header_xml & $newXmlTree("csv", temp)
 
 
+proc csv_punycode2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
+quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
+  ## Stream read PunyCode encoded CSV to Dict (Punycode encodes Unicode as ASCII). http://wikipedia.org/wiki/Punycode
+  var parser: CsvParser
+  parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
+  if has_header:
+    parser.readHeaderRow()
+    while parser.readRow():
+      for column in parser.headers.items:
+        result.add {punycode.decode($column): punycode.decode(parser.rowEntry(column))}.toTable
+      if unlikely(verbose): echo parser.processedRows()
+  else:
+    var counter: int
+    while parser.readRow():
+      for value in parser.row.items:
+        result.add {$counter: punycode.decode($value)}.toTable
+      if unlikely(verbose): echo parser.processedRows()
+  parser.close()
+
+
 proc csv2tsv*(csv_file_path: string, reversed: bool = false): string {.exportpy.} =
   ## Stream Read CSV to TSV, simple replace of "," to "\t".
   if unlikely(reversed):
