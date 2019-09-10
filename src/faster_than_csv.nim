@@ -78,6 +78,30 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
     parser.close()
 
 
+proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
+  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
+  ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
+  doAssert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
+  if unlikely(verbose): echo url
+  let csv_content = newHttpClient().getContent(url)
+  if likely(csv_content.len > 0):
+    var parser: CsvParser
+    parser.open(newStringStream(csv_content), "url2csv", separator, quote, skipInitialSpace=skipInitialSpace)
+    if has_header:
+      parser.readHeaderRow()
+      while parser.readRow():
+        for column in parser.headers.items:
+          result.add {$column: parser.rowEntry(column)}.toTable
+        if unlikely(verbose): echo parser.processedRows()
+    else:
+      var counter: int
+      while parser.readRow():
+        for value in parser.row.items:
+          result.add {$counter: $value}.toTable
+        if unlikely(verbose): echo parser.processedRows()
+    parser.close()
+
+
 proc csv2json*(csv_file_path: string, has_header: bool = true,
   separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
   verbose: bool = false, indentation: Natural = 0): seq[string] {.exportpy.} =
@@ -211,7 +235,7 @@ proc csv2xml*(csv_file_path: string, has_header: bool = true,
 
 
 proc csv_punycode2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream read PunyCode encoded CSV to Dict (Punycode encodes Unicode as ASCII). http://wikipedia.org/wiki/Punycode
   var parser: CsvParser
   parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
