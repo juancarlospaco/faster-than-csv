@@ -80,7 +80,7 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
 
 proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
-  ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
+  ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(url)``.
   doAssert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
   if unlikely(verbose): echo url
   let csv_content = newHttpClient().getContent(url)
