@@ -2,6 +2,16 @@
 
 [![screenshot](https://source.unsplash.com/eH_ftJYhaTY/800x402)](https://youtu.be/QiKwnlyhKrk?t=5)
 
+![](https://img.shields.io/github/languages/top/juancarlospaco/faster-than-csv?style=for-the-badge)
+![](https://img.shields.io/github/languages/count/juancarlospaco/faster-than-csv?logoColor=green&style=for-the-badge)
+![](https://img.shields.io/github/stars/juancarlospaco/faster-than-csv?style=for-the-badge "Star faster-than-csv on GitHub!")
+![](https://img.shields.io/maintenance/yes/2019?style=for-the-badge "2019")
+![](https://img.shields.io/github/languages/code-size/juancarlospaco/faster-than-csv?style=for-the-badge)
+![](https://img.shields.io/github/issues-raw/juancarlospaco/faster-than-csv?style=for-the-badge "Bugs")
+![](https://img.shields.io/github/issues-pr-raw/juancarlospaco/faster-than-csv?style=for-the-badge "PRs")
+![](https://img.shields.io/github/commit-activity/y/juancarlospaco/faster-than-csv?style=for-the-badge)
+![](https://img.shields.io/github/last-commit/juancarlospaco/faster-than-csv?style=for-the-badge "Commits")
+
 | Library                       | Time (Speed) |
 |-------------------------------|--------------|
 | Pandas `read_csv()`           | `20.09`      |
@@ -321,6 +331,11 @@ $ ./run-benchmark.sh  # Inside Docker.
 - Git Clone and Compile on Windows 10 on just 2 commands!.
 - [Alternatively you can try Docker for Windows.](https://docs.docker.com/docker-for-windows)
 - **The file extension must be `.pyd`, NOT `.dll`.**
+
+
+# Stars
+
+![Star faster-than-csv on GitHub](https://starchart.cc/juancarlospaco/faster-than-csv.svg "Star faster-than-csvon GitHub!")
 
 
 # FAQ
