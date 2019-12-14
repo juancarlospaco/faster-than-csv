@@ -1,4 +1,4 @@
-import experimental/diff, nimpy
+import parsecsv, json, tables, streams, strutils, os, osproc, xmltree, punycode, httpclient, experimental/diff, nimpy
 
 
 const html_table_header = """<!DOCTYPE html>
@@ -6,7 +6,7 @@ const html_table_header = """<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
 </head>
 <body><br><br>
   <div class="container is-fluid">
