@@ -1,0 +1,67 @@
+name: PYTHON
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+
+    - name: Set Global Environment Variables
+      uses: allenevans/set-env@v1.0.0
+      with:
+        CHOOSENIM_CHOOSE_VERSION: "1.0.4"
+        CHOOSENIM_NO_ANALYTICS: 1
+
+    - name: Update Python PIP
+      run: pip install --upgrade --disable-pip-version-check pip
+
+    - name: Cache choosenim
+      id: cache-choosenim
+      uses: actions/cache@v1
+      with:
+        path: ~/.choosenim
+        key: ${{ runner.os }}-choosenim-$CHOOSENIM_CHOOSE_VERSION
+
+    - name: Cache nimble
+      id: cache-nimble
+      uses: actions/cache@v1
+      with:
+        path: ~/.nimble
+        key: ${{ runner.os }}-nimble-$CHOOSENIM_CHOOSE_VERSION
+
+    - name: Install Nim via Choosenim
+      if: steps.cache-choosenim.outputs.cache-hit != 'true' || steps.cache-nimble.outputs.cache-hit != 'true'
+      run: |
+        curl https://nim-lang.org/choosenim/init.sh -sSf > init.sh
+        sh init.sh -y
+
+    - name: Nimble Refresh
+      run: |
+        export PATH=$HOME/.nimble/bin:$PATH
+        nimble -y refresh
+
+    - name: Nimble Install dependencies
+      run: |
+        export PATH=$HOME/.nimble/bin:$PATH
+        nimble -y install nimpy
+
+    - name: Compile DEBUG Mode
+      run: |
+        export PATH=$HOME/.nimble/bin:$PATH
+        nim c -d:ssl --app:lib --threads:on --out:faster_than_csv.so src/faster_than_csv.nim
+
+    - name: Compile RELEASE Mode
+      run: |
+        export PATH=$HOME/.nimble/bin:$PATH
+        nim c --app:lib --threads:on -d:release -d:danger -d:ssl --out:faster_than_csv.so src/faster_than_csv.nim
+
+    - name: Strip Binary
+      run: strip --strip-all faster_than_csv.so
+
+    - name: Import Binary
+      run: python3 -c "import faster_than_csv"
