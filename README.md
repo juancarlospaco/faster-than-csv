@@ -330,6 +330,7 @@ $ ./run-benchmark.sh  # Inside Docker.
 
 - Git Clone and Compile on Windows 10 on just 2 commands!.
 - [Alternatively you can try Docker for Windows.](https://docs.docker.com/docker-for-windows)
+- [Alternatively you can try WSL for Windows.](https://docs.microsoft.com/en-us/windows/wsl/about)
 - **The file extension must be `.pyd`, NOT `.dll`.**
 
 
