@@ -357,11 +357,6 @@ No.
 
 I dunno. (Not supported)
 
-- Developer Documentation ?.
-
-[Yes.](https://github.com/juancarlospaco/faster-than-csv/raw/master/faster_than_csv_DOCS.zip)
-(Zip because GitHub marks the Repo as being JavaScript)
-
 - How can I Install it ?.
 
 https://github.com/juancarlospaco/faster-than-csv/releases
