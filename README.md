@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/languages/top/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/languages/count/juancarlospaco/faster-than-csv?logoColor=green&style=for-the-badge)
 ![](https://img.shields.io/github/stars/juancarlospaco/faster-than-csv?style=for-the-badge "Star faster-than-csv on GitHub!")
-![](https://img.shields.io/maintenance/yes/2019?style=for-the-badge "2019")
+![](https://img.shields.io/maintenance/yes/2020?style=for-the-badge)
 ![](https://img.shields.io/github/languages/code-size/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/issues-raw/juancarlospaco/faster-than-csv?style=for-the-badge "Bugs")
 ![](https://img.shields.io/github/issues-pr-raw/juancarlospaco/faster-than-csv?style=for-the-badge "PRs")
@@ -21,7 +21,7 @@
 | csv (std lib)                 |  `0.40`      |
 | csv (list)                    |  `0.38`      |
 | csv (map)                     |  `0.37`      |
-| Faster_than_csv               |  `0.09`      |
+| Faster_than_csv               |  `0.08`      |
 
 - This CSV Lib is ~200 Lines of Code.
 
