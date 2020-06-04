@@ -1,2 +1,7 @@
-include *.c
-include nimbase.h
+exclude . README.md
+exclude . LICENSE
+
+recursive-include . *.nim
+recursive-include . *.nims
+recursive-include . *.nimf
+recursive-include . *.cfg
