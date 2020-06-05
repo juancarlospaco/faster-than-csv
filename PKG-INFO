@@ -10,7 +10,8 @@ Maintainer: Juan Carlos
 Maintainer-email: JuanCarlospaco@gmail.com
 License: MIT
 Download-URL: https://github.com/juancarlospaco/faster-than-csv/releases
-Description: Faster & simpler CSV replacement for Python
+Description:
+Faster & simpler CSV replacement for Python
 Keywords:
 python3, cpython, speed, cython, c, performance, compiled, native, fast, nim, csv
 Platform: Linux
