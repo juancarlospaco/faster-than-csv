@@ -1,19 +1,16 @@
 Metadata-Version: 2.1
 Name: faster-than-csv
-Version: 1.1
-Summary: Faster & simpler requests replacement for Python.
-Home-page: https://github.com/juancarlospaco/faster-than-requests#faster
-than-requests
+Version: 1.3
+Summary: Faster & simpler requests replacement for Python
+Home-page: https://github.com/juancarlospaco/faster-than-requests#faster-than-requests
 Author: Juan Carlos
 Author-email: JuanCarlospaco@gmail.com
 Maintainer: Juan Carlos
 Maintainer-email: JuanCarlospaco@gmail.com
 License: MIT
 Download-URL: https://github.com/juancarlospaco/faster-than-csv/releases
-Description:
-Faster & simpler CSV replacement for Python
 Keywords:
-python3, cpython, speed, cython, c, performance, compiled, native, fast, nim, csv
+python3, cpython, speed, cython, c, performance, compiled, native, fast, nim, csv, https://nim-lang.org
 Platform: Linux
 Platform: Darwin
 Platform: Windows
