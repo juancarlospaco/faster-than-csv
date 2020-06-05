@@ -4,6 +4,7 @@ import os
 rmDir("dist")
 mkDir("dist")
 
+const version = "1.4"
 const packageName = "faster_than_csv"
 const gccWin32 = system.findExe("x86_64-w64-mingw32-gcc")
 assert gccWin32.len > 0, "x86_64-w64-mingw32-gcc not found"
@@ -61,5 +62,5 @@ withDir("dist"):
   withDir("mac"):
     cpFile(nimbaseH, "nimbase.h")
 
-  exec "zip -9 -T -v -r " & packageName & ".zip *"
+  exec "zip -9 -T -v -r " & packageName & "-" & version & ".zip *"
   echo "Apple Mac OSX: Compile manually and copy all the .c files to 'mac/' folder, see https://github.com/foxlet/macOS-Simple-KVM"
