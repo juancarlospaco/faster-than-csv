@@ -6,6 +6,3 @@
 dist/
 __pycache__/
 faster_than_csv.egg-info/
-install2local4testing.sh
-package4pypi.sh
-upload2pypi.sh
