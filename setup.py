@@ -15,7 +15,7 @@ for c_source_file in os.listdir(folder): # Walk the folder with C files.
 setuptools.setup(
   ext_modules = [
     setuptools.Extension(
-      name = "$1",
+      name = "faster_than_csv",
       sources = sources,
       include_dirs = [folder],
       extra_link_args = ["-s"],
