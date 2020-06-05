@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: faster-than-csv
-Version: 1.3
+Version: 1.4
 Summary: Faster & simpler requests replacement for Python
 Home-page: https://github.com/juancarlospaco/faster-than-requests#faster-than-requests
 Author: Juan Carlos
