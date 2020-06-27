@@ -90,12 +90,13 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
 
 
 proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
+  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false,
+  agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(url)``.
   doAssert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
   if unlikely(verbose): echo url
   let csv_content = create(string, sizeOf string)
-  csv_content[] = newHttpClient().getContent(url)  # opciones
+  csv_content[] = newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout).getContent(url)  # opciones
   if likely(csv_content[].len > 0):
     let parser = create(CsvParser, sizeOf CsvParser)
     parser[].open(newStringStream(csv_content[]), "url2csv", separator, quote, skipInitialSpace=skipInitialSpace)
