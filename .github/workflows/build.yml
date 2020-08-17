@@ -91,7 +91,7 @@ jobs:
       if: runner.os == 'Windows'
       run: |
         nim c --app:lib --out:faster_than_csv.pyd src/faster_than_csv.nim
-        python3 -c "import faster_than_csv"
+        python -c "import faster_than_csv"
 
 
     - name: Compile (Unix)
