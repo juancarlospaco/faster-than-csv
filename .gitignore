@@ -1,8 +1,4 @@
-*.c
-*.h
 *.dll
 *.so
 *.pyd
-dist/
 __pycache__/
-faster_than_csv.egg-info/
