@@ -120,7 +120,7 @@ jobs:
     - uses: EndBug/add-and-commit@v4
       with:
         add: 'dist'
-        author_name: Juan Carlos
+        # author_name: Juan Carlos
         force: true
         message: 'Fully Automated Luxury Python'
 
