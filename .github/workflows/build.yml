@@ -90,8 +90,8 @@ jobs:
     - name: Compile Debug & import (Windows)
       if: runner.os == 'Windows'
       run: |
-        nim c --app:lib --out:${{ env.$PACKAGE_NAME }}.pyd ${{ env.MAIN_MODULE }}
-        python -c "import ${{ env.$PACKAGE_NAME }}"
+        nim c --app:lib --out:${{ env.PACKAGE_NAME }}.pyd ${{ env.MAIN_MODULE }}
+        python.exe -c "import ${{ env.$PACKAGE_NAME }}"
 
 
     - name: Compile (Linux)
