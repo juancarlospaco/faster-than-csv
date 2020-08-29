@@ -123,6 +123,8 @@ jobs:
         # author_name: Juan Carlos
         force: true
         message: 'Fully Automated Luxury Python'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
     - name: Cache Nim
