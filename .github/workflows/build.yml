@@ -117,11 +117,7 @@ jobs:
     - name: Compile (Windows)
       if: runner.os == 'Windows'
       run: |
-        nim compileToC --compileOnly:on --nimcache:dist/win/ \
-        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto \
-        --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on \
-        --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off \
-        ${{ env.MAIN_MODULE }}
+        nim compileToC --compileOnly:on --nimcache:dist/win/ -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
