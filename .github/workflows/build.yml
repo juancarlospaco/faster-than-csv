@@ -90,38 +90,42 @@ jobs:
     - name: Compile Debug & import (Windows)
       if: runner.os == 'Windows'
       run: |
-        nim c --app:lib --out:faster_than_csv.pyd src/faster_than_csv.nim
-        python -c "import faster_than_csv"
+        nim c --app:lib --out:${{ env.$PACKAGE_NAME }}.pyd ${{ env.MAIN_MODULE }}
+        python -c "import ${{ env.$PACKAGE_NAME }}"
 
 
     - name: Compile (Linux)
       if: runner.os == 'Linux'
       run: |
-        nim compileToC --compileOnly:on --nimcache:dist/lin/ \
-        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto \
+        nim compileToC --compileOnly:on --nimcache:dist/lin/                            \
+        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto             \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:off \
         --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off \
-        $MAIN_MODULE
+        ${{ env.MAIN_MODULE }}
 
 
     - name: Compile (Mac)
       if: runner.os == 'macOS'
       run: |
-        nim compileToC --compileOnly:on --nimcache:dist/mac/ \
-        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto \
+        nim compileToC --compileOnly:on --nimcache:dist/mac/                            \
+        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto             \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:off \
         --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off \
-        $MAIN_MODULE
+        ${{ env.MAIN_MODULE }}
 
 
     - name: Compile (Windows)
       if: runner.os == 'Windows'
       run: |
-        nim compileToC --compileOnly:on --nimcache:dist/win/ -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
+        nim compileToC --compileOnly:on --nimcache:dist/win/                            ^
+        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto             ^
+        --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on  ^
+        --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off ^
+        ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
-      if: runner.os == 'Linux'
+      if: runner.os == 'Linux' || runner.os == 'macOS'
       run: rm --force --verbose dist/lin/*.json dist/win/*.json dist/mac/*.json dist/lin/*.c.o dist/win/*.c.o dist/mac/*.c.o
 
 
@@ -136,7 +140,6 @@ jobs:
     - uses: EndBug/add-and-commit@v4
       with:
         add: 'dist'
-        # author_name: Juan Carlos
         force: true
         message: 'Fully Automated Luxury Python'
       env:

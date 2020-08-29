@@ -3,3 +3,5 @@
 *.pyd
 __pycache__/
 *.pyc
+*.c.o
+
