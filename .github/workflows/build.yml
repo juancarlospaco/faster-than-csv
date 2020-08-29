@@ -94,10 +94,20 @@ jobs:
         python -c "import faster_than_csv"
 
 
-    - name: Compile (Unix)
-      if: runner.os == 'Linux' || runner.os == 'macOS'
+    - name: Compile (Linux)
+      if: runner.os == 'Linux'
       run: |
         nim compileToC --compileOnly:on --nimcache:dist/lin/ \
+        -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto \
+        --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:off \
+        --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off \
+        $MAIN_MODULE
+
+
+    - name: Compile (Mac)
+      if: runner.os == 'macOS'
+      run: |
+        nim compileToC --compileOnly:on --nimcache:dist/mac/ \
         -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:off \
         --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off \
