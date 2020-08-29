@@ -21,7 +21,7 @@ Project-URL: Matrix, https://matrix.to/#/#freenode_#nim:matrix.org
 Project-URL: Argentina Chat Spanish, https://t.me/NimArgentina
 Project-URL: Dev Documentation Index, https://nim-lang.github.io/Nim/theindex.html
 Project-URL: Tutorial, https://nim-lang.github.io/Nim/tut1.html
-Keywords: python3, cpython, speed, cython, rust, c, performance, compiled, native, fast, nim, csv, pandas, argentina
+Keywords: python3, python4, cpython, speed, cython, rust, wasm, c, performance, compiled, native, fast, nim, csv, pandas, argentina
 Platform: Linux
 Platform: Darwin
 Platform: Windows
@@ -41,4 +41,3 @@ Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Topic :: Software Development
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-Provides: faster_than_csv
