@@ -121,7 +121,7 @@ jobs:
         -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on \
         --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off \
-        ${{ MAIN_MODULE }}
+        ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
