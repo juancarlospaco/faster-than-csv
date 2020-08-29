@@ -125,7 +125,7 @@ jobs:
 
 
     - name: Clean out
-      if: runner.os == 'Linux' || runner.os == 'macOS'
+      if: runner.os == 'Linux'
       run: rm --force --verbose dist/lin/*.json dist/win/*.json dist/mac/*.json dist/lin/*.c.o dist/win/*.c.o dist/mac/*.c.o
 
 
