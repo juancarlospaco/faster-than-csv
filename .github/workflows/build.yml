@@ -106,7 +106,7 @@ jobs:
 
     - name: Clean out
       if: runner.os == 'Linux'
-      run: rm --force --verbose dist/lin/*.json dist/win/*.json dist/mac/*.json dist/lin/*.o dist/win/*.o dist/mac/*.o
+      run: rm --force --verbose dist/lin/*.json dist/win/*.json dist/mac/*.json dist/lin/*.c.o dist/win/*.c.o dist/mac/*.c.o
 
 
     - name: Compress to ZIP
