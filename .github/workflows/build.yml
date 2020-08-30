@@ -21,7 +21,7 @@ jobs:
       uses: allenevans/set-env@v1.0.0
       with:
         PACKAGE_NAME:    "faster_than_csv"
-        PACKAGE_VERSION: ${{ $( git rev-parse --short HEAD ) }}
+        PACKAGE_VERSION: ${{ git rev-parse --short HEAD }}
         MAIN_MODULE:     "src/faster_than_csv.nim"
         GITHUB_TOKEN:    ${{ secrets.COMMIT_TOKEN }}
 
