@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
-    - uses: rlespinasse/github-slug-action@v2
+    - uses: rlespinasse/github-slug-action@v2.x
 
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
