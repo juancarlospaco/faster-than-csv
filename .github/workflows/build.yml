@@ -153,9 +153,3 @@ jobs:
       with:
         path: $PWD/Nim/
         key: ${{ runner.os }}-nim
-
-
-  after_build:
-    - name: TEST  # Make Python package
-      if: runner.os == 'Linux'
-      run: echo 42
