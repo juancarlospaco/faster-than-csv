@@ -164,7 +164,7 @@ jobs:
 
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       if: runner.os == 'Linux'
-      run: twine upload --no-color --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
+      run: twine upload --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
 
 
     - name: Cache Nim # Cache the Nim compiler build
