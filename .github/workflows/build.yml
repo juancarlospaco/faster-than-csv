@@ -16,12 +16,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
-    - uses: rlespinasse/github-slug-action@v2.x
 
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
         PACKAGE_NAME:    "faster_than_csv"
+        PACKAGE_VERSION: "$( git rev-parse --short HEAD )"
         MAIN_MODULE:     "src/faster_than_csv.nim"
         GITHUB_TOKEN:    ${{ secrets.COMMIT_TOKEN }}
 
@@ -81,10 +81,10 @@ jobs:
     - name: SemVer                      # Use Git Hash as versioning.
       if: runner.os == 'Linux'
       run: |
-        cp --force $PWD/setup.cfg           dist/setup.cfg
-        echo ${{ env.GITHUB_SHA_SHORT }} >> dist/setup.cfg
-        cp --force $PWD/PKG-INFO            dist/$PACKAGE_NAME.egg-info/PKG-INFO
-        echo ${{ env.GITHUB_SHA_SHORT }} >> dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        cp --force $PWD/setup.cfg          dist/setup.cfg
+        echo ${{ env.PACKAGE_VERSION }} >> dist/setup.cfg
+        cp --force $PWD/PKG-INFO           dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        echo ${{ env.PACKAGE_VERSION }} >> dist/$PACKAGE_NAME.egg-info/PKG-INFO
 
 
     - name: Nim Check                   # Check code style and semantic.
@@ -136,7 +136,7 @@ jobs:
       run: |
         cd dist
         rm --force --verbose *.zip
-        zip -9 -T -v -r $PACKAGE_NAME-${{ env.GITHUB_SHA_SHORT }}.zip *
+        zip -9 -T -v -r $PACKAGE_NAME-$PACKAGE_VERSION.zip *
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
