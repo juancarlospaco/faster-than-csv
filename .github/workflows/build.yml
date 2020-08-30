@@ -90,10 +90,10 @@ jobs:
     - name: SemVer                      # Use Git Hash as versioning.
       if: runner.os == 'Linux'
       run: |
-        cp --force $PWD/setup.cfg          dist/setup.cfg
-        echo ${{ env.PACKAGE_VERSION }} >> dist/setup.cfg
-        cp --force $PWD/PKG-INFO           dist/$PACKAGE_NAME.egg-info/PKG-INFO
-        echo ${{ env.PACKAGE_VERSION }} >> dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        cp --force $PWD/setup.cfg dist/setup.cfg
+        date +"%y.%m.%d" >>       dist/setup.cfg
+        cp --force $PWD/PKG-INFO  dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        date +"%y.%m.%d" >>       dist/$PACKAGE_NAME.egg-info/PKG-INFO
 
 
     - name: Nim Check                   # Check code style and semantic.
@@ -150,7 +150,7 @@ jobs:
       run: |
         cd dist
         rm --force --verbose *.zip
-        zip -9 -T -v -r $PACKAGE_NAME-$( date --iso-8601 ).zip *
+        zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
