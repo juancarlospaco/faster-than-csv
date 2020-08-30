@@ -27,10 +27,12 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
-        PACKAGE_NAME:    "faster_than_csv"
-        PACKAGE_VERSION: ${{ steps.vars.outputs.sha_short }}
-        MAIN_MODULE:     "src/faster_than_csv.nim"
-        GITHUB_TOKEN:    ${{ secrets.COMMIT_TOKEN }}
+        MAIN_MODULE:           "src/faster_than_csv.nim"
+        PACKAGE_NAME:          "faster_than_csv"
+        TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD:        ${{ secrets.PYPI_PASSWORD }}
+        PACKAGE_VERSION:       ${{ steps.vars.outputs.sha_short }}
+        TWINE_NON_INTERACTIVE: 1
 
 
     - name: Update Python PIP           # Update to avoid PIP bugs.
@@ -158,6 +160,11 @@ jobs:
         message: 'Fully Automated Luxury Python'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+    - name: Upload to PYPI  # If everything worked, then upload to PYPI
+      if: runner.os == 'Linux'
+      run: twine --no-color --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
 
 
     - name: Cache Nim # Cache the Nim compiler build
