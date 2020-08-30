@@ -40,4 +40,4 @@ Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Topic :: Software Development
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-Version: dd5b252
+Version: 0f774a3
