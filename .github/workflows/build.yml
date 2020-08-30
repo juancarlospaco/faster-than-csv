@@ -93,7 +93,7 @@ jobs:
         cp --force $PWD/setup.cfg          dist/setup.cfg
         echo ${{ env.PACKAGE_VERSION }} >> dist/setup.cfg
         cp --force $PWD/PKG-INFO           dist/$PACKAGE_NAME.egg-info/PKG-INFO
-        echo ${{ env.PACKAGE_VERSION }} >> dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        date --iso-8601 >> dist/$PACKAGE_NAME.egg-info/PKG-INFO
 
 
     - name: Nim Check                   # Check code style and semantic.
@@ -164,7 +164,7 @@ jobs:
 
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       if: runner.os == 'Linux'
-      run: twine upload --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
+      run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
 
 
     - name: Cache Nim # Cache the Nim compiler build
