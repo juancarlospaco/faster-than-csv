@@ -185,8 +185,8 @@ jobs:
 
     - name: Compress to ZIP  # Make Python package
       run: |
-        cd dist
-        rm --force --verbose *.zip
+        rm --force --verbose dist/*.zip
+        cd dist/
         zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
 
