@@ -98,6 +98,7 @@ jobs:
 
 
     - name: Prepare Files               # Prepare files for the Python package
+      if: runner.os == 'Linux' || runner.os == 'Windows'
       shell: bash
       run: |
         touch dist/LICENSE dist/$PACKAGE_NAME.egg-info/zip-safe dist/$PACKAGE_NAME.egg-info/top_level.txt dist/$PACKAGE_NAME.egg-info/requires.txt dist/$PACKAGE_NAME.egg-info/dependency_links.txt
