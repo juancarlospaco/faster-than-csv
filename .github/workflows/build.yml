@@ -162,12 +162,17 @@ jobs:
         date +"%y.%m.%d" >>  dist/$PACKAGE_NAME.egg-info/PKG-INFO
 
 
-    - name: Compress to ZIP  # Make Python package
+    - name: Delay                       # Linux must finish last.
       if: runner.os == 'Linux'
+      run: sleep 5m
+
+
+    - name: Compress to ZIP  # Make Python package
+      shell: bash
       run: |
-        cd dist
-        rm --force *.zip
-        zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
+        rm -f dist/*.zip
+        cd $PWD/dist
+        7za a -tzip -mx9 -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
