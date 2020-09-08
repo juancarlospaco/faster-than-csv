@@ -104,15 +104,6 @@ jobs:
         cp -f $PWD/Nim/lib/nimbase.h  dist/mac/nimbase.h
 
 
-    - name: SemVer                      # Use Git Hash as versioning.
-      if: runner.os == 'Linux'
-      run: |
-        cp --force $PWD/setup.cfg dist/setup.cfg
-        date +"%y.%m.%d" >>       dist/setup.cfg
-        cp --force $PWD/PKG-INFO  dist/$PACKAGE_NAME.egg-info/PKG-INFO
-        date +"%y.%m.%d" >>       dist/$PACKAGE_NAME.egg-info/PKG-INFO
-
-
     - name: Nim Check                   # Check code style and semantic.
       shell: bash
       run: nim check --styleCheck:hint ${{ env.MAIN_MODULE }}
@@ -162,6 +153,15 @@ jobs:
       run: rm -f dist/lin/*.json dist/win/*.json dist/mac/*.json
 
 
+    - name: SemVer                      # Use Git Hash as versioning.
+      shell: bash
+      run: |
+        cp -f $PWD/setup.cfg dist/setup.cfg
+        date +"%y.%m.%d" >>  dist/setup.cfg
+        cp -f $PWD/PKG-INFO  dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        date +"%y.%m.%d" >>  dist/$PACKAGE_NAME.egg-info/PKG-INFO
+
+
     - name: Compress to ZIP  # Make Python package
       if: runner.os == 'Linux'
       run: |
@@ -196,7 +196,7 @@ jobs:
     steps:
 
     - name: Update Python PIP           # Update to avoid PIP bugs.
-      run: pip3 install --quiet --upgrade --disable-pip-version-check twine
+      run: pip3 install --user --quiet --upgrade --disable-pip-version-check twine
 
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
