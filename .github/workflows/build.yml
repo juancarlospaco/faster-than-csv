@@ -7,6 +7,7 @@ on:
       - 'setup.cfg'
       - 'PKG-INFO'
       - 'src/*.*'
+      - 'src/**.py'
       - 'src/**.nim'
       - 'src/**.nims'
       - 'src/**.cfg'
@@ -167,13 +168,14 @@ jobs:
 
 
     - name: Compress to ZIP  # Make Python package
-      shell: bash
+      if: runner.os == 'Linux'
       run: |
         cd dist
         zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
+      if: runner.os == 'Linux'
       with:
         add: 'dist'
         force: true
