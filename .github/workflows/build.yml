@@ -163,6 +163,7 @@ jobs:
 
 
     - name: Clean out
+      if: runner.os == 'Linux' || runner.os == 'Windows'
       shell: bash
       run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json dist/*.zip
 
