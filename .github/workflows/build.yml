@@ -93,23 +93,18 @@ jobs:
 
 
     - name: Prepare Folders             # Prepare folders for the Python package
-      if: runner.os == 'Linux'
+      shell: bash
       run: mkdir -p dist/lin dist/win dist/mac dist/$PACKAGE_NAME.egg-info
 
 
     - name: Prepare Files               # Prepare files for the Python package
-      if: runner.os == 'Linux'
+      shell: bash
       run: |
         touch dist/LICENSE dist/$PACKAGE_NAME.egg-info/zip-safe dist/$PACKAGE_NAME.egg-info/top_level.txt dist/$PACKAGE_NAME.egg-info/requires.txt dist/$PACKAGE_NAME.egg-info/dependency_links.txt
         cp --force $PWD/setup.py           dist/setup.py
         cp --force $PWD/Nim/lib/nimbase.h  dist/lin/nimbase.h
         cp --force $PWD/Nim/lib/nimbase.h  dist/win/nimbase.h
         cp --force $PWD/Nim/lib/nimbase.h  dist/mac/nimbase.h
-
-
-    # - name: Delay                       # Linux must finish last.
-    #   if: runner.os == 'Linux'
-    #   run: sleep 8m
 
 
     - name: SemVer                      # Use Git Hash as versioning.
@@ -122,8 +117,8 @@ jobs:
 
 
     - name: Nim Check                   # Check code style and semantic.
-      if: runner.os == 'Linux'
-      run: nim check --styleCheck:hint $MAIN_MODULE
+      shell: bash
+      run: nim check --styleCheck:hint ${{ env.MAIN_MODULE }}
 
 
     - name: Compile Debug & import (Unix)  # Compile and import to check if its working
@@ -165,6 +160,27 @@ jobs:
       run: nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/win/ -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
+    - name: Clean out
+      shell: bash
+      run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json dist/*.zip
+
+
+    - name: Compress to ZIP  # Make Python package
+      shell: bash
+      run: |
+        cd dist
+        zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
+
+
+    - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
+      with:
+        add: 'dist'
+        force: true
+        message: 'Fully Automated Luxury Python'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
     - name: Cache Nim # Cache the Nim compiler build
       uses: actions/cache@v1
       with:
@@ -179,24 +195,5 @@ jobs:
     name: Upload to PYPI
     runs-on: ubuntu-latest
     steps:
-    - name: Clean out
-      run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json dist/*.zip
-
-
-    - name: Compress to ZIP  # Make Python package
-      run: |
-        cd dist/
-        zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
-
-
-    - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
-      with:
-        add: 'dist'
-        force: true
-        message: 'Fully Automated Luxury Python'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
