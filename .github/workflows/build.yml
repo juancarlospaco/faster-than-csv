@@ -180,12 +180,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Clean out
-      run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json
+      run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json dist/*.zip
 
 
     - name: Compress to ZIP  # Make Python package
       run: |
-        rm --force --verbose dist/*.zip
         cd dist/
         zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
