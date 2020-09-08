@@ -1,5 +1,4 @@
 name: Build
-
 on:
   push:
     paths:
@@ -13,9 +12,6 @@ on:
       - 'src/**.cfg'
       - '.github/workflows/*.yml'
       - '.github/workflows/*.yaml'
-#on:
-#  release:
-#    types: [created]
 
 jobs:
   # https://gist.github.com/ybiquitous/c80f15c18319c63cae8447a3be341267#file-skip-ci-on-actions-yml
@@ -91,7 +87,7 @@ jobs:
 
     - name: Prepare Folders             # Prepare folders for the Python package
       shell: bash
-      run: mkdir -p dist/lin dist/win dist/mac dist/$PACKAGE_NAME.egg-info doc
+      run: mkdir -p dist/lin dist/win dist/mac dist/$PACKAGE_NAME.egg-info docs
 
 
     - name: Prepare Files               # Prepare files for the Python package
@@ -110,7 +106,7 @@ jobs:
 
 
     - name: Documentation               # Generate documentation.
-      run: nim doc --out:doc/index.html ${{ env.MAIN_MODULE }}
+      run: nim doc --out:docs/index.html ${{ env.MAIN_MODULE }}
 
 
     - name: Compile Debug & import (Unix)  # Compile and import to check if its working
@@ -191,17 +187,9 @@ jobs:
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
       with:
-        add: 'doc'
+        add: 'docs'
         force: true
         message: 'Fully Automated Luxury Documentation'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-    - name: Publish documentation to Github Pages
-      uses: crazy-max/ghaction-github-pages@v2
-      with:
-        build_dir: doc
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
