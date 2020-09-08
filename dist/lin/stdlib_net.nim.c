@@ -408,33 +408,33 @@ STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_43, "Key file could not be found: ", 
 STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_44, "Verification of private key file failed.", 40);
 
 /* section: NIM_merge_VARS */
-extern tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17370614_;
+extern tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17365614_;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
-extern tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17415677_;
-extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370696_;
-extern tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17370719_;
-extern tyProc__wCuLyuC5VitcgJKGCqJQRw Dl_17371026_;
-extern tyProc__5zMKCPIiPHTYY9cjyzsHlmQ Dl_17371020_;
-extern tyProc__e47RoMUolEGMiUlfiZt9abQ Dl_17370619_;
+extern tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17410677_;
+extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365701_;
+extern tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17365724_;
+extern tyProc__wCuLyuC5VitcgJKGCqJQRw Dl_17366026_;
+extern tyProc__5zMKCPIiPHTYY9cjyzsHlmQ Dl_17366020_;
+extern tyProc__e47RoMUolEGMiUlfiZt9abQ Dl_17365619_;
 extern int osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w;
-extern tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17370616_;
-extern tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17370692_;
+extern tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17365616_;
+extern tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17365697_;
 extern Exception* currException__9bVPeDJlYTi9bQApZpfH8wjg;
 extern Exception* currException__9bVPeDJlYTi9bQApZpfH8wjg;
 extern Exception* currException__9bVPeDJlYTi9bQApZpfH8wjg;
-extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370706_;
-extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370723_;
-extern tyProc__sG7rgqmtlgBaumPwwN3BfQ Dl_17370714_;
-extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370726_;
-extern tyProc__09aW01hZ1tSPafLaWVpBcXA Dl_17370709_;
-extern tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17370632_;
-extern tyProc__HXibadfWHwHwyhCwpIRD2A Dl_17356252_;
-extern tyProc__2PA7CxitARKs0jpUW1gQ0g Dl_17370655_;
-extern tyProc__JfY9aCDiBh9bgOEieo8Vltxg Dl_17415459_;
-extern tyProc__H5wL7jexPlRA7WCw9cqLm0A Dl_17370643_;
-extern tyProc__tYatIIo0oRSB9bjHLep7yhQ Dl_17370664_;
-extern tyProc__xjxKRHVZXDqdWXw9bunoZ3w Dl_17370668_;
-extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370673_;
+extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365711_;
+extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365728_;
+extern tyProc__sG7rgqmtlgBaumPwwN3BfQ Dl_17365719_;
+extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365731_;
+extern tyProc__09aW01hZ1tSPafLaWVpBcXA Dl_17365714_;
+extern tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17365637_;
+extern tyProc__HXibadfWHwHwyhCwpIRD2A Dl_17351252_;
+extern tyProc__2PA7CxitARKs0jpUW1gQ0g Dl_17365660_;
+extern tyProc__JfY9aCDiBh9bgOEieo8Vltxg Dl_17410459_;
+extern tyProc__H5wL7jexPlRA7WCw9cqLm0A Dl_17365648_;
+extern tyProc__tYatIIo0oRSB9bjHLep7yhQ Dl_17365669_;
+extern tyProc__xjxKRHVZXDqdWXw9bunoZ3w Dl_17365673_;
+extern tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365678_;
 
 /* section: NIM_merge_PROCS */
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
@@ -474,7 +474,7 @@ N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, isDisconnectionError__XxybNfLJKXhPAkMhmPhNzQ)(
 	NIM_BOOL T4_;
 	result = (NIM_BOOL)0;
 	T1_ = (NIM_BOOL)0;
-	T1_ = ((flags &(1U<<((NU)(((tyEnum_SocketFlag__4xio0cAXR7XG4pF9bVcpxEg) 1))&7U)))!=0);
+	T1_ = ((flags &((NU8)1<<((NU)(((tyEnum_SocketFlag__4xio0cAXR7XG4pF9bVcpxEg) 1))&7U)))!=0);
 	if (!(T1_)) goto LA2_;
 	T3_ = (NIM_BOOL)0;
 	T4_ = (NIM_BOOL)0;
@@ -539,7 +539,7 @@ N_LIB_PRIVATE N_NIMCALL(void, raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g)(NimStri
 		goto BeforeRet_;
 	}
 	LA3_: ;
-	err = Dl_17371026_();
+	err = Dl_17366026_();
 	{
 		tyObject_SslError__GtD0IEVE1EOWxaU5x9amdzA* T10_;
 		if (!(err == ((NU) 0))) goto LA8_;
@@ -554,7 +554,7 @@ N_LIB_PRIVATE N_NIMCALL(void, raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g)(NimStri
 	}
 	LA8_: ;
 	T11_ = (NCSTRING)0;
-	T11_ = Dl_17371020_(err, NIM_NIL);
+	T11_ = Dl_17366020_(err, NIM_NIL);
 	errStr = cstrToNimstr(T11_);
 	switch (err) {
 	case ((NI) 336032814):
@@ -612,7 +612,7 @@ NIM_BOOL* nimErr_;
 		{
 			int ret;
 			if (!(err <= ((NI) 0))) goto LA7_;
-			ret = Dl_17370719_((*socket).sslHandle, ((int) (err)));
+			ret = Dl_17365724_((*socket).sslHandle, ((int) (err)));
 			switch (ret) {
 			case ((NI) 6):
 			{
@@ -673,7 +673,7 @@ NIM_BOOL* nimErr_;
 					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 					if (!!(T26_)) goto LA27_;
 					errStr = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_15));
-					sslErr = Dl_17371026_();
+					sslErr = Dl_17366026_();
 					{
 						NIM_BOOL T31_;
 						T31_ = (NIM_BOOL)0;
@@ -705,7 +705,7 @@ appendString(errStr, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_17));
 						NCSTRING T41_;
 						NimStringDesc* T42_;
 						T41_ = (NCSTRING)0;
-						T41_ = Dl_17371020_(sslErr, NIM_NIL);
+						T41_ = Dl_17366020_(sslErr, NIM_NIL);
 						errStr_2 = cstrToNimstr(T41_);
 						T42_ = (NimStringDesc*)0;
 						T42_ = rawNewString((errStr_2 ? errStr_2->Sup.len : 0) + (errStr_2 ? errStr_2->Sup.len : 0) + 2);
@@ -815,9 +815,9 @@ NIM_BOOL* nimErr_;
 		{
 			NIM_BOOL T10_;
 			int T12_;
-			sigset_t oldSetX60gensym101_;
-			sigset_t watchSetX60gensym101_;
-			NIM_BOOL alreadyBlockedX60gensym101_;
+			sigset_t oldSetX60gensym102_;
+			sigset_t watchSetX60gensym102_;
+			NIM_BOOL alreadyBlockedX60gensym102_;
 			int T39_;
 			int res;
 			T10_ = (NIM_BOOL)0;
@@ -829,13 +829,13 @@ NIM_BOOL* nimErr_;
 			T10_ = (T12_ == ((NI32) 0));
 			LA11_: ;
 			if (!T10_) goto LA13_;
-			nimZeroMem((void*)(&oldSetX60gensym101_), sizeof(sigset_t));
-			nimZeroMem((void*)(&watchSetX60gensym101_), sizeof(sigset_t));
+			nimZeroMem((void*)(&oldSetX60gensym102_), sizeof(sigset_t));
+			nimZeroMem((void*)(&watchSetX60gensym102_), sizeof(sigset_t));
 			{
 				int T17_;
 				NI32 T20_;
 				T17_ = (int)0;
-				T17_ = sigemptyset((&oldSetX60gensym101_));
+				T17_ = sigemptyset((&oldSetX60gensym102_));
 				if (!(T17_ == ((NI32) -1))) goto LA18_;
 				T20_ = (NI32)0;
 				T20_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
@@ -848,7 +848,7 @@ NIM_BOOL* nimErr_;
 				int T23_;
 				NI32 T26_;
 				T23_ = (int)0;
-				T23_ = sigemptyset((&watchSetX60gensym101_));
+				T23_ = sigemptyset((&watchSetX60gensym102_));
 				if (!(T23_ == ((NI32) -1))) goto LA24_;
 				T26_ = (NI32)0;
 				T26_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
@@ -861,7 +861,7 @@ NIM_BOOL* nimErr_;
 				int T29_;
 				NI32 T32_;
 				T29_ = (int)0;
-				T29_ = sigaddset((&watchSetX60gensym101_), ((int) 13));
+				T29_ = sigaddset((&watchSetX60gensym102_), ((int) 13));
 				if (!(T29_ == ((NI32) -1))) goto LA30_;
 				T32_ = (NI32)0;
 				T32_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
@@ -874,7 +874,7 @@ NIM_BOOL* nimErr_;
 				int T35_;
 				NI32 T38_;
 				T35_ = (int)0;
-				T35_ = sigprocmask(((int) 0), (&watchSetX60gensym101_), (&oldSetX60gensym101_));
+				T35_ = sigprocmask(((int) 0), (&watchSetX60gensym102_), (&oldSetX60gensym102_));
 				if (!(T35_ == ((NI32) -1))) goto LA36_;
 				T38_ = (NI32)0;
 				T38_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
@@ -884,10 +884,10 @@ NIM_BOOL* nimErr_;
 			}
 			LA36_: ;
 			T39_ = (int)0;
-			T39_ = sigismember((&oldSetX60gensym101_), ((int) 13));
-			alreadyBlockedX60gensym101_ = (T39_ == ((NI32) 1));
-			Dl_17415677_();
-			res = Dl_17370696_((*socket).sslHandle);
+			T39_ = sigismember((&oldSetX60gensym102_), ((int) 13));
+			alreadyBlockedX60gensym102_ = (T39_ == ((NI32) 1));
+			Dl_17410677_();
+			res = Dl_17365701_((*socket).sslHandle);
 			{
 				if (!(res == ((NI32) 0))) goto LA43_;
 			}
@@ -899,7 +899,7 @@ NIM_BOOL* nimErr_;
 				if (!!((res == ((NI32) 1)))) goto LA46_;
 				err = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
 				if (NIM_UNLIKELY(*nimErr_)) goto LA40_;
-				sslError = Dl_17370719_((*socket).sslHandle, res);
+				sslError = Dl_17365724_((*socket).sslHandle, res);
 				{
 					NIM_BOOL T50_;
 					T50_ = (NIM_BOOL)0;
@@ -911,14 +911,14 @@ NIM_BOOL* nimErr_;
 					{
 						if (!(err == ((NI32) 32))) goto LA56_;
 						{
-							int signalX60gensym101X60gensym104_;
-							int errX60gensym101X60gensym104_;
-							if (!!(alreadyBlockedX60gensym101_)) goto LA60_;
-							signalX60gensym101X60gensym104_ = (int)0;
-							errX60gensym101X60gensym104_ = sigwait((&watchSetX60gensym101_), (&signalX60gensym101X60gensym104_));
+							int signalX60gensym102X60gensym105_;
+							int errX60gensym102X60gensym105_;
+							if (!!(alreadyBlockedX60gensym102_)) goto LA60_;
+							signalX60gensym102X60gensym105_ = (int)0;
+							errX60gensym102X60gensym105_ = sigwait((&watchSetX60gensym102_), (&signalX60gensym102X60gensym105_));
 							{
-								if (!!((errX60gensym101X60gensym104_ == ((NI32) 0)))) goto LA64_;
-								raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(errX60gensym101X60gensym104_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_9));
+								if (!!((errX60gensym102X60gensym105_ == ((NI32) 0)))) goto LA64_;
+								raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(errX60gensym102X60gensym105_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_9));
 								if (NIM_UNLIKELY(*nimErr_)) goto LA40_;
 							}
 							LA64_: ;
@@ -954,12 +954,12 @@ NIM_BOOL* nimErr_;
 			{
 				oldNimErrFin40_ = *nimErr_; *nimErr_ = NIM_FALSE;
 				{
-					if (!!(alreadyBlockedX60gensym101_)) goto LA76_;
+					if (!!(alreadyBlockedX60gensym102_)) goto LA76_;
 					{
 						int T80_;
 						NI32 T83_;
 						T80_ = (int)0;
-						T80_ = sigprocmask(((int) 1), (&watchSetX60gensym101_), (&oldSetX60gensym101_));
+						T80_ = sigprocmask(((int) 1), (&watchSetX60gensym102_), (&oldSetX60gensym102_));
 						if (!(T80_ == ((NI32) -1))) goto LA81_;
 						T83_ = (NI32)0;
 						T83_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
@@ -990,7 +990,7 @@ NIM_BOOL* nimErr_;
 			T88_ = !(((*socket).sslHandle == NIM_NIL));
 			LA89_: ;
 			if (!T88_) goto LA90_;
-			Dl_17370619_((*socket).sslHandle);
+			Dl_17365619_((*socket).sslHandle);
 			(*socket).sslHandle = NIM_NIL;
 		}
 		LA90_: ;
@@ -1232,7 +1232,7 @@ appendString(T69_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_23));
 appendString(T69_, address);
 		(*T68_).Sup.Sup.message = T69_;
 		(*T68_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T68_, "IOError", "dial", "net.nim", 1872);
+		raiseExceptionEx((Exception*)T68_, "IOError", "dial", "net.nim", 1888);
 		goto BeforeRet_;
 	}
 	LA60_: ;
@@ -1244,7 +1244,7 @@ NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	(*socket).isSsl = NIM_TRUE;
 	(*socket).sslContext = ctx;
-	(*socket).sslHandle = Dl_17370616_((*(*socket).sslContext).context);
+	(*socket).sslHandle = Dl_17365616_((*(*socket).sslContext).context);
 	(*socket).sslNoHandshake = NIM_FALSE;
 	(*socket).sslHasPeekChar = NIM_FALSE;
 	(*socket).sslNoShutdown = NIM_FALSE;
@@ -1257,7 +1257,7 @@ NIM_BOOL* nimErr_;
 	{
 		int T7_;
 		T7_ = (int)0;
-		T7_ = Dl_17370692_((*socket).sslHandle, (*socket).fd);
+		T7_ = Dl_17365697_((*socket).sslHandle, (*socket).fd);
 		if (!!((T7_ == ((NI32) 1)))) goto LA8_;
 		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -2037,8 +2037,8 @@ NIM_BOOL* nimErr_;
 			(void)(T9_);
 		}
 		LA7_: ;
-		Dl_17415677_();
-		ret = Dl_17370706_((*socket).sslHandle);
+		Dl_17410677_();
+		ret = Dl_17365711_((*socket).sslHandle);
 		socketError__OvHxk9cQ7Y9cpNf9bNuX4awrg(socket, ((NI) (ret)), NIM_FALSE, ((NI32) -1), 0);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
@@ -2046,8 +2046,8 @@ NIM_BOOL* nimErr_;
 	case ((tyEnum_SslHandshakeType__9aZhh5f9bRDKgYB8GLASDSqg) 1):
 	{
 		int ret_2;
-		Dl_17415677_();
-		ret_2 = Dl_17370723_((*socket).sslHandle);
+		Dl_17410677_();
+		ret_2 = Dl_17365728_((*socket).sslHandle);
 		socketError__OvHxk9cQ7Y9cpNf9bNuX4awrg(socket, ((NI) (ret_2)), NIM_FALSE, ((NI32) -1), 0);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
@@ -2061,9 +2061,9 @@ N_LIB_PRIVATE N_NIMCALL(NI, send__5L0SyQu9bf9aWLpivLtuRdDg)(tyObject_SocketImpl_
 	{
 		int T5_;
 		if (!(*socket).isSsl) goto LA3_;
-		Dl_17415677_();
+		Dl_17410677_();
 		T5_ = (int)0;
-		T5_ = Dl_17370714_((*socket).sslHandle, ((NCSTRING) (data)), size);
+		T5_ = Dl_17365719_((*socket).sslHandle, ((NCSTRING) (data)), size);
 		result = ((NI) (T5_));
 		goto BeforeRet_;
 	}
@@ -2221,7 +2221,7 @@ appendString(T24_, funcName);
 appendString(T24_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_36));
 			(*T23_).Sup.Sup.message = T24_;
 			(*T23_).Sup.Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T23_, "TimeoutError", "waitFor", "net.nim", 1359);
+			raiseExceptionEx((Exception*)T23_, "TimeoutError", "waitFor", "net.nim", 1375);
 			goto BeforeRet_;
 		}
 		LA21_: ;
@@ -2238,7 +2238,7 @@ appendString(T24_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_36));
 				goto BeforeRet_;
 			}
 			LA32_: ;
-			sslPending = Dl_17370726_((*socket).sslHandle);
+			sslPending = Dl_17365731_((*socket).sslHandle);
 			{
 				if (!!((sslPending == ((NI32) 0)))) goto LA36_;
 				result = ((((NI) (sslPending)) <= size) ? ((NI) (sslPending)) : size);
@@ -2279,7 +2279,7 @@ appendString(T49_, funcName);
 appendString(T49_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_36));
 			(*T48_).Sup.Sup.message = T49_;
 			(*T48_).Sup.Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T48_, "TimeoutError", "waitFor", "net.nim", 1374);
+			raiseExceptionEx((Exception*)T48_, "TimeoutError", "waitFor", "net.nim", 1390);
 			goto BeforeRet_;
 		}
 		LA46_: ;
@@ -2301,9 +2301,9 @@ N_LIB_PRIVATE N_NIMCALL(NI, uniRecv__YQlV9aRgVr9cJoVJlEPDJIqw)(tyObject_SocketIm
 	{
 		int T5_;
 		if (!(*socket).isSsl) goto LA3_;
-		Dl_17415677_();
+		Dl_17410677_();
 		T5_ = (int)0;
-		T5_ = Dl_17370709_((*socket).sslHandle, buffer, ((NI) (size)));
+		T5_ = Dl_17365714_((*socket).sslHandle, buffer, ((NI) (size)));
 		result = ((NI) (T5_));
 		goto BeforeRet_;
 	}
@@ -2755,7 +2755,7 @@ NIM_BOOL* nimErr_;
 		LA5_: ;
 		if (!T3_) goto LA7_;
 		T9_ = (long)0;
-		T9_ = Dl_17415459_(ctx, ((int) 94), ((long) (onoff)), NIM_NIL);
+		T9_ = Dl_17410459_(ctx, ((int) 94), ((long) (onoff)), NIM_NIL);
 		result = ((int) (T9_));
 	}
 	goto LA1_;
@@ -2829,7 +2829,7 @@ appendString(T18_, keyFile);
 	{
 		int ret;
 		if (!!(((certFile ? certFile->Sup.len : 0) == 0))) goto LA21_;
-		ret = Dl_17370664_(ctx, nimToCStringConv(certFile));
+		ret = Dl_17365669_(ctx, nimToCStringConv(certFile));
 		{
 			if (!!((ret == ((NI32) 1)))) goto LA25_;
 			raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
@@ -2843,7 +2843,7 @@ appendString(T18_, keyFile);
 		{
 			int T33_;
 			T33_ = (int)0;
-			T33_ = Dl_17370668_(ctx, nimToCStringConv(keyFile), ((int) 1));
+			T33_ = Dl_17365673_(ctx, nimToCStringConv(keyFile), ((int) 1));
 			if (!!((T33_ == ((NI32) 1)))) goto LA34_;
 			raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -2852,7 +2852,7 @@ appendString(T18_, keyFile);
 		{
 			int T38_;
 			T38_ = (int)0;
-			T38_ = Dl_17370673_(ctx);
+			T38_ = Dl_17365678_(ctx);
 			if (!!((T38_ == ((NI32) 1)))) goto LA39_;
 			raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_44));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -2879,7 +2879,7 @@ NIM_BOOL* nimErr_;
 		T2_ = (tyObject_SslStruct__hZKic6WnTBMq6Usbg49bnhw*)0;
 		T2_ = SSLv23_method__LTfNTmKR6aBlZTkY8nHSxg();
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		newCTX = Dl_17370632_(T2_);
+		newCTX = Dl_17365637_(T2_);
 	}
 	break;
 	case ((tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw) 0):
@@ -2898,15 +2898,15 @@ NIM_BOOL* nimErr_;
 	{
 		tyObject_SslStruct__hZKic6WnTBMq6Usbg49bnhw* T6_;
 		T6_ = (tyObject_SslStruct__hZKic6WnTBMq6Usbg49bnhw*)0;
-		T6_ = Dl_17356252_();
-		newCTX = Dl_17370632_(T6_);
+		T6_ = Dl_17351252_();
+		newCTX = Dl_17365637_(T6_);
 	}
 	break;
 	}
 	{
 		int T9_;
 		T9_ = (int)0;
-		T9_ = Dl_17370655_(newCTX, nimToCStringConv(cipherList));
+		T9_ = Dl_17365660_(newCTX, nimToCStringConv(cipherList));
 		if (!!((T9_ == ((NI32) 1)))) goto LA10_;
 		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -2944,7 +2944,7 @@ NIM_BOOL* nimErr_;
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA26_: ;
-	Dl_17370643_(newCTX, ((NI) 0), NIM_NIL);
+	Dl_17365648_(newCTX, ((NI) 0), NIM_NIL);
 	{
 		if (!(newCTX == NIM_NIL)) goto LA30_;
 		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
@@ -2985,7 +2985,7 @@ nimErr_ = nimErrorFlag();
 	LA4_: ;
 	SSL_load_error_strings__G2BDIxFj2W9ajANxAoi8oZA_2();
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	Dl_17370614_();
+	Dl_17365614_();
 	OpenSSL_add_all_algorithms__G2BDIxFj2W9ajANxAoi8oZA_3();
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	BeforeRet_: ;

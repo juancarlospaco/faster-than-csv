@@ -321,7 +321,7 @@ NIM_BOOL* nimErr_;
 					T7_ = (tyEnum_XmlNodeKind__L9a59cbX9cQkF2r36q7xUnCbg)0;
 					T7_ = kind__j8p3h8iojolY0RbF1nkaZgxmltree(T6_);
 					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-					if (!((17 &(1U<<((NU)(T7_)&7U)))!=0)) goto LA8_;
+					if (!((17 &((NU8)1<<((NU)(T7_)&7U)))!=0)) goto LA8_;
 					result = NIM_TRUE;
 					goto BeforeRet_;
 				}

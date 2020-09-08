@@ -523,7 +523,7 @@ NIM_BOOL* nimErr_;
 		int T5_;
 		int T11_;
 		int T17_;
-		if (!!((((*data).options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0))) goto LA3_;
+		if (!!((((*data).options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0))) goto LA3_;
 		T5_ = (int)0;
 		T5_ = close((*data).pStdin[(((NI) 1))- 0]);
 		(void)(T5_);
@@ -552,7 +552,7 @@ NIM_BOOL* nimErr_;
 		T17_ = close((*data).pStderr[(((NI) 0))- 0]);
 		(void)(T17_);
 		{
-			if (!(((*data).options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 3))&7U)))!=0)) goto LA20_;
+			if (!(((*data).options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 3))&7U)))!=0)) goto LA20_;
 			{
 				int T24_;
 				T24_ = (int)0;
@@ -601,7 +601,7 @@ NIM_BOOL* nimErr_;
 	{
 		NimStringDesc* exe;
 		int T48_;
-		if (!(((*data).options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 1))&7U)))!=0)) goto LA46_;
+		if (!(((*data).options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 1))&7U)))!=0)) goto LA46_;
 		exe = findExe__9cov9c3aI19bfbEIyMe9bNCSEA((*data).sysCommand, NIM_TRUE, TM__HZdw8BhppcTQo8DIK46LSg_10, 1);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		T48_ = (int)0;
@@ -731,7 +731,7 @@ NIM_BOOL* nimErr_;
 	(*result).options = options;
 	(*result).exitFlag = NIM_TRUE;
 	{
-		if (!!(((options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0))) goto LA3_;
+		if (!!(((options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0))) goto LA3_;
 		{
 			NIM_BOOL T7_;
 			NIM_BOOL T8_;
@@ -768,7 +768,7 @@ NIM_BOOL* nimErr_;
 	nimZeroMem((void*)(&data), sizeof(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA));
 	sysArgsRaw = (tySequence__sM4lkSb7zS6F7OVMvW9cffQ*)0;
 	{
-		if (!((options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 2))&7U)))!=0)) goto LA19_;
+		if (!((options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 2))&7U)))!=0)) goto LA19_;
 		data.sysCommand = copyString(((NimStringDesc*) &TM__HZdw8BhppcTQo8DIK46LSg_6));
 		sysArgsRaw = (tySequence__sM4lkSb7zS6F7OVMvW9cffQ*) newSeq((&NTI__sM4lkSb7zS6F7OVMvW9cffQ_), 3);
 		sysArgsRaw->data[0] = copyString(data.sysCommand);
@@ -826,7 +826,7 @@ NIM_BOOL* nimErr_;
 	{
 		tyArray__24KAM9afIUgUaqBaEBB6r9bg T37_;
 		NimStringDesc* T38_;
-		if (!((options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 0))&7U)))!=0)) goto LA35_;
+		if (!((options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 0))&7U)))!=0)) goto LA35_;
 		nimZeroMem((void*)T37_, sizeof(tyArray__24KAM9afIUgUaqBaEBB6r9bg));
 		T37_[0] = copyString(command);
 		T37_[1] = copyString(((NimStringDesc*) &TM__HZdw8BhppcTQo8DIK46LSg_12));
@@ -840,11 +840,11 @@ NIM_BOOL* nimErr_;
 	(*result).id = pid;
 	(*result).exitFlag = NIM_FALSE;
 	{
-		if (!((options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0)) goto LA41_;
+		if (!((options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0)) goto LA41_;
 		(*result).inHandle = ((int) 0);
 		(*result).outHandle = ((int) 1);
 		{
-			if (!((options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 3))&7U)))!=0)) goto LA45_;
+			if (!((options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 3))&7U)))!=0)) goto LA45_;
 			(*result).errHandle = (*result).outHandle;
 		}
 		goto LA43_;
@@ -864,7 +864,7 @@ NIM_BOOL* nimErr_;
 		(*result).outHandle = pStdout[(((NI) 0))- 0];
 		{
 			int T53_;
-			if (!((options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 3))&7U)))!=0)) goto LA51_;
+			if (!((options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 3))&7U)))!=0)) goto LA51_;
 			(*result).errHandle = (*result).outHandle;
 			T53_ = (int)0;
 			T53_ = close(pStderr[(((NI) 0))- 0]);
@@ -1032,7 +1032,7 @@ N_LIB_PRIVATE N_NIMCALL(void, nospclose)(tyObject_ProcessObj__2rGNQnv9bU4hanI2g3
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	{
-		if (!!((((*p).options &(1U<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0))) goto LA3_;
+		if (!!((((*p).options &((NU8)1<<((NU)(((tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA) 4))&7U)))!=0))) goto LA3_;
 		{
 			if (!!(((*p).inStream == NIM_NIL))) goto LA7_;
 			close__y1KA3B0U09bKtU09am9a9avRYQ_3((*p).inStream);

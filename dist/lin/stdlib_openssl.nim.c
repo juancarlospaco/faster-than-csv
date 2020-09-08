@@ -217,38 +217,38 @@ STRING_LITERAL(TM__SLGpYVEqpFQ7VaPsJH6HIA_120, "SSL_CTX_set_ciphersuites", 24);
 
 /* section: NIM_merge_VARS */
 static void* TM__SLGpYVEqpFQ7VaPsJH6HIA_2;
-tyProc__sYEjOwC8kj9bf3dL1zf0Hrw Dl_17380015_;
+tyProc__sYEjOwC8kj9bf3dL1zf0Hrw Dl_17375015_;
 N_LIB_PRIVATE void* thisMod__BVflfs5GGPI4d1Lan5mHzA;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 N_LIB_PRIVATE void* sslMod__jjPr6K4VwnmIfXONVVYefQ;
-tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17370614_;
+tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17365614_;
 N_LIB_PRIVATE tyProc__Vff1ipOwDPDGknaRJAdXjA theProc__4YwZzkNFGan9bZ7C2TUrksA;
 N_LIB_PRIVATE tyProc__Vff1ipOwDPDGknaRJAdXjA sslState__2r5WssYjNageZ69aoDZzpEA;
-tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17415677_;
+tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17410677_;
 static void* TM__SLGpYVEqpFQ7VaPsJH6HIA_49;
-tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370696_;
-tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17370719_;
-tyProc__wCuLyuC5VitcgJKGCqJQRw Dl_17371026_;
-tyProc__5zMKCPIiPHTYY9cjyzsHlmQ Dl_17371020_;
-tyProc__e47RoMUolEGMiUlfiZt9abQ Dl_17370619_;
-tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17370616_;
-tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17370692_;
-tyProc__xGcw2zK9bzuUE9c8WzKW5hzw Dl_17415488_;
-tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370706_;
-tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370723_;
-tyProc__sG7rgqmtlgBaumPwwN3BfQ Dl_17370714_;
-tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370726_;
-tyProc__09aW01hZ1tSPafLaWVpBcXA Dl_17370709_;
-tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17370632_;
-tyProc__HXibadfWHwHwyhCwpIRD2A Dl_17356252_;
-tyProc__2PA7CxitARKs0jpUW1gQ0g Dl_17370655_;
+tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365701_;
+tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17365724_;
+tyProc__wCuLyuC5VitcgJKGCqJQRw Dl_17366026_;
+tyProc__5zMKCPIiPHTYY9cjyzsHlmQ Dl_17366020_;
+tyProc__e47RoMUolEGMiUlfiZt9abQ Dl_17365619_;
+tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17365616_;
+tyProc__kxUw9cdxJbPtv0iPyoSbDBQ Dl_17365697_;
+tyProc__xGcw2zK9bzuUE9c8WzKW5hzw Dl_17410488_;
+tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365711_;
+tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365728_;
+tyProc__sG7rgqmtlgBaumPwwN3BfQ Dl_17365719_;
+tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365731_;
+tyProc__09aW01hZ1tSPafLaWVpBcXA Dl_17365714_;
+tyProc__Rqjya8uauy9aPcyfGamaSrg Dl_17365637_;
+tyProc__HXibadfWHwHwyhCwpIRD2A Dl_17351252_;
+tyProc__2PA7CxitARKs0jpUW1gQ0g Dl_17365660_;
 N_LIB_PRIVATE void* utilMod__O6RsqpN8QPVNBORLfbU7jg;
 N_LIB_PRIVATE tyProc__IX9aeaSWx4arDCJq04EsJjQ theProc__YtQw1arkP19c4aYYCkkluDQ;
-tyProc__JfY9aCDiBh9bgOEieo8Vltxg Dl_17415459_;
-tyProc__H5wL7jexPlRA7WCw9cqLm0A Dl_17370643_;
-tyProc__tYatIIo0oRSB9bjHLep7yhQ Dl_17370664_;
-tyProc__xjxKRHVZXDqdWXw9bunoZ3w Dl_17370668_;
-tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17370673_;
+tyProc__JfY9aCDiBh9bgOEieo8Vltxg Dl_17410459_;
+tyProc__H5wL7jexPlRA7WCw9cqLm0A Dl_17365648_;
+tyProc__tYatIIo0oRSB9bjHLep7yhQ Dl_17365669_;
+tyProc__xjxKRHVZXDqdWXw9bunoZ3w Dl_17365673_;
+tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17365678_;
 
 /* section: NIM_merge_PROCS */
 N_LIB_PRIVATE N_CDECL(void*, allocWrapper__RKtAA5JYxWxZj79aCAifPvA)(NI size) {
@@ -290,7 +290,7 @@ N_LIB_PRIVATE N_CDECL(void, deallocWrapper__uOonBuLtXfZwTuGZR20a6Q)(void* p) {
 	LA3_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, CRYPTO_malloc_init__G2BDIxFj2W9ajANxAoi8oZA)(void) {
-	Dl_17380015_(((void*) (allocWrapper__RKtAA5JYxWxZj79aCAifPvA)), ((void*) (reallocWrapper__9cfMO5SIG9bC9adqbrJrcB70Q)), ((void*) (deallocWrapper__uOonBuLtXfZwTuGZR20a6Q)));
+	Dl_17375015_(((void*) (allocWrapper__RKtAA5JYxWxZj79aCAifPvA)), ((void*) (reallocWrapper__9cfMO5SIG9bC9adqbrJrcB70Q)), ((void*) (deallocWrapper__uOonBuLtXfZwTuGZR20a6Q)));
 }
 static N_INLINE(NCSTRING, nimToCStringConv)(NimStringDesc* s) {
 	NCSTRING result;
@@ -537,7 +537,7 @@ NIM_BOOL* nimErr_;
 N_LIB_PRIVATE N_NIMCALL(NI, SSL_set_tlsext_host_name__jGR2GiKRQZ9cgDkYFu4P9aNg)(tyObject_SslStruct__hZKic6WnTBMq6Usbg49bnhw* ssl, NCSTRING name) {
 	NI result;
 	result = (NI)0;
-	result = Dl_17415488_(ssl, ((int) 55), ((NI) 0), ((void*) (name)));
+	result = Dl_17410488_(ssl, ((int) 55), ((NI) 0), ((void*) (name)));
 	return result;
 }
 static N_INLINE(void, nimCopyMem)(void* dest, void* source, NI size) {
@@ -687,7 +687,7 @@ NIM_BOOL* nimErr_;
 N_LIB_PRIVATE N_NIMCALL(NI, SSLCTXSetMode__u4DGuCXu9asDo9aQgd9cu5QNQ)(tyObject_SslStruct__hZKic6WnTBMq6Usbg49bnhw* ctx, NI mode) {
 	NI result;
 	result = (NI)0;
-	result = Dl_17415459_(ctx, ((int) 33), mode, NIM_NIL);
+	result = Dl_17410459_(ctx, ((int) 33), mode, NIM_NIL);
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, stdlib_opensslInit000)(void) {
@@ -743,9 +743,9 @@ if (!((TM__SLGpYVEqpFQ7VaPsJH6HIA_2 = nimLoadLibrary(((NimStringDesc*) &TM__SLGp
 ||(TM__SLGpYVEqpFQ7VaPsJH6HIA_2 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_32)))
 ||(TM__SLGpYVEqpFQ7VaPsJH6HIA_2 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_34)))
 )) nimLoadLibraryError(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_35));
-	Dl_17380015_ = (tyProc__sYEjOwC8kj9bf3dL1zf0Hrw) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "CRYPTO_set_mem_functions");
-	Dl_17370614_ = (tyProc__ln4kdL5W9bbX4a1xl8nnVXQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_load_BIO_strings");
-	Dl_17415677_ = (tyProc__ln4kdL5W9bbX4a1xl8nnVXQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_clear_error");
+	Dl_17375015_ = (tyProc__sYEjOwC8kj9bf3dL1zf0Hrw) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "CRYPTO_set_mem_functions");
+	Dl_17365614_ = (tyProc__ln4kdL5W9bbX4a1xl8nnVXQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_load_BIO_strings");
+	Dl_17410677_ = (tyProc__ln4kdL5W9bbX4a1xl8nnVXQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_clear_error");
 if (!((TM__SLGpYVEqpFQ7VaPsJH6HIA_49 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_51)))
 ||(TM__SLGpYVEqpFQ7VaPsJH6HIA_49 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_53)))
 ||(TM__SLGpYVEqpFQ7VaPsJH6HIA_49 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_55)))
@@ -763,26 +763,26 @@ if (!((TM__SLGpYVEqpFQ7VaPsJH6HIA_49 = nimLoadLibrary(((NimStringDesc*) &TM__SLG
 ||(TM__SLGpYVEqpFQ7VaPsJH6HIA_49 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_79)))
 ||(TM__SLGpYVEqpFQ7VaPsJH6HIA_49 = nimLoadLibrary(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_81)))
 )) nimLoadLibraryError(((NimStringDesc*) &TM__SLGpYVEqpFQ7VaPsJH6HIA_38));
-	Dl_17370696_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_shutdown");
-	Dl_17370719_ = (tyProc__kxUw9cdxJbPtv0iPyoSbDBQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_get_error");
-	Dl_17371026_ = (tyProc__wCuLyuC5VitcgJKGCqJQRw) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_peek_last_error");
-	Dl_17371020_ = (tyProc__5zMKCPIiPHTYY9cjyzsHlmQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_error_string");
-	Dl_17370619_ = (tyProc__e47RoMUolEGMiUlfiZt9abQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_free");
-	Dl_17370616_ = (tyProc__Rqjya8uauy9aPcyfGamaSrg) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_new");
-	Dl_17370692_ = (tyProc__kxUw9cdxJbPtv0iPyoSbDBQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_set_fd");
-	Dl_17415488_ = (tyProc__xGcw2zK9bzuUE9c8WzKW5hzw) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_ctrl");
-	Dl_17370706_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_connect");
-	Dl_17370723_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_accept");
-	Dl_17370714_ = (tyProc__sG7rgqmtlgBaumPwwN3BfQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_write");
-	Dl_17370726_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_pending");
-	Dl_17370709_ = (tyProc__09aW01hZ1tSPafLaWVpBcXA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_read");
-	Dl_17370632_ = (tyProc__Rqjya8uauy9aPcyfGamaSrg) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_new");
-	Dl_17356252_ = (tyProc__HXibadfWHwHwyhCwpIRD2A) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "TLSv1_method");
-	Dl_17370655_ = (tyProc__2PA7CxitARKs0jpUW1gQ0g) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_set_cipher_list");
-	Dl_17415459_ = (tyProc__JfY9aCDiBh9bgOEieo8Vltxg) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_ctrl");
-	Dl_17370643_ = (tyProc__H5wL7jexPlRA7WCw9cqLm0A) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_set_verify");
-	Dl_17370664_ = (tyProc__tYatIIo0oRSB9bjHLep7yhQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_use_certificate_chain_file");
-	Dl_17370668_ = (tyProc__xjxKRHVZXDqdWXw9bunoZ3w) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_use_PrivateKey_file");
-	Dl_17370673_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_check_private_key");
+	Dl_17365701_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_shutdown");
+	Dl_17365724_ = (tyProc__kxUw9cdxJbPtv0iPyoSbDBQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_get_error");
+	Dl_17366026_ = (tyProc__wCuLyuC5VitcgJKGCqJQRw) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_peek_last_error");
+	Dl_17366020_ = (tyProc__5zMKCPIiPHTYY9cjyzsHlmQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_2, "ERR_error_string");
+	Dl_17365619_ = (tyProc__e47RoMUolEGMiUlfiZt9abQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_free");
+	Dl_17365616_ = (tyProc__Rqjya8uauy9aPcyfGamaSrg) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_new");
+	Dl_17365697_ = (tyProc__kxUw9cdxJbPtv0iPyoSbDBQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_set_fd");
+	Dl_17410488_ = (tyProc__xGcw2zK9bzuUE9c8WzKW5hzw) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_ctrl");
+	Dl_17365711_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_connect");
+	Dl_17365728_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_accept");
+	Dl_17365719_ = (tyProc__sG7rgqmtlgBaumPwwN3BfQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_write");
+	Dl_17365731_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_pending");
+	Dl_17365714_ = (tyProc__09aW01hZ1tSPafLaWVpBcXA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_read");
+	Dl_17365637_ = (tyProc__Rqjya8uauy9aPcyfGamaSrg) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_new");
+	Dl_17351252_ = (tyProc__HXibadfWHwHwyhCwpIRD2A) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "TLSv1_method");
+	Dl_17365660_ = (tyProc__2PA7CxitARKs0jpUW1gQ0g) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_set_cipher_list");
+	Dl_17410459_ = (tyProc__JfY9aCDiBh9bgOEieo8Vltxg) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_ctrl");
+	Dl_17365648_ = (tyProc__H5wL7jexPlRA7WCw9cqLm0A) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_set_verify");
+	Dl_17365669_ = (tyProc__tYatIIo0oRSB9bjHLep7yhQ) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_use_certificate_chain_file");
+	Dl_17365673_ = (tyProc__xjxKRHVZXDqdWXw9bunoZ3w) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_use_PrivateKey_file");
+	Dl_17365678_ = (tyProc__Vff1ipOwDPDGknaRJAdXjA) nimGetProcAddr(TM__SLGpYVEqpFQ7VaPsJH6HIA_49, "SSL_CTX_check_private_key");
 }
 
