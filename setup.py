@@ -26,6 +26,13 @@ class NoSuffixBuilder(build_ext):
 
 class CustomCommands(setuptools.Command):
   """Setuptools Command class to run custom arbitrary non-interactive OS-native commands."""
+  
+  def initialize_options(self):
+    pass
+
+  def finalize_options(self):
+    pass
+
   def run(self):
     if len(custom_commands) > 0:
       for cmd in custom_commands:
