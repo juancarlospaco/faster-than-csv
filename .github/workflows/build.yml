@@ -61,10 +61,6 @@ jobs:
         TWINE_NON_INTERACTIVE: 1
 
 
-    - name: Update Python PIP           # Update to avoid PIP bugs.
-      run: pip3 install --quiet --upgrade --disable-pip-version-check twine
-
-
     - name: Clone Nim                   # Clone Nim
       run: |
         git clone -q --depth 1 https://github.com/nim-lang/Nim.git
@@ -99,14 +95,13 @@ jobs:
 
 
     - name: Prepare Files               # Prepare files for the Python package
-      if: runner.os == 'Linux' || runner.os == 'Windows'
       shell: bash
       run: |
         touch dist/LICENSE dist/$PACKAGE_NAME.egg-info/zip-safe dist/$PACKAGE_NAME.egg-info/top_level.txt dist/$PACKAGE_NAME.egg-info/requires.txt dist/$PACKAGE_NAME.egg-info/dependency_links.txt
-        cp --force $PWD/setup.py           dist/setup.py
-        cp --force $PWD/Nim/lib/nimbase.h  dist/lin/nimbase.h
-        cp --force $PWD/Nim/lib/nimbase.h  dist/win/nimbase.h
-        cp --force $PWD/Nim/lib/nimbase.h  dist/mac/nimbase.h
+        cp -f $PWD/setup.py           dist/setup.py
+        cp -f $PWD/Nim/lib/nimbase.h  dist/lin/nimbase.h
+        cp -f $PWD/Nim/lib/nimbase.h  dist/win/nimbase.h
+        cp -f $PWD/Nim/lib/nimbase.h  dist/mac/nimbase.h
 
 
     - name: SemVer                      # Use Git Hash as versioning.
@@ -163,15 +158,15 @@ jobs:
 
 
     - name: Clean out
-      if: runner.os == 'Linux' || runner.os == 'Windows'
       shell: bash
-      run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json dist/*.zip
+      run: rm -f dist/lin/*.json dist/win/*.json dist/mac/*.json
 
 
     - name: Compress to ZIP  # Make Python package
       if: runner.os == 'Linux'
       run: |
         cd dist
+        rm --force *.zip
         zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
 
@@ -199,5 +194,9 @@ jobs:
     name: Upload to PYPI
     runs-on: ubuntu-latest
     steps:
+
+    - name: Update Python PIP           # Update to avoid PIP bugs.
+      run: pip3 install --quiet --upgrade --disable-pip-version-check twine
+
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
