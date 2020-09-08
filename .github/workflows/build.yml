@@ -36,7 +36,7 @@ jobs:
 
 
     - name: Update Python PIP           # Update to avoid PIP bugs.
-      run: pip3 install --user --quiet --upgrade --disable-pip-version-check pip twine
+      run: pip3 install --quiet --upgrade --disable-pip-version-check pip twine
 
 
     - name: Clone Nim                   # Clone Nim
