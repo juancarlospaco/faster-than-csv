@@ -110,7 +110,7 @@ jobs:
 
 
     - name: Documentation               # Generate documentation.
-      run: nim doc --outdir:doc --out:index.html ${{ env.MAIN_MODULE }}
+      run: nim doc --out:doc/index.html ${{ env.MAIN_MODULE }}
 
 
     - name: Compile Debug & import (Unix)  # Compile and import to check if its working
@@ -181,7 +181,6 @@ jobs:
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
-      if: runner.os == 'Linux'
       with:
         add: 'dist'
         force: true
@@ -191,7 +190,6 @@ jobs:
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
-      if: runner.os == 'Linux'
       with:
         add: 'doc'
         force: true
@@ -216,7 +214,9 @@ jobs:
     steps:
 
     - name: Update Python PIP           # Update to avoid PIP bugs.
-      run: pip3 install --quiet --upgrade --disable-pip-version-check twine
+      run: |
+        pip3 install --quiet --upgrade --disable-pip-version-check twine
+        pip3 install --user --quiet --upgrade --disable-pip-version-check twine
 
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
