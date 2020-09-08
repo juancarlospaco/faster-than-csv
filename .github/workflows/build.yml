@@ -183,9 +183,19 @@ jobs:
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
       if: runner.os == 'Linux'
       with:
-        add: 'dist doc'
+        add: 'dist'
         force: true
         message: 'Fully Automated Luxury Python'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+    - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
+      if: runner.os == 'Linux'
+      with:
+        add: 'doc'
+        force: true
+        message: 'Fully Automated Luxury Documentation'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
