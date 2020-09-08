@@ -44,7 +44,7 @@ class CustomCommands(setuptools.Command):
           print(stdout_data)  
 
 setuptools.setup(
-  cmdclass = {"build_ext": NoSuffixBuilder, "build": CustomCommands},
+  cmdclass = {"build_ext": NoSuffixBuilder, "CustomCommands": CustomCommands},
   ext_modules = [
     setuptools.Extension(
       name = "faster_than_csv",
