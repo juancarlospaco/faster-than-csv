@@ -93,8 +93,8 @@ STRING_LITERAL(TM__IP4V1hRabVpf8OnX9bWuPxw_5, "kernel32", 8);
 /* section: NIM_merge_VARS */
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 static void* TM__IP4V1hRabVpf8OnX9bWuPxw_2;
-tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ Dl_17272201_;
-tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ Dl_17272205_;
+tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ Dl_17267201_;
+tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ Dl_17267205_;
 
 /* section: NIM_merge_PROCS */
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size) {
@@ -122,9 +122,9 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w, getMonoTime__
 	NU64 queryPerformanceCounterFreq;
 	nimZeroMem((void*)(&result), sizeof(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w));
 	ticks = (NU64)0;
-	Dl_17272201_((&ticks));
+	Dl_17267201_((&ticks));
 	freq = (NU64)0;
-	Dl_17272205_((&freq));
+	Dl_17267205_((&freq));
 	queryPerformanceCounterFreq = (NU64)((NU64)(1000000000ULL) / (NU64)(freq));
 	nimZeroMem((void*)(&result), sizeof(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w));
 	result.ticks = ((NI64) ((NU64)((NU64)(ticks) * (NU64)(queryPerformanceCounterFreq))));
@@ -160,7 +160,7 @@ NTI__FEvFMlkqJiSSGVO6HgTv8w_.node = &TM__IP4V1hRabVpf8OnX9bWuPxw_0[0];
 /* section: NIM_merge_DYNLIB_INIT */
 if (!((TM__IP4V1hRabVpf8OnX9bWuPxw_2 = nimLoadLibrary(((NimStringDesc*) &TM__IP4V1hRabVpf8OnX9bWuPxw_4)))
 )) nimLoadLibraryError(((NimStringDesc*) &TM__IP4V1hRabVpf8OnX9bWuPxw_5));
-	Dl_17272201_ = (tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ) nimGetProcAddr(TM__IP4V1hRabVpf8OnX9bWuPxw_2, "QueryPerformanceCounter");
-	Dl_17272205_ = (tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ) nimGetProcAddr(TM__IP4V1hRabVpf8OnX9bWuPxw_2, "QueryPerformanceFrequency");
+	Dl_17267201_ = (tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ) nimGetProcAddr(TM__IP4V1hRabVpf8OnX9bWuPxw_2, "QueryPerformanceCounter");
+	Dl_17267205_ = (tyProc__PD9b9cqhDqM6Xy1oSxwODsOQ) nimGetProcAddr(TM__IP4V1hRabVpf8OnX9bWuPxw_2, "QueryPerformanceFrequency");
 }
 

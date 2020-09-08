@@ -644,7 +644,7 @@ STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_26, "insertedB", 9);
 /* section: NIM_merge_VARS */
 extern tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig* pyLib__nxKBiAukGMNwnUq9bpn9adyw;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
-extern tyProc__uryidYWkntM7ddjZSyxvyQ Dl_14078563_;
+extern tyProc__uryidYWkntM7ddjZSyxvyQ Dl_14073563_;
 extern tyProc__Ph37G33p2ec6K0xFeDk1cQ Dl_25345555_;
 extern NU pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q;
 extern Exception* currException__9bVPeDJlYTi9bQApZpfH8wjg;
@@ -730,7 +730,7 @@ NIM_BOOL* nimErr_;
 	result = (void*)0;
 	nimZeroMem((void*)mods, sizeof(tyArray__RTLVphsxM9a6IMxFlAllF2Q));
 	sz = (NI32)0;
-	pr = Dl_14078563_();
+	pr = Dl_14073563_();
 	{
 		NI32 T3_;
 		T3_ = (NI32)0;

@@ -146,12 +146,12 @@ extern TNimType NTI__qwqHTkRvwhrRyENtudHQ7g_;
 /* section: NIM_merge_VARS */
 N_LIB_PRIVATE NI osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w;
 N_LIB_PRIVATE WSADATA wsa__ClAT9bhT9cqG9adztamb5X9b2w;
-extern tyProc__As5z9bYt859cLKWaorPRgQYA Dl_14078442_;
+extern tyProc__As5z9bYt859cLKWaorPRgQYA Dl_14073442_;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
-extern tyProc__9aO2cP4IgwjXF8JfUR57CHQ Dl_14078260_;
-extern tyProc__IQbFr9cLT9bipWCXYfwYwjOw Dl_14078265_;
-extern tyProc__MvjKU9c5nvs0N3IrS4vNgSw Dl_14078447_;
-extern tyProc__rWrG4X5lbcXQyLNkF9aNWhQ Dl_14078336_;
+extern tyProc__9aO2cP4IgwjXF8JfUR57CHQ Dl_14073260_;
+extern tyProc__IQbFr9cLT9bipWCXYfwYwjOw Dl_14073265_;
+extern tyProc__MvjKU9c5nvs0N3IrS4vNgSw Dl_14073447_;
+extern tyProc__rWrG4X5lbcXQyLNkF9aNWhQ Dl_14073336_;
 
 /* section: NIM_merge_PROCS */
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
@@ -173,7 +173,7 @@ NIM_BOOL* nimErr_;
 N_LIB_PRIVATE N_NIMCALL(void, close__6NjvlIELQKVp8O4T8sBSUg)(NI socket_0) {
 	int T1_;
 	T1_ = (int)0;
-	T1_ = Dl_14078265_(socket_0);
+	T1_ = Dl_14073265_(socket_0);
 	(void)(T1_);
 }
 N_LIB_PRIVATE N_NIMCALL(NI, createNativeSocket__Ptlh848VlbDA9cpTjQee9bjg)(int domain, int sockType, int protocol, NIM_BOOL inheritable) {
@@ -183,7 +183,7 @@ NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (NI)0;
 	sockType_2 = sockType;
-	result = Dl_14078260_(domain, sockType_2, protocol);
+	result = Dl_14073260_(domain, sockType_2, protocol);
 	{
 		NIM_BOOL T3_;
 		T3_ = (NIM_BOOL)0;
@@ -214,7 +214,43 @@ N_LIB_PRIVATE N_NIMCALL(int, toInt__AuveeRAdmuTXERHtCv4MPg)(tyEnum_SockType__NQT
 N_LIB_PRIVATE N_NIMCALL(int, toInt__7Zb9bURWntNcBAaEQ9aEZK9bQ)(tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg p) {
 	int result;
 	result = (int)0;
-	result = ((int) (p));
+	switch (p) {
+	case ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 18):
+	{
+		result = ((int) 0);
+	}
+	break;
+	case ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 21):
+	{
+		result = ((int) 1);
+	}
+	break;
+	case ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 6):
+	{
+		result = ((int) 6);
+	}
+	break;
+	case ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 17):
+	{
+		result = ((int) 17);
+	}
+	break;
+	case ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 19):
+	{
+		result = ((int) 41);
+	}
+	break;
+	case ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 22):
+	{
+		result = ((int) 58);
+	}
+	break;
+	default:
+	{
+		result = ((int) (p));
+	}
+	break;
+	}
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(NI, createNativeSocket__n7HkrQGl6EXucCT9cZGSEqA)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol, NIM_BOOL inheritable) {
@@ -338,7 +374,7 @@ NIM_BOOL* nimErr_;
 		socketPort = dollar___RkX9btpg5sQIaP8yYXB6tbA(port);
 	}
 	LA8_: ;
-	gaiResult = Dl_14078447_(nimToCStringConv(address), nimToCStringConv(socketPort), (&hints), &result);
+	gaiResult = Dl_14073447_(nimToCStringConv(address), nimToCStringConv(socketPort), (&hints), &result);
 	{
 		NI32 T17_;
 		if (!!((gaiResult == ((NI32) 0)))) goto LA15_;
@@ -488,7 +524,7 @@ NIM_BOOL* nimErr_;
 		int T5_;
 		if (!!((timeout == ((NI) -1)))) goto LA3_;
 		T5_ = (int)0;
-		T5_ = Dl_14078336_(((int) ((NI)(m + ((NI) 1)))), (&rd), NIM_NIL, NIM_NIL, (&tv));
+		T5_ = Dl_14073336_(((int) ((NI)(m + ((NI) 1)))), (&rd), NIM_NIL, NIM_NIL, (&tv));
 		result = ((NI) (T5_));
 	}
 	goto LA1_;
@@ -496,7 +532,7 @@ NIM_BOOL* nimErr_;
 	{
 		int T7_;
 		T7_ = (int)0;
-		T7_ = Dl_14078336_(((int) ((NI)(m + ((NI) 1)))), (&rd), NIM_NIL, NIM_NIL, NIM_NIL);
+		T7_ = Dl_14073336_(((int) ((NI)(m + ((NI) 1)))), (&rd), NIM_NIL, NIM_NIL, NIM_NIL);
 		result = ((NI) (T7_));
 	}
 	LA1_: ;
@@ -514,7 +550,7 @@ nimErr_ = nimErrorFlag();
 		int T3_;
 		NI32 T6_;
 		T3_ = (int)0;
-		T3_ = Dl_14078442_(((NI16) 257), (&wsa__ClAT9bhT9cqG9adztamb5X9b2w));
+		T3_ = Dl_14073442_(((NI16) 257), (&wsa__ClAT9bhT9cqG9adztamb5X9b2w));
 		if (!!((T3_ == ((NI32) 0)))) goto LA4_;
 		T6_ = (NI32)0;
 		T6_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();

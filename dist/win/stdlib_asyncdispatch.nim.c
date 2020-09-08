@@ -184,7 +184,7 @@ N_LIB_PRIVATE tyObject_PDispatchercolonObjectType___mNiwh37MfaAP9cG4kqT6kpg* gDi
 N_LIB_PRIVATE tyProc__jMtAEGtpoW3l9c2OBP7TLUg acceptEx__qL9aOi8PWOvbR8SHPxunTBw;
 N_LIB_PRIVATE tyProc__Fu9blnESfbEfNTZg7CqNT9cA connectEx__GpSroD0hGBCPYZj9cs0wVPw;
 N_LIB_PRIVATE tyProc__QyC5w14biZTJwNTa1s4BKg getAcceptExSockAddrs__f71GgXAuEzrmpDWPdU4pYg;
-extern tyProc__m8OtNuKklv1X2vQjXQkzSA Dl_14080067_;
+extern tyProc__m8OtNuKklv1X2vQjXQkzSA Dl_14075067_;
 extern tyObject_GUID__J2WQBMgezjwf6Trblkflgg WSAID_CONNECTEX__YmR9c9crObjjK9ckt1ygsPQKg;
 extern tyObject_GUID__J2WQBMgezjwf6Trblkflgg WSAID_ACCEPTEX__pwoOiDuyZgHBOLaI2GSBpg;
 extern tyObject_GUID__J2WQBMgezjwf6Trblkflgg WSAID_GETACCEPTEXSOCKADDRS__rSjtFMq7pCHQR2EQvcKbDg;
@@ -209,7 +209,7 @@ N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, initPointer__rrU5asl0oI3yYPDxkwgTZg)(NI s, voi
 	bytesRet = (NI32)0;
 	(*fun) = NIM_NIL;
 	T1_ = (int)0;
-	T1_ = Dl_14080067_(s, ((NI32) -939524090), ((void*) (guid)), ((NI32) 16), ((void*) (fun)), ((NI32) 8), (&bytesRet), NIM_NIL, NIM_NIL);
+	T1_ = Dl_14075067_(s, ((NI32) -939524090), ((void*) (guid)), ((NI32) 16), ((void*) (fun)), ((NI32) 8), (&bytesRet), NIM_NIL, NIM_NIL);
 	result = (T1_ == ((NI32) 0));
 	return result;
 }

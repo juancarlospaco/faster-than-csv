@@ -131,6 +131,7 @@ N_LIB_PRIVATE N_NIMCALL(NI, nsuFindStrA)(tyArray__9cc9aPiDa8VaWjVcFLabEDZQ a, Ni
 N_NIMCALL(NimStringDesc*, mnewString)(NI len);
 N_LIB_PRIVATE N_NIMCALL(NI, npuParseInt)(NimStringDesc* s, NI* number, NI start);
 N_LIB_PRIVATE N_NIMCALL(NIM_CHAR, nsuToUpperAsciiChar)(NIM_CHAR c);
+N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, toHexImpl__izPdbsQUP8KddbeBZ2srrw)(NU64 x, NI len, NIM_BOOL handleNegative);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, substr__iGg0RIKceRvsmvq8FUHOEw)(NimStringDesc* s, NI first);
 
 /* section: NIM_merge_DATA */
@@ -212,7 +213,7 @@ N_LIB_PRIVATE N_NOINLINE(void, invalidFormatString__8vOMwvNB8blLQSoRXfInAg)(void
 	(*T1_).Sup.Sup.name = "ValueError";
 	(*T1_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__JGc9b9bh2D3nTdUR7TGyq8aA_2));
 	(*T1_).Sup.Sup.parent = NIM_NIL;
-	raiseExceptionEx((Exception*)T1_, "ValueError", "invalidFormatString", "strutils.nim", 2716);
+	raiseExceptionEx((Exception*)T1_, "ValueError", "invalidFormatString", "strutils.nim", 2735);
 	goto BeforeRet_;
 	}BeforeRet_: ;
 }
@@ -995,7 +996,7 @@ appendString(T8_, ((NimStringDesc*) &TM__JGc9b9bh2D3nTdUR7TGyq8aA_3));
 appendString(T8_, s);
 		(*T7_).Sup.Sup.message = T8_;
 		(*T7_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T7_, "ValueError", "parseInt", "strutils.nim", 1109);
+		raiseExceptionEx((Exception*)T7_, "ValueError", "parseInt", "strutils.nim", 1128);
 		goto BeforeRet_;
 	}
 	LA5_: ;
@@ -1097,9 +1098,9 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, nsuRepeatChar)(NIM_CHAR c, NI count) {
 	}
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, nsuToHex)(NI64 x, NI len) {
+N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, toHexImpl__izPdbsQUP8KddbeBZ2srrw)(NU64 x, NI len, NIM_BOOL handleNegative) {
 	NimStringDesc* result;
-	NI64 n;
+	NU64 n;
 	result = (NimStringDesc*)0;
 	n = x;
 	result = mnewString(((NI) (len)));
@@ -1115,23 +1116,36 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, nsuToHex)(NI64 x, NI len) {
 			while (1) {
 				if (!(((NI) 0) <= res)) goto LA3;
 				j = res;
-				result->data[j] = ((NimStringDesc*) &TM__JGc9b9bh2D3nTdUR7TGyq8aA_4)->data[(NI64)(n & IL64(15))];
-				n = (NI64)((NI64)(n) >> (NU64)(((NI) 4)));
+				result->data[j] = ((NimStringDesc*) &TM__JGc9b9bh2D3nTdUR7TGyq8aA_4)->data[(NU64)(n & 15ULL)];
+				n = (NU64)((NU64)(n) >> (NU64)(((NI) 4)));
 				{
 					NIM_BOOL T6_;
 					T6_ = (NIM_BOOL)0;
-					T6_ = (n == IL64(0));
+					T6_ = (n == 0ULL);
 					if (!(T6_)) goto LA7_;
-					T6_ = (x < IL64(0));
+					T6_ = handleNegative;
 					LA7_: ;
 					if (!T6_) goto LA8_;
-					n = IL64(-1);
+					n = 18446744073709551615ULL;
 				}
 				LA8_: ;
 				res -= ((NI) 1);
 			} LA3: ;
 		}
 	}
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, nsuToHex)(NI64 x, NI len) {
+	NimStringDesc* result;
+	NU64 T1_;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
+	result = (NimStringDesc*)0;
+	T1_ = (NU64)0;
+	T1_ = ((NU64) (x));
+	result = toHexImpl__izPdbsQUP8KddbeBZ2srrw(T1_, len, (x < IL64(0)));
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(NI, nsuRFindChar)(NimStringDesc* s, NIM_CHAR sub, NI start, NI last) {

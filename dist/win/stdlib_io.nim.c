@@ -855,7 +855,7 @@ appendString(T11_, ((NimStringDesc*) &TM__MnCJ0VAmeZ9aTATUB39cx60Q_26));
 appendString(T11_, filename);
 		(*T10_).Sup.Sup.message = T11_;
 		(*T10_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T10_, "IOError", "writeFile", "io.nim", 849);
+		raiseExceptionEx((Exception*)T10_, "IOError", "writeFile", "io.nim", 855);
 		goto BeforeRet_;
 	}
 	LA1_: ;
@@ -884,7 +884,7 @@ appendString(T7_, ((NimStringDesc*) &TM__MnCJ0VAmeZ9aTATUB39cx60Q_26));
 appendString(T7_, filename);
 		(*T6_).Sup.Sup.message = T7_;
 		(*T6_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T6_, "IOError", "open", "io.nim", 732);
+		raiseExceptionEx((Exception*)T6_, "IOError", "open", "io.nim", 734);
 		goto BeforeRet_;
 	}
 	LA4_: ;
@@ -1048,7 +1048,7 @@ appendString(T11_, ((NimStringDesc*) &TM__MnCJ0VAmeZ9aTATUB39cx60Q_26));
 appendString(T11_, filename);
 		(*T10_).Sup.Sup.message = T11_;
 		(*T10_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T10_, "IOError", "readFile", "io.nim", 836);
+		raiseExceptionEx((Exception*)T10_, "IOError", "readFile", "io.nim", 842);
 		goto BeforeRet_;
 	}
 	LA1_: ;
