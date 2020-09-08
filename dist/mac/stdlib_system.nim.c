@@ -1950,7 +1950,7 @@ NIM_BOOL* nimErr_;
 	}
 	LA3_: ;
 	{
-		if (!!((((*mt).flags &(1U<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 0))&7U)))!=0))) goto LA7_;
+		if (!!((((*mt).flags &((NU8)1<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 0))&7U)))!=0))) goto LA7_;
 		switch ((*mt).kind) {
 		case ((tyEnum_TNimKind__jIBKr1ejBgsfM33Kxw4j7A) 22):
 		case ((tyEnum_TNimKind__jIBKr1ejBgsfM33Kxw4j7A) 28):
@@ -4054,7 +4054,7 @@ N_LIB_PRIVATE N_NIMCALL(void*, nimNewSeqOfCap)(TNimType* typ, NI cap) {
 };
 	s = (NI)(TM__Q5wkpxktOdTGvlSRo9bzt9aw_9);
 	{
-		if (!(((*(*typ).base).flags &(1U<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 0))&7U)))!=0)) goto LA4_;
+		if (!(((*(*typ).base).flags &((NU8)1<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 0))&7U)))!=0)) goto LA4_;
 		result = newObjNoInit(typ, s);
 	}
 	goto LA2_;
@@ -4382,7 +4382,7 @@ NIM_BOOL* nimErr_;
 			NI T29_;
 			void* T30_;
 			NI T31_;
-			if (!(((*(*mt).base).flags &(1U<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 0))&7U)))!=0)) goto LA23_;
+			if (!(((*(*mt).base).flags &((NU8)1<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 0))&7U)))!=0)) goto LA23_;
 			ss = nimNewSeqOfCap(mt, (*seq).len);
 			(*((TGenericSeq*) (ss))).len = (*seq).len;
 			unsureAsgnRef(x_2, ss);
@@ -4844,7 +4844,7 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, reprEnum)(NI e, TNimType* typ) {
 	n = (*typ).node;
 	{
 		NI o;
-		if (!!((((*typ).flags &(1U<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 2))&7U)))!=0))) goto LA3_;
+		if (!!((((*typ).flags &((NU8)1<<((NU)(((tyEnum_TNimTypeFlag__v8QUszD1sWlSIWZz7mC4bQ) 2))&7U)))!=0))) goto LA3_;
 		o = (NI)(e - (*(*n).sons[(((NI) 0))- 0]).offset);
 		{
 			NIM_BOOL T7_;
