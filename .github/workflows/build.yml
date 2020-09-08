@@ -1,6 +1,17 @@
 name: Build
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'setup.py'
+      - 'setup.cfg'
+      - 'PKG-INFO'
+      - 'src/*.*'
+      - 'src/**.nim'
+      - 'src/**.nims'
+      - 'src/**.cfg'
+      - '.github/workflows/*.yml'
+      - '.github/workflows/*.yaml'
 #on:
 #  release:
 #    types: [created]
