@@ -91,7 +91,7 @@ jobs:
 
     - name: Prepare Folders             # Prepare folders for the Python package
       shell: bash
-      run: mkdir -p dist/lin dist/win dist/mac dist/$PACKAGE_NAME.egg-info
+      run: mkdir -p dist/lin dist/win dist/mac dist/$PACKAGE_NAME.egg-info doc
 
 
     - name: Prepare Files               # Prepare files for the Python package
@@ -107,6 +107,10 @@ jobs:
     - name: Nim Check                   # Check code style and semantic.
       shell: bash
       run: nim check --styleCheck:hint ${{ env.MAIN_MODULE }}
+
+
+    - name: Documentation               # Generate documentation.
+      run: nim doc --out:doc/index.html ${{ env.MAIN_MODULE }}
 
 
     - name: Compile Debug & import (Unix)  # Compile and import to check if its working
@@ -162,17 +166,18 @@ jobs:
         date +"%y.%m.%d" >>  dist/$PACKAGE_NAME.egg-info/PKG-INFO
 
 
-    - name: Delay                       # Linux must finish last.
-      if: runner.os == 'Linux'
-      run: sleep 5m
+    # - name: Delay                       # Linux must finish last.
+    #   if: runner.os == 'Linux'
+    #   run: sleep 5m
 
 
     - name: Compress to ZIP  # Make Python package
+      if: runner.os == 'Linux' || runner.os == 'macOS'
       shell: bash
       run: |
-        rm -f dist/*.zip
-        cd $PWD/dist
-        7za a -tzip -mx9 -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
+        cd dist
+        rm -f *.zip
+        zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
 
 
     - uses: EndBug/add-and-commit@v4  # Commit everything to Git repo
