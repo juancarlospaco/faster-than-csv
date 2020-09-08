@@ -199,11 +199,11 @@ jobs:
 
 
     - name: Publish documentation to Github Pages
-        uses: crazy-max/ghaction-github-pages@v2
-        with:
-          build_dir: doc
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        build_dir: doc
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
     - name: Cache Nim # Cache the Nim compiler build
