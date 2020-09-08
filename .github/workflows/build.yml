@@ -107,9 +107,9 @@ jobs:
         cp --force $PWD/Nim/lib/nimbase.h  dist/mac/nimbase.h
 
 
-    - name: Delay                       # Linux must finish last.
-      if: runner.os == 'Linux'
-      run: sleep 5m
+    # - name: Delay                       # Linux must finish last.
+    #   if: runner.os == 'Linux'
+    #   run: sleep 8m
 
 
     - name: SemVer                      # Use Git Hash as versioning.
@@ -165,13 +165,25 @@ jobs:
       run: nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/win/ -d:danger -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --exceptions:goto --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
-    - name: Clean out (Linux) # Clean out
-      if: runner.os == 'Linux'
+    - name: Cache Nim # Cache the Nim compiler build
+      uses: actions/cache@v1
+      with:
+        path: $PWD/Nim/
+        key: ${{ runner.os }}-nim
+
+
+
+
+  after_build:
+    needs: build
+    name: Upload to PYPI
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clean out
       run: rm --force dist/lin/*.json dist/win/*.json dist/mac/*.json
 
 
     - name: Compress to ZIP  # Make Python package
-      if: runner.os == 'Linux'
       run: |
         cd dist
         rm --force --verbose *.zip
@@ -188,12 +200,4 @@ jobs:
 
 
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
-      if: runner.os == 'Linux'
       run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
-
-
-    - name: Cache Nim # Cache the Nim compiler build
-      uses: actions/cache@v1
-      with:
-        path: $PWD/Nim/
-        key: ${{ runner.os }}-nim
