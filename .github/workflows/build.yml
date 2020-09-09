@@ -49,6 +49,7 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
+        NIM_VERSION:           "1.2.6"
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
         PACKAGE_VERSION:       ${{ steps.vars.outputs.sha_short }}
@@ -57,14 +58,9 @@ jobs:
         TWINE_NON_INTERACTIVE: 1
 
 
-    - name: Update Python PIP
-      if: runner.os == 'Linux'
-      run: pip3 install --quiet --upgrade --disable-pip-version-check pip twine
-
-
     - name: Clone Nim                   # Clone Nim
       run: |
-        git clone -q --depth 1 https://github.com/nim-lang/Nim.git
+        git clone -q --depth 1 https://github.com/nim-lang/Nim.git --tag v${{ env.NIM_VERSION }}
         echo "::add-path::$PWD/Nim/bin"
 
 
@@ -204,7 +200,9 @@ jobs:
 
     - name: Upload to PYPI  # If everything worked, then upload to PYPI
       if: runner.os == 'Linux'
-      run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
+      run: |
+        pip3 install --quiet --upgrade --disable-pip-version-check twine
+        twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
 
 
     - name: Cache Nim # Cache the Nim compiler build
