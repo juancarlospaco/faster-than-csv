@@ -209,10 +209,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Update Python PIP           # Update to avoid PIP bugs.
-      run: |
-        pip3 install --quiet --upgrade --disable-pip-version-check twine
-        pip3 install --user --quiet --upgrade --disable-pip-version-check twine
+    - name: Publish Release
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: dist/*.zip
 
-    - name: Upload to PYPI  # If everything worked, then upload to PYPI
-      run: twine upload --verbose --disable-progress-bar --comment "Powered by https://Nim-lang.org" dist/*.zip
+
+    - name: Upload to PYPI
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user:         ${{ secrets.PYPI_USERNAME }}
+        password:     ${{ secrets.PYPI_PASSWORD }}
+        packages_dir: dist/
