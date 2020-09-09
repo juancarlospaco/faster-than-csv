@@ -7,7 +7,8 @@ package_name = "faster_than_csv"
 
 assert platform.architecture()[0] == "64bit", "ERROR: Python must be 64 Bit!. OS must be 64 Bit!."
 assert sys.version_info > (3, 5, 0), "ERROR: Python version must be > 3.5!."
-
+atexit.register(sys.stderr.write(str(importlib.metadata.distribution(package_name).files)))
+atexit.register(sys.stderr.write(__import__(package_name).__file__))
 
 if sys.platform.startswith("lin"):
   folder = "lin" # OS is Linux
@@ -21,9 +22,6 @@ sources = []
 for c_source_file in os.listdir(folder): # Walk the folder with C files.
   if c_source_file.endswith(".c"):       # Collect all C files.
     sources.append(str(pathlib.Path(folder) / c_source_file))
-
-
-atexit.register(sys.stderr.write(importlib.metadata.distribution(package_name).files))
 
 
 class NoSuffixBuilder(build_ext):
