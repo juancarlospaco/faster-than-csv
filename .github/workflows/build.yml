@@ -129,6 +129,7 @@ jobs:
 
     - name: Compile (Linux) # Compile to C for Linux
       if: runner.os == 'Linux'
+      shell: bash
       run: |
         nim compileToC --nimcache:dist/lin/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
@@ -139,6 +140,7 @@ jobs:
 
     - name: Compile (Mac) # Compile to C for Mac
       if: runner.os == 'macOS'
+      shell: bash
       run: |
         nim compileToC --nimcache:dist/mac/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
