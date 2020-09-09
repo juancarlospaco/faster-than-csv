@@ -26,7 +26,7 @@ class NoSuffixBuilder(build_ext):
 
 class CustomCommands(setuptools.Command):
   """Setuptools Command class to run custom arbitrary non-interactive OS-native commands."""
-  
+
   def initialize_options(self):
     pass
 
@@ -41,10 +41,10 @@ class CustomCommands(setuptools.Command):
         if p.returncode != 0:
           raise RuntimeError(f"Command { cmd } failed: exit code: { p.returncode }")
         else:
-          print(stdout_data)  
+          print(stdout_data)
 
 setuptools.setup(
-  cmdclass = {"build_ext": NoSuffixBuilder, "CustomCommands": CustomCommands},
+  cmdclass = {"build_ext": NoSuffixBuilder},
   ext_modules = [
     setuptools.Extension(
       name = "faster_than_csv",

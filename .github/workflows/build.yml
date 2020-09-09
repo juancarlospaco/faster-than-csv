@@ -51,10 +51,7 @@ jobs:
       with:
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
-        TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
-        TWINE_PASSWORD:        ${{ secrets.PYPI_PASSWORD }}
         PACKAGE_VERSION:       ${{ steps.vars.outputs.sha_short }}
-        TWINE_NON_INTERACTIVE: 1
 
 
     - name: Clone Nim                   # Clone Nim
