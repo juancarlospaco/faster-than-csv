@@ -54,7 +54,6 @@ jobs:
         NIM_VERSION:           "1.2.6"
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
-        PACKAGE_VERSION:       ${{ steps.vars.outputs.semver_date }} # ${{ steps.vars.outputs.sha_short }}
         TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD:        ${{ secrets.PYPI_PASSWORD }}
         TWINE_NON_INTERACTIVE: 1
@@ -169,9 +168,9 @@ jobs:
       shell: bash
       run: |
         cp -f $PWD/setup.cfg dist/setup.cfg
-        echo ${{ env.PACKAGE_VERSION }} >>  dist/setup.cfg
+        echo ${{ steps.vars.outputs.semver_date }} >>  dist/setup.cfg
         cp -f $PWD/PKG-INFO  dist/$PACKAGE_NAME.egg-info/PKG-INFO
-        echo ${{ env.PACKAGE_VERSION }} >>  dist/$PACKAGE_NAME.egg-info/PKG-INFO
+        echo ${{ steps.vars.outputs.semver_date }} >>  dist/$PACKAGE_NAME.egg-info/PKG-INFO
 
 
     - name: Delay (Linux) # Linux should finish last.
@@ -185,7 +184,7 @@ jobs:
       run: |
         cd dist
         rm -f *.zip
-        zip -9 -T -v -r $PACKAGE_NAME-${{ env.PACKAGE_VERSION }}.zip *
+        zip -9 -T -v -r $PACKAGE_NAME-${{ steps.vars.outputs.sha_short }}.zip *
 
 
     - name: Commit Code (Linux)
