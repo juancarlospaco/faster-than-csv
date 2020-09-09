@@ -68,6 +68,7 @@ jobs:
       if: runner.os == 'Linux' || runner.os == 'macOS'
       run: |
         cd Nim
+        chmod +x ./build_all.sh
         ./build_all.sh
 
 
