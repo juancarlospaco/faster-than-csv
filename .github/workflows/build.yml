@@ -130,26 +130,26 @@ jobs:
     - name: Compile (Linux) # Compile to C for Linux
       if: runner.os == 'Linux'
       run: |
-        nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/lin/             \
-        -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation \
-        --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off               \
-        --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off \
-        ${{ env.MAIN_MODULE }}
+        nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/lin/ \
+        -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
+        --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
+        --stackTrace:off --gc:markAndSweep --excessiveStackTrace:off        \
+        -d:nimDisableCertificateValidation --out:$PACKAGE_NAME.so ${{ env.MAIN_MODULE }}
 
 
     - name: Compile (Mac) # Compile to C for Mac
       if: runner.os == 'macOS'
       run: |
-        nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/mac/             \
-        -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation \
-        --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off               \
-        --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off \
-        ${{ env.MAIN_MODULE }}
+        nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/mac/ \
+        -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
+        --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
+        --stackTrace:off --gc:markAndSweep --excessiveStackTrace:off        \
+        -d:nimDisableCertificateValidation --out:$PACKAGE_NAME.so ${{ env.MAIN_MODULE }}
 
 
     - name: Compile (Windows) # Compile to C for Windows
       if: runner.os == 'Windows'
-      run: nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/win/ -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
+      run: nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
@@ -168,7 +168,7 @@ jobs:
 
     - name: Delay                       # Linux must finish last.
       if: runner.os == 'Linux'
-      run: sleep 5m
+      run: sleep 6m
 
 
     - name: Compress to ZIP  # Make Python package
