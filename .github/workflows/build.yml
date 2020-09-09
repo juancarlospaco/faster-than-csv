@@ -116,6 +116,7 @@ jobs:
       with:
         root_file:         ${{ env.PACKAGE_NAME }}.tex
         working_directory: docs
+        args:              "-pdf -file-line-error -interaction=nonstopmode"
 
 
     - name: Compile Debug & import (Unix)  # Compile and import to check if its working
