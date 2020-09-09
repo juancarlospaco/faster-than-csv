@@ -125,14 +125,14 @@ jobs:
       if: runner.os == 'Linux' || runner.os == 'macOS'
       run: |
         nim c --app:lib --out:$PACKAGE_NAME.so $MAIN_MODULE
-        python3 -c "import $PACKAGE_NAME"
+        python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
 
     - name: Compile Debug & import (Windows)
       if: runner.os == 'Windows'
       run: |
         nim c --app:lib --out:${{ env.PACKAGE_NAME }}.pyd ${{ env.MAIN_MODULE }}
-        python.exe -c "import ${{ env.PACKAGE_NAME }}"
+        python.exe -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
 
     - name: Compile to C (Linux)
