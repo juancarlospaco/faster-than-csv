@@ -111,15 +111,6 @@ jobs:
         nim rst2tex --out:docs/${{ env.PACKAGE_NAME }}.tex ${{ env.MAIN_MODULE }}
 
 
-    - name: Generate PDF Documentation (Linux)
-      if: runner.os == 'Linux'
-      uses: xu-cheng/latex-action@v2
-      with:
-        args:              "-pdf -file-line-error -interaction=nonstopmode"
-        root_file:         ${{ env.PACKAGE_NAME }}.tex
-        working_directory: docs
-
-
     - name: Compile Debug & import (Unix)  # Compile and import to check if its working
       if: runner.os == 'Linux' || runner.os == 'macOS'
       run: |
