@@ -1,4 +1,4 @@
-import os, sys, pathlib, setuptools, sysconfig, platform, importlib.metadata, pprint, atexit
+import os, sys, pathlib, setuptools, sysconfig, platform, importlib.metadata, atexit
 from setuptools.command.build_ext import build_ext
 
 
@@ -6,7 +6,7 @@ package_name = "faster_than_csv"
 
 
 assert platform.architecture()[0] == "64bit", "ERROR: Python must be 64 Bit!. OS must be 64 Bit!."
-assert sys.version_info > (3, 5, 0), "ERROR: Python must be version 3.5 or newer!."
+assert sys.version_info > (3, 5, 0), "ERROR: Python version must be > 3.5!."
 
 
 if sys.platform.startswith("lin"):
@@ -23,7 +23,7 @@ for c_source_file in os.listdir(folder): # Walk the folder with C files.
     sources.append(str(pathlib.Path(folder) / c_source_file))
 
 
-atexit.register(lambda: pprint.pprint(importlib.metadata.distribution(package_name).files))
+atexit.register(sys.stderr.write(importlib.metadata.distribution(package_name).files))
 
 
 class NoSuffixBuilder(build_ext):
@@ -40,7 +40,7 @@ setuptools.setup(
       sources = sources,
       include_dirs = [folder],
       extra_link_args = ["-s"],
-      extra_compile_args = ["-flto", "-ffast-math", "-march=native", "-mtune=native", "-O3", "-fsingle-precision-constant"],
+      extra_compile_args = ["-w", "-flto", "-ffast-math", "-march=native", "-mtune=native", "-O3", "-fsingle-precision-constant"],
     )
   ]
 )
