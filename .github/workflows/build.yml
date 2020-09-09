@@ -112,6 +112,7 @@ jobs:
 
 
     - name: Generate PDF Documentation
+      if: runner.os == 'Linux'
       uses: xu-cheng/latex-action@v2
       with:
         root_file:         ${{ env.PACKAGE_NAME }}.tex
