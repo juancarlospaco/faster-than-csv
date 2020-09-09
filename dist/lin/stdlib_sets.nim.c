@@ -77,13 +77,11 @@ N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, isPowerOfTwo__1xdTQapFveM9bImKot7h9cdw)(NI x);
 N_LIB_PRIVATE N_NIMCALL(void, failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A)(NimStringDesc* msg);
 N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorI)(NI64 i, NI64 a, NI64 b);
 N_LIB_PRIVATE N_NIMCALL(void*, newSeq)(TNimType* typ, NI len);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE TNimType NTI__bGAilYs5sUICRbD13gZaFg_;
 N_LIB_PRIVATE TNimType NTI__1v9bKyksXWMsm0vNwmZ4EuQ_;
 extern TNimType NTI__rR5Bzr1D5krxoo1NcNyeMA_;
 N_LIB_PRIVATE TNimType NTI__8Np6tlClE5az1CyqZdN19bQ_;
 STRING_LITERAL(TM__0JXiWyhP5OCO8jWMA6sb1w_4, "setimpl.nim(19, 10) `isPowerOfTwo(initialSize)` ", 48);
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 static N_NIMCALL(void, Marker_tySequence__8Np6tlClE5az1CyqZdN19bQ)(void* p, NI op) {
 	tySequence__8Np6tlClE5az1CyqZdN19bQ* a;
 	NI T1_;
@@ -93,40 +91,24 @@ static N_NIMCALL(void, Marker_tySequence__8Np6tlClE5az1CyqZdN19bQ)(void* p, NI o
 static N_INLINE(void, unsureAsgnRef)(void** dest, void* src) {
 	(*dest) = src;
 }
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(void, init__lLmKmim2oV7RbhI6dBjLlA)(tyObject_HashSet__bGAilYs5sUICRbD13gZaFg* s, NI initialSize) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	{
 		NIM_BOOL T3_;
 		T3_ = (NIM_BOOL)0;
 		T3_ = isPowerOfTwo__1xdTQapFveM9bImKot7h9cdw(initialSize);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		if (!!(T3_)) goto LA4_;
 		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__0JXiWyhP5OCO8jWMA6sb1w_4));
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA4_: ;
 	(*s).counter = ((NI) 0);
-	if ((initialSize) < ((NI) 0) || (initialSize) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(initialSize, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
-}
+	if ((initialSize) < ((NI) 0) || (initialSize) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(initialSize, ((NI) 0), ((NI) IL64(9223372036854775807))); }
 	(*s).data = (tySequence__8Np6tlClE5az1CyqZdN19bQ*) newSeq((&NTI__8Np6tlClE5az1CyqZdN19bQ_), ((NI) (initialSize)));
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, initHashSet__rkx2SGa9c4bJGzaJP7jTaxg)(NI initialSize, tyObject_HashSet__bGAilYs5sUICRbD13gZaFg* Result) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	chckNil((void*)Result);
 	unsureAsgnRef((void**)&(*Result).data, NIM_NIL);
 	(*Result).counter = 0;
 	init__lLmKmim2oV7RbhI6dBjLlA(Result, initialSize);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, stdlib_setsDatInit000)(void) {
 static TNimNode* TM__0JXiWyhP5OCO8jWMA6sb1w_2_2[2];

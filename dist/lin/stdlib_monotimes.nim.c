@@ -57,30 +57,18 @@ NI nanosecond;
 };
 static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NOINLINE(void, chckNil)(void* p);
 N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_LIB_PRIVATE N_NIMCALL(tyObject_Duration__lj9ar6Co3fgk6NgGnVaNpJw, initDuration__wcR3zetvspAUsyuvWZ07Xg)(NI64 nanoseconds, NI64 microseconds, NI64 milliseconds, NI64 seconds, NI64 minutes, NI64 hours, NI64 days, NI64 weeks);
 N_LIB_PRIVATE TNimType NTI__FEvFMlkqJiSSGVO6HgTv8w_;
 extern TNimType NTI__Aav8dQoMlCFnZRxA0IhTHQ_;
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size) {
 	void* T1_;
 	T1_ = (void*)0;
 	T1_ = memset(a, v, ((size_t) (size)));
 }
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
-}
 static N_INLINE(void, nimZeroMem)(void* p, NI size) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory(p, ((int) 0), size);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w, getMonoTime__QkEugs2Q2iFK9b83sl2B6wA)(void) {
 	tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w result;
@@ -88,32 +76,24 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w, getMonoTime__
 	int T1_;
 	NI64 TM__IP4V1hRabVpf8OnX9bWuPxw_2;
 	NI64 TM__IP4V1hRabVpf8OnX9bWuPxw_3;
-{	nimZeroMem((void*)(&result), sizeof(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w));
+	nimZeroMem((void*)(&result), sizeof(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w));
 	nimZeroMem((void*)(&ts), sizeof(struct timespec));
 	T1_ = (int)0;
 	T1_ = clock_gettime(((int) 1), (&ts));
 	(void)(T1_);
 	chckNil((void*)(&result));
 	nimZeroMem((void*)(&result), sizeof(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w));
-	if (nimMulInt64(((NI64) (ts.tv_sec)), IL64(1000000000), &TM__IP4V1hRabVpf8OnX9bWuPxw_2)) { raiseOverflow(); goto BeforeRet_;
-};
-	if (nimAddInt64((NI64)(TM__IP4V1hRabVpf8OnX9bWuPxw_2), ((NI64) (ts.tv_nsec)), &TM__IP4V1hRabVpf8OnX9bWuPxw_3)) { raiseOverflow(); goto BeforeRet_;
-};
+	if (nimMulInt64(((NI64) (ts.tv_sec)), IL64(1000000000), &TM__IP4V1hRabVpf8OnX9bWuPxw_2)) { raiseOverflow(); };
+	if (nimAddInt64((NI64)(TM__IP4V1hRabVpf8OnX9bWuPxw_2), ((NI64) (ts.tv_nsec)), &TM__IP4V1hRabVpf8OnX9bWuPxw_3)) { raiseOverflow(); };
 	result.ticks = (NI64)(TM__IP4V1hRabVpf8OnX9bWuPxw_3);
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_Duration__lj9ar6Co3fgk6NgGnVaNpJw, minus___p9cBm7joedh4BwcboQ3HMVQ)(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w a, tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w b) {
 	tyObject_Duration__lj9ar6Co3fgk6NgGnVaNpJw result;
 	NI64 TM__IP4V1hRabVpf8OnX9bWuPxw_4;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	nimZeroMem((void*)(&result), sizeof(tyObject_Duration__lj9ar6Co3fgk6NgGnVaNpJw));
-	if (nimSubInt64(a.ticks, b.ticks, &TM__IP4V1hRabVpf8OnX9bWuPxw_4)) { raiseOverflow(); goto BeforeRet_;
-};
+	if (nimSubInt64(a.ticks, b.ticks, &TM__IP4V1hRabVpf8OnX9bWuPxw_4)) { raiseOverflow(); };
 	result = initDuration__wcR3zetvspAUsyuvWZ07Xg((NI64)(TM__IP4V1hRabVpf8OnX9bWuPxw_4), IL64(0), IL64(0), IL64(0), IL64(0), IL64(0), IL64(0), IL64(0));
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, stdlib_monotimesDatInit000)(void) {

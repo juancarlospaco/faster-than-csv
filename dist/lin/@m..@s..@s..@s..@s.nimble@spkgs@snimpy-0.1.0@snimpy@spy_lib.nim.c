@@ -309,7 +309,6 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, rawNewString)(NI space);
 N_LIB_PRIVATE N_NIMCALL(void, raiseExceptionEx)(Exception* e, NCSTRING ename, NCSTRING procname, NCSTRING filename, NI line);
 N_LIB_PRIVATE N_NIMCALL(void, deallocPythonObj__g4g2BXzYUyHtyZiBrSD7aw)(void* p);
 static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs6wfSrqsEApy_lib)(void* p);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, copyString)(NimStringDesc* src);
@@ -326,7 +325,6 @@ N_LIB_PRIVATE NU pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q;
 N_LIB_PRIVATE tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig* pyLib__nxKBiAukGMNwnUq9bpn9adyw;
 N_LIB_PRIVATE NIM_BOOL pyThreadFrameInited__0LBR4zzVR5uWvgtv8SrMjg;
 N_LIB_PRIVATE tySequence__M73GJ9bOx1XdoIRnhIyhqTQ* exportedModules__8kMAOMTFJYz2QnlnegLbYw;
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 static N_NIMCALL(void, Marker_tySequence__M73GJ9bOx1XdoIRnhIyhqTQ)(void* p, NI op) {
 	tySequence__M73GJ9bOx1XdoIRnhIyhqTQ* a;
 	NI T1_;
@@ -359,7 +357,7 @@ N_LIB_PRIVATE N_NIMCALL(void, symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw)(NCST
 	Exception* T1_;
 	NimStringDesc* T2_;
 	NimStringDesc* T3_;
-{	T1_ = (Exception*)0;
+	T1_ = (Exception*)0;
 	T1_ = (Exception*) newObj((&NTI__vU9aO9cTqOMn6CBzhV8rX7Sw_), sizeof(Exception));
 	(*T1_).Sup.m_type = (&NTI__XEycrCsme5C8CVWAYEcdBQ_);
 	(*T1_).name = "Exception";
@@ -372,8 +370,6 @@ appendString(T2_, T3_);
 	(*T1_).message = T2_;
 	(*T1_).parent = NIM_NIL;
 	raiseExceptionEx((Exception*)T1_, "Exception", "symNotLoadedErr", "py_lib.nim", 158);
-	goto BeforeRet_;
-	}BeforeRet_: ;
 }
 static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs6wfSrqsEApy_lib)(void* p) {
 	tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg* result;
@@ -381,23 +377,12 @@ static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs
 	result = ((tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*) ((NU)((NU64)(((NU) (ptrdiff_t) (p))) + (NU64)(pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q))));
 	return result;
 }
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(void, deallocPythonObj__g4g2BXzYUyHtyZiBrSD7aw)(void* p) {
 	tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg* ob;
 	tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g* t;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	ob = to__4gaYCHYBaCTIs6wfSrqsEApy_lib(p);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	t = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) ((*ob).ob_type));
 	(*t).tp_dealloc(((void*) (p)));
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig*, loadPyLibFromModule__qG86BLyCRE79ccVgEQ4WOeA)(void* m) {
 	tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig* result;
@@ -483,13 +468,10 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zi
 	void* T439_;
 	void* T444_;
 	void* T449_;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	result = (tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig*)0;
 	{
 		if (!!(!((m == 0)))) goto LA3_;
 		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XnAUe69cYg8yQhnmiRJUnHw_4));
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA3_: ;
 	T5_ = (void*)0;
@@ -507,19 +489,16 @@ NIM_BOOL* nimErr_;
 		T9_ = (NIM_BOOL)0;
 		T10_ = (void*)0;
 		T10_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyModule_Create2");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		T9_ = (T10_ == 0);
 		if (T9_) goto LA11_;
 		T12_ = (void*)0;
 		T12_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "Py_InitModule4_64");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		T9_ = (T12_ == 0);
 		LA11_: ;
 		T8_ = T9_;
 		if (T8_) goto LA13_;
 		T14_ = (void*)0;
 		T14_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "Py_InitModule4");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		T8_ = (T14_ == 0);
 		LA13_: ;
 		if (!!(T8_)) goto LA15_;
@@ -528,403 +507,324 @@ NIM_BOOL* nimErr_;
 	LA15_: ;
 	T17_ = (void*)0;
 	T17_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "_Py_BuildValue_SizeT");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).Py_BuildValue = ((tyProc__SsjMo29bx9bP5kwe2xgM3Scg) (T17_));
 	{
 		if (!((*pl).Py_BuildValue == 0)) goto LA20_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("_Py_BuildValue_SizeT");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA20_: ;
 	T22_ = (void*)0;
 	T22_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyTuple_New");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyTuple_New = ((tyProc__4wJmT85lsn175X0dPNQv7w) (T22_));
 	{
 		if (!((*pl).PyTuple_New == 0)) goto LA25_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyTuple_New");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA25_: ;
 	T27_ = (void*)0;
 	T27_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyTuple_Size");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyTuple_Size = ((tyProc__YRQqZC12s3573tRGP8MV3g) (T27_));
 	{
 		if (!((*pl).PyTuple_Size == 0)) goto LA30_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyTuple_Size");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA30_: ;
 	T32_ = (void*)0;
 	T32_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyTuple_GetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyTuple_GetItem = ((tyProc__oPIasAghCTvCKmvkMeB1xQ) (T32_));
 	{
 		if (!((*pl).PyTuple_GetItem == 0)) goto LA35_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyTuple_GetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA35_: ;
 	T37_ = (void*)0;
 	T37_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyTuple_SetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyTuple_SetItem = ((tyProc__6slETyyIDJuDOSqkO0hUXA) (T37_));
 	{
 		if (!((*pl).PyTuple_SetItem == 0)) goto LA40_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyTuple_SetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA40_: ;
 	T42_ = (void*)0;
 	T42_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "_Py_NoneStruct");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).Py_None = ((void*) (T42_));
 	{
 		if (!((*pl).Py_None == 0)) goto LA45_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("_Py_NoneStruct");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA45_: ;
 	T47_ = (void*)0;
 	T47_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyType_Ready");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyType_Ready = ((tyProc__tgpXIILGoVcO9bvYnz9azTVQ) (T47_));
 	{
 		if (!((*pl).PyType_Ready == 0)) goto LA50_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyType_Ready");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA50_: ;
 	T52_ = (void*)0;
 	T52_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyType_GenericNew");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyType_GenericNew = ((tyProc__eYT4U6bGFqFBUxk9b15mfOA) (T52_));
 	{
 		if (!((*pl).PyType_GenericNew == 0)) goto LA55_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyType_GenericNew");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA55_: ;
 	T57_ = (void*)0;
 	T57_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyModule_AddObject");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyModule_AddObject = ((tyProc__T08W9bgbY4bOv2q64h6irpw) (T57_));
 	{
 		if (!((*pl).PyModule_AddObject == 0)) goto LA60_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyModule_AddObject");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA60_: ;
 	T62_ = (void*)0;
 	T62_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyList_New");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyList_New = ((tyProc__4wJmT85lsn175X0dPNQv7w) (T62_));
 	{
 		if (!((*pl).PyList_New == 0)) goto LA65_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyList_New");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA65_: ;
 	T67_ = (void*)0;
 	T67_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyList_Size");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyList_Size = ((tyProc__YRQqZC12s3573tRGP8MV3g) (T67_));
 	{
 		if (!((*pl).PyList_Size == 0)) goto LA70_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyList_Size");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA70_: ;
 	T72_ = (void*)0;
 	T72_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyList_GetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyList_GetItem = ((tyProc__oPIasAghCTvCKmvkMeB1xQ) (T72_));
 	{
 		if (!((*pl).PyList_GetItem == 0)) goto LA75_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyList_GetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA75_: ;
 	T77_ = (void*)0;
 	T77_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyList_SetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyList_SetItem = ((tyProc__6slETyyIDJuDOSqkO0hUXA) (T77_));
 	{
 		if (!((*pl).PyList_SetItem == 0)) goto LA80_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyList_SetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA80_: ;
 	T82_ = (void*)0;
 	T82_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_Call");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_Call = ((tyProc__uQWqJp3WAx8fOY1h9aCwjIg) (T82_));
 	{
 		if (!((*pl).PyObject_Call == 0)) goto LA85_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_Call");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA85_: ;
 	T87_ = (void*)0;
 	T87_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_IsTrue");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_IsTrue = ((tyProc__fbYpjfe38x3ujjAmVRbI1Q) (T87_));
 	{
 		if (!((*pl).PyObject_IsTrue == 0)) goto LA90_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_IsTrue");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA90_: ;
 	T92_ = (void*)0;
 	T92_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_GetAttrString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_GetAttrString = ((tyProc__YezmFzxOOyM9cb11Eoq1Elg) (T92_));
 	{
 		if (!((*pl).PyObject_GetAttrString == 0)) goto LA95_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_GetAttrString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA95_: ;
 	T97_ = (void*)0;
 	T97_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_SetAttrString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_SetAttrString = ((tyProc__T08W9bgbY4bOv2q64h6irpw) (T97_));
 	{
 		if (!((*pl).PyObject_SetAttrString == 0)) goto LA100_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_SetAttrString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA100_: ;
 	T102_ = (void*)0;
 	T102_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_Dir");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_Dir = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T102_));
 	{
 		if (!((*pl).PyObject_Dir == 0)) goto LA105_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_Dir");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA105_: ;
 	T107_ = (void*)0;
 	T107_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_Str");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_Str = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T107_));
 	{
 		if (!((*pl).PyObject_Str == 0)) goto LA110_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_Str");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA110_: ;
 	T112_ = (void*)0;
 	T112_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_GetIter");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_GetIter = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T112_));
 	{
 		if (!((*pl).PyObject_GetIter == 0)) goto LA115_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_GetIter");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA115_: ;
 	T117_ = (void*)0;
 	T117_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_GetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_GetItem = ((tyProc__VQ1ysQk017myXMGb79cPTVw) (T117_));
 	{
 		if (!((*pl).PyObject_GetItem == 0)) goto LA120_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_GetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA120_: ;
 	T122_ = (void*)0;
 	T122_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_SetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_SetItem = ((tyProc__7LMjBc4zOHVIsNdulNv7QQ) (T122_));
 	{
 		if (!((*pl).PyObject_SetItem == 0)) goto LA125_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_SetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA125_: ;
 	T127_ = (void*)0;
 	T127_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_RichCompareBool");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_RichCompareBool = ((tyProc__eoRP3F9aLT3mtHj6OkcMSyQ) (T127_));
 	{
 		if (!((*pl).PyObject_RichCompareBool == 0)) goto LA130_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyObject_RichCompareBool");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA130_: ;
 	T132_ = (void*)0;
 	T132_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyObject_GetBuffer");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyObject_GetBuffer = ((tyProc__8hR9arLDkUs9ag3Pt9bWtjfsg) (T132_));
 	T133_ = (void*)0;
 	T133_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyBuffer_Release");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyBuffer_Release = ((tyProc__vFvpnKOere9bRFN9czzMRlTA) (T133_));
 	T134_ = (void*)0;
 	T134_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyIter_Next");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyIter_Next = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T134_));
 	{
 		if (!((*pl).PyIter_Next == 0)) goto LA137_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyIter_Next");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA137_: ;
 	T139_ = (void*)0;
 	T139_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyLong_AsLongLong");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyLong_AsLongLong = ((tyProc__mIlNZ9aGaphVJCyIIofK8mg) (T139_));
 	{
 		if (!((*pl).PyLong_AsLongLong == 0)) goto LA142_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyLong_AsLongLong");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA142_: ;
 	T144_ = (void*)0;
 	T144_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyFloat_AsDouble");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyFloat_AsDouble = ((tyProc__2su9b9chqHYibM7sMkbSaSkA) (T144_));
 	{
 		if (!((*pl).PyFloat_AsDouble == 0)) goto LA147_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyFloat_AsDouble");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA147_: ;
 	T149_ = (void*)0;
 	T149_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyBool_FromLong");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyBool_FromLong = ((tyProc__Fc4ZUx59aQs10dLxeMQ50mw) (T149_));
 	{
 		if (!((*pl).PyBool_FromLong == 0)) goto LA152_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyBool_FromLong");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA152_: ;
 	T154_ = (void*)0;
 	T154_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyBool_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyBool_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T154_));
 	{
 		if (!((*pl).PyBool_Type == 0)) goto LA157_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyBool_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA157_: ;
 	T159_ = (void*)0;
 	T159_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyFloat_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyFloat_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T159_));
 	{
 		if (!((*pl).PyFloat_Type == 0)) goto LA162_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyFloat_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA162_: ;
 	T164_ = (void*)0;
 	T164_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyComplex_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyComplex_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T164_));
 	{
 		if (!((*pl).PyComplex_Type == 0)) goto LA167_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyComplex_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA167_: ;
 	T169_ = (void*)0;
 	T169_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyCapsule_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyCapsule_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T169_));
 	{
 		if (!((*pl).PyCapsule_Type == 0)) goto LA172_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyCapsule_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA172_: ;
 	T174_ = (void*)0;
 	T174_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyTuple_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyTuple_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T174_));
 	{
 		if (!((*pl).PyTuple_Type == 0)) goto LA177_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyTuple_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA177_: ;
 	T179_ = (void*)0;
 	T179_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyList_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyList_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T179_));
 	{
 		if (!((*pl).PyList_Type == 0)) goto LA182_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyList_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA182_: ;
 	T184_ = (void*)0;
 	T184_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyUnicode_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyUnicode_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T184_));
 	{
 		if (!((*pl).PyUnicode_Type == 0)) goto LA187_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyUnicode_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA187_: ;
 	T189_ = (void*)0;
 	T189_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyBytes_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyBytes_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T189_));
 	{
 		void* T194_;
 		if (!((*pl).PyBytes_Type == 0)) goto LA192_;
 		T194_ = (void*)0;
 		T194_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyString_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyBytes_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T194_));
 		{
 			if (!((*pl).PyBytes_Type == 0)) goto LA197_;
 			symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyString_Type");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA197_: ;
 	}
 	LA192_: ;
 	T199_ = (void*)0;
 	T199_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyUnicode_FromString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyUnicode_FromString = ((tyProc__YDKrw1adv61oVQkQhbYyaA) (T199_));
 	{
 		void* T204_;
 		if (!((*pl).PyUnicode_FromString == 0)) goto LA202_;
 		T204_ = (void*)0;
 		T204_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyString_FromString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyUnicode_FromString = ((tyProc__YDKrw1adv61oVQkQhbYyaA) (T204_));
 		{
 			if (!((*pl).PyUnicode_FromString == 0)) goto LA207_;
 			symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyString_FromString");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA207_: ;
 	}
 	LA202_: ;
 	T209_ = (void*)0;
 	T209_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyType_IsSubtype");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyType_IsSubtype = ((tyProc__i2exZ7Vtp648U9crOFcq9beQ) (T209_));
 	{
 		if (!((*pl).PyType_IsSubtype == 0)) goto LA212_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyType_IsSubtype");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA212_: ;
 	T214_ = (void*)0;
 	T214_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyComplex_AsCComplex");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyComplex_AsCComplex = ((tyProc__N1A5ZvDSgO9c9aRXmVqfn9bAw) (T214_));
 	{
 		void* T219_;
@@ -932,67 +832,56 @@ NIM_BOOL* nimErr_;
 		if (!((*pl).PyComplex_AsCComplex == 0)) goto LA217_;
 		T219_ = (void*)0;
 		T219_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyComplex_RealAsDouble");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyComplex_RealAsDouble = ((tyProc__2su9b9chqHYibM7sMkbSaSkA) (T219_));
 		{
 			if (!((*pl).PyComplex_RealAsDouble == 0)) goto LA222_;
 			symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyComplex_RealAsDouble");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA222_: ;
 		T224_ = (void*)0;
 		T224_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyComplex_ImagAsDouble");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyComplex_ImagAsDouble = ((tyProc__2su9b9chqHYibM7sMkbSaSkA) (T224_));
 		{
 			if (!((*pl).PyComplex_ImagAsDouble == 0)) goto LA227_;
 			symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyComplex_ImagAsDouble");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA227_: ;
 	}
 	LA217_: ;
 	T229_ = (void*)0;
 	T229_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyUnicode_CompareWithASCIIString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyUnicode_CompareWithASCIIString = ((tyProc__B2MjSeo07a72ynTQRVYFKw) (T229_));
 	{
 		void* T234_;
 		if (!((*pl).PyUnicode_CompareWithASCIIString == 0)) goto LA232_;
 		T234_ = (void*)0;
 		T234_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyString_AsString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyString_AsString = ((tyProc__p1X2BwWx9a3wsChhykvf29aA) (T234_));
 		{
 			if (!((*pl).PyString_AsString == 0)) goto LA237_;
 			symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyString_AsString");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA237_: ;
 	}
 	LA232_: ;
 	T239_ = (void*)0;
 	T239_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyUnicode_AsUTF8String");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyUnicode_AsUTF8String = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T239_));
 	{
 		void* T244_;
 		if (!((*pl).PyUnicode_AsUTF8String == 0)) goto LA242_;
 		T244_ = (void*)0;
 		T244_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyUnicodeUCS4_AsUTF8String");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyUnicode_AsUTF8String = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T244_));
 		{
 			void* T249_;
 			if (!((*pl).PyUnicode_AsUTF8String == 0)) goto LA247_;
 			T249_ = (void*)0;
 			T249_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyUnicodeUCS2_AsUTF8String");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			(*pl).PyUnicode_AsUTF8String = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T249_));
 			{
 				if (!((*pl).PyUnicode_AsUTF8String == 0)) goto LA252_;
 				symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyUnicodeUCS2_AsUTF8String");
-				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			}
 			LA252_: ;
 		}
@@ -1002,19 +891,16 @@ NIM_BOOL* nimErr_;
 	(*pl).pythonVersion = ((NI) 3);
 	T254_ = (void*)0;
 	T254_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyBytes_AsStringAndSize");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyBytes_AsStringAndSize = ((tyProc__3FKLKFzOaK7FD6dRLWM6Jw) (T254_));
 	{
 		void* T259_;
 		if (!((*pl).PyBytes_AsStringAndSize == 0)) goto LA257_;
 		T259_ = (void*)0;
 		T259_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyString_AsStringAndSize");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		(*pl).PyBytes_AsStringAndSize = ((tyProc__3FKLKFzOaK7FD6dRLWM6Jw) (T259_));
 		{
 			if (!((*pl).PyBytes_AsStringAndSize == 0)) goto LA262_;
 			symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyString_AsStringAndSize");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA262_: ;
 		(*pl).pythonVersion = ((NI) 2);
@@ -1022,102 +908,82 @@ NIM_BOOL* nimErr_;
 	LA257_: ;
 	T264_ = (void*)0;
 	T264_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_Type");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_Type = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) (T264_));
 	{
 		if (!((*pl).PyDict_Type == 0)) goto LA267_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_Type");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA267_: ;
 	T269_ = (void*)0;
 	T269_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_New");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_New = ((tyProc__NzboHqZVJcbdtVGYrOosXQ) (T269_));
 	{
 		if (!((*pl).PyDict_New == 0)) goto LA272_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_New");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA272_: ;
 	T274_ = (void*)0;
 	T274_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_Size");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_Size = ((tyProc__YRQqZC12s3573tRGP8MV3g) (T274_));
 	{
 		if (!((*pl).PyDict_Size == 0)) goto LA277_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_Size");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA277_: ;
 	T279_ = (void*)0;
 	T279_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_GetItemString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_GetItemString = ((tyProc__YezmFzxOOyM9cb11Eoq1Elg) (T279_));
 	{
 		if (!((*pl).PyDict_GetItemString == 0)) goto LA282_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_GetItemString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA282_: ;
 	T284_ = (void*)0;
 	T284_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_SetItemString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_SetItemString = ((tyProc__T08W9bgbY4bOv2q64h6irpw) (T284_));
 	{
 		if (!((*pl).PyDict_SetItemString == 0)) goto LA287_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_SetItemString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA287_: ;
 	T289_ = (void*)0;
 	T289_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_GetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_GetItem = ((tyProc__VQ1ysQk017myXMGb79cPTVw) (T289_));
 	{
 		if (!((*pl).PyDict_GetItem == 0)) goto LA292_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_GetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA292_: ;
 	T294_ = (void*)0;
 	T294_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_SetItem");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_SetItem = ((tyProc__7LMjBc4zOHVIsNdulNv7QQ) (T294_));
 	{
 		if (!((*pl).PyDict_SetItem == 0)) goto LA297_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_SetItem");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA297_: ;
 	T299_ = (void*)0;
 	T299_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_Keys");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_Keys = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T299_));
 	{
 		if (!((*pl).PyDict_Keys == 0)) goto LA302_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_Keys");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA302_: ;
 	T304_ = (void*)0;
 	T304_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_Values");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_Values = ((tyProc__jvPpjMAkI9bwM1B9apOphnlA) (T304_));
 	{
 		if (!((*pl).PyDict_Values == 0)) goto LA307_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_Values");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA307_: ;
 	T309_ = (void*)0;
 	T309_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyDict_Contains");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyDict_Contains = ((tyProc__MTei9bsKjha0o1cISO9aLMDg) (T309_));
 	{
 		if (!((*pl).PyDict_Contains == 0)) goto LA312_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyDict_Contains");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA312_: ;
 	{
@@ -1132,288 +998,233 @@ NIM_BOOL* nimErr_;
 	LA314_: ;
 	T319_ = (void*)0;
 	T319_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_Clear");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_Clear = ((tyProc__ln4kdL5W9bbX4a1xl8nnVXQ) (T319_));
 	{
 		if (!((*pl).PyErr_Clear == 0)) goto LA322_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_Clear");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA322_: ;
 	T324_ = (void*)0;
 	T324_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_SetString");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_SetString = ((tyProc__WYY8i0I79agBofnUcEGCfig) (T324_));
 	{
 		if (!((*pl).PyErr_SetString == 0)) goto LA327_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_SetString");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA327_: ;
 	T329_ = (void*)0;
 	T329_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_Occurred");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_Occurred = ((tyProc__NzboHqZVJcbdtVGYrOosXQ) (T329_));
 	{
 		if (!((*pl).PyErr_Occurred == 0)) goto LA332_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_Occurred");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA332_: ;
 	T334_ = (void*)0;
 	T334_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_TypeError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_TypeError = ((void*) (T334_));
 	{
 		if (!((*pl).PyExc_TypeError == 0)) goto LA337_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_TypeError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA337_: ;
 	(*pl).PyExc_TypeError = (*((void**) ((*pl).PyExc_TypeError)));
 	T339_ = (void*)0;
 	T339_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyCapsule_New");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyCapsule_New = ((tyProc__jcEovQ2rZUNUsYxohT50Ug) (T339_));
 	{
 		if (!((*pl).PyCapsule_New == 0)) goto LA342_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyCapsule_New");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA342_: ;
 	T344_ = (void*)0;
 	T344_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyCapsule_GetPointer");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyCapsule_GetPointer = ((tyProc__YezmFzxOOyM9cb11Eoq1Elg) (T344_));
 	{
 		if (!((*pl).PyCapsule_GetPointer == 0)) goto LA347_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyCapsule_GetPointer");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA347_: ;
 	T349_ = (void*)0;
 	T349_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyImport_ImportModule");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyImport_ImportModule = ((tyProc__YDKrw1adv61oVQkQhbYyaA) (T349_));
 	{
 		if (!((*pl).PyImport_ImportModule == 0)) goto LA352_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyImport_ImportModule");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA352_: ;
 	T354_ = (void*)0;
 	T354_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyEval_GetBuiltins");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyEval_GetBuiltins = ((tyProc__NzboHqZVJcbdtVGYrOosXQ) (T354_));
 	{
 		if (!((*pl).PyEval_GetBuiltins == 0)) goto LA357_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyEval_GetBuiltins");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA357_: ;
 	T359_ = (void*)0;
 	T359_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyEval_GetGlobals");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyEval_GetGlobals = ((tyProc__NzboHqZVJcbdtVGYrOosXQ) (T359_));
 	{
 		if (!((*pl).PyEval_GetGlobals == 0)) goto LA362_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyEval_GetGlobals");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA362_: ;
 	T364_ = (void*)0;
 	T364_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyEval_GetLocals");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyEval_GetLocals = ((tyProc__NzboHqZVJcbdtVGYrOosXQ) (T364_));
 	{
 		if (!((*pl).PyEval_GetLocals == 0)) goto LA367_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyEval_GetLocals");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA367_: ;
 	T369_ = (void*)0;
 	T369_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyCFunction_NewEx");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyCFunction_NewEx = ((tyProc__9b2qzlf3LCKK0JvThQT1atg) (T369_));
 	{
 		if (!((*pl).PyCFunction_NewEx == 0)) goto LA372_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyCFunction_NewEx");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA372_: ;
 	T374_ = (void*)0;
 	T374_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_Fetch");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_Fetch = ((tyProc__U0oVFt576Ze44Q9a3eZc5wg) (T374_));
 	{
 		if (!((*pl).PyErr_Fetch == 0)) goto LA377_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_Fetch");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA377_: ;
 	T379_ = (void*)0;
 	T379_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_NormalizeException");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_NormalizeException = ((tyProc__U0oVFt576Ze44Q9a3eZc5wg) (T379_));
 	{
 		if (!((*pl).PyErr_NormalizeException == 0)) goto LA382_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_NormalizeException");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA382_: ;
 	T384_ = (void*)0;
 	T384_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_GivenExceptionMatches");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_GivenExceptionMatches = ((tyProc__MTei9bsKjha0o1cISO9aLMDg) (T384_));
 	{
 		if (!((*pl).PyErr_GivenExceptionMatches == 0)) goto LA387_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_GivenExceptionMatches");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA387_: ;
 	T389_ = (void*)0;
 	T389_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyErr_NewException");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyErr_NewException = ((tyProc__BZ6N5NNdHcK05FTDxQbEWw) (T389_));
 	{
 		if (!((*pl).PyErr_NewException == 0)) goto LA392_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyErr_NewException");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA392_: ;
 	T394_ = (void*)0;
 	T394_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_ArithmeticError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_ArithmeticError = ((void*) (T394_));
 	{
 		if (!((*pl).PyExc_ArithmeticError == 0)) goto LA397_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_ArithmeticError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA397_: ;
 	(*pl).PyExc_ArithmeticError = (*((void**) ((*pl).PyExc_ArithmeticError)));
 	T399_ = (void*)0;
 	T399_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_FloatingPointError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_FloatingPointError = ((void*) (T399_));
 	{
 		if (!((*pl).PyExc_FloatingPointError == 0)) goto LA402_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_FloatingPointError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA402_: ;
 	(*pl).PyExc_FloatingPointError = (*((void**) ((*pl).PyExc_FloatingPointError)));
 	T404_ = (void*)0;
 	T404_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_OverflowError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_OverflowError = ((void*) (T404_));
 	{
 		if (!((*pl).PyExc_OverflowError == 0)) goto LA407_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_OverflowError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA407_: ;
 	(*pl).PyExc_OverflowError = (*((void**) ((*pl).PyExc_OverflowError)));
 	T409_ = (void*)0;
 	T409_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_ZeroDivisionError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_ZeroDivisionError = ((void*) (T409_));
 	{
 		if (!((*pl).PyExc_ZeroDivisionError == 0)) goto LA412_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_ZeroDivisionError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA412_: ;
 	(*pl).PyExc_ZeroDivisionError = (*((void**) ((*pl).PyExc_ZeroDivisionError)));
 	T414_ = (void*)0;
 	T414_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_AssertionError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_AssertionError = ((void*) (T414_));
 	{
 		if (!((*pl).PyExc_AssertionError == 0)) goto LA417_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_AssertionError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA417_: ;
 	(*pl).PyExc_AssertionError = (*((void**) ((*pl).PyExc_AssertionError)));
 	T419_ = (void*)0;
 	T419_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_OSError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_OSError = ((void*) (T419_));
 	{
 		if (!((*pl).PyExc_OSError == 0)) goto LA422_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_OSError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA422_: ;
 	(*pl).PyExc_OSError = (*((void**) ((*pl).PyExc_OSError)));
 	T424_ = (void*)0;
 	T424_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_IOError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_IOError = ((void*) (T424_));
 	{
 		if (!((*pl).PyExc_IOError == 0)) goto LA427_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_IOError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA427_: ;
 	(*pl).PyExc_IOError = (*((void**) ((*pl).PyExc_IOError)));
 	T429_ = (void*)0;
 	T429_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_ValueError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_ValueError = ((void*) (T429_));
 	{
 		if (!((*pl).PyExc_ValueError == 0)) goto LA432_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_ValueError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA432_: ;
 	(*pl).PyExc_ValueError = (*((void**) ((*pl).PyExc_ValueError)));
 	T434_ = (void*)0;
 	T434_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_EOFError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_EOFError = ((void*) (T434_));
 	{
 		if (!((*pl).PyExc_EOFError == 0)) goto LA437_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_EOFError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA437_: ;
 	(*pl).PyExc_EOFError = (*((void**) ((*pl).PyExc_EOFError)));
 	T439_ = (void*)0;
 	T439_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_MemoryError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_MemoryError = ((void*) (T439_));
 	{
 		if (!((*pl).PyExc_MemoryError == 0)) goto LA442_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_MemoryError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA442_: ;
 	(*pl).PyExc_MemoryError = (*((void**) ((*pl).PyExc_MemoryError)));
 	T444_ = (void*)0;
 	T444_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_IndexError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_IndexError = ((void*) (T444_));
 	{
 		if (!((*pl).PyExc_IndexError == 0)) goto LA447_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_IndexError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA447_: ;
 	(*pl).PyExc_IndexError = (*((void**) ((*pl).PyExc_IndexError)));
 	T449_ = (void*)0;
 	T449_ = symAddr__ALH9bdNwXEzg7MPq4PA9csvw(m, "PyExc_KeyError");
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	(*pl).PyExc_KeyError = ((void*) (T449_));
 	{
 		if (!((*pl).PyExc_KeyError == 0)) goto LA452_;
 		symNotLoadedErr__bDtoj2GKRI9aw9bq59axC9b9aOw("PyExc_KeyError");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA452_: ;
 	(*pl).PyExc_KeyError = (*((void**) ((*pl).PyExc_KeyError)));
-	}BeforeRet_: ;
 	return result;
 }
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size) {
@@ -1422,11 +1233,7 @@ static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, 
 	T1_ = memset(a, v, ((size_t) (size)));
 }
 static N_INLINE(void, nimZeroMem)(void* p, NI size) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory(p, ((int) 0), size);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, registerExportedModule__2aw5dpL5lVZZ9cjH0apWcXA)(NimStringDesc* name, void* initAddr2, void* initAddr3) {
 	tyObject_ExportedModule__fxDBwb9c9c8NsdRe9bmg8Q9a2A T1_;

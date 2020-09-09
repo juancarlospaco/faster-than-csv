@@ -78,7 +78,6 @@ struct tySequence__9apztJSmgERYU8fZOjI4pOg {
 };
 static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NIMCALL(int, toInt__na0alpTcWAzTnn2v04w1CQ)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain);
 N_LIB_PRIVATE N_NIMCALL(int, toInt__AuveeRAdmuTXERHtCv4MPg)(tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw typ);
 N_LIB_PRIVATE N_NIMCALL(int, toInt__7Zb9bURWntNcBAaEQ9aEZK9bQ)(tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg p);
@@ -109,7 +108,6 @@ N_LIB_PRIVATE NIM_CONST int osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w = ((int) -1
 N_LIB_PRIVATE NIM_CONST int nativeAfInet__rQwsjQjVqXvdaL9aZofzWwg = ((int) 2);
 N_LIB_PRIVATE NIM_CONST int nativeAfInet6__Da6PongZL9aJxBrf7qeBmfA = ((int) 10);
 N_LIB_PRIVATE NIM_CONST int nativeAfUnix__F0RRmJ8JjfNr6yLSNEn9abA = ((int) 1);
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 N_LIB_PRIVATE N_NIMCALL(void, close__8c1w8B7fpSuB4Dgr5LHVJA)(int socket) {
 	int T1_;
 	T1_ = (int)0;
@@ -147,18 +145,8 @@ static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, 
 	T1_ = (void*)0;
 	T1_ = memset(a, v, ((size_t) (size)));
 }
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
-}
 static N_INLINE(void, nimZeroMem)(void* p, NI size) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory(p, ((int) 0), size);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(int, toInt__na0alpTcWAzTnn2v04w1CQ)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain) {
 	int result;
@@ -280,61 +268,44 @@ static N_INLINE(NCSTRING, nimToCStringConv)(NimStringDesc* s) {
 N_LIB_PRIVATE N_NIMCALL(struct addrinfo*, getAddrInfo__ANf7QnbfE8nyIlFuWroDcQ)(NimStringDesc* address, NU16 port, tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol) {
 	struct addrinfo* result;
 	struct addrinfo hints;
-	int T1_;
-	int T2_;
-	int T3_;
 	NimStringDesc* socketPort;
 	int gaiResult;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	result = (struct addrinfo*)0;
 	nimZeroMem((void*)(&hints), sizeof(struct addrinfo));
 	result = NIM_NIL;
-	T1_ = (int)0;
-	T1_ = toInt__na0alpTcWAzTnn2v04w1CQ(domain);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	hints.ai_family = T1_;
-	T2_ = (int)0;
-	T2_ = toInt__AuveeRAdmuTXERHtCv4MPg(sockType);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	hints.ai_socktype = T2_;
-	T3_ = (int)0;
-	T3_ = toInt__7Zb9bURWntNcBAaEQ9aEZK9bQ(protocol);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	hints.ai_protocol = T3_;
+	hints.ai_family = toInt__na0alpTcWAzTnn2v04w1CQ(domain);
+	hints.ai_socktype = toInt__AuveeRAdmuTXERHtCv4MPg(sockType);
+	hints.ai_protocol = toInt__7Zb9bURWntNcBAaEQ9aEZK9bQ(protocol);
 	{
-		if (!(domain == ((tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg) 23))) goto LA6_;
+		if (!(domain == ((tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg) 23))) goto LA3_;
 		hints.ai_flags = ((int) 8);
 	}
-	LA6_: ;
+	LA3_: ;
 	{
-		if (!(sockType == ((tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw) 3))) goto LA10_;
+		if (!(sockType == ((tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw) 3))) goto LA7_;
 		socketPort = ((NimStringDesc*) NIM_NIL);
 	}
-	goto LA8_;
-	LA10_: ;
+	goto LA5_;
+	LA7_: ;
 	{
 		socketPort = dollar___RkX9btpg5sQIaP8yYXB6tbA(port);
 	}
-	LA8_: ;
+	LA5_: ;
 	gaiResult = getaddrinfo(nimToCStringConv(address), nimToCStringConv(socketPort), (&hints), &result);
 	{
-		NI32 T17_;
-		NCSTRING T18_;
-		NimStringDesc* T19_;
-		if (!!((gaiResult == ((NI32) 0)))) goto LA15_;
-		T17_ = (NI32)0;
-		T17_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		T18_ = (NCSTRING)0;
-		T18_ = (char *)gai_strerror(gaiResult);
-		T19_ = (NimStringDesc*)0;
-		T19_ = cstrToNimstr(T18_);
-		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T17_, T19_);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		NI32 T14_;
+		NCSTRING T15_;
+		NimStringDesc* T16_;
+		if (!!((gaiResult == ((NI32) 0)))) goto LA12_;
+		T14_ = (NI32)0;
+		T14_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
+		T15_ = (NCSTRING)0;
+		T15_ = (char *)gai_strerror(gaiResult);
+		T16_ = (NimStringDesc*)0;
+		T16_ = cstrToNimstr(T15_);
+		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T14_, T16_);
 	}
-	LA15_: ;
-	}BeforeRet_: ;
+	LA12_: ;
 	return result;
 }
 static N_INLINE(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ, some__gDZZCqU2e9asjnz7Ee0TNwwoptions)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg val) {
@@ -351,43 +322,35 @@ static N_INLINE(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ, none__lifxITt9cocI1pi
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ, toKnownDomain__RQ9bFvLg4dpjf7aRPA8ID9bg)(int family) {
 	tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ result;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	nimZeroMem((void*)(&result), sizeof(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ));
 	{
 		if (!(family == ((int) 0))) goto LA3_;
 		result = some__gDZZCqU2e9asjnz7Ee0TNwwoptions(((tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg) 0));
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	goto LA1_;
 	LA3_: ;
 	{
 		if (!(family == ((int) 1))) goto LA6_;
 		result = some__gDZZCqU2e9asjnz7Ee0TNwwoptions(((tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg) 1));
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	goto LA1_;
 	LA6_: ;
 	{
 		if (!(family == ((int) 2))) goto LA9_;
 		result = some__gDZZCqU2e9asjnz7Ee0TNwwoptions(((tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg) 2));
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	goto LA1_;
 	LA9_: ;
 	{
 		if (!(family == ((int) 10))) goto LA12_;
 		result = some__gDZZCqU2e9asjnz7Ee0TNwwoptions(((tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg) 23));
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	goto LA1_;
 	LA12_: ;
 	{
 		result = none__lifxITt9cocI1piX9abkoJ6woptions();
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA1_: ;
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(int, createNativeSocket__JC9abIjAA731bWpDMsti9a5Q)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol) {
@@ -395,20 +358,14 @@ N_LIB_PRIVATE N_NIMCALL(int, createNativeSocket__JC9abIjAA731bWpDMsti9a5Q)(tyEnu
 	int T1_;
 	int T2_;
 	int T3_;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	result = (int)0;
 	T1_ = (int)0;
 	T1_ = toInt__na0alpTcWAzTnn2v04w1CQ(domain);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	T2_ = (int)0;
 	T2_ = toInt__AuveeRAdmuTXERHtCv4MPg(sockType);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	T3_ = (int)0;
 	T3_ = toInt__7Zb9bURWntNcBAaEQ9aEZK9bQ(protocol);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	result = socket(T1_, T2_, T3_);
-	}BeforeRet_: ;
 	return result;
 }
 static N_INLINE(NIM_BOOL, nimDivInt)(NI a, NI b, NI* res) {
@@ -434,7 +391,7 @@ static N_INLINE(NIM_BOOL, nimDivInt)(NI a, NI b, NI* res) {
 }
 N_LIB_PRIVATE N_NIMCALL(struct timeval, timeValFromMilliseconds__OtKozLj4h73UWNus5W4NYA)(NI timeout) {
 	struct timeval result;
-{	nimZeroMem((void*)(&result), sizeof(struct timeval));
+	nimZeroMem((void*)(&result), sizeof(struct timeval));
 	{
 		NI seconds;
 		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11;
@@ -442,27 +399,19 @@ N_LIB_PRIVATE N_NIMCALL(struct timeval, timeValFromMilliseconds__OtKozLj4h73UWNu
 		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13;
 		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14;
 		if (!!((timeout == ((NI) -1)))) goto LA3_;
-		if (((NI) 1000) == 0){ raiseDivByZero(); goto BeforeRet_;
-}
-		if (nimDivInt(timeout, ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11)) { raiseOverflow(); goto BeforeRet_;
-};
+		if (((NI) 1000) == 0){ raiseDivByZero(); }
+		if (nimDivInt(timeout, ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11)) { raiseOverflow(); };
 		seconds = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11);
 		result.tv_sec = seconds;
-		if (nimMulInt(seconds, ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (nimSubInt(timeout, (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (nimMulInt((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13), ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14)) { raiseOverflow(); goto BeforeRet_;
-};
+		if (nimMulInt(seconds, ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12)) { raiseOverflow(); };
+		if (nimSubInt(timeout, (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13)) { raiseOverflow(); };
+		if (nimMulInt((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13), ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14)) { raiseOverflow(); };
 		result.tv_usec = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14);
 	}
 	LA3_: ;
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, createFdSet__qeAKZQwZIp32QbFZfozb3w)(fd_set* fd, tySequence__9apztJSmgERYU8fZOjI4pOg* s, NI* m) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	FD_ZERO(fd);
 	{
 		int i;
@@ -477,32 +426,28 @@ NIM_BOOL* nimErr_;
 			while (1) {
 				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15;
 				if (!(i_2 < L)) goto LA4;
-				if ((NU)(i_2) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(i_2,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
+				if ((NU)(i_2) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(i_2,(s ? s->Sup.len : 0)-1); }
 				i = s->data[i_2];
 				(*m) = (((*m) >= ((NI) (i))) ? (*m) : ((NI) (i)));
 				FD_SET(i, fd);
-				if (nimAddInt(i_2, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15)) { raiseOverflow(); goto BeforeRet_;
-};
+				if (nimAddInt(i_2, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15)) { raiseOverflow(); };
 				i_2 = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15);
 				{
 					NI T7_;
 					T7_ = (s ? s->Sup.len : 0);
 					if (!!((T7_ == L))) goto LA8_;
 					failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_16));
-					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				}
 				LA8_: ;
 			} LA4: ;
 		}
 	}
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, pruneSocketSet__DzCd1luyXumO9c9aKDjkCMAQ)(tySequence__9apztJSmgERYU8fZOjI4pOg** s, fd_set* fd) {
 	NI i;
 	NI L;
 	NI T1_;
-{	i = ((NI) 0);
+	i = ((NI) 0);
 	T1_ = ((*s) ? (*s)->Sup.len : 0);
 	L = T1_;
 	{
@@ -512,60 +457,46 @@ N_LIB_PRIVATE N_NIMCALL(void, pruneSocketSet__DzCd1luyXumO9c9aKDjkCMAQ)(tySequen
 				int T6_;
 				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19;
 				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20;
-				if ((NU)(i) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2(i,((*s) ? (*s)->Sup.len : 0)-1); goto BeforeRet_;
-}
+				if ((NU)(i) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2(i,((*s) ? (*s)->Sup.len : 0)-1); }
 				T6_ = (int)0;
 				T6_ = FD_ISSET((*s)->data[i], fd);
 				if (!(T6_ == ((NI32) 0))) goto LA7_;
-				if ((NU)(i) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2(i,((*s) ? (*s)->Sup.len : 0)-1); goto BeforeRet_;
-}
-				if (nimSubInt(L, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)) { raiseOverflow(); goto BeforeRet_;
-};
-				if ((NU)((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19),((*s) ? (*s)->Sup.len : 0)-1); goto BeforeRet_;
-}
+				if ((NU)(i) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2(i,((*s) ? (*s)->Sup.len : 0)-1); }
+				if (nimSubInt(L, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)) { raiseOverflow(); };
+				if ((NU)((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19),((*s) ? (*s)->Sup.len : 0)-1); }
 				(*s)->data[i] = (*s)->data[(NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)];
-				if (nimSubInt(L, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20)) { raiseOverflow(); goto BeforeRet_;
-};
+				if (nimSubInt(L, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20)) { raiseOverflow(); };
 				L = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20);
 			}
 			goto LA4_;
 			LA7_: ;
 			{
 				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21;
-				if (nimAddInt(i, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21)) { raiseOverflow(); goto BeforeRet_;
-};
+				if (nimAddInt(i, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21)) { raiseOverflow(); };
 				i = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21);
 			}
 			LA4_: ;
 		} LA3: ;
 	}
-	if ((L) < ((NI) 0) || (L) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(L, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
-}
+	if ((L) < ((NI) 0) || (L) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(L, ((NI) 0), ((NI) IL64(9223372036854775807))); }
 	(*s) = (tySequence__9apztJSmgERYU8fZOjI4pOg*) setLengthSeqV2(&((*s))->Sup, (&NTI__9apztJSmgERYU8fZOjI4pOg_), ((NI) (L)));
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(NI, selectRead__hYdMbc9crqOqsDFcxhERoLA)(tySequence__9apztJSmgERYU8fZOjI4pOg** readfds, NI timeout) {
 	NI result;
 	struct timeval tv;
 	fd_set rd;
 	NI m;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	result = (NI)0;
 	tv = timeValFromMilliseconds__OtKozLj4h73UWNus5W4NYA(timeout);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	nimZeroMem((void*)(&rd), sizeof(fd_set));
 	m = ((NI) 0);
 	createFdSet__qeAKZQwZIp32QbFZfozb3w((&rd), (*readfds), (&m));
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17;
 		int T5_;
 		if (!!((timeout == ((NI) -1)))) goto LA3_;
-		if (nimAddInt(m, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) < ((int) (-2147483647 -1)) || ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17), ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
-}
+		if (nimAddInt(m, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) { raiseOverflow(); };
+		if (((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) < ((int) (-2147483647 -1)) || ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17), ((int) (-2147483647 -1)), ((int) 2147483647)); }
 		T5_ = (int)0;
 		T5_ = select(((int) ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17))), (&rd), NIM_NIL, NIM_NIL, (&tv));
 		result = ((NI) (T5_));
@@ -575,18 +506,14 @@ NIM_BOOL* nimErr_;
 	{
 		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18;
 		int T7_;
-		if (nimAddInt(m, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) < ((int) (-2147483647 -1)) || ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18), ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
-}
+		if (nimAddInt(m, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) { raiseOverflow(); };
+		if (((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) < ((int) (-2147483647 -1)) || ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18), ((int) (-2147483647 -1)), ((int) 2147483647)); }
 		T7_ = (int)0;
 		T7_ = select(((int) ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18))), (&rd), NIM_NIL, NIM_NIL, NIM_NIL);
 		result = ((NI) (T7_));
 	}
 	LA1_: ;
 	pruneSocketSet__DzCd1luyXumO9c9aKDjkCMAQ(readfds, (&rd));
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, stdlib_nativesocketsDatInit000)(void) {

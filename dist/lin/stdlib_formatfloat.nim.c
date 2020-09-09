@@ -21,8 +21,6 @@
 #define nimfr_(x, y)
 #define nimln_(x, y)
 N_LIB_PRIVATE N_NIMCALL(void, writeToBuffer__Nntp3gW9b170LCR9cOWNy1tg)(NIM_CHAR* buf, NCSTRING value);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 N_LIB_PRIVATE N_NIMCALL(void, writeToBuffer__Nntp3gW9b170LCR9cOWNy1tg)(NIM_CHAR* buf, NCSTRING value) {
 	NI i;
 	i = ((NI) 0);
@@ -34,19 +32,11 @@ N_LIB_PRIVATE N_NIMCALL(void, writeToBuffer__Nntp3gW9b170LCR9cOWNy1tg)(NIM_CHAR*
 		} LA2: ;
 	}
 }
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(NI, writeFloatToBuffer__UrA9aquvUwHFUFx78eUQk3A)(NIM_CHAR* buf, NF value) {
 	NI result;
 	NI n;
 	int T1_;
 	NIM_BOOL hasDot;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	result = (NI)0;
 	T1_ = (int)0;
 	T1_ = sprintf(((NCSTRING) (buf)), "%.16g", value);
@@ -98,7 +88,6 @@ NIM_BOOL* nimErr_;
 	{
 		if (!(((NU8)(buf[((NI)(n - ((NI) 1)))- 0])) == ((NU8)(110)) || ((NU8)(buf[((NI)(n - ((NI) 1)))- 0])) == ((NU8)(78)) || ((NU8)(buf[((NI)(n - ((NI) 1)))- 0])) == ((NU8)(68)) || ((NU8)(buf[((NI)(n - ((NI) 1)))- 0])) == ((NU8)(100)) || ((NU8)(buf[((NI)(n - ((NI) 1)))- 0])) == ((NU8)(41)))) goto LA19_;
 		writeToBuffer__Nntp3gW9b170LCR9cOWNy1tg(buf, "nan");
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		result = ((NI) 3);
 	}
 	goto LA17_;
@@ -108,14 +97,12 @@ NIM_BOOL* nimErr_;
 		{
 			if (!((NU8)(buf[(((NI) 0))- 0]) == (NU8)(45))) goto LA26_;
 			writeToBuffer__Nntp3gW9b170LCR9cOWNy1tg(buf, "-inf");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			result = ((NI) 4);
 		}
 		goto LA24_;
 		LA26_: ;
 		{
 			writeToBuffer__Nntp3gW9b170LCR9cOWNy1tg(buf, "inf");
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			result = ((NI) 3);
 		}
 		LA24_: ;
@@ -123,6 +110,5 @@ NIM_BOOL* nimErr_;
 	goto LA17_;
 	LA22_: ;
 	LA17_: ;
-	}BeforeRet_: ;
 	return result;
 }

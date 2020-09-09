@@ -86,43 +86,25 @@ struct tySequence__uB9b75OUPRENsBAu4AnoePA {
   TGenericSeq Sup;
   tyObject_StackTraceEntry__oLyohQ7O2XOvGnflOss8EA data[SEQ_DECL_SIZE];
 };
-N_LIB_PRIVATE N_NOINLINE(void, raiseAssert__gpGJG5CoQzE64skFd9bPG7A)(NimStringDesc* msg);
-static N_INLINE(void, sysFatal__METp0EHKQZlD51D9bYP6PAAassertions)(NimStringDesc* message);
+N_LIB_PRIVATE N_NOINLINE(void, raiseAssert__gpGJG5CoQzE64skFd9bPG7A)(NimStringDesc* msg) __attribute__((noreturn));
+static N_INLINE(void, sysFatal__METp0EHKQZlD51D9bYP6PAAassertions)(NimStringDesc* message) __attribute__((noreturn));
 N_LIB_PRIVATE N_NIMCALL(void*, newObj)(TNimType* typ, NI size);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, copyString)(NimStringDesc* src);
 N_LIB_PRIVATE N_NIMCALL(void, raiseExceptionEx)(Exception* e, NCSTRING ename, NCSTRING procname, NCSTRING filename, NI line);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 extern TNimType NTI__ShBqCFAISBSH2YqBfe6zjg_;
 extern TNimType NTI__G9cUlLvU4AFC26wbFxLFkFA_;
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 static N_INLINE(void, sysFatal__METp0EHKQZlD51D9bYP6PAAassertions)(NimStringDesc* message) {
 	tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA* T1_;
-{	T1_ = (tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA*)0;
+	T1_ = (tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA*)0;
 	T1_ = (tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA*) newObj((&NTI__ShBqCFAISBSH2YqBfe6zjg_), sizeof(tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA));
 	(*T1_).Sup.Sup.Sup.m_type = (&NTI__G9cUlLvU4AFC26wbFxLFkFA_);
 	(*T1_).Sup.Sup.name = "AssertionError";
 	(*T1_).Sup.Sup.message = copyString(message);
 	raiseExceptionEx((Exception*)T1_, "AssertionError", "sysFatal", "fatal.nim", 49);
-	goto BeforeRet_;
-	}BeforeRet_: ;
-}
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
 }
 N_LIB_PRIVATE N_NOINLINE(void, raiseAssert__gpGJG5CoQzE64skFd9bPG7A)(NimStringDesc* msg) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	sysFatal__METp0EHKQZlD51D9bYP6PAAassertions(msg);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A)(NimStringDesc* msg) {
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	raiseAssert__gpGJG5CoQzE64skFd9bPG7A(msg);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
 }

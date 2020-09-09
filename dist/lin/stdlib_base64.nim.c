@@ -189,20 +189,20 @@ static N_INLINE(NIM_BOOL, nimDivInt)(NI a, NI b, NI* res) {
 }
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, encode__D4bDwZBUb9bAJslbVxAPmbg)(NimStringDesc* s, NIM_BOOL safe) {
 	NimStringDesc* result;
-{	result = (NimStringDesc*)0;
+	result = (NimStringDesc*)0;
 	{
 		NIM_CHAR* lookupTable;
 		NI TM__2L6xrRPz7CWDB3T1R9cDN5A_2;
 		NI TM__2L6xrRPz7CWDB3T1R9cDN5A_3;
 		NI TM__2L6xrRPz7CWDB3T1R9cDN5A_4;
-		NI inputIndexX60gensym18615010_;
-		NI outputIndexX60gensym18615011_;
-		NI inputEndsX60gensym18615012_;
+		NI inputIndexX60gensym18610010_;
+		NI outputIndexX60gensym18610011_;
+		NI inputEndsX60gensym18610012_;
 		NI TM__2L6xrRPz7CWDB3T1R9cDN5A_5;
 		NI TM__2L6xrRPz7CWDB3T1R9cDN5A_6;
-		NU32 nX60gensym18615013_;
-		NU32 bX60gensym18615014_;
-		NI paddingX60gensym18615018_;
+		NU32 nX60gensym18610013_;
+		NU32 bX60gensym18610014_;
+		NI paddingX60gensym18610018_;
 		NI TM__2L6xrRPz7CWDB3T1R9cDN5A_14;
 		{
 			if (!safe) goto LA4_;
@@ -214,28 +214,20 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, encode__D4bDwZBUb9bAJslbVxAPmbg)(NimStri
 			lookupTable = cb64__Yyfw6lxoVbgtswIxGnGnUQ;
 		}
 		LA2_: ;
-		if (nimMulInt((s ? s->Sup.len : 0), ((NI) 4), &TM__2L6xrRPz7CWDB3T1R9cDN5A_2)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (((NI) 3) == 0){ raiseDivByZero(); goto BeforeRet_;
-}
-		if (nimDivInt((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_2), ((NI) 3), &TM__2L6xrRPz7CWDB3T1R9cDN5A_3)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (nimAddInt((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_3), ((NI) 6), &TM__2L6xrRPz7CWDB3T1R9cDN5A_4)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4)) < ((NI) 0) || ((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4)) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4), ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
-}
+		if (nimMulInt((s ? s->Sup.len : 0), ((NI) 4), &TM__2L6xrRPz7CWDB3T1R9cDN5A_2)) { raiseOverflow(); };
+		if (((NI) 3) == 0){ raiseDivByZero(); }
+		if (nimDivInt((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_2), ((NI) 3), &TM__2L6xrRPz7CWDB3T1R9cDN5A_3)) { raiseOverflow(); };
+		if (nimAddInt((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_3), ((NI) 6), &TM__2L6xrRPz7CWDB3T1R9cDN5A_4)) { raiseOverflow(); };
+		if (((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4)) < ((NI) 0) || ((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4)) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4), ((NI) 0), ((NI) IL64(9223372036854775807))); }
 		result = setLengthStr(result, ((NI) ((NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_4))));
-		inputIndexX60gensym18615010_ = ((NI) 0);
-		outputIndexX60gensym18615011_ = ((NI) 0);
-		if (((NI) 3) == 0){ raiseDivByZero(); goto BeforeRet_;
-}
-		if (nimModInt((s ? s->Sup.len : 0), ((NI) 3), &TM__2L6xrRPz7CWDB3T1R9cDN5A_5)) { raiseOverflow(); goto BeforeRet_;
-};
-		if (nimSubInt((s ? s->Sup.len : 0), (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_5), &TM__2L6xrRPz7CWDB3T1R9cDN5A_6)) { raiseOverflow(); goto BeforeRet_;
-};
-		inputEndsX60gensym18615012_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_6);
-		nX60gensym18615013_ = (NU32)0;
-		bX60gensym18615014_ = (NU32)0;
+		inputIndexX60gensym18610010_ = ((NI) 0);
+		outputIndexX60gensym18610011_ = ((NI) 0);
+		if (((NI) 3) == 0){ raiseDivByZero(); }
+		if (nimModInt((s ? s->Sup.len : 0), ((NI) 3), &TM__2L6xrRPz7CWDB3T1R9cDN5A_5)) { raiseOverflow(); };
+		if (nimSubInt((s ? s->Sup.len : 0), (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_5), &TM__2L6xrRPz7CWDB3T1R9cDN5A_6)) { raiseOverflow(); };
+		inputEndsX60gensym18610012_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_6);
+		nX60gensym18610013_ = (NU32)0;
+		bX60gensym18610014_ = (NU32)0;
 		{
 			while (1) {
 				NI TM__2L6xrRPz7CWDB3T1R9cDN5A_7;
@@ -245,109 +237,77 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, encode__D4bDwZBUb9bAJslbVxAPmbg)(NimStri
 				NI TM__2L6xrRPz7CWDB3T1R9cDN5A_11;
 				NI TM__2L6xrRPz7CWDB3T1R9cDN5A_12;
 				NI TM__2L6xrRPz7CWDB3T1R9cDN5A_13;
-				if (!!((inputIndexX60gensym18615010_ == inputEndsX60gensym18615012_))) goto LA8;
-				if ((NU)(inputIndexX60gensym18615010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18615010_,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
-				bX60gensym18615014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18615010_]))));
-				nX60gensym18615013_ = (NU32)((NU64)(bX60gensym18615014_) << (NU64)(((NI) 16)));
-				if (nimAddInt(inputIndexX60gensym18615010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_7)) { raiseOverflow(); goto BeforeRet_;
-};
-				inputIndexX60gensym18615010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_7);
-				if ((NU)(inputIndexX60gensym18615010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18615010_,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
-				bX60gensym18615014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18615010_]))));
-				nX60gensym18615013_ = (NU32)(nX60gensym18615013_ | (NU32)((NU64)(bX60gensym18615014_) << (NU64)(((NI) 8))));
-				if (nimAddInt(inputIndexX60gensym18615010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_8)) { raiseOverflow(); goto BeforeRet_;
-};
-				inputIndexX60gensym18615010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_8);
-				if ((NU)(inputIndexX60gensym18615010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18615010_,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
-				bX60gensym18615014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18615010_]))));
-				nX60gensym18615013_ = (NU32)(nX60gensym18615013_ | (NU32)((NU64)(bX60gensym18615014_) << (NU64)(((NI) 0))));
-				if (nimAddInt(inputIndexX60gensym18615010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_9)) { raiseOverflow(); goto BeforeRet_;
-};
-				inputIndexX60gensym18615010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_9);
-				if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-				result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63)))- 0];
-				if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_10)) { raiseOverflow(); goto BeforeRet_;
-};
-				outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_10);
-				if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-				result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63)))- 0];
-				if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_11)) { raiseOverflow(); goto BeforeRet_;
-};
-				outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_11);
-				if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 6))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 6))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-				result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 6))) & ((NU32) 63)))- 0];
-				if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_12)) { raiseOverflow(); goto BeforeRet_;
-};
-				outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_12);
-				if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 0))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 0))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-				result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 0))) & ((NU32) 63)))- 0];
-				if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_13)) { raiseOverflow(); goto BeforeRet_;
-};
-				outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_13);
+				if (!!((inputIndexX60gensym18610010_ == inputEndsX60gensym18610012_))) goto LA8;
+				if ((NU)(inputIndexX60gensym18610010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18610010_,(s ? s->Sup.len : 0)-1); }
+				bX60gensym18610014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18610010_]))));
+				nX60gensym18610013_ = (NU32)((NU64)(bX60gensym18610014_) << (NU64)(((NI) 16)));
+				if (nimAddInt(inputIndexX60gensym18610010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_7)) { raiseOverflow(); };
+				inputIndexX60gensym18610010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_7);
+				if ((NU)(inputIndexX60gensym18610010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18610010_,(s ? s->Sup.len : 0)-1); }
+				bX60gensym18610014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18610010_]))));
+				nX60gensym18610013_ = (NU32)(nX60gensym18610013_ | (NU32)((NU64)(bX60gensym18610014_) << (NU64)(((NI) 8))));
+				if (nimAddInt(inputIndexX60gensym18610010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_8)) { raiseOverflow(); };
+				inputIndexX60gensym18610010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_8);
+				if ((NU)(inputIndexX60gensym18610010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18610010_,(s ? s->Sup.len : 0)-1); }
+				bX60gensym18610014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18610010_]))));
+				nX60gensym18610013_ = (NU32)(nX60gensym18610013_ | (NU32)((NU64)(bX60gensym18610014_) << (NU64)(((NI) 0))));
+				if (nimAddInt(inputIndexX60gensym18610010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_9)) { raiseOverflow(); };
+				inputIndexX60gensym18610010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_9);
+				if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63)), 63); }
+				result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63)))- 0];
+				if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_10)) { raiseOverflow(); };
+				outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_10);
+				if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63)), 63); }
+				result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63)))- 0];
+				if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_11)) { raiseOverflow(); };
+				outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_11);
+				if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 6))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 6))) & ((NU32) 63)), 63); }
+				result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 6))) & ((NU32) 63)))- 0];
+				if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_12)) { raiseOverflow(); };
+				outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_12);
+				if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+				if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 0))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 0))) & ((NU32) 63)), 63); }
+				result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 0))) & ((NU32) 63)))- 0];
+				if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_13)) { raiseOverflow(); };
+				outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_13);
 			} LA8: ;
 		}
-		if (((NI) 3) == 0){ raiseDivByZero(); goto BeforeRet_;
-}
-		if (nimModInt((s ? s->Sup.len : 0), ((NI) 3), &TM__2L6xrRPz7CWDB3T1R9cDN5A_14)) { raiseOverflow(); goto BeforeRet_;
-};
-		paddingX60gensym18615018_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_14);
+		if (((NI) 3) == 0){ raiseDivByZero(); }
+		if (nimModInt((s ? s->Sup.len : 0), ((NI) 3), &TM__2L6xrRPz7CWDB3T1R9cDN5A_14)) { raiseOverflow(); };
+		paddingX60gensym18610018_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_14);
 		{
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_15;
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_16;
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_17;
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_18;
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_19;
-			if (!(paddingX60gensym18615018_ == ((NI) 1))) goto LA11_;
-			if ((NU)(inputIndexX60gensym18615010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18615010_,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
-			bX60gensym18615014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18615010_]))));
-			nX60gensym18615013_ = (NU32)((NU64)(bX60gensym18615014_) << (NU64)(((NI) 16)));
-			if (nimAddInt(inputIndexX60gensym18615010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_15)) { raiseOverflow(); goto BeforeRet_;
-};
-			inputIndexX60gensym18615010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_15);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63)))- 0];
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_16)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_16);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63)))- 0];
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_17)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_17);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = 61;
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_18)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_18);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = 61;
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_19)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_19);
+			if (!(paddingX60gensym18610018_ == ((NI) 1))) goto LA11_;
+			if ((NU)(inputIndexX60gensym18610010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18610010_,(s ? s->Sup.len : 0)-1); }
+			bX60gensym18610014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18610010_]))));
+			nX60gensym18610013_ = (NU32)((NU64)(bX60gensym18610014_) << (NU64)(((NI) 16)));
+			if (nimAddInt(inputIndexX60gensym18610010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_15)) { raiseOverflow(); };
+			inputIndexX60gensym18610010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_15);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63)), 63); }
+			result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63)))- 0];
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_16)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_16);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63)), 63); }
+			result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63)))- 0];
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_17)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_17);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			result->data[outputIndexX60gensym18610011_] = 61;
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_18)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_18);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			result->data[outputIndexX60gensym18610011_] = 61;
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_19)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_19);
 		}
 		goto LA9_;
 		LA11_: ;
@@ -358,59 +318,42 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, encode__D4bDwZBUb9bAJslbVxAPmbg)(NimStri
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_23;
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_24;
 			NI TM__2L6xrRPz7CWDB3T1R9cDN5A_25;
-			if (!(paddingX60gensym18615018_ == ((NI) 2))) goto LA14_;
-			if ((NU)(inputIndexX60gensym18615010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18615010_,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
-			bX60gensym18615014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18615010_]))));
-			nX60gensym18615013_ = (NU32)((NU64)(bX60gensym18615014_) << (NU64)(((NI) 16)));
-			if (nimAddInt(inputIndexX60gensym18615010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_20)) { raiseOverflow(); goto BeforeRet_;
-};
-			inputIndexX60gensym18615010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_20);
-			if ((NU)(inputIndexX60gensym18615010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18615010_,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
-}
-			bX60gensym18615014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18615010_]))));
-			nX60gensym18615013_ = (NU32)(nX60gensym18615013_ | (NU32)((NU64)(bX60gensym18615014_) << (NU64)(((NI) 8))));
-			if (nimAddInt(inputIndexX60gensym18615010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_21)) { raiseOverflow(); goto BeforeRet_;
-};
-			inputIndexX60gensym18615010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_21);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 18))) & ((NU32) 63)))- 0];
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_22)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_22);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 12))) & ((NU32) 63)))- 0];
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_23)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_23);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 6))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 6))) & ((NU32) 63)), 63); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18615013_) >> (NU64)(((NI) 6))) & ((NU32) 63)))- 0];
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_24)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_24);
-			if ((NU)(outputIndexX60gensym18615011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18615011_,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
-}
-			result->data[outputIndexX60gensym18615011_] = 61;
-			if (nimAddInt(outputIndexX60gensym18615011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_25)) { raiseOverflow(); goto BeforeRet_;
-};
-			outputIndexX60gensym18615011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_25);
+			if (!(paddingX60gensym18610018_ == ((NI) 2))) goto LA14_;
+			if ((NU)(inputIndexX60gensym18610010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18610010_,(s ? s->Sup.len : 0)-1); }
+			bX60gensym18610014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18610010_]))));
+			nX60gensym18610013_ = (NU32)((NU64)(bX60gensym18610014_) << (NU64)(((NI) 16)));
+			if (nimAddInt(inputIndexX60gensym18610010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_20)) { raiseOverflow(); };
+			inputIndexX60gensym18610010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_20);
+			if ((NU)(inputIndexX60gensym18610010_) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(inputIndexX60gensym18610010_,(s ? s->Sup.len : 0)-1); }
+			bX60gensym18610014_ = ((NU32) (((NU8)(s->data[inputIndexX60gensym18610010_]))));
+			nX60gensym18610013_ = (NU32)(nX60gensym18610013_ | (NU32)((NU64)(bX60gensym18610014_) << (NU64)(((NI) 8))));
+			if (nimAddInt(inputIndexX60gensym18610010_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_21)) { raiseOverflow(); };
+			inputIndexX60gensym18610010_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_21);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63)), 63); }
+			result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 18))) & ((NU32) 63)))- 0];
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_22)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_22);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63)), 63); }
+			result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 12))) & ((NU32) 63)))- 0];
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_23)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_23);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			if ((NU)((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 6))) & ((NU32) 63))) > (NU)(63)){ raiseIndexError2((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 6))) & ((NU32) 63)), 63); }
+			result->data[outputIndexX60gensym18610011_] = lookupTable[((NU32)((NU32)((NU32)(nX60gensym18610013_) >> (NU64)(((NI) 6))) & ((NU32) 63)))- 0];
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_24)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_24);
+			if ((NU)(outputIndexX60gensym18610011_) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(outputIndexX60gensym18610011_,(result ? result->Sup.len : 0)-1); }
+			result->data[outputIndexX60gensym18610011_] = 61;
+			if (nimAddInt(outputIndexX60gensym18610011_, ((NI) 1), &TM__2L6xrRPz7CWDB3T1R9cDN5A_25)) { raiseOverflow(); };
+			outputIndexX60gensym18610011_ = (NI)(TM__2L6xrRPz7CWDB3T1R9cDN5A_25);
 		}
 		goto LA9_;
 		LA14_: ;
 		LA9_: ;
-		if ((outputIndexX60gensym18615011_) < ((NI) 0) || (outputIndexX60gensym18615011_) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(outputIndexX60gensym18615011_, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
-}
-		result = setLengthStr(result, ((NI) (outputIndexX60gensym18615011_)));
+		if ((outputIndexX60gensym18610011_) < ((NI) 0) || (outputIndexX60gensym18610011_) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(outputIndexX60gensym18610011_, ((NI) 0), ((NI) IL64(9223372036854775807))); }
+		result = setLengthStr(result, ((NI) (outputIndexX60gensym18610011_)));
 	}
-	}BeforeRet_: ;
 	return result;
 }

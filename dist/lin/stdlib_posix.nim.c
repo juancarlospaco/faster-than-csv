@@ -38,19 +38,14 @@ tyProc__WSm2xU5ARYv9aAR4l0z9c9auQ deepcopy;
 };
 N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_LIB_PRIVATE N_NIMCALL(int, WTERMSIG__T7ZeAv6ofGPBA29bsuGG1ug)(int s);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE TNimType NTI__r9bTMVI8f19ah9b11jMgY4kPg_;
-extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, WIFSIGNALED__o9b5GK70QLj9ahJeczQ2LyRg)(int s) {
 	NIM_BOOL result;
 	NI TM__mJPr4mHlDfNAl9asG6X7NFA_2;
-{	result = (NIM_BOOL)0;
-	if (nimAddInt((NI32)(s & ((NI32) 127)), ((NI32) 1), &TM__mJPr4mHlDfNAl9asG6X7NFA_2)) { raiseOverflow(); goto BeforeRet_;
-};
-	if (TM__mJPr4mHlDfNAl9asG6X7NFA_2 < (-2147483647 -1) || TM__mJPr4mHlDfNAl9asG6X7NFA_2 > 2147483647){ raiseOverflow(); goto BeforeRet_;
-}
+	result = (NIM_BOOL)0;
+	if (nimAddInt((NI32)(s & ((NI32) 127)), ((NI32) 1), &TM__mJPr4mHlDfNAl9asG6X7NFA_2)) { raiseOverflow(); };
+	if (TM__mJPr4mHlDfNAl9asG6X7NFA_2 < (-2147483647 -1) || TM__mJPr4mHlDfNAl9asG6X7NFA_2 > 2147483647){ raiseOverflow(); }
 	result = (((NI8) 0) < (NI8)((NI64)(((NI8) ((NI32)(TM__mJPr4mHlDfNAl9asG6X7NFA_2)))) >> (NU64)(((NI) 1))));
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(int, WTERMSIG__T7ZeAv6ofGPBA29bsuGG1ug)(int s) {
@@ -65,23 +60,13 @@ N_LIB_PRIVATE N_NIMCALL(int, WEXITSTATUS__T7ZeAv6ofGPBA29bsuGG1ug_2)(int s) {
 	result = (NI32)((NI64)((NI32)(s & ((NI32) 65280))) >> (NU64)(((NI) 8)));
 	return result;
 }
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, WIFEXITED__o9b5GK70QLj9ahJeczQ2LyRg_2)(int s) {
 	NIM_BOOL result;
 	int T1_;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
 	result = (NIM_BOOL)0;
 	T1_ = (int)0;
 	T1_ = WTERMSIG__T7ZeAv6ofGPBA29bsuGG1ug(s);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	result = (T1_ == ((NI32) 0));
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, stdlib_posixDatInit000)(void) {
