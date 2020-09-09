@@ -106,7 +106,9 @@ jobs:
 
 
     - name: Documentation               # Generate documentation.
-      run: nim doc --out:docs/index.html ${{ env.MAIN_MODULE }}
+      run: |
+        nim doc --out:docs/index.html ${{ env.MAIN_MODULE }}
+        nim rst2tex --out:docs/${{ env.PACKAGE_NAME }}.tex ${{ env.MAIN_MODULE }}
 
 
     - name: Generate PDF Documentation (Linux)
@@ -115,7 +117,6 @@ jobs:
       with:
         args:              "-pdf -file-line-error -interaction=nonstopmode"
         root_file:         ${{ env.PACKAGE_NAME }}.tex
-        pre_compile:       nim rst2tex --out:docs/${{ env.PACKAGE_NAME }}.tex ${{ env.MAIN_MODULE }}
         working_directory: docs
 
 
