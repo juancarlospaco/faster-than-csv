@@ -58,7 +58,7 @@ jobs:
         TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD:        ${{ secrets.PYPI_PASSWORD }}
         TWINE_NON_INTERACTIVE: 1
-        NIM_COMMON_OPTIONS:    |-
+        NIM_COMMON_OPTIONS:    >-
           compileToC --compileOnly:on --colors:off --threads:off
           -d:release -d:danger -d:lto -d:strip -d:ssl --app:lib
           -d:nimBinaryStdFiles -d:noSignalHandler -d:nimDisableCertificateValidation
