@@ -1,4 +1,4 @@
-import os, sys, pathlib, setuptools, sysconfig, platform, importlib.metadata, atexit
+import os, sys, pathlib, setuptools, sysconfig, platform, importlib.metadata, atexit, logging
 from setuptools.command.build_ext import build_ext
 
 
@@ -7,8 +7,9 @@ package_name = "faster_than_csv"
 
 assert platform.architecture()[0] == "64bit", "ERROR: Python must be 64 Bit!. OS must be 64 Bit!."
 assert sys.version_info > (3, 5, 0), "ERROR: Python version must be > 3.5!."
-atexit.register(lambda: sys.stderr.write(str(importlib.metadata.distribution(package_name).files)))
-atexit.register(lambda: sys.stderr.write(__import__(package_name).__file__))
+logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+atexit.register(lambda: logging.getLogger().info(importlib.metadata.distribution(package_name).files))
+atexit.register(lambda: logging.getLogger().info(__import__(package_name).__file__))
 
 if sys.platform.startswith("lin"):
   folder = "lin" # OS is Linux
@@ -38,7 +39,7 @@ setuptools.setup(
       sources = sources,
       include_dirs = [folder],
       extra_link_args = ["-s"],
-      extra_compile_args = ["-w", "-flto", "-ffast-math", "-march=native", "-mtune=native", "-O3", "-fsingle-precision-constant"],
+      extra_compile_args = ["-flto", "-ffast-math", "-march=native", "-mtune=native", "-O3", "-fsingle-precision-constant"],
     )
   ]
 )
