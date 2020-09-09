@@ -130,7 +130,7 @@ jobs:
     - name: Compile (Linux) # Compile to C for Linux
       if: runner.os == 'Linux'
       run: |
-        nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/lin/ \
+        nim compileToC --compileOnly:on --noLinking:off --nimcache:dist/lin/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
         --stackTrace:off --gc:markAndSweep --excessiveStackTrace:off        \
@@ -140,7 +140,7 @@ jobs:
     - name: Compile (Mac) # Compile to C for Mac
       if: runner.os == 'macOS'
       run: |
-        nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/mac/ \
+        nim compileToC --compileOnly:on --noLinking:off --nimcache:dist/mac/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
         --stackTrace:off --gc:markAndSweep --excessiveStackTrace:off        \
@@ -149,12 +149,12 @@ jobs:
 
     - name: Compile (Windows) # Compile to C for Windows
       if: runner.os == 'Windows'
-      run: nim compileToC --compileOnly:on --noLinking:on --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
+      run: nim compileToC --compileOnly:on --noLinking:off --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
       shell: bash
-      run: rm -f dist/lin/*.json dist/win/*.json dist/mac/*.json
+      run: rm -f dist/lin/*.json dist/win/*.json dist/mac/*.json dist/lin/*.c.o dist/win/*.c.o dist/mac/*.c.o
 
 
     - name: SemVer                      # Use Git Hash as versioning.
