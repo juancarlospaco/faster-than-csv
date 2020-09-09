@@ -49,7 +49,7 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
-        NIM_VERSION:           "1.2.6"
+        NIM_VERSION:           "1.2.4"
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
         PACKAGE_VERSION:       ${{ steps.vars.outputs.sha_short }}
