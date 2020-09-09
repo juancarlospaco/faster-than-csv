@@ -119,6 +119,7 @@ N_LIB_PRIVATE N_NIMCALL(void, nimLoadLibraryError)(NimStringDesc* path);
 N_LIB_PRIVATE N_NIMCALL(void*, nimGetProcAddr)(void* lib, NCSTRING name);
 N_LIB_PRIVATE N_CDECL(void*, allocWrapper__RKtAA5JYxWxZj79aCAifPvA)(NI size);
 N_LIB_PRIVATE N_NOCONV(void*, allocSharedImpl)(NI size);
+N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorI)(NI64 i, NI64 a, NI64 b);
 N_LIB_PRIVATE N_CDECL(void*, reallocWrapper__9cfMO5SIG9bC9adqbrJrcB70Q)(void* p, NI newSize);
 N_LIB_PRIVATE N_NOCONV(void, deallocShared)(void* p);
 N_LIB_PRIVATE N_NOCONV(void*, reallocSharedImpl__EIuTxhlMorNfTFWwy4AzTA)(void* p, NI newSize);
@@ -219,17 +220,22 @@ tyProc__xjxKRHVZXDqdWXw9bunoZ3w Dl_17250468_;
 tyProc__Vff1ipOwDPDGknaRJAdXjA Dl_17250473_;
 N_LIB_PRIVATE N_CDECL(void*, allocWrapper__RKtAA5JYxWxZj79aCAifPvA)(NI size) {
 	void* result;
-	result = (void*)0;
+{	result = (void*)0;
+	if ((size) < ((NI) 0) || (size) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(size, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	result = allocSharedImpl(((NI) (size)));
+	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_CDECL(void*, reallocWrapper__9cfMO5SIG9bC9adqbrJrcB70Q)(void* p, NI newSize) {
 	void* result;
-	result = (void*)0;
+{	result = (void*)0;
 	{
 		if (!(p == NIM_NIL)) goto LA3_;
 		{
 			if (!(((NI) 0) < newSize)) goto LA7_;
+			if ((newSize) < ((NI) 0) || (newSize) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(newSize, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 			result = allocSharedImpl(((NI) (newSize)));
 		}
 		LA7_: ;
@@ -243,9 +249,12 @@ N_LIB_PRIVATE N_CDECL(void*, reallocWrapper__9cfMO5SIG9bC9adqbrJrcB70Q)(void* p,
 	goto LA1_;
 	LA10_: ;
 	{
+		if ((newSize) < ((NI) 0) || (newSize) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(newSize, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 		result = reallocSharedImpl__EIuTxhlMorNfTFWwy4AzTA(p, ((NI) (newSize)));
 	}
 	LA1_: ;
+	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_CDECL(void, deallocWrapper__uOonBuLtXfZwTuGZR20a6Q)(void* p) {

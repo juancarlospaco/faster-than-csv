@@ -90,12 +90,20 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, cstrToNimstr)(NCSTRING str);
 static N_INLINE(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ, some__gDZZCqU2e9asjnz7Ee0TNwwoptions)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg val);
 static N_INLINE(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ, none__lifxITt9cocI1piX9abkoJ6woptions)(void);
 N_LIB_PRIVATE N_NIMCALL(struct timeval, timeValFromMilliseconds__OtKozLj4h73UWNus5W4NYA)(NI timeout);
+N_LIB_PRIVATE N_NOINLINE(void, raiseDivByZero)(void);
+static N_INLINE(NIM_BOOL, nimDivInt)(NI a, NI b, NI* res);
+N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_LIB_PRIVATE N_NIMCALL(void, createFdSet__qeAKZQwZIp32QbFZfozb3w)(fd_set* fd, tySequence__9apztJSmgERYU8fZOjI4pOg* s, NI* m);
+N_LIB_PRIVATE N_NOINLINE(void, raiseIndexError2)(NI i, NI n);
+N_LIB_PRIVATE N_NIMCALL(void, failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A)(NimStringDesc* msg);
+N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorI)(NI64 i, NI64 a, NI64 b);
 N_LIB_PRIVATE N_NIMCALL(void, pruneSocketSet__DzCd1luyXumO9c9aKDjkCMAQ)(tySequence__9apztJSmgERYU8fZOjI4pOg** s, fd_set* fd);
 N_LIB_PRIVATE N_NIMCALL(TGenericSeq*, setLengthSeqV2)(TGenericSeq* s, TNimType* typ, NI newLen);
 N_LIB_PRIVATE TNimType NTI__Q79bEtFARvq0ekDNtvj3Vqg_;
 N_LIB_PRIVATE TNimType NTI__NQT1bItGG2X9byGdrWX7ujw_;
 N_LIB_PRIVATE TNimType NTI__dqJ1OqRGclxIMMdSLRzzXg_;
+STRING_LITERAL(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_16, "iterators.nim(189, 11) `len(a) == L` the length of the seq chan"
+"ged while iterating over it", 90);
 extern TNimType NTI__9apztJSmgERYU8fZOjI4pOg_;
 N_LIB_PRIVATE NIM_CONST int osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w = ((int) -1);
 N_LIB_PRIVATE NIM_CONST int nativeAfInet__rQwsjQjVqXvdaL9aZofzWwg = ((int) 2);
@@ -403,20 +411,58 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 	return result;
 }
+static N_INLINE(NIM_BOOL, nimDivInt)(NI a, NI b, NI* res) {
+	NIM_BOOL result;
+	result = (NIM_BOOL)0;
+	{
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = (a == ((NI) (IL64(-9223372036854775807) - IL64(1))));
+		if (!(T3_)) goto LA4_;
+		T3_ = (b == ((NI) -1));
+		LA4_: ;
+		if (!T3_) goto LA5_;
+		result = NIM_TRUE;
+	}
+	goto LA1_;
+	LA5_: ;
+	{
+		(*res) = (NI)(a / b);
+	}
+	LA1_: ;
+	return result;
+}
 N_LIB_PRIVATE N_NIMCALL(struct timeval, timeValFromMilliseconds__OtKozLj4h73UWNus5W4NYA)(NI timeout) {
 	struct timeval result;
-	nimZeroMem((void*)(&result), sizeof(struct timeval));
+{	nimZeroMem((void*)(&result), sizeof(struct timeval));
 	{
 		NI seconds;
+		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11;
+		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12;
+		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13;
+		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14;
 		if (!!((timeout == ((NI) -1)))) goto LA3_;
-		seconds = (NI)(timeout / ((NI) 1000));
+		if (((NI) 1000) == 0){ raiseDivByZero(); goto BeforeRet_;
+}
+		if (nimDivInt(timeout, ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11)) { raiseOverflow(); goto BeforeRet_;
+};
+		seconds = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_11);
 		result.tv_sec = seconds;
-		result.tv_usec = (NI)((NI)(timeout - (NI)(seconds * ((NI) 1000))) * ((NI) 1000));
+		if (nimMulInt(seconds, ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12)) { raiseOverflow(); goto BeforeRet_;
+};
+		if (nimSubInt(timeout, (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_12), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13)) { raiseOverflow(); goto BeforeRet_;
+};
+		if (nimMulInt((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_13), ((NI) 1000), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14)) { raiseOverflow(); goto BeforeRet_;
+};
+		result.tv_usec = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_14);
 	}
 	LA3_: ;
+	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, createFdSet__qeAKZQwZIp32QbFZfozb3w)(fd_set* fd, tySequence__9apztJSmgERYU8fZOjI4pOg* s, NI* m) {
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
 	FD_ZERO(fd);
 	{
 		int i;
@@ -429,20 +475,34 @@ N_LIB_PRIVATE N_NIMCALL(void, createFdSet__qeAKZQwZIp32QbFZfozb3w)(fd_set* fd, t
 		L = T2_;
 		{
 			while (1) {
+				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15;
 				if (!(i_2 < L)) goto LA4;
+				if ((NU)(i_2) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2(i_2,(s ? s->Sup.len : 0)-1); goto BeforeRet_;
+}
 				i = s->data[i_2];
 				(*m) = (((*m) >= ((NI) (i))) ? (*m) : ((NI) (i)));
 				FD_SET(i, fd);
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_15);
+				{
+					NI T7_;
+					T7_ = (s ? s->Sup.len : 0);
+					if (!!((T7_ == L))) goto LA8_;
+					failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_16));
+					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				}
+				LA8_: ;
 			} LA4: ;
 		}
 	}
+	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, pruneSocketSet__DzCd1luyXumO9c9aKDjkCMAQ)(tySequence__9apztJSmgERYU8fZOjI4pOg** s, fd_set* fd) {
 	NI i;
 	NI L;
 	NI T1_;
-	i = ((NI) 0);
+{	i = ((NI) 0);
 	T1_ = ((*s) ? (*s)->Sup.len : 0);
 	L = T1_;
 	{
@@ -450,21 +510,39 @@ N_LIB_PRIVATE N_NIMCALL(void, pruneSocketSet__DzCd1luyXumO9c9aKDjkCMAQ)(tySequen
 			if (!(i < L)) goto LA3;
 			{
 				int T6_;
+				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19;
+				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20;
+				if ((NU)(i) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2(i,((*s) ? (*s)->Sup.len : 0)-1); goto BeforeRet_;
+}
 				T6_ = (int)0;
 				T6_ = FD_ISSET((*s)->data[i], fd);
 				if (!(T6_ == ((NI32) 0))) goto LA7_;
-				(*s)->data[i] = (*s)->data[(NI)(L - ((NI) 1))];
-				L -= ((NI) 1);
+				if ((NU)(i) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2(i,((*s) ? (*s)->Sup.len : 0)-1); goto BeforeRet_;
+}
+				if (nimSubInt(L, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)) { raiseOverflow(); goto BeforeRet_;
+};
+				if ((NU)((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)) >= (NU)((*s) ? (*s)->Sup.len : 0)){ raiseIndexError2((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19),((*s) ? (*s)->Sup.len : 0)-1); goto BeforeRet_;
+}
+				(*s)->data[i] = (*s)->data[(NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_19)];
+				if (nimSubInt(L, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20)) { raiseOverflow(); goto BeforeRet_;
+};
+				L = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_20);
 			}
 			goto LA4_;
 			LA7_: ;
 			{
-				i += ((NI) 1);
+				NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21;
+				if (nimAddInt(i, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21)) { raiseOverflow(); goto BeforeRet_;
+};
+				i = (NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_21);
 			}
 			LA4_: ;
 		} LA3: ;
 	}
+	if ((L) < ((NI) 0) || (L) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(L, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	(*s) = (tySequence__9apztJSmgERYU8fZOjI4pOg*) setLengthSeqV2(&((*s))->Sup, (&NTI__9apztJSmgERYU8fZOjI4pOg_), ((NI) (L)));
+	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(NI, selectRead__hYdMbc9crqOqsDFcxhERoLA)(tySequence__9apztJSmgERYU8fZOjI4pOg** readfds, NI timeout) {
 	NI result;
@@ -481,18 +559,28 @@ NIM_BOOL* nimErr_;
 	createFdSet__qeAKZQwZIp32QbFZfozb3w((&rd), (*readfds), (&m));
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
+		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17;
 		int T5_;
 		if (!!((timeout == ((NI) -1)))) goto LA3_;
+		if (nimAddInt(m, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) { raiseOverflow(); goto BeforeRet_;
+};
+		if (((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) < ((int) (-2147483647 -1)) || ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17), ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
 		T5_ = (int)0;
-		T5_ = select(((int) ((NI)(m + ((NI) 1)))), (&rd), NIM_NIL, NIM_NIL, (&tv));
+		T5_ = select(((int) ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_17))), (&rd), NIM_NIL, NIM_NIL, (&tv));
 		result = ((NI) (T5_));
 	}
 	goto LA1_;
 	LA3_: ;
 	{
+		NI TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18;
 		int T7_;
+		if (nimAddInt(m, ((NI) 1), &TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) { raiseOverflow(); goto BeforeRet_;
+};
+		if (((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) < ((int) (-2147483647 -1)) || ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18), ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
 		T7_ = (int)0;
-		T7_ = select(((int) ((NI)(m + ((NI) 1)))), (&rd), NIM_NIL, NIM_NIL, NIM_NIL);
+		T7_ = select(((int) ((NI)(TM__f9bP3LqjpgpB9cXL8Nnak7tQ_18))), (&rd), NIM_NIL, NIM_NIL, NIM_NIL);
 		result = ((NI) (T7_));
 	}
 	LA1_: ;

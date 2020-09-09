@@ -242,6 +242,7 @@ N_LIB_PRIVATE N_NIMCALL(void, nimGCvisit)(void* d, NI op);
 static N_NIMCALL(void, Marker_tyRef__t2PQ49cw9cyPD5BKolxzFbTw)(void* p, NI op);
 static N_NIMCALL(void, Marker_tyRef__LP7l6kWJNPJLySYXWH5AYA)(void* p, NI op);
 N_LIB_PRIVATE N_NIMCALL(void, socketError__Ue4MZTG7GdQcQTXPPoMb1Q)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, NI err, NIM_BOOL async, NI32 lastError);
+N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorI)(NI64 i, NI64 a, NI64 b);
 N_LIB_PRIVATE N_NIMCALL(void, raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g)(NimStringDesc* s);
 static N_NIMCALL(void, Marker_tyRef__kvnNRVii8mSe6F4A9cKud4g)(void* p, NI op);
 N_LIB_PRIVATE N_NIMCALL(void*, newObj)(TNimType* typ, NI size);
@@ -261,9 +262,12 @@ N_LIB_PRIVATE N_NIMCALL(tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw, toSockType__6a
 N_LIB_PRIVATE N_NIMCALL(struct addrinfo*, getAddrInfo__ANf7QnbfE8nyIlFuWroDcQ)(NimStringDesc* address, NU16 port, tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol);
 static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
+N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_LIB_PRIVATE N_NIMCALL(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ, toKnownDomain__RQ9bFvLg4dpjf7aRPA8ID9bg)(int family);
 static N_INLINE(NIM_BOOL, isNone__H87Mp4Y2b9aVoDHbyPXjVtAoptions)(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ self);
 static N_INLINE(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg, unsafeGet__9bbQwSmTwiH8rrIRUZVyRxAoptions)(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ self);
+static N_INLINE(NIM_BOOL, isSome__H87Mp4Y2b9aVoDHbyPXjVtA_2options)(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ self);
+N_LIB_PRIVATE N_NOINLINE(void, raiseIndexError2)(NI i, NI n);
 N_LIB_PRIVATE N_NIMCALL(int, createNativeSocket__JC9abIjAA731bWpDMsti9a5Q)(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol);
 N_LIB_PRIVATE N_NIMCALL(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*, newSocket__9b5QTa9b4dQ3h5Ri1wnR4ujw)(int fd, tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol, NIM_BOOL buffered);
 static N_NIMCALL(void, Marker_tyRef__MkGXUPMSENeRDS7EppfLgA)(void* p, NI op);
@@ -273,6 +277,8 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIpAddre
 static N_INLINE(NIM_BOOL, contains__Pa9a8m0kZYH6LC8N1EcZJdQsystem)(NIM_CHAR* a, NI aLen_0, NIM_CHAR item);
 static N_INLINE(NI, find__31wM5Ui9c8jnrQ5QD4oPxOQsystem)(NIM_CHAR* a, NI aLen_0, NIM_CHAR item);
 N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Address__1ivqWNphfe1wCfgNmXXOCA_2)(NimStringDesc* addressStr);
+N_LIB_PRIVATE N_NOINLINE(void, chckNil)(void* p);
+N_LIB_PRIVATE N_NOINLINE(void, raiseFieldError)(NimStringDesc* f);
 static N_INLINE(NimStringDesc*, X5BX5D___FPvLvuwqfYMFkcbGfPM8QQsystem)(NimStringDesc* s, tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA x);
 N_NIMCALL(NimStringDesc*, mnewString)(NI len);
 static N_INLINE(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA, dotdot___BokNSDrKN1xmV1nA01G9brAsystem)(NI a, NI b);
@@ -283,6 +289,7 @@ static N_INLINE(void, popCurrentException)(void);
 N_LIB_PRIVATE N_NIMCALL(NI, SSL_set_tlsext_host_name__jGR2GiKRQZ9cgDkYFu4P9aNg)(tyObject_SslStruct__hZKic6WnTBMq6Usbg49bnhw* ssl, NCSTRING name);
 static N_INLINE(NCSTRING, nimToCStringConv)(NimStringDesc* s);
 N_LIB_PRIVATE N_NIMCALL(NI, send__5L0SyQu9bf9aWLpivLtuRdDg)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, void* data, NI size);
+N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, isClosed__lkWsihqFnPzvxMAQnry9aJQ)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, isDisconnectionError__XxybNfLJKXhPAkMhmPhNzQ)(tySet_tyEnum_SocketFlag__4xio0cAXR7XG4pF9bVcpxEg flags, NI32 lastError);
 N_LIB_PRIVATE N_NIMCALL(void, readLine__0WLvm80r9c7KImcDRmm5IDg)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, NimStringDesc** line, NI timeout, tySet_tyEnum_SocketFlag__4xio0cAXR7XG4pF9bVcpxEg flags, NI maxLength);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, setLengthStr)(NimStringDesc* s, NI newLen);
@@ -336,6 +343,8 @@ STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_14, "in the BIO layer", 16);
 STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_15, ": ", 2);
 STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_16, "Unknown Error", 13);
 STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_17, "No valid socket error code available", 36);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_19, "options.nim(372, 10) `self.isSome` ", 35);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_22, "net.nim(206, 10) `fd != osInvalidSocket` ", 41);
 N_LIB_PRIVATE TNimType NTI__aIhANOOoETolVz9cccNO9cRQ_;
 extern TNimType NTI__nlCscttRCss70IBTyuBqnA_;
 extern TNimType NTI__VaVACK0bpYmqIQ0mKcHfQQ_;
@@ -349,36 +358,50 @@ extern TNimType NTI__dqJ1OqRGclxIMMdSLRzzXg_;
 N_LIB_PRIVATE TNimType NTI__MkGXUPMSENeRDS7EppfLgA_;
 extern TNimType NTI__HMIVdYjdZYWskTmTQVo5BQ_;
 extern TNimType NTI__iLZrPn9anoh9ad1MmO0RczFw_;
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_19, "Couldn\'t resolve address: ", 26);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_24, "Couldn\'t resolve address: ", 26);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_25, "net.nim(696, 11) `not socket.isSsl` ", 36);
 extern TNimType NTI__Ie1m0dv1ZHg72IgPRr1cDw_;
 extern TNimType NTI__yoNlBGx0D2tRizIdhQuENw_;
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_20, "IP Address string is empty", 26);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_21, "Invalid IP Address", 18);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_22, "Invalid IP Address. Address contains an invalid separator", 57);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_23, "Invalid IP Address. Address contains more than one \"::\" separat"
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_26, "IP Address string is empty", 26);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_29, "Invalid IP Address", 18);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_30, "Invalid IP Address. Address contains an invalid separator", 57);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_31, "Invalid IP Address. Address contains more than one \"::\" separat"
 "or", 65);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_24, "Invalid IP Address. The address consists of too many groups", 59);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_25, "Invalid IP Address. Address may not start with \":\"", 50);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_26, "Invalid IP Address. Address may not end with \":\"", 48);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_27, "Invalid IP Address. Value is out of range", 41);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_28, "Invalid IP Address. Address contains an invalid character", 57);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_29, "Invalid IP Address. The address consists of too few groups", 58);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_30, "Could not send all data.", 24);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_32, "Invalid IP Address. The address consists of too many groups", 59);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_33, "\'address_v6\' is not accessible using discriminant \'family\' of t"
+"ype \'IpAddress\'", 78);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_38, "Invalid IP Address. Address may not start with \":\"", 50);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_40, "Invalid IP Address. Address may not end with \":\"", 48);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_45, "Invalid IP Address. Value is out of range", 41);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_46, "Invalid IP Address. Address contains an invalid character", 57);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_48, "iterators.nim(141, 11) `len(a) == L` the length of the string c"
+"hanged while iterating over it", 93);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_65, "Invalid IP Address. The address consists of too few groups", 58);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_81, "\'address_v4\' is not accessible using discriminant \'family\' of t"
+"ype \'IpAddress\'", 78);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_84, "net.nim(1449, 9) `not socket.isClosed` Cannot `send` on a close"
+"d socket", 71);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_85, "Could not send all data.", 24);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_86, "net.nim(1195, 24) `false` ", 26);
 N_LIB_PRIVATE TNimType NTI__YJ9a3zV3oEciJsNBlUEYRfw_;
 N_LIB_PRIVATE TNimType NTI__DtrJpMCrh4f9cUcHkEf48kQ_;
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_31, "Call to \'", 9);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_32, "\' timed out.", 12);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_89, "Call to \'", 9);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_90, "\' timed out.", 12);
 extern TNimType NTI__9apztJSmgERYU8fZOjI4pOg_;
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_33, "readLine", 8);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_34, "\015\012", 2);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_35, "recv", 4);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_36, "SSLv2 is no longer secure and has been deprecated, use protSSLv"
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_92, "readLine", 8);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_93, "net.nim(1112, 9) `not socket.isClosed` Cannot `recv` on a close"
+"d socket", 71);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_97, "net.nim(1159, 14) `size - read >= chunk` ", 41);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_104, "\015\012", 2);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_106, "recv", 4);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_108, "net.nim(1230, 12) `avail <= size - read` ", 41);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_110, "SSLv2 is no longer secure and has been deprecated, use protSSLv"
 "23", 65);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_37, "SSLv3 is no longer secure and has been deprecated, use protSSLv"
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_111, "SSLv3 is no longer secure and has been deprecated, use protSSLv"
 "23", 65);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_38, "Certificate file could not be found: ", 37);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_39, "Key file could not be found: ", 29);
-STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_40, "Verification of private key file failed.", 40);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_112, "Certificate file could not be found: ", 37);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_113, "Key file could not be found: ", 29);
+STRING_LITERAL(TM__XqsrSBxhOTPgLQ9cX4MmV4A_114, "Verification of private key file failed.", 40);
 extern tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17250414_;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 extern tyProc__ln4kdL5W9bbX4a1xl8nnVXQ Dl_17295657_;
@@ -550,6 +573,8 @@ NIM_BOOL* nimErr_;
 		{
 			int ret;
 			if (!(err <= ((NI) 0))) goto LA7_;
+			if ((err) < ((int) (-2147483647 -1)) || (err) > ((int) 2147483647)){ raiseRangeErrorI(err, ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
 			ret = Dl_17250519_((*socket).sslHandle, ((int) (err)));
 			switch (ret) {
 			case ((NI) 6):
@@ -792,10 +817,29 @@ static N_INLINE(NIM_BOOL, isNone__H87Mp4Y2b9aVoDHbyPXjVtAoptions)(tyObject_Optio
 	result = !(self.has);
 	return result;
 }
+static N_INLINE(NIM_BOOL, isSome__H87Mp4Y2b9aVoDHbyPXjVtA_2options)(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ self) {
+	NIM_BOOL result;
+	result = (NIM_BOOL)0;
+	result = self.has;
+	return result;
+}
 static N_INLINE(tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg, unsafeGet__9bbQwSmTwiH8rrIRUZVyRxAoptions)(tyObject_Option__FqSKP9b8yM9aV7mJ0VU4DFWQ self) {
 	tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg result;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
 	result = (tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg)0;
+	{
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = isSome__H87Mp4Y2b9aVoDHbyPXjVtA_2options(self);
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		if (!!(T3_)) goto LA4_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_19));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA4_: ;
 	result = self.val;
+	}BeforeRet_: ;
 	return result;
 }
 static N_NIMCALL(void, Marker_tyRef__MkGXUPMSENeRDS7EppfLgA)(void* p, NI op) {
@@ -807,21 +851,30 @@ static N_NIMCALL(void, Marker_tyRef__MkGXUPMSENeRDS7EppfLgA)(void* p, NI op) {
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*, newSocket__9b5QTa9b4dQ3h5Ri1wnR4ujw)(int fd, tyEnum_Domain__Q79bEtFARvq0ekDNtvj3Vqg domain, tyEnum_SockType__NQT1bItGG2X9byGdrWX7ujw sockType, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol, NIM_BOOL buffered) {
 	tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* result;
-	tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* T1_;
+	tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* T5_;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
 	result = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*)0;
-	T1_ = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*)0;
-	T1_ = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*) newObj((&NTI__MkGXUPMSENeRDS7EppfLgA_), sizeof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ));
-	(*T1_).fd = fd;
-	(*T1_).isBuffered = buffered;
-	(*T1_).domain = domain;
-	(*T1_).sockType = sockType;
-	(*T1_).protocol = protocol;
-	result = T1_;
 	{
-		if (!buffered) goto LA4_;
+		if (!!(!((fd == osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w)))) goto LA3_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_22));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA3_: ;
+	T5_ = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*)0;
+	T5_ = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*) newObj((&NTI__MkGXUPMSENeRDS7EppfLgA_), sizeof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ));
+	(*T5_).fd = fd;
+	(*T5_).isBuffered = buffered;
+	(*T5_).domain = domain;
+	(*T5_).sockType = sockType;
+	(*T5_).protocol = protocol;
+	result = T5_;
+	{
+		if (!buffered) goto LA8_;
 		(*result).currPos = ((NI) 0);
 	}
-	LA4_: ;
+	LA8_: ;
+	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*, dial__oD5cdlP49a1aM6tVxzT4h1Q)(NimStringDesc* address, NU16 port, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol, NIM_BOOL buffered) {
@@ -849,10 +902,15 @@ NIM_BOOL* nimErr_;
 		res = ((NI) 0);
 		{
 			while (1) {
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_18;
 				if (!(res <= ((NI) 23))) goto LA3;
+				if ((res) < ((NI) 0) || (res) > ((NI) 23)){ raiseRangeErrorI(res, ((NI) 0), ((NI) 23)); goto BeforeRet_;
+}
 				i = ((NI) (res));
 				fdPerDomain[(i)- 0] = osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w;
-				res += ((NI) 1);
+				if (nimAddInt(res, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_18)) { raiseOverflow(); goto BeforeRet_;
+};
+				res = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_18);
 			} LA3: ;
 		}
 	}
@@ -880,6 +938,8 @@ NIM_BOOL* nimErr_;
 				LA10_: ;
 				domain = unsafeGet__9bbQwSmTwiH8rrIRUZVyRxAoptions(domainOpt);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				if ((NU)(domain) > (NU)(23)){ raiseIndexError2(domain, 23); goto BeforeRet_;
+}
 				lastFd = fdPerDomain[(domain)- 0];
 				{
 					if (!(lastFd == osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w)) goto LA14_;
@@ -902,6 +962,7 @@ NIM_BOOL* nimErr_;
 								if (!(((NI) (i_3)) <= ((NI) 23))) goto LA23_;
 								{
 									while (1) {
+										NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_20;
 										i_2 = i_3;
 										fd = fdPerDomain[(i_3)- 0];
 										{
@@ -921,7 +982,11 @@ NIM_BOOL* nimErr_;
 											goto LA25;
 										}
 										LA35_: ;
-										i_3 += ((NI) 1);
+										if (nimAddInt(i_3, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_20)) { raiseOverflow(); goto BeforeRet_;
+};
+										if (TM__XqsrSBxhOTPgLQ9cX4MmV4A_20 < 0 || TM__XqsrSBxhOTPgLQ9cX4MmV4A_20 > 23){ raiseOverflow(); goto BeforeRet_;
+}
+										i_3 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_20);
 									}
 								} LA25: ;
 							}
@@ -931,6 +996,8 @@ NIM_BOOL* nimErr_;
 						if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 					}
 					LA18_: ;
+					if ((NU)(domain) > (NU)(23)){ raiseIndexError2(domain, 23); goto BeforeRet_;
+}
 					fdPerDomain[(domain)- 0] = lastFd;
 				}
 				LA14_: ;
@@ -961,6 +1028,7 @@ NIM_BOOL* nimErr_;
 			if (!(((NI) (i_5)) <= ((NI) 23))) goto LA45_;
 			{
 				while (1) {
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_21;
 					i_4 = i_5;
 					fd_2 = fdPerDomain[(i_5)- 0];
 					{
@@ -980,7 +1048,11 @@ NIM_BOOL* nimErr_;
 						goto LA47;
 					}
 					LA57_: ;
-					i_5 += ((NI) 1);
+					if (nimAddInt(i_5, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_21)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (TM__XqsrSBxhOTPgLQ9cX4MmV4A_21 < 0 || TM__XqsrSBxhOTPgLQ9cX4MmV4A_21 > 23){ raiseOverflow(); goto BeforeRet_;
+}
+					i_5 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_21);
 				}
 			} LA47: ;
 		}
@@ -1009,7 +1081,7 @@ NIM_BOOL* nimErr_;
 		(*T67_).Sup.Sup.name = "IOError";
 		T68_ = (NimStringDesc*)0;
 		T68_ = rawNewString((address ? address->Sup.len : 0) + 26);
-appendString(T68_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_19));
+appendString(T68_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_24));
 appendString(T68_, address);
 		(*T67_).Sup.Sup.message = T68_;
 		(*T67_).Sup.Sup.parent = NIM_NIL;
@@ -1023,26 +1095,32 @@ appendString(T68_, address);
 N_LIB_PRIVATE N_NIMCALL(void, wrapSocket__nSrKttw9bOstnCyvh66mpmQ)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* ctx, tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket) {
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
+	{
+		if (!!(!((*socket).isSsl))) goto LA3_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_25));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA3_: ;
 	(*socket).isSsl = NIM_TRUE;
 	(*socket).sslContext = ctx;
 	(*socket).sslHandle = Dl_17250416_((*(*socket).sslContext).context);
 	(*socket).sslNoHandshake = NIM_FALSE;
 	(*socket).sslHasPeekChar = NIM_FALSE;
 	{
-		if (!((*socket).sslHandle == NIM_NIL)) goto LA3_;
+		if (!((*socket).sslHandle == NIM_NIL)) goto LA7_;
 		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
-	LA3_: ;
+	LA7_: ;
 	{
-		int T7_;
-		T7_ = (int)0;
-		T7_ = Dl_17250492_((*socket).sslHandle, (*socket).fd);
-		if (!!((T7_ == ((NI32) 1)))) goto LA8_;
+		int T11_;
+		T11_ = (int)0;
+		T11_ = Dl_17250492_((*socket).sslHandle, (*socket).fd);
+		if (!!((T11_ == ((NI32) 1)))) goto LA12_;
 		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) NIM_NIL));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
-	LA8_: ;
+	LA12_: ;
 	}BeforeRet_: ;
 }
 static N_INLINE(NI, find__31wM5Ui9c8jnrQ5QD4oPxOQsystem)(NIM_CHAR* a, NI aLen_0, NIM_CHAR item) {
@@ -1055,15 +1133,23 @@ static N_INLINE(NI, find__31wM5Ui9c8jnrQ5QD4oPxOQsystem)(NIM_CHAR* a, NI aLen_0,
 		i_2 = ((NI) 0);
 		{
 			while (1) {
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_27;
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_28;
 				if (!(i_2 < aLen_0)) goto LA3;
+				if ((NU)(i_2) >= (NU)(aLen_0)){ raiseIndexError2(i_2,aLen_0-1); goto BeforeRet_;
+}
 				i = a[i_2];
 				{
 					if (!((NU8)(i) == (NU8)(item))) goto LA6_;
 					goto BeforeRet_;
 				}
 				LA6_: ;
-				result += ((NI) 1);
-				i_2 += ((NI) 1);
+				if (nimAddInt(result, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_27)) { raiseOverflow(); goto BeforeRet_;
+};
+				result = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_27);
+				if (nimAddInt(i_2, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_28)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_28);
 			} LA3: ;
 		}
 	}
@@ -1086,9 +1172,17 @@ static N_INLINE(NimStringDesc*, X5BX5D___FPvLvuwqfYMFkcbGfPM8QQsystem)(NimString
 	NimStringDesc* result;
 	NI a;
 	NI L;
-	result = (NimStringDesc*)0;
+	NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_53;
+	NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_54;
+{	result = (NimStringDesc*)0;
 	a = x.a;
-	L = (NI)((NI)(x.b - a) + ((NI) 1));
+	if (nimSubInt(x.b, a, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_53)) { raiseOverflow(); goto BeforeRet_;
+};
+	if (nimAddInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_53), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_54)) { raiseOverflow(); goto BeforeRet_;
+};
+	L = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_54);
+	if ((L) < ((NI) 0) || (L) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(L, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	result = mnewString(((NI) (L)));
 	{
 		NI i;
@@ -1097,18 +1191,30 @@ static N_INLINE(NimStringDesc*, X5BX5D___FPvLvuwqfYMFkcbGfPM8QQsystem)(NimString
 		i_2 = ((NI) 0);
 		{
 			while (1) {
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_55;
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_56;
 				if (!(i_2 < L)) goto LA3;
 				i = i_2;
-				result->data[i] = s->data[(NI)(i + a)];
-				i_2 += ((NI) 1);
+				if ((NU)(i) >= (NU)(result ? result->Sup.len : 0)){ raiseIndexError2(i,(result ? result->Sup.len : 0)-1); goto BeforeRet_;
+}
+				if (nimAddInt(i, a, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_55)) { raiseOverflow(); goto BeforeRet_;
+};
+				if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_55)) >= (NU)(s ? s->Sup.len : 0)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_55),(s ? s->Sup.len : 0)-1); goto BeforeRet_;
+}
+				result->data[i] = s->data[(NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_55)];
+				if (nimAddInt(i_2, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_56)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_56);
 			} LA3: ;
 		}
 	}
+	}BeforeRet_: ;
 	return result;
 }
 static N_INLINE(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA, dotdot___BokNSDrKN1xmV1nA01G9brAsystem)(NI a, NI b) {
 	tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA result;
 	nimZeroMem((void*)(&result), sizeof(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA));
+	chckNil((void*)(&result));
 	nimZeroMem((void*)(&result), sizeof(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA));
 	result.a = a;
 	result.b = b;
@@ -1124,7 +1230,10 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 	NIM_BOOL lastWasColon;
 	NI v4StartPos;
 	NI byteCount;
-{	nimZeroMem((void*)(&result), sizeof(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA));
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
+	nimZeroMem((void*)(&result), sizeof(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA));
+	chckNil((void*)(&result));
 	nimZeroMem((void*)(&result), sizeof(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA));
 	result.family = ((tyEnum_IpAddressFamily__iqqacz9cr9bcNjYY74E10wPA) 0);
 	{
@@ -1134,7 +1243,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 		T5_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 		(*T5_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 		(*T5_).Sup.Sup.name = "ValueError";
-		(*T5_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_21));
+		(*T5_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_29));
 		(*T5_).Sup.Sup.parent = NIM_NIL;
 		raiseExceptionEx((Exception*)T5_, "ValueError", "parseIPv6Address", "net.nim", 279);
 		goto BeforeRet_;
@@ -1159,10 +1268,14 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 		L = (addressStr ? addressStr->Sup.len : 0);
 		{
 			while (1) {
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_47;
 				if (!(i_2 < L)) goto LA8;
 				i = i_2;
+				if ((NU)(i_2) >= (NU)(addressStr ? addressStr->Sup.len : 0)){ raiseIndexError2(i_2,(addressStr ? addressStr->Sup.len : 0)-1); goto BeforeRet_;
+}
 				c = addressStr->data[i_2];
 				{
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_41;
 					if (!((NU8)(c) == (NU8)(58))) goto LA11_;
 					{
 						tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T17_;
@@ -1171,7 +1284,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 						T17_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 						(*T17_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 						(*T17_).Sup.Sup.name = "ValueError";
-						(*T17_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_22));
+						(*T17_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_30));
 						(*T17_).Sup.Sup.parent = NIM_NIL;
 						raiseExceptionEx((Exception*)T17_, "ValueError", "parseIPv6Address", "net.nim", 294);
 						goto BeforeRet_;
@@ -1186,7 +1299,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 							T26_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 							(*T26_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 							(*T26_).Sup.Sup.name = "ValueError";
-							(*T26_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_23));
+							(*T26_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_31));
 							(*T26_).Sup.Sup.parent = NIM_NIL;
 							raiseExceptionEx((Exception*)T26_, "ValueError", "parseIPv6Address", "net.nim", 298);
 							goto BeforeRet_;
@@ -1199,6 +1312,10 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 					LA20_: ;
 					{
 						NIM_BOOL T28_;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_34;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_35;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_36;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_37;
 						T28_ = (NIM_BOOL)0;
 						T28_ = !((i == ((NI) 0)));
 						if (!(T28_)) goto LA29_;
@@ -1212,16 +1329,32 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 							T36_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 							(*T36_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 							(*T36_).Sup.Sup.name = "ValueError";
-							(*T36_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_24));
+							(*T36_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
 							(*T36_).Sup.Sup.parent = NIM_NIL;
 							raiseExceptionEx((Exception*)T36_, "ValueError", "parseIPv6Address", "net.nim", 304);
 							goto BeforeRet_;
 						}
 						LA34_: ;
-						result._family_1.address_v6[((NI)(groupCount * ((NI) 2)))- 0] = ((NU8) ((NU32)((NU32)(currentShort) >> (NU64)(((NI) 8)))));
-						result._family_1.address_v6[((NI)((NI)(groupCount * ((NI) 2)) + ((NI) 1)))- 0] = ((NU8) ((NU32)(currentShort & ((NU32) 255))));
+						if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+						if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_34)) { raiseOverflow(); goto BeforeRet_;
+};
+						if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_34)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_34), 15); goto BeforeRet_;
+}
+						result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_34))- 0] = ((NU8) ((NU32)((NU32)(currentShort) >> (NU64)(((NI) 8)))));
+						if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+						if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_35)) { raiseOverflow(); goto BeforeRet_;
+};
+						if (nimAddInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_35), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_36)) { raiseOverflow(); goto BeforeRet_;
+};
+						if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_36)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_36), 15); goto BeforeRet_;
+}
+						result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_36))- 0] = ((NU8) ((NU32)(currentShort & ((NU32) 255))));
 						currentShort = ((NU32) 0);
-						groupCount += ((NI) 1);
+						if (nimAddInt(groupCount, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_37)) { raiseOverflow(); goto BeforeRet_;
+};
+						groupCount = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_37);
 						{
 							if (!!((dualColonGroup == ((NI) -1)))) goto LA39_;
 							separatorValid = NIM_FALSE;
@@ -1234,12 +1367,14 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 						if (!(i == ((NI) 0))) goto LA42_;
 						{
 							tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T48_;
+							if ((NU)(((NI) 1)) >= (NU)(addressStr ? addressStr->Sup.len : 0)){ raiseIndexError2(((NI) 1),(addressStr ? addressStr->Sup.len : 0)-1); goto BeforeRet_;
+}
 							if (!!(((NU8)(addressStr->data[((NI) 1)]) == (NU8)(58)))) goto LA46_;
 							T48_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
 							T48_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 							(*T48_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 							(*T48_).Sup.Sup.name = "ValueError";
-							(*T48_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_25));
+							(*T48_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_38));
 							(*T48_).Sup.Sup.parent = NIM_NIL;
 							raiseExceptionEx((Exception*)T48_, "ValueError", "parseIPv6Address", "net.nim", 313);
 							goto BeforeRet_;
@@ -1250,13 +1385,18 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 					LA42_: ;
 					{
 						{
+							NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_39;
 							tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T54_;
-							if (!!(((NU8)(addressStr->data[(NI)(((addressStr ? addressStr->Sup.len : 0)-1) - ((NI) 1))]) == (NU8)(58)))) goto LA52_;
+							if (nimSubInt(((addressStr ? addressStr->Sup.len : 0)-1), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_39)) { raiseOverflow(); goto BeforeRet_;
+};
+							if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_39)) >= (NU)(addressStr ? addressStr->Sup.len : 0)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_39),(addressStr ? addressStr->Sup.len : 0)-1); goto BeforeRet_;
+}
+							if (!!(((NU8)(addressStr->data[(NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_39)]) == (NU8)(58)))) goto LA52_;
 							T54_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
 							T54_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 							(*T54_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 							(*T54_).Sup.Sup.name = "ValueError";
-							(*T54_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_26));
+							(*T54_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_40));
 							(*T54_).Sup.Sup.parent = NIM_NIL;
 							raiseExceptionEx((Exception*)T54_, "ValueError", "parseIPv6Address", "net.nim", 317);
 							goto BeforeRet_;
@@ -1265,7 +1405,9 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 					}
 					LA18_: ;
 					lastWasColon = NIM_TRUE;
-					currentGroupStart = (NI)(i + ((NI) 1));
+					if (nimAddInt(i, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_41)) { raiseOverflow(); goto BeforeRet_;
+};
+					currentGroupStart = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_41);
 				}
 				goto LA9_;
 				LA11_: ;
@@ -1290,7 +1432,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 						T66_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 						(*T66_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 						(*T66_).Sup.Sup.name = "ValueError";
-						(*T66_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_21));
+						(*T66_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_29));
 						(*T66_).Sup.Sup.parent = NIM_NIL;
 						raiseExceptionEx((Exception*)T66_, "ValueError", "parseIPv6Address", "net.nim", 323);
 						goto BeforeRet_;
@@ -1306,25 +1448,34 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 				{
 					if (!(((NU8)(c)) >= ((NU8)(48)) && ((NU8)(c)) <= ((NU8)(57)) || ((NU8)(c)) >= ((NU8)(65)) && ((NU8)(c)) <= ((NU8)(70)) || ((NU8)(c)) >= ((NU8)(97)) && ((NU8)(c)) <= ((NU8)(102)))) goto LA68_;
 					{
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_42;
 						if (!(((NU8)(c)) >= ((NU8)(48)) && ((NU8)(c)) <= ((NU8)(57)))) goto LA72_;
-						currentShort = (NU32)((NU32)((NU32)((NU64)(currentShort) << (NU64)(((NI) 4)))) + (NU32)(((NU32) ((NI)(((NU8)(c)) - ((NI) 48))))));
+						if (nimSubInt(((NU8)(c)), ((NI) 48), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_42)) { raiseOverflow(); goto BeforeRet_;
+};
+						currentShort = (NU32)((NU32)((NU32)((NU64)(currentShort) << (NU64)(((NI) 4)))) + (NU32)(((NU32) ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_42)))));
 					}
 					goto LA70_;
 					LA72_: ;
 					{
 						NIM_BOOL T75_;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_43;
 						T75_ = (NIM_BOOL)0;
 						T75_ = ((NU8)(97) <= (NU8)(c));
 						if (!(T75_)) goto LA76_;
 						T75_ = ((NU8)(c) <= (NU8)(102));
 						LA76_: ;
 						if (!T75_) goto LA77_;
-						currentShort = (NU32)((NU32)((NU32)((NU32)((NU32)((NU64)(currentShort) << (NU64)(((NI) 4)))) + (NU32)(((NU32) ((NI)(((NU8)(c)) - ((NI) 97))))))) + (NU32)(((NU32) 10)));
+						if (nimSubInt(((NU8)(c)), ((NI) 97), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_43)) { raiseOverflow(); goto BeforeRet_;
+};
+						currentShort = (NU32)((NU32)((NU32)((NU32)((NU32)((NU64)(currentShort) << (NU64)(((NI) 4)))) + (NU32)(((NU32) ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_43)))))) + (NU32)(((NU32) 10)));
 					}
 					goto LA70_;
 					LA77_: ;
 					{
-						currentShort = (NU32)((NU32)((NU32)((NU32)((NU32)((NU64)(currentShort) << (NU64)(((NI) 4)))) + (NU32)(((NU32) ((NI)(((NU8)(c)) - ((NI) 65))))))) + (NU32)(((NU32) 10)));
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_44;
+						if (nimSubInt(((NU8)(c)), ((NI) 65), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_44)) { raiseOverflow(); goto BeforeRet_;
+};
+						currentShort = (NU32)((NU32)((NU32)((NU32)((NU32)((NU64)(currentShort) << (NU64)(((NI) 4)))) + (NU32)(((NU32) ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_44)))))) + (NU32)(((NU32) 10)));
 					}
 					LA70_: ;
 					{
@@ -1334,7 +1485,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 						T84_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 						(*T84_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 						(*T84_).Sup.Sup.name = "ValueError";
-						(*T84_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_27));
+						(*T84_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_45));
 						(*T84_).Sup.Sup.parent = NIM_NIL;
 						raiseExceptionEx((Exception*)T84_, "ValueError", "parseIPv6Address", "net.nim", 336);
 						goto BeforeRet_;
@@ -1351,233 +1502,355 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv6Add
 					T86_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 					(*T86_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 					(*T86_).Sup.Sup.name = "ValueError";
-					(*T86_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_28));
+					(*T86_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_46));
 					(*T86_).Sup.Sup.parent = NIM_NIL;
 					raiseExceptionEx((Exception*)T86_, "ValueError", "parseIPv6Address", "net.nim", 341);
 					goto BeforeRet_;
 				}
 				LA9_: ;
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_47)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_47);
+				{
+					if (!!(((addressStr ? addressStr->Sup.len : 0) == L))) goto LA89_;
+					failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_48));
+					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				}
+				LA89_: ;
 			} LA8: ;
 		}
 	} LA6: ;
 	{
-		if (!(v4StartPos == ((NI) -1))) goto LA89_;
+		if (!(v4StartPos == ((NI) -1))) goto LA93_;
 		{
-			if (!separatorValid) goto LA93_;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_49;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_50;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_51;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_52;
+			if (!separatorValid) goto LA97_;
 			{
-				tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T99_;
-				if (!(((NI) 8) <= groupCount)) goto LA97_;
-				T99_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-				T99_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-				(*T99_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-				(*T99_).Sup.Sup.name = "ValueError";
-				(*T99_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_24));
-				(*T99_).Sup.Sup.parent = NIM_NIL;
-				raiseExceptionEx((Exception*)T99_, "ValueError", "parseIPv6Address", "net.nim", 348);
+				tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T103_;
+				if (!(((NI) 8) <= groupCount)) goto LA101_;
+				T103_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+				T103_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+				(*T103_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+				(*T103_).Sup.Sup.name = "ValueError";
+				(*T103_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
+				(*T103_).Sup.Sup.parent = NIM_NIL;
+				raiseExceptionEx((Exception*)T103_, "ValueError", "parseIPv6Address", "net.nim", 348);
 				goto BeforeRet_;
 			}
-			LA97_: ;
-			result._family_1.address_v6[((NI)(groupCount * ((NI) 2)))- 0] = ((NU8) ((NU32)((NU32)(currentShort) >> (NU64)(((NI) 8)))));
-			result._family_1.address_v6[((NI)((NI)(groupCount * ((NI) 2)) + ((NI) 1)))- 0] = ((NU8) ((NU32)(currentShort & ((NU32) 255))));
-			groupCount += ((NI) 1);
+			LA101_: ;
+			if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+			if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_49)) { raiseOverflow(); goto BeforeRet_;
+};
+			if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_49)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_49), 15); goto BeforeRet_;
+}
+			result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_49))- 0] = ((NU8) ((NU32)((NU32)(currentShort) >> (NU64)(((NI) 8)))));
+			if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+			if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_50)) { raiseOverflow(); goto BeforeRet_;
+};
+			if (nimAddInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_50), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_51)) { raiseOverflow(); goto BeforeRet_;
+};
+			if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_51)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_51), 15); goto BeforeRet_;
+}
+			result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_51))- 0] = ((NU8) ((NU32)(currentShort & ((NU32) 255))));
+			if (nimAddInt(groupCount, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_52)) { raiseOverflow(); goto BeforeRet_;
+};
+			groupCount = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_52);
 		}
-		LA93_: ;
+		LA97_: ;
 	}
-	goto LA87_;
-	LA89_: ;
+	goto LA91_;
+	LA93_: ;
 	{
+		NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_62;
+		NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_63;
+		NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_64;
 		{
 			NI i_3;
 			NIM_CHAR c_2;
 			NimStringDesc* colontmp_;
-			tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T102_;
+			tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T106_;
 			NI i_4;
 			NI L_2;
 			i_3 = (NI)0;
 			c_2 = (NIM_CHAR)0;
 			colontmp_ = (NimStringDesc*)0;
-			T102_ = dotdot___BokNSDrKN1xmV1nA01G9brAsystem(v4StartPos, ((addressStr ? addressStr->Sup.len : 0)-1));
-			colontmp_ = X5BX5D___FPvLvuwqfYMFkcbGfPM8QQsystem(addressStr, T102_);
+			T106_ = dotdot___BokNSDrKN1xmV1nA01G9brAsystem(v4StartPos, ((addressStr ? addressStr->Sup.len : 0)-1));
+			colontmp_ = X5BX5D___FPvLvuwqfYMFkcbGfPM8QQsystem(addressStr, T106_);
 			i_4 = ((NI) 0);
 			L_2 = (colontmp_ ? colontmp_->Sup.len : 0);
 			{
 				while (1) {
-					if (!(i_4 < L_2)) goto LA104;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_61;
+					if (!(i_4 < L_2)) goto LA108;
 					i_3 = i_4;
+					if ((NU)(i_4) >= (NU)(colontmp_ ? colontmp_->Sup.len : 0)){ raiseIndexError2(i_4,(colontmp_ ? colontmp_->Sup.len : 0)-1); goto BeforeRet_;
+}
 					c_2 = colontmp_->data[i_4];
 					{
-						if (!(((NU8)(c_2)) >= ((NU8)(48)) && ((NU8)(c_2)) <= ((NU8)(57)))) goto LA107_;
-						currentShort = (NU32)((NU32)((NU32)((NU32)(currentShort) * (NU32)(((NU32) 10)))) + (NU32)(((NU32) ((NI)(((NU8)(c_2)) - ((NI) 48))))));
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_57;
+						if (!(((NU8)(c_2)) >= ((NU8)(48)) && ((NU8)(c_2)) <= ((NU8)(57)))) goto LA111_;
+						if (nimSubInt(((NU8)(c_2)), ((NI) 48), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_57)) { raiseOverflow(); goto BeforeRet_;
+};
+						currentShort = (NU32)((NU32)((NU32)((NU32)(currentShort) * (NU32)(((NU32) 10)))) + (NU32)(((NU32) ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_57)))));
 						{
-							tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T113_;
-							if (!((NU32)(((NU32) 255)) < (NU32)(currentShort))) goto LA111_;
-							T113_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-							T113_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-							(*T113_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-							(*T113_).Sup.Sup.name = "ValueError";
-							(*T113_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_27));
-							(*T113_).Sup.Sup.parent = NIM_NIL;
-							raiseExceptionEx((Exception*)T113_, "ValueError", "parseIPv6Address", "net.nim", 358);
+							tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T117_;
+							if (!((NU32)(((NU32) 255)) < (NU32)(currentShort))) goto LA115_;
+							T117_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+							T117_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+							(*T117_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+							(*T117_).Sup.Sup.name = "ValueError";
+							(*T117_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_45));
+							(*T117_).Sup.Sup.parent = NIM_NIL;
+							raiseExceptionEx((Exception*)T117_, "ValueError", "parseIPv6Address", "net.nim", 358);
 							goto BeforeRet_;
 						}
-						LA111_: ;
+						LA115_: ;
 						separatorValid = NIM_TRUE;
 					}
-					goto LA105_;
-					LA107_: ;
+					goto LA109_;
+					LA111_: ;
 					{
-						if (!((NU8)(c_2) == (NU8)(46))) goto LA115_;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_58;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_59;
+						NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_60;
+						if (!((NU8)(c_2) == (NU8)(46))) goto LA119_;
 						{
-							NIM_BOOL T119_;
-							tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T123_;
-							T119_ = (NIM_BOOL)0;
-							T119_ = !(separatorValid);
-							if (T119_) goto LA120_;
-							T119_ = (((NI) 3) <= byteCount);
-							LA120_: ;
-							if (!T119_) goto LA121_;
-							T123_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-							T123_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-							(*T123_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-							(*T123_).Sup.Sup.name = "ValueError";
-							(*T123_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_21));
-							(*T123_).Sup.Sup.parent = NIM_NIL;
-							raiseExceptionEx((Exception*)T123_, "ValueError", "parseIPv6Address", "net.nim", 363);
+							NIM_BOOL T123_;
+							tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T127_;
+							T123_ = (NIM_BOOL)0;
+							T123_ = !(separatorValid);
+							if (T123_) goto LA124_;
+							T123_ = (((NI) 3) <= byteCount);
+							LA124_: ;
+							if (!T123_) goto LA125_;
+							T127_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+							T127_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+							(*T127_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+							(*T127_).Sup.Sup.name = "ValueError";
+							(*T127_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_29));
+							(*T127_).Sup.Sup.parent = NIM_NIL;
+							raiseExceptionEx((Exception*)T127_, "ValueError", "parseIPv6Address", "net.nim", 363);
 							goto BeforeRet_;
 						}
-						LA121_: ;
-						result._family_1.address_v6[((NI)((NI)(groupCount * ((NI) 2)) + byteCount))- 0] = ((NU8) (currentShort));
+						LA125_: ;
+						if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+						if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_58)) { raiseOverflow(); goto BeforeRet_;
+};
+						if (nimAddInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_58), byteCount, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_59)) { raiseOverflow(); goto BeforeRet_;
+};
+						if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_59)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_59), 15); goto BeforeRet_;
+}
+						result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_59))- 0] = ((NU8) (currentShort));
 						currentShort = ((NU32) 0);
-						byteCount += ((NI) 1);
+						if (nimAddInt(byteCount, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_60)) { raiseOverflow(); goto BeforeRet_;
+};
+						byteCount = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_60);
 						separatorValid = NIM_FALSE;
 					}
-					goto LA105_;
-					LA115_: ;
+					goto LA109_;
+					LA119_: ;
 					{
-						tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T125_;
-						T125_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-						T125_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-						(*T125_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-						(*T125_).Sup.Sup.name = "ValueError";
-						(*T125_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_28));
-						(*T125_).Sup.Sup.parent = NIM_NIL;
-						raiseExceptionEx((Exception*)T125_, "ValueError", "parseIPv6Address", "net.nim", 369);
+						tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T129_;
+						T129_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+						T129_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+						(*T129_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+						(*T129_).Sup.Sup.name = "ValueError";
+						(*T129_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_46));
+						(*T129_).Sup.Sup.parent = NIM_NIL;
+						raiseExceptionEx((Exception*)T129_, "ValueError", "parseIPv6Address", "net.nim", 369);
 						goto BeforeRet_;
 					}
-					LA105_: ;
-					i_4 += ((NI) 1);
-				} LA104: ;
+					LA109_: ;
+					if (nimAddInt(i_4, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_61)) { raiseOverflow(); goto BeforeRet_;
+};
+					i_4 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_61);
+					{
+						if (!!(((colontmp_ ? colontmp_->Sup.len : 0) == L_2))) goto LA132_;
+						failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_48));
+						if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+					}
+					LA132_: ;
+				} LA108: ;
 			}
 		}
 		{
-			NIM_BOOL T128_;
-			tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T132_;
-			T128_ = (NIM_BOOL)0;
-			T128_ = !((byteCount == ((NI) 3)));
-			if (T128_) goto LA129_;
-			T128_ = !(separatorValid);
-			LA129_: ;
-			if (!T128_) goto LA130_;
-			T132_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-			T132_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-			(*T132_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-			(*T132_).Sup.Sup.name = "ValueError";
-			(*T132_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_21));
-			(*T132_).Sup.Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T132_, "ValueError", "parseIPv6Address", "net.nim", 373);
+			NIM_BOOL T136_;
+			tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T140_;
+			T136_ = (NIM_BOOL)0;
+			T136_ = !((byteCount == ((NI) 3)));
+			if (T136_) goto LA137_;
+			T136_ = !(separatorValid);
+			LA137_: ;
+			if (!T136_) goto LA138_;
+			T140_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+			T140_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+			(*T140_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+			(*T140_).Sup.Sup.name = "ValueError";
+			(*T140_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_29));
+			(*T140_).Sup.Sup.parent = NIM_NIL;
+			raiseExceptionEx((Exception*)T140_, "ValueError", "parseIPv6Address", "net.nim", 373);
 			goto BeforeRet_;
 		}
-		LA130_: ;
-		result._family_1.address_v6[((NI)((NI)(groupCount * ((NI) 2)) + byteCount))- 0] = ((NU8) (currentShort));
-		groupCount += ((NI) 2);
+		LA138_: ;
+		if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+		if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_62)) { raiseOverflow(); goto BeforeRet_;
+};
+		if (nimAddInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_62), byteCount, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_63)) { raiseOverflow(); goto BeforeRet_;
+};
+		if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_63)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_63), 15); goto BeforeRet_;
+}
+		result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_63))- 0] = ((NU8) (currentShort));
+		if (nimAddInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_64)) { raiseOverflow(); goto BeforeRet_;
+};
+		groupCount = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_64);
 	}
-	LA87_: ;
+	LA91_: ;
 	{
-		tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T137_;
-		if (!(((NI) 8) < groupCount)) goto LA135_;
-		T137_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-		T137_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-		(*T137_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-		(*T137_).Sup.Sup.name = "ValueError";
-		(*T137_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_24));
-		(*T137_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T137_, "ValueError", "parseIPv6Address", "net.nim", 379);
+		tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T145_;
+		if (!(((NI) 8) < groupCount)) goto LA143_;
+		T145_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+		T145_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+		(*T145_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+		(*T145_).Sup.Sup.name = "ValueError";
+		(*T145_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
+		(*T145_).Sup.Sup.parent = NIM_NIL;
+		raiseExceptionEx((Exception*)T145_, "ValueError", "parseIPv6Address", "net.nim", 379);
 		goto BeforeRet_;
 	}
-	goto LA133_;
-	LA135_: ;
+	goto LA141_;
+	LA143_: ;
 	{
 		NI toFill;
+		NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_66;
 		NI toShift;
-		if (!(groupCount < ((NI) 8))) goto LA139_;
+		NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_67;
+		if (!(groupCount < ((NI) 8))) goto LA147_;
 		{
-			tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T145_;
-			if (!(dualColonGroup == ((NI) -1))) goto LA143_;
-			T145_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-			T145_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-			(*T145_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-			(*T145_).Sup.Sup.name = "ValueError";
-			(*T145_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_29));
-			(*T145_).Sup.Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T145_, "ValueError", "parseIPv6Address", "net.nim", 383);
+			tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T153_;
+			if (!(dualColonGroup == ((NI) -1))) goto LA151_;
+			T153_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+			T153_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+			(*T153_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+			(*T153_).Sup.Sup.name = "ValueError";
+			(*T153_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_65));
+			(*T153_).Sup.Sup.parent = NIM_NIL;
+			raiseExceptionEx((Exception*)T153_, "ValueError", "parseIPv6Address", "net.nim", 383);
 			goto BeforeRet_;
 		}
-		LA143_: ;
-		toFill = (NI)(((NI) 8) - groupCount);
-		toShift = (NI)(groupCount - dualColonGroup);
+		LA151_: ;
+		if (nimSubInt(((NI) 8), groupCount, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_66)) { raiseOverflow(); goto BeforeRet_;
+};
+		toFill = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_66);
+		if (nimSubInt(groupCount, dualColonGroup, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_67)) { raiseOverflow(); goto BeforeRet_;
+};
+		toShift = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_67);
 		{
 			NI i_5;
 			NI colontmp__2;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_68;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_69;
 			NI res;
 			i_5 = (NI)0;
 			colontmp__2 = (NI)0;
-			colontmp__2 = (NI)((NI)(((NI) 2) * toShift) - ((NI) 1));
+			if (nimMulInt(((NI) 2), toShift, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_68)) { raiseOverflow(); goto BeforeRet_;
+};
+			if (nimSubInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_68), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_69)) { raiseOverflow(); goto BeforeRet_;
+};
+			colontmp__2 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_69);
 			res = ((NI) 0);
 			{
 				while (1) {
-					if (!(res <= colontmp__2)) goto LA148;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_70;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_71;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_72;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_73;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_74;
+					if (!(res <= colontmp__2)) goto LA156;
 					i_5 = res;
-					result._family_1.address_v6[((NI)(((NI) 15) - i_5))- 0] = result._family_1.address_v6[((NI)((NI)((NI)(groupCount * ((NI) 2)) - i_5) - ((NI) 1)))- 0];
-					res += ((NI) 1);
-				} LA148: ;
+					if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+					if (nimSubInt(((NI) 15), i_5, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_70)) { raiseOverflow(); goto BeforeRet_;
+};
+					if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_70)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_70), 15); goto BeforeRet_;
+}
+					if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+					if (nimMulInt(groupCount, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_71)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (nimSubInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_71), i_5, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_72)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (nimSubInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_72), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_73)) { raiseOverflow(); goto BeforeRet_;
+};
+					if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_73)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_73), 15); goto BeforeRet_;
+}
+					result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_70))- 0] = result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_73))- 0];
+					if (nimAddInt(res, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_74)) { raiseOverflow(); goto BeforeRet_;
+};
+					res = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_74);
+				} LA156: ;
 			}
 		}
 		{
 			NI i_6;
 			NI colontmp__3;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_75;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_76;
 			NI res_2;
 			i_6 = (NI)0;
 			colontmp__3 = (NI)0;
-			colontmp__3 = (NI)((NI)(((NI) 2) * toFill) - ((NI) 1));
+			if (nimMulInt(((NI) 2), toFill, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_75)) { raiseOverflow(); goto BeforeRet_;
+};
+			if (nimSubInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_75), ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_76)) { raiseOverflow(); goto BeforeRet_;
+};
+			colontmp__3 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_76);
 			res_2 = ((NI) 0);
 			{
 				while (1) {
-					if (!(res_2 <= colontmp__3)) goto LA151;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_77;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_78;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_79;
+					if (!(res_2 <= colontmp__3)) goto LA159;
 					i_6 = res_2;
-					result._family_1.address_v6[((NI)((NI)(dualColonGroup * ((NI) 2)) + i_6))- 0] = ((NU8) 0);
-					res_2 += ((NI) 1);
-				} LA151: ;
+					if (!(((1 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33)); goto BeforeRet_;
+}
+					if (nimMulInt(dualColonGroup, ((NI) 2), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_77)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (nimAddInt((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_77), i_6, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_78)) { raiseOverflow(); goto BeforeRet_;
+};
+					if ((NU)((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_78)) > (NU)(15)){ raiseIndexError2((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_78), 15); goto BeforeRet_;
+}
+					result._family_1.address_v6[((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_78))- 0] = ((NU8) 0);
+					if (nimAddInt(res_2, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_79)) { raiseOverflow(); goto BeforeRet_;
+};
+					res_2 = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_79);
+				} LA159: ;
 			}
 		}
 	}
-	goto LA133_;
-	LA139_: ;
+	goto LA141_;
+	LA147_: ;
 	{
-		tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T155_;
-		if (!!((dualColonGroup == ((NI) -1)))) goto LA153_;
-		T155_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
-		T155_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
-		(*T155_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
-		(*T155_).Sup.Sup.name = "ValueError";
-		(*T155_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_24));
-		(*T155_).Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T155_, "ValueError", "parseIPv6Address", "net.nim", 392);
+		tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T163_;
+		if (!!((dualColonGroup == ((NI) -1)))) goto LA161_;
+		T163_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*)0;
+		T163_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
+		(*T163_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
+		(*T163_).Sup.Sup.name = "ValueError";
+		(*T163_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
+		(*T163_).Sup.Sup.parent = NIM_NIL;
+		raiseExceptionEx((Exception*)T163_, "ValueError", "parseIPv6Address", "net.nim", 392);
 		goto BeforeRet_;
 	}
-	goto LA133_;
-	LA153_: ;
-	LA133_: ;
+	goto LA141_;
+	LA161_: ;
+	LA141_: ;
 	}BeforeRet_: ;
 	return result;
 }
@@ -1590,6 +1863,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 	byteCount = ((NI) 0);
 	currentByte = ((NU16) 0);
 	separatorValid = NIM_FALSE;
+	chckNil((void*)(&result));
 	nimZeroMem((void*)(&result), sizeof(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA));
 	result.family = ((tyEnum_IpAddressFamily__iqqacz9cr9bcNjYY74E10wPA) 1);
 	{
@@ -1602,11 +1876,19 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 		res = ((NI) 0);
 		{
 			while (1) {
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_83;
 				if (!(res <= colontmp_)) goto LA3;
 				i = res;
 				{
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_80;
+					if ((NU)(i) >= (NU)(addressStr ? addressStr->Sup.len : 0)){ raiseIndexError2(i,(addressStr ? addressStr->Sup.len : 0)-1); goto BeforeRet_;
+}
 					if (!(((NU8)(addressStr->data[i])) >= ((NU8)(48)) && ((NU8)(addressStr->data[i])) <= ((NU8)(57)))) goto LA6_;
-					currentByte = (NU16)((NU16)((NU16)((NU16)(currentByte) * (NU16)(((NU16) 10)))) + (NU16)(((NU16) ((NI)(((NU8)(addressStr->data[i])) - ((NI) 48))))));
+					if ((NU)(i) >= (NU)(addressStr ? addressStr->Sup.len : 0)){ raiseIndexError2(i,(addressStr ? addressStr->Sup.len : 0)-1); goto BeforeRet_;
+}
+					if (nimSubInt(((NU8)(addressStr->data[i])), ((NI) 48), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_80)) { raiseOverflow(); goto BeforeRet_;
+};
+					currentByte = (NU16)((NU16)((NU16)((NU16)(currentByte) * (NU16)(((NU16) 10)))) + (NU16)(((NU16) ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_80)))));
 					{
 						tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T12_;
 						if (!((NU16)(((NU16) 255)) < (NU16)(currentByte))) goto LA10_;
@@ -1614,7 +1896,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 						T12_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 						(*T12_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 						(*T12_).Sup.Sup.name = "ValueError";
-						(*T12_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_27));
+						(*T12_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_45));
 						(*T12_).Sup.Sup.parent = NIM_NIL;
 						raiseExceptionEx((Exception*)T12_, "ValueError", "parseIPv4Address", "net.nim", 255);
 						goto BeforeRet_;
@@ -1625,6 +1907,9 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 				goto LA4_;
 				LA6_: ;
 				{
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_82;
+					if ((NU)(i) >= (NU)(addressStr ? addressStr->Sup.len : 0)){ raiseIndexError2(i,(addressStr ? addressStr->Sup.len : 0)-1); goto BeforeRet_;
+}
 					if (!((NU8)(addressStr->data[i]) == (NU8)(46))) goto LA14_;
 					{
 						NIM_BOOL T18_;
@@ -1639,15 +1924,21 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 						T22_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 						(*T22_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 						(*T22_).Sup.Sup.name = "ValueError";
-						(*T22_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_24));
+						(*T22_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
 						(*T22_).Sup.Sup.parent = NIM_NIL;
 						raiseExceptionEx((Exception*)T22_, "ValueError", "parseIPv4Address", "net.nim", 260);
 						goto BeforeRet_;
 					}
 					LA20_: ;
+					if (!(((2 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_81)); goto BeforeRet_;
+}
+					if ((NU)(byteCount) > (NU)(3)){ raiseIndexError2(byteCount, 3); goto BeforeRet_;
+}
 					result._family_2.address_v4[(byteCount)- 0] = ((NU8) (currentByte));
 					currentByte = ((NU16) 0);
-					byteCount += ((NI) 1);
+					if (nimAddInt(byteCount, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_82)) { raiseOverflow(); goto BeforeRet_;
+};
+					byteCount = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_82);
 					separatorValid = NIM_FALSE;
 				}
 				goto LA4_;
@@ -1658,13 +1949,15 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 					T24_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 					(*T24_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 					(*T24_).Sup.Sup.name = "ValueError";
-					(*T24_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_28));
+					(*T24_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_46));
 					(*T24_).Sup.Sup.parent = NIM_NIL;
 					raiseExceptionEx((Exception*)T24_, "ValueError", "parseIPv4Address", "net.nim", 267);
 					goto BeforeRet_;
 				}
 				LA4_: ;
-				res += ((NI) 1);
+				if (nimAddInt(res, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_83)) { raiseOverflow(); goto BeforeRet_;
+};
+				res = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_83);
 			} LA3: ;
 		}
 	}
@@ -1681,12 +1974,16 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_IpAddress__t0yd6ha54oWXm7nwZ4QqfA, parseIPv4Add
 		T31_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 		(*T31_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 		(*T31_).Sup.Sup.name = "ValueError";
-		(*T31_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_21));
+		(*T31_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_29));
 		(*T31_).Sup.Sup.parent = NIM_NIL;
 		raiseExceptionEx((Exception*)T31_, "ValueError", "parseIPv4Address", "net.nim", 271);
 		goto BeforeRet_;
 	}
 	LA29_: ;
+	if (!(((2 &(1U<<((NU)(result.family)&7U)))!=0))){ raiseFieldError(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_81)); goto BeforeRet_;
+}
+	if ((NU)(byteCount) > (NU)(3)){ raiseIndexError2(byteCount, 3); goto BeforeRet_;
+}
 	result._family_2.address_v4[(byteCount)- 0] = ((NU8) (currentByte));
 	}BeforeRet_: ;
 	return result;
@@ -1703,7 +2000,7 @@ NIM_BOOL* nimErr_;
 		T5_ = (tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw*) newObj((&NTI__Ie1m0dv1ZHg72IgPRr1cDw_), sizeof(tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw));
 		(*T5_).Sup.Sup.Sup.m_type = (&NTI__yoNlBGx0D2tRizIdhQuENw_);
 		(*T5_).Sup.Sup.name = "ValueError";
-		(*T5_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_20));
+		(*T5_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_26));
 		(*T5_).Sup.Sup.parent = NIM_NIL;
 		raiseExceptionEx((Exception*)T5_, "ValueError", "parseIpAddress", "net.nim", 399);
 		goto BeforeRet_;
@@ -1829,18 +2126,36 @@ NIM_BOOL* nimErr_;
 	}
 	}BeforeRet_: ;
 }
+N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, isClosed__lkWsihqFnPzvxMAQnry9aJQ)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket) {
+	NIM_BOOL result;
+	result = (NIM_BOOL)0;
+	result = ((*socket).fd == osInvalidSocket__voz9aUXu8jtRbvGZZJHNE8w);
+	return result;
+}
 N_LIB_PRIVATE N_NIMCALL(NI, send__5L0SyQu9bf9aWLpivLtuRdDg)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, void* data, NI size) {
 	NI result;
-{	result = (NI)0;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
+	result = (NI)0;
 	{
-		int T5_;
-		if (!(*socket).isSsl) goto LA3_;
-		T5_ = (int)0;
-		T5_ = Dl_17250514_((*socket).sslHandle, ((NCSTRING) (data)), size);
-		result = ((NI) (T5_));
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = isClosed__lkWsihqFnPzvxMAQnry9aJQ(socket);
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		if (!!(!(T3_))) goto LA4_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_84));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA4_: ;
+	{
+		int T10_;
+		if (!(*socket).isSsl) goto LA8_;
+		T10_ = (int)0;
+		T10_ = Dl_17250514_((*socket).sslHandle, ((NCSTRING) (data)), size);
+		result = ((NI) (T10_));
 		goto BeforeRet_;
 	}
-	LA3_: ;
+	LA8_: ;
 	result = send((*socket).fd, data, size, ((NI32) 16384));
 	}BeforeRet_: ;
 	return result;
@@ -1899,7 +2214,7 @@ NIM_BOOL* nimErr_;
 		T14_ = (NI32)0;
 		T14_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T14_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_30));
+		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T14_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_85));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA12_: ;
@@ -1972,144 +2287,171 @@ NIM_BOOL* nimErr_;
 	result = ((NI) 1);
 	{
 		if (!(size <= ((NI) 0))) goto LA3_;
+		{
+			if (!NIM_TRUE) goto LA7_;
+			failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_86));
+			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		}
+		LA7_: ;
 	}
 	LA3_: ;
 	{
-		if (!(timeout == ((NI) -1))) goto LA7_;
+		if (!(timeout == ((NI) -1))) goto LA11_;
 		result = size;
 		goto BeforeRet_;
 	}
-	LA7_: ;
+	LA11_: ;
 	{
-		NIM_BOOL T11_;
-		NIM_BOOL T12_;
-		T11_ = (NIM_BOOL)0;
-		T12_ = (NIM_BOOL)0;
-		T12_ = (*socket).isBuffered;
-		if (!(T12_)) goto LA13_;
-		T12_ = !(((*socket).bufLen == ((NI) 0)));
-		LA13_: ;
-		T11_ = T12_;
-		if (!(T11_)) goto LA14_;
-		T11_ = !(((*socket).bufLen == (*socket).currPos));
-		LA14_: ;
-		if (!T11_) goto LA15_;
-		result = (NI)((*socket).bufLen - (*socket).currPos);
+		NIM_BOOL T15_;
+		NIM_BOOL T16_;
+		NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_87;
+		T15_ = (NIM_BOOL)0;
+		T16_ = (NIM_BOOL)0;
+		T16_ = (*socket).isBuffered;
+		if (!(T16_)) goto LA17_;
+		T16_ = !(((*socket).bufLen == ((NI) 0)));
+		LA17_: ;
+		T15_ = T16_;
+		if (!(T15_)) goto LA18_;
+		T15_ = !(((*socket).bufLen == (*socket).currPos));
+		LA18_: ;
+		if (!T15_) goto LA19_;
+		if (nimSubInt((*socket).bufLen, (*socket).currPos, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_87)) { raiseOverflow(); goto BeforeRet_;
+};
+		result = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_87);
 		result = ((result <= size) ? result : size);
 	}
-	goto LA9_;
-	LA15_: ;
+	goto LA13_;
+	LA19_: ;
 	{
 		tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w startTime;
 		NI selRet;
-		NI64 T38_;
-		tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w T50_;
-		tyObject_Duration__lj9ar6Co3fgk6NgGnVaNpJw T51_;
+		NI64 T42_;
+		NI64 TM__XqsrSBxhOTPgLQ9cX4MmV4A_91;
+		tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w T54_;
+		tyObject_Duration__lj9ar6Co3fgk6NgGnVaNpJw T55_;
 		{
-			NI64 T20_;
-			tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw* T23_;
-			NimStringDesc* T24_;
-			T20_ = (NI64)0;
-			T20_ = inMilliseconds__df0d89cDnRIju9aB6p1W1qVA((*waited));
+			NI64 T24_;
+			NI64 TM__XqsrSBxhOTPgLQ9cX4MmV4A_88;
+			tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw* T27_;
+			NimStringDesc* T28_;
+			T24_ = (NI64)0;
+			T24_ = inMilliseconds__df0d89cDnRIju9aB6p1W1qVA((*waited));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-			if (!((NI64)(((NI64) (timeout)) - T20_) < IL64(1))) goto LA21_;
-			T23_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*)0;
-			T23_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*) newObj((&NTI__DtrJpMCrh4f9cUcHkEf48kQ_), sizeof(tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw));
-			(*T23_).Sup.Sup.m_type = (&NTI__YJ9a3zV3oEciJsNBlUEYRfw_);
-			(*T23_).Sup.name = "TimeoutError";
-			T24_ = (NimStringDesc*)0;
-			T24_ = rawNewString((funcName ? funcName->Sup.len : 0) + 21);
-appendString(T24_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_31));
-appendString(T24_, funcName);
-appendString(T24_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
-			(*T23_).Sup.message = T24_;
-			(*T23_).Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T23_, "TimeoutError", "waitFor", "net.nim", 1203);
+			if (nimSubInt64(((NI64) (timeout)), T24_, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_88)) { raiseOverflow(); goto BeforeRet_;
+};
+			if (!((NI64)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_88) < IL64(1))) goto LA25_;
+			T27_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*)0;
+			T27_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*) newObj((&NTI__DtrJpMCrh4f9cUcHkEf48kQ_), sizeof(tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw));
+			(*T27_).Sup.Sup.m_type = (&NTI__YJ9a3zV3oEciJsNBlUEYRfw_);
+			(*T27_).Sup.name = "TimeoutError";
+			T28_ = (NimStringDesc*)0;
+			T28_ = rawNewString((funcName ? funcName->Sup.len : 0) + 21);
+appendString(T28_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_89));
+appendString(T28_, funcName);
+appendString(T28_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_90));
+			(*T27_).Sup.message = T28_;
+			(*T27_).Sup.parent = NIM_NIL;
+			raiseExceptionEx((Exception*)T27_, "TimeoutError", "waitFor", "net.nim", 1203);
 			goto BeforeRet_;
 		}
-		LA21_: ;
+		LA25_: ;
 		{
 			int sslPending;
-			if (!(*socket).isSsl) goto LA27_;
+			if (!(*socket).isSsl) goto LA31_;
 			{
-				NIM_BOOL T31_;
-				T31_ = (NIM_BOOL)0;
-				T31_ = hasDataBuffered__L6V0D3apf5iJeZChqzkovw(socket);
+				NIM_BOOL T35_;
+				T35_ = (NIM_BOOL)0;
+				T35_ = hasDataBuffered__L6V0D3apf5iJeZChqzkovw(socket);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-				if (!T31_) goto LA32_;
+				if (!T35_) goto LA36_;
 				result = ((NI) 1);
 				goto BeforeRet_;
 			}
-			LA32_: ;
+			LA36_: ;
 			sslPending = Dl_17250526_((*socket).sslHandle);
 			{
-				if (!!((sslPending == ((NI32) 0)))) goto LA36_;
+				if (!!((sslPending == ((NI32) 0)))) goto LA40_;
 				result = ((((NI) (sslPending)) <= size) ? ((NI) (sslPending)) : size);
 				goto BeforeRet_;
 			}
-			LA36_: ;
+			LA40_: ;
 		}
-		LA27_: ;
+		LA31_: ;
 		startTime = getMonoTime__QkEugs2Q2iFK9b83sl2B6wA();
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		T38_ = (NI64)0;
-		T38_ = inMilliseconds__df0d89cDnRIju9aB6p1W1qVA((*waited));
+		T42_ = (NI64)0;
+		T42_ = inMilliseconds__df0d89cDnRIju9aB6p1W1qVA((*waited));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		selRet = select__9c4QMA6DGRJbXBL6Jy4sbPw(socket, ((NI) ((NI64)(((NI64) (timeout)) - T38_))));
+		if (nimSubInt64(((NI64) (timeout)), T42_, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_91)) { raiseOverflow(); goto BeforeRet_;
+};
+		selRet = select__9c4QMA6DGRJbXBL6Jy4sbPw(socket, ((NI) ((NI64)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_91))));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		{
-			NI32 T43_;
-			if (!(selRet < ((NI) 0))) goto LA41_;
-			T43_ = (NI32)0;
-			T43_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
+			NI32 T47_;
+			if (!(selRet < ((NI) 0))) goto LA45_;
+			T47_ = (NI32)0;
+			T47_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-			raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T43_, ((NimStringDesc*) NIM_NIL));
+			raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T47_, ((NimStringDesc*) NIM_NIL));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
-		LA41_: ;
+		LA45_: ;
 		{
-			tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw* T48_;
-			NimStringDesc* T49_;
-			if (!!((selRet == ((NI) 1)))) goto LA46_;
-			T48_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*)0;
-			T48_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*) newObj((&NTI__DtrJpMCrh4f9cUcHkEf48kQ_), sizeof(tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw));
-			(*T48_).Sup.Sup.m_type = (&NTI__YJ9a3zV3oEciJsNBlUEYRfw_);
-			(*T48_).Sup.name = "TimeoutError";
-			T49_ = (NimStringDesc*)0;
-			T49_ = rawNewString((funcName ? funcName->Sup.len : 0) + 21);
-appendString(T49_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_31));
-appendString(T49_, funcName);
-appendString(T49_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_32));
-			(*T48_).Sup.message = T49_;
-			(*T48_).Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T48_, "TimeoutError", "waitFor", "net.nim", 1218);
+			tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw* T52_;
+			NimStringDesc* T53_;
+			if (!!((selRet == ((NI) 1)))) goto LA50_;
+			T52_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*)0;
+			T52_ = (tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw*) newObj((&NTI__DtrJpMCrh4f9cUcHkEf48kQ_), sizeof(tyObject_TimeoutError__YJ9a3zV3oEciJsNBlUEYRfw));
+			(*T52_).Sup.Sup.m_type = (&NTI__YJ9a3zV3oEciJsNBlUEYRfw_);
+			(*T52_).Sup.name = "TimeoutError";
+			T53_ = (NimStringDesc*)0;
+			T53_ = rawNewString((funcName ? funcName->Sup.len : 0) + 21);
+appendString(T53_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_89));
+appendString(T53_, funcName);
+appendString(T53_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_90));
+			(*T52_).Sup.message = T53_;
+			(*T52_).Sup.parent = NIM_NIL;
+			raiseExceptionEx((Exception*)T52_, "TimeoutError", "waitFor", "net.nim", 1218);
 			goto BeforeRet_;
 		}
-		LA46_: ;
-		T50_ = getMonoTime__QkEugs2Q2iFK9b83sl2B6wA();
+		LA50_: ;
+		T54_ = getMonoTime__QkEugs2Q2iFK9b83sl2B6wA();
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		T51_ = minus___p9cBm7joedh4BwcboQ3HMVQ(T50_, startTime);
+		T55_ = minus___p9cBm7joedh4BwcboQ3HMVQ(T54_, startTime);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		pluseq___dXIPb9c601v9bvWo9b9abEUKmA(waited, T51_);
+		pluseq___dXIPb9c601v9bvWo9b9abEUKmA(waited, T55_);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
-	LA9_: ;
+	LA13_: ;
 	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(NI, uniRecv__YQlV9aRgVr9cJoVJlEPDJIqw)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, void* buffer, int size, int flags) {
 	NI result;
-{	result = (NI)0;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
+	result = (NI)0;
 	result = ((NI) 0);
 	{
-		int T5_;
-		if (!(*socket).isSsl) goto LA3_;
-		T5_ = (int)0;
-		T5_ = Dl_17250509_((*socket).sslHandle, buffer, ((NI) (size)));
-		result = ((NI) (T5_));
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = isClosed__lkWsihqFnPzvxMAQnry9aJQ(socket);
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		if (!!(!(T3_))) goto LA4_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_93));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA4_: ;
+	{
+		int T10_;
+		if (!(*socket).isSsl) goto LA8_;
+		T10_ = (int)0;
+		T10_ = Dl_17250509_((*socket).sslHandle, buffer, ((NI) (size)));
+		result = ((NI) (T10_));
 		goto BeforeRet_;
 	}
-	LA3_: ;
+	LA8_: ;
 	result = recv((*socket).fd, buffer, ((NI) (size)), flags);
 	goto BeforeRet_;
 	}BeforeRet_: ;
@@ -2184,7 +2526,11 @@ NIM_BOOL* nimErr_;
 		{
 			while (1) {
 				NI chunk;
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_94;
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_95;
 				NCSTRING d;
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_98;
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_99;
 				if (!(read < size)) goto LA23;
 				{
 					NI res_2;
@@ -2209,11 +2555,32 @@ NIM_BOOL* nimErr_;
 					LA30_: ;
 				}
 				LA26_: ;
-				chunk = (((NI)((*socket).bufLen - (*socket).currPos) <= (NI)(size - read)) ? (NI)((*socket).bufLen - (*socket).currPos) : (NI)(size - read));
+				if (nimSubInt((*socket).bufLen, (*socket).currPos, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_94)) { raiseOverflow(); goto BeforeRet_;
+};
+				if (nimSubInt(size, read, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_95)) { raiseOverflow(); goto BeforeRet_;
+};
+				chunk = (((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_94) <= (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_95)) ? (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_94) : (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_95));
 				d = ((NCSTRING) (data));
+				{
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_96;
+					if (nimSubInt(size, read, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_96)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (!!((chunk <= (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_96)))) goto LA39_;
+					failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_97));
+					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				}
+				LA39_: ;
+				if ((NU)((*socket).currPos) > (NU)(4000)){ raiseIndexError2((*socket).currPos, 4000); goto BeforeRet_;
+}
+				if ((chunk) < ((NI) 0) || (chunk) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(chunk, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 				copyMem__i80o3k0SgEI5gTRCzYdyWAsystem(((void*) ((&d[read]))), ((void*) ((&(*socket).buffer[((*socket).currPos)- 0]))), ((NI) (chunk)));
-				read += chunk;
-				(*socket).currPos += chunk;
+				if (nimAddInt(read, chunk, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_98)) { raiseOverflow(); goto BeforeRet_;
+};
+				read = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_98);
+				if (nimAddInt((*socket).currPos, chunk, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_99)) { raiseOverflow(); goto BeforeRet_;
+};
+				(*socket).currPos = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_99);
 			} LA23: ;
 		}
 		result = read;
@@ -2222,51 +2589,66 @@ NIM_BOOL* nimErr_;
 	LA7_: ;
 	{
 		{
-			if (!(*socket).isSsl) goto LA40_;
+			if (!(*socket).isSsl) goto LA44_;
 			{
-				if (!(*socket).sslHasPeekChar) goto LA44_;
+				if (!(*socket).sslHasPeekChar) goto LA48_;
 				copyMem__i80o3k0SgEI5gTRCzYdyWAsystem(data, ((void*) ((&(*socket).sslPeekChar))), ((NI) 1));
 				(*socket).sslHasPeekChar = NIM_FALSE;
 				{
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_100;
 					NCSTRING d_2;
-					NI T50_;
-					if (!(((NI) 0) < (NI)(size - ((NI) 1)))) goto LA48_;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_101;
+					NI T54_;
+					NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_102;
+					if (nimSubInt(size, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_100)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (!(((NI) 0) < (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_100))) goto LA52_;
 					d_2 = ((NCSTRING) (data));
-					T50_ = (NI)0;
-					T50_ = uniRecv__YQlV9aRgVr9cJoVJlEPDJIqw(socket, ((void*) ((&d_2[((NI) 1)]))), ((int) ((NI)(size - ((NI) 1)))), ((NI32) 0));
+					if (nimSubInt(size, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_101)) { raiseOverflow(); goto BeforeRet_;
+};
+					if (((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_101)) < ((int) (-2147483647 -1)) || ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_101)) > ((int) 2147483647)){ raiseRangeErrorI((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_101), ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
+					T54_ = (NI)0;
+					T54_ = uniRecv__YQlV9aRgVr9cJoVJlEPDJIqw(socket, ((void*) ((&d_2[((NI) 1)]))), ((int) ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_101))), ((NI32) 0));
 					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-					result = (NI)(T50_ + ((NI) 1));
+					if (nimAddInt(T54_, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_102)) { raiseOverflow(); goto BeforeRet_;
+};
+					result = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_102);
 				}
-				goto LA46_;
-				LA48_: ;
+				goto LA50_;
+				LA52_: ;
 				{
 					result = ((NI) 1);
 				}
-				LA46_: ;
+				LA50_: ;
 			}
-			goto LA42_;
-			LA44_: ;
+			goto LA46_;
+			LA48_: ;
 			{
+				if ((size) < ((int) (-2147483647 -1)) || (size) > ((int) 2147483647)){ raiseRangeErrorI(size, ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
 				result = uniRecv__YQlV9aRgVr9cJoVJlEPDJIqw(socket, data, ((int) (size)), ((NI32) 0));
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			}
-			LA42_: ;
+			LA46_: ;
 		}
-		goto LA38_;
-		LA40_: ;
+		goto LA42_;
+		LA44_: ;
 		{
+			if ((size) < ((int) (-2147483647 -1)) || (size) > ((int) 2147483647)){ raiseRangeErrorI(size, ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
 			result = recv((*socket).fd, data, ((NI) (((int) (size)))), ((NI32) 0));
 		}
-		LA38_: ;
+		LA42_: ;
 		{
-			NI32 T58_;
-			if (!(result < ((NI) 0))) goto LA56_;
-			T58_ = (NI32)0;
-			T58_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
+			NI32 T62_;
+			if (!(result < ((NI) 0))) goto LA60_;
+			T62_ = (NI32)0;
+			T62_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-			(*socket).lastError = T58_;
+			(*socket).lastError = T62_;
 		}
-		LA56_: ;
+		LA60_: ;
 	}
 	LA5_: ;
 	}BeforeRet_: ;
@@ -2282,11 +2664,14 @@ NIM_BOOL* nimErr_;
 		result = ((NI) 1);
 		{
 			NIM_BOOL T7_;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_103;
 			NI res;
 			T7_ = (NIM_BOOL)0;
 			T7_ = ((*socket).bufLen == ((NI) 0));
 			if (T7_) goto LA8_;
-			T7_ = ((NI)((*socket).bufLen - ((NI) 1)) < (*socket).currPos);
+			if (nimSubInt((*socket).bufLen, ((NI) 1), &TM__XqsrSBxhOTPgLQ9cX4MmV4A_103)) { raiseOverflow(); goto BeforeRet_;
+};
+			T7_ = ((NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_103) < (*socket).currPos);
 			LA8_: ;
 			if (!T7_) goto LA9_;
 			res = readIntoBuf__3VtccBbq17lyKCft9aSHtGA(socket, ((NI32) 0));
@@ -2298,6 +2683,8 @@ NIM_BOOL* nimErr_;
 			LA13_: ;
 		}
 		LA9_: ;
+		if ((NU)((*socket).currPos) > (NU)(4000)){ raiseIndexError2((*socket).currPos, 4000); goto BeforeRet_;
+}
 		(*c) = (*socket).buffer[((*socket).currPos)- 0];
 	}
 	goto LA1_;
@@ -2335,7 +2722,7 @@ NIM_BOOL* nimErr_;
 			NI n;
 			c = (NIM_CHAR)0;
 			T3_ = (NI)0;
-			T3_ = waitFor__mpNV4IG56MRYASsne34FNA(socket, (&waited), timeout, ((NI) 1), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33));
+			T3_ = waitFor__mpNV4IG56MRYASsne34FNA(socket, (&waited), timeout, ((NI) 1), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_92));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			(void)(T3_);
 			n = recv__5L0SyQu9bf9aWLpivLtuRdDg_2(socket, ((void*) ((&c))), ((NI) 1));
@@ -2372,7 +2759,7 @@ NIM_BOOL* nimErr_;
 				NI T20_;
 				if (!((NU8)(c) == (NU8)(13))) goto LA18_;
 				T20_ = (NI)0;
-				T20_ = waitFor__mpNV4IG56MRYASsne34FNA(socket, (&waited), timeout, ((NI) 1), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_33));
+				T20_ = waitFor__mpNV4IG56MRYASsne34FNA(socket, (&waited), timeout, ((NI) 1), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_92));
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				(void)(T20_);
 				n = peekChar__vy4VpuiQuyO2yjz3cp2FxQ(socket, (&c));
@@ -2417,7 +2804,7 @@ NIM_BOOL* nimErr_;
 				{
 					if (!(((*line) ? (*line)->Sup.len : 0) == ((NI) 0))) goto LA38_;
 					(*line) = resizeString((*line), 2);
-appendString((*line), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_34));
+appendString((*line), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_104));
 				}
 				LA38_: ;
 				goto BeforeRet_;
@@ -2429,7 +2816,7 @@ appendString((*line), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_34));
 				{
 					if (!(((*line) ? (*line)->Sup.len : 0) == ((NI) 0))) goto LA45_;
 					(*line) = resizeString((*line), 2);
-appendString((*line), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_34));
+appendString((*line), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_104));
 				}
 				LA45_: ;
 				goto BeforeRet_;
@@ -2470,24 +2857,39 @@ NIM_BOOL* nimErr_;
 	{
 		while (1) {
 			NI avail;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_105;
 			NCSTRING d;
+			NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_109;
 			if (!(read < size)) goto LA2;
-			avail = waitFor__mpNV4IG56MRYASsne34FNA(socket, (&waited), timeout, (NI)(size - read), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_35));
+			if (nimSubInt(size, read, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_105)) { raiseOverflow(); goto BeforeRet_;
+};
+			avail = waitFor__mpNV4IG56MRYASsne34FNA(socket, (&waited), timeout, (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_105), ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_106));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			d = ((NCSTRING) (data));
+			{
+				NI TM__XqsrSBxhOTPgLQ9cX4MmV4A_107;
+				if (nimSubInt(size, read, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_107)) { raiseOverflow(); goto BeforeRet_;
+};
+				if (!!((avail <= (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_107)))) goto LA5_;
+				failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_108));
+				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+			}
+			LA5_: ;
 			result = recv__5L0SyQu9bf9aWLpivLtuRdDg_2(socket, ((void*) ((&d[read]))), avail);
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 			{
-				if (!(result == ((NI) 0))) goto LA5_;
+				if (!(result == ((NI) 0))) goto LA9_;
 				goto LA1;
 			}
-			LA5_: ;
+			LA9_: ;
 			{
-				if (!(result < ((NI) 0))) goto LA9_;
+				if (!(result < ((NI) 0))) goto LA13_;
 				goto BeforeRet_;
 			}
-			LA9_: ;
-			read += result;
+			LA13_: ;
+			if (nimAddInt(read, result, &TM__XqsrSBxhOTPgLQ9cX4MmV4A_109)) { raiseOverflow(); goto BeforeRet_;
+};
+			read = (NI)(TM__XqsrSBxhOTPgLQ9cX4MmV4A_109);
 		} LA2: ;
 	} LA1: ;
 	result = read;
@@ -2499,6 +2901,8 @@ N_LIB_PRIVATE N_NIMCALL(NI, recv__WAuvR33LNsmM2rTnugz1Lw)(tyObject_SocketImpl__a
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (NI)0;
+	if ((size) < ((NI) 0) || (size) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(size, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	(*data) = setLengthStr((*data), ((NI) (size)));
 	{
 		if (!(timeout == ((NI) -1))) goto LA3_;
@@ -2531,6 +2935,8 @@ NIM_BOOL* nimErr_;
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA8_: ;
+	if ((result) < ((NI) 0) || (result) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(result, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	(*data) = setLengthStr((*data), ((NI) (result)));
 	}BeforeRet_: ;
 	return result;
@@ -2558,7 +2964,7 @@ NIM_BOOL* nimErr_;
 		(*T8_).Sup.Sup.name = "IOError";
 		T9_ = (NimStringDesc*)0;
 		T9_ = rawNewString((certFile ? certFile->Sup.len : 0) + 37);
-appendString(T9_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_38));
+appendString(T9_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_112));
 appendString(T9_, certFile);
 		(*T8_).Sup.Sup.message = T9_;
 		(*T8_).Sup.Sup.parent = NIM_NIL;
@@ -2586,7 +2992,7 @@ appendString(T9_, certFile);
 		(*T17_).Sup.Sup.name = "IOError";
 		T18_ = (NimStringDesc*)0;
 		T18_ = rawNewString((keyFile ? keyFile->Sup.len : 0) + 29);
-appendString(T18_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_39));
+appendString(T18_, ((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_113));
 appendString(T18_, keyFile);
 		(*T17_).Sup.Sup.message = T18_;
 		(*T17_).Sup.Sup.parent = NIM_NIL;
@@ -2622,7 +3028,7 @@ appendString(T18_, keyFile);
 			T38_ = (int)0;
 			T38_ = Dl_17250473_(ctx);
 			if (!!((T38_ == ((NI32) 1)))) goto LA39_;
-			raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_40));
+			raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_114));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA39_: ;
@@ -2651,13 +3057,13 @@ NIM_BOOL* nimErr_;
 	break;
 	case ((tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw) 0):
 	{
-		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_36));
+		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_110));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	break;
 	case ((tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw) 1):
 	{
-		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_37));
+		raiseSSLError__4bk00w9al9cfmeFR9a9cMW860g(((NimStringDesc*) &TM__XqsrSBxhOTPgLQ9cX4MmV4A_111));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	break;
@@ -2732,7 +3138,7 @@ static TNimNode* TM__XqsrSBxhOTPgLQ9cX4MmV4A_3_3[3];
 static TNimNode* TM__XqsrSBxhOTPgLQ9cX4MmV4A_4_2[2];
 static TNimNode* TM__XqsrSBxhOTPgLQ9cX4MmV4A_5_2[2];
 static TNimNode* TM__XqsrSBxhOTPgLQ9cX4MmV4A_6_2[2];
-static TNimNode* TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[15];
+static TNimNode* TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[15];
 static TNimNode TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[31];
 NTI__nNdejAl9bbVbX7sP6RJ4h0w_.size = sizeof(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w);
 NTI__nNdejAl9bbVbX7sP6RJ4h0w_.kind = 18;
@@ -2819,17 +3225,17 @@ NTI__kvnNRVii8mSe6F4A9cKud4g_.marker = Marker_tyRef__kvnNRVii8mSe6F4A9cKud4g;
 NTI__aIhANOOoETolVz9cccNO9cRQ_.size = sizeof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ);
 NTI__aIhANOOoETolVz9cccNO9cRQ_.kind = 18;
 NTI__aIhANOOoETolVz9cccNO9cRQ_.base = 0;
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[0] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[15];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[0] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[15];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[15].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[15].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, fd);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[15].typ = (&NTI__nlCscttRCss70IBTyuBqnA_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[15].name = "fd";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[1] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[16];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[1] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[16];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[16].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[16].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, isBuffered);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[16].typ = (&NTI__VaVACK0bpYmqIQ0mKcHfQQ_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[16].name = "isBuffered";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[2] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[17];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[2] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[17];
 NTI__QQGLPNVVwLhYjkngqAxXQQ_.size = sizeof(tyArray__QQGLPNVVwLhYjkngqAxXQQ);
 NTI__QQGLPNVVwLhYjkngqAxXQQ_.kind = 16;
 NTI__QQGLPNVVwLhYjkngqAxXQQ_.base = (&NTI__nmiMWKVIe46vacnhAFrQvw_);
@@ -2838,67 +3244,67 @@ TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[17].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[17].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, buffer);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[17].typ = (&NTI__QQGLPNVVwLhYjkngqAxXQQ_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[17].name = "buffer";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[3] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[18];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[3] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[18];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[18].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[18].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, currPos);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[18].typ = (&NTI__rR5Bzr1D5krxoo1NcNyeMA_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[18].name = "currPos";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[4] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[19];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[4] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[19];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[19].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[19].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, bufLen);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[19].typ = (&NTI__rR5Bzr1D5krxoo1NcNyeMA_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[19].name = "bufLen";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[5] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[20];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[5] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[20];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[20].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[20].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, isSsl);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[20].typ = (&NTI__VaVACK0bpYmqIQ0mKcHfQQ_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[20].name = "isSsl";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[6] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[21];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[6] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[21];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[21].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[21].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, sslHandle);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[21].typ = (&NTI__QQ33RYEe889cv60wm9bVkd8A_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[21].name = "sslHandle";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[7] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[22];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[7] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[22];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[22].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[22].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, sslContext);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[22].typ = (&NTI__LP7l6kWJNPJLySYXWH5AYA_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[22].name = "sslContext";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[8] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[23];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[8] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[23];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[23].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[23].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, sslNoHandshake);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[23].typ = (&NTI__VaVACK0bpYmqIQ0mKcHfQQ_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[23].name = "sslNoHandshake";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[9] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[24];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[9] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[24];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[24].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[24].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, sslHasPeekChar);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[24].typ = (&NTI__VaVACK0bpYmqIQ0mKcHfQQ_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[24].name = "sslHasPeekChar";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[10] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[25];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[10] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[25];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[25].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[25].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, sslPeekChar);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[25].typ = (&NTI__nmiMWKVIe46vacnhAFrQvw_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[25].name = "sslPeekChar";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[11] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[26];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[11] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[26];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[26].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[26].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, lastError);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[26].typ = (&NTI__sVg18TP9cLifHyygRe9cro9aA_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[26].name = "lastError";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[12] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[27];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[12] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[27];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[27].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[27].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, domain);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[27].typ = (&NTI__Q79bEtFARvq0ekDNtvj3Vqg_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[27].name = "domain";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[13] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[28];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[13] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[28];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[28].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[28].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, sockType);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[28].typ = (&NTI__NQT1bItGG2X9byGdrWX7ujw_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[28].name = "sockType";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[14] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[29];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[14] = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[29];
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[29].kind = 1;
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[29].offset = offsetof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ, protocol);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[29].typ = (&NTI__dqJ1OqRGclxIMMdSLRzzXg_);
 TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[29].name = "protocol";
-TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14].len = 15; TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14].kind = 2; TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14].sons = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_18_15[0];
+TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14].len = 15; TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14].kind = 2; TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14].sons = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_23_15[0];
 NTI__aIhANOOoETolVz9cccNO9cRQ_.node = &TM__XqsrSBxhOTPgLQ9cX4MmV4A_0[14];
 NTI__MkGXUPMSENeRDS7EppfLgA_.size = sizeof(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*);
 NTI__MkGXUPMSENeRDS7EppfLgA_.kind = 22;

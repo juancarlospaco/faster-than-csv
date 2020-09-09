@@ -361,7 +361,7 @@ void* ClE_0;
 struct tyObject_PyIterRefcolonObjectType___d9bsBVvwpaMgkPbcqU7T9apw {
 tyProc__KUkKMDDIR7OpocD9a4Oh3aQ iter;
 };
-typedef N_CLOSURE_PTR(void*, TM__LoH0foxqckmmftA2y2Dp9aw_6) (void);
+typedef N_CLOSURE_PTR(void*, TM__LoH0foxqckmmftA2y2Dp9aw_9) (void);
 typedef N_CDECL_PTR(void*, tyProc__BEMKLd49c5qNHqmldA6aVaw) (void* m, int apiver);
 struct tyObject_PyModuleDef_Base__rlCDhfYMTJl9bANneNOHAGQ {
 tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg ob_base;
@@ -519,11 +519,14 @@ static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
 N_LIB_PRIVATE N_NIMCALL(TGenericSeq*, incrSeqV3)(TGenericSeq* s, TNimType* typ);
 N_LIB_PRIVATE N_NIMCALL(void*, symAddr__ALH9bdNwXEzg7MPq4PA9csvw)(void* lib, NCSTRING name);
+N_LIB_PRIVATE N_NOINLINE(void, raiseIndexError2)(NI i, NI n);
 N_LIB_PRIVATE N_NIMCALL(void, initModuleTypes__csb2z5UIH3D9cgBHISzH54g)(void* p, tyObject_PyModuleDesc__gBC8z6Ez5xj3dXoP0ylCRA* m);
 static N_INLINE(void*, pyAlloc__1Aee2onoqwg9aFJWAasp3iAnimpy)(NI sz);
 N_LIB_PRIVATE N_NOCONV(void*, alloc0Impl__WrVG9abV9chlTLqkiXYLKwUg)(NI size);
+N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorI)(NI64 i, NI64 a, NI64 b);
 static N_INLINE(tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*, to__5tJl9a9cvcVqYJFbXrlgYbfApy_lib)(void* p);
 static N_INLINE(NCSTRING, nimToCStringConv)(NimStringDesc* s);
+N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_LIB_PRIVATE N_CDECL(void, freeNimObj__jz2epPJWRa0T6WbzV9cD4Og)(void* p);
 N_LIB_PRIVATE N_NIMCALL(void*, newObj)(TNimType* typ, NI size);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, copyString)(NimStringDesc* src);
@@ -552,6 +555,7 @@ static N_INLINE(NimStringDesc*, getCurrentExceptionMsg__jLt3ACHcgYt9bbV4Vf9a5mgw
 static N_INLINE(void, popCurrentException)(void);
 static N_INLINE(void, initPyModule__DD6uuT0cNlotk9a8nyu9bE7wnimpy)(tyObject_PyModuleDef__QZDAPlXtpUM7Y9asxNBUBwg* p, tyObject_PyModuleDesc__gBC8z6Ez5xj3dXoP0ylCRA* m);
 static N_INLINE(tyObject_PyModuleDef__QZDAPlXtpUM7Y9asxNBUBwg*, to__wt9cwaSUiMGJ5i7qopVibqApy_lib)(void* p);
+N_LIB_PRIVATE N_NOINLINE(void, chckNil)(void* p);
 static N_INLINE(void, GC_disable__RsY2eAkO9aEvlDhb7ZyRF8gsystem)(void);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, nimIntToStr)(NI x);
 static N_INLINE(void, GC_enable__RsY2eAkO9aEvlDhb7ZyRF8g_2system)(void);
@@ -559,6 +563,7 @@ N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, pyDictHasKey__gPPk6uJ9bWMpMyW6uS9azQWg)(void* 
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, eqeq___gPPk6uJ9bWMpMyW6uS9azQWg_2)(void* o, NCSTRING k);
 static N_INLINE(NIM_BOOL, eqeq___aqip9cmQIuefPKdd25wuEEwsystem)(NCSTRING x, NCSTRING y);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, dollar___rh9a6aY6urF0Nohf9aeDyH4Q)(void* p);
+N_LIB_PRIVATE N_NIMCALL(void, failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A)(NimStringDesc* msg);
 N_LIB_PRIVATE N_NIMCALL(void, pyObjToNimStr__eEwHrfmOllfqMcr3IQY2zQ)(void* o, NimStringDesc** v);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, pyStringToNim__9cjH8eaYe0aMdbQ9bg4rwiDw)(void* o, NimStringDesc** output);
 N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, nsuFormatOpenArray)(NimStringDesc* formatstr, NimStringDesc** a, NI aLen_0);
@@ -568,6 +573,7 @@ static N_INLINE(void, pyObjToNim__FjLZIS6bmCNfbqp1u4mSjAnimpy)(void* o, NIM_BOOL
 static N_INLINE(void, pyObjToNim__hVAJZJuaDsbB1rEHF29cm8Animpy)(void* o, NIM_CHAR* v);
 N_LIB_PRIVATE N_NIMCALL(void, clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg)(NimStringDesc* toType);
 N_LIB_PRIVATE N_NIMCALL(void, raiseConversionError__z8PFXg0IwDVDHYuZ87EtFg_2)(NimStringDesc* toType);
+N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorU)(NU64 i, NU64 a, NU64 b);
 static N_INLINE(void*, nimValueToPy__JCDkP8wgVvgrZH49cYEzgDAnimpy)(NimStringDesc* v);
 N_LIB_PRIVATE N_NIMCALL(void*, strToPyObject__HrbiptnioAqtONeuJHPBSQ)(NimStringDesc* s);
 static N_INLINE(void*, nimValueToPy__zXY4sY8ktz8SKCRtLhP9bkwnimpy)(tyObject_Table__Ji6x6JQ0gVMaFr8AIk18Ug v);
@@ -598,28 +604,33 @@ N_LIB_PRIVATE TNimType NTI__3Lh9c29bpC2Iomkl9cQO9cGqEw_;
 N_LIB_PRIVATE TNimType NTI__xxWWYOndkW9adiM61bZkvsg_;
 extern TNimType NTI__vU9aO9cTqOMn6CBzhV8rX7Sw_;
 extern TNimType NTI__XEycrCsme5C8CVWAYEcdBQ_;
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_5, "Internal pynim error. Free called on Nim object.", 48);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_7, "nimpy.", 6);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_8, "Unexpected error encountered: ", 30);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_9, "() takes exactly ", 17);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_10, " arguments (", 12);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_11, " given)", 7);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_6, "Internal pynim error. Free called on Nim object.", 48);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_10, "nimpy.", 6);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_12, "Unexpected error encountered: ", 30);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_15, "() takes exactly ", 17);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_16, " arguments (", 12);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_17, " given)", 7);
 extern TNimType NTI__ShBqCFAISBSH2YqBfe6zjg_;
 extern TNimType NTI__G9cUlLvU4AFC26wbFxLFkFA_;
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_12, "API usage error: GC_enable called but GC is already enabled", 59);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_13, "() missing 1 required positional argument: ", 43);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_14, "() got multiple values for argument ", 36);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_15, "Can\'t convert python obj of type \'$1\' to string", 47);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_16, "() got an unexpected keyword argument ", 38);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_17, "Cannot convert python object to ", 32);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_18, "char", 4);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_19, "Could not serialize object key: ", 32);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_20, "int", 3);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_21, "Natural", 7);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_22, "startA", 6);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_23, "startB", 6);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_24, "deletedA", 8);
-STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_25, "insertedB", 9);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_18, "API usage error: GC_enable called but GC is already enabled", 59);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_19, "() missing 1 required positional argument: ", 43);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_23, "() got multiple values for argument ", 36);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_26, "nimpy.nim(722, 9) `not p.isNil` ", 32);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_27, "Can\'t convert python obj of type \'$1\' to string", 47);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_28, "() got an unexpected keyword argument ", 38);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_29, "Cannot convert python object to ", 32);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_30, "char", 4);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_31, "nimpy.nim(385, 9) `not result.isNil` nimpy internal error conve"
+"rting string", 75);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_33, "Could not serialize object key: ", 32);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_34, "tables.nim(664, 13) `len(t) == L` the length of the table chang"
+"ed while iterating over it", 89);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_37, "int", 3);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_38, "Natural", 7);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_39, "startA", 6);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_40, "startB", 6);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_41, "deletedA", 8);
+STRING_LITERAL(TM__LoH0foxqckmmftA2y2Dp9aw_42, "insertedB", 9);
 extern tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig* pyLib__nxKBiAukGMNwnUq9bpn9adyw;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 extern NU pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q;
@@ -728,10 +739,13 @@ NIM_BOOL* nimErr_;
 static N_INLINE(void*, pyAlloc__1Aee2onoqwg9aFJWAasp3iAnimpy)(NI sz) {
 	void* result;
 	void* T1_;
-	result = (void*)0;
+{	result = (void*)0;
+	if ((NI64)((NU)((NU64)(((NU) (sz))) + (NU64)(pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q))) < ((NI) 0) || (NI64)((NU)((NU64)(((NU) (sz))) + (NU64)(pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q))) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI((NU)((NU64)(((NU) (sz))) + (NU64)(pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q)), ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	T1_ = (void*)0;
 	T1_ = alloc0Impl__WrVG9abV9chlTLqkiXYLKwUg(((NI) ((NU)((NU64)(((NU) (sz))) + (NU64)(pyObjectStartOffset__g20dGCi2MffsHqmxIpqX7Q)))));
 	result = ((void*) (T1_));
+	}BeforeRet_: ;
 	return result;
 }
 static N_INLINE(tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*, to__5tJl9a9cvcVqYJFbXrlgYbfApy_lib)(void* p) {
@@ -767,7 +781,7 @@ N_LIB_PRIVATE N_CDECL(void, freeNimObj__jz2epPJWRa0T6WbzV9cD4Og)(void* p) {
 	T1_ = (Exception*) newObj((&NTI__vU9aO9cTqOMn6CBzhV8rX7Sw_), sizeof(Exception));
 	(*T1_).Sup.m_type = (&NTI__XEycrCsme5C8CVWAYEcdBQ_);
 	(*T1_).name = "Exception";
-	(*T1_).message = copyString(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_5));
+	(*T1_).message = copyString(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_6));
 	(*T1_).parent = NIM_NIL;
 	raiseExceptionEx((Exception*)T1_, "Exception", "freeNimObj", "nimpy.nim", 204);
 	goto BeforeRet_;
@@ -796,12 +810,15 @@ static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs
 }
 static N_INLINE(void, incRef__CnqcscfOCAX2jCHv3dRPDwpy_utils)(void* p) {
 	tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg* T1_;
+	NI TM__LoH0foxqckmmftA2y2Dp9aw_7;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	T1_ = (tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*)0;
 	T1_ = to__4gaYCHYBaCTIs6wfSrqsEApy_lib(p);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	(*T1_).ob_refcnt += ((NI) 1);
+	if (nimAddInt((*T1_).ob_refcnt, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_7)) { raiseOverflow(); goto BeforeRet_;
+};
+	(*T1_).ob_refcnt = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_7);
 	}BeforeRet_: ;
 }
 static N_INLINE(tyObject_PyIteratorObj__GqRpYj9a7yzFP1C6hQf7QBQ*, to__g6ziajH1gssveMp8KIs8MApy_lib)(void* p) {
@@ -854,11 +871,14 @@ static N_INLINE(void, appendString)(NimStringDesc* dest, NimStringDesc* src) {
 }
 static N_INLINE(void, decRef__CnqcscfOCAX2jCHv3dRPDw_2py_utils)(void* p) {
 	tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg* o;
+	NI TM__LoH0foxqckmmftA2y2Dp9aw_11;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	o = to__4gaYCHYBaCTIs6wfSrqsEApy_lib(p);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	(*o).ob_refcnt -= ((NI) 1);
+	if (nimSubInt((*o).ob_refcnt, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_11)) { raiseOverflow(); goto BeforeRet_;
+};
+	(*o).ob_refcnt = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_11);
 	{
 		if (!((*o).ob_refcnt == ((NI) 0))) goto LA3_;
 		(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyDealloc(p);
@@ -898,7 +918,7 @@ NIM_BOOL* nimErr_;
 	T2_ = (NimStringDesc*)0;
 	T2_ = cstrToNimstr((*e).name);
 	T1_ = rawNewString((T2_ ? T2_->Sup.len : 0) + 6);
-appendString(T1_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_7));
+appendString(T1_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_10));
 appendString(T1_, T2_);
 	err = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_NewException(nimToCStringConv(T1_), (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).NimPyException, NIM_NIL);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -908,7 +928,7 @@ appendString(T1_, T2_);
 	T4_ = (NimStringDesc*)0;
 	T4_ = getCurrentExceptionMsg__jLt3ACHcgYt9bbV4Vf9a5mgwsystem();
 	T3_ = rawNewString((T4_ ? T4_->Sup.len : 0) + 30);
-appendString(T3_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_8));
+appendString(T3_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_12));
 appendString(T3_, T4_);
 	(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_SetString(err, nimToCStringConv(T3_));
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -973,18 +993,34 @@ NIM_BOOL* nimErr_;
 			while (1) {
 				void* typ;
 				tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g* ty;
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_5;
 				int T5_;
 				int T6_;
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_8;
 				if (!(i_2 < colontmp_)) goto LA4;
 				i = i_2;
 				typ = pyAlloc__1Aee2onoqwg9aFJWAasp3iAnimpy(((NI) 400));
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				ty = to__5tJl9a9cvcVqYJFbXrlgYbfApy_lib(typ);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				if ((NU)(i) >= (NU)((*m).types ? (*m).types->Sup.len : 0)){ raiseIndexError2(i,((*m).types ? (*m).types->Sup.len : 0)-1); goto BeforeRet_;
+}
 				(*ty).tp_name = nimToCStringConv((*m).types->data[i].fullName);
-				(*ty).tp_basicsize = ((NI) ((NI32)(((int) ((*m).types->data[i].origSize)) - ((int) 8))));
+				if ((NU)(i) >= (NU)((*m).types ? (*m).types->Sup.len : 0)){ raiseIndexError2(i,((*m).types ? (*m).types->Sup.len : 0)-1); goto BeforeRet_;
+}
+				if (((*m).types->data[i].origSize) < ((int) (-2147483647 -1)) || ((*m).types->data[i].origSize) > ((int) 2147483647)){ raiseRangeErrorI((*m).types->data[i].origSize, ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
+				if (nimSubInt(((int) ((*m).types->data[i].origSize)), ((int) 8), &TM__LoH0foxqckmmftA2y2Dp9aw_5)) { raiseOverflow(); goto BeforeRet_;
+};
+				if (TM__LoH0foxqckmmftA2y2Dp9aw_5 < (-2147483647 -1) || TM__LoH0foxqckmmftA2y2Dp9aw_5 > 2147483647){ raiseOverflow(); goto BeforeRet_;
+}
+				(*ty).tp_basicsize = ((NI) ((NI32)(TM__LoH0foxqckmmftA2y2Dp9aw_5)));
 				(*ty).tp_flags = ((unsigned long) 131563);
+				if ((NU)(i) >= (NU)((*m).types ? (*m).types->Sup.len : 0)){ raiseIndexError2(i,((*m).types ? (*m).types->Sup.len : 0)-1); goto BeforeRet_;
+}
 				(*ty).tp_doc = (*m).types->data[i].doc;
+				if ((NU)(i) >= (NU)((*m).types ? (*m).types->Sup.len : 0)){ raiseIndexError2(i,((*m).types ? (*m).types->Sup.len : 0)-1); goto BeforeRet_;
+}
 				(*ty).tp_new = (*m).types->data[i].newFunc;
 				(*ty).tp_free = freeNimObj__jz2epPJWRa0T6WbzV9cD4Og;
 				(*ty).tp_dealloc = destructNimObj__5aiupm4TAhj22Yu9cWwwuVg;
@@ -994,11 +1030,15 @@ NIM_BOOL* nimErr_;
 				(void)(T5_);
 				incRef__CnqcscfOCAX2jCHv3dRPDwpy_utils(typ);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				if ((NU)(i) >= (NU)((*m).types ? (*m).types->Sup.len : 0)){ raiseIndexError2(i,((*m).types ? (*m).types->Sup.len : 0)-1); goto BeforeRet_;
+}
 				T6_ = (int)0;
 				T6_ = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyModule_AddObject(p, (*m).types->data[i].name, typ);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				(void)(T6_);
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_8)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_8);
 			} LA4: ;
 		}
 	}
@@ -1034,16 +1074,23 @@ NIM_BOOL* nimErr_;
 				tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g* ty_2;
 				int T18_;
 				int T19_;
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_13;
 				if (!(i_4 < colontmp__2)) goto LA17;
 				i_3 = i_4;
 				typ_2 = pyAlloc__1Aee2onoqwg9aFJWAasp3iAnimpy(((NI) 400));
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				ty_2 = to__5tJl9a9cvcVqYJFbXrlgYbfApy_lib(typ_2);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				if ((NU)(i_3) >= (NU)((*m).iterators ? (*m).iterators->Sup.len : 0)){ raiseIndexError2(i_3,((*m).iterators ? (*m).iterators->Sup.len : 0)-1); goto BeforeRet_;
+}
 				(*ty_2).tp_name = (*m).iterators->data[i_3].name;
 				(*ty_2).tp_basicsize = ((NI) 32);
 				(*ty_2).tp_flags = ((unsigned long) 131563);
+				if ((NU)(i_3) >= (NU)((*m).iterators ? (*m).iterators->Sup.len : 0)){ raiseIndexError2(i_3,((*m).iterators ? (*m).iterators->Sup.len : 0)-1); goto BeforeRet_;
+}
 				(*ty_2).tp_doc = (*m).iterators->data[i_3].doc;
+				if ((NU)(i_3) >= (NU)((*m).iterators ? (*m).iterators->Sup.len : 0)){ raiseIndexError2(i_3,((*m).iterators ? (*m).iterators->Sup.len : 0)-1); goto BeforeRet_;
+}
 				(*ty_2).tp_new = (*m).iterators->data[i_3].newFunc;
 				(*ty_2).tp_free = freeNimObj__jz2epPJWRa0T6WbzV9cD4Og;
 				(*ty_2).tp_dealloc = destructNimIterator__5aiupm4TAhj22Yu9cWwwuVg_2;
@@ -1055,11 +1102,15 @@ NIM_BOOL* nimErr_;
 				(void)(T18_);
 				incRef__CnqcscfOCAX2jCHv3dRPDwpy_utils(typ_2);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				if ((NU)(i_3) >= (NU)((*m).iterators ? (*m).iterators->Sup.len : 0)){ raiseIndexError2(i_3,((*m).iterators ? (*m).iterators->Sup.len : 0)-1); goto BeforeRet_;
+}
 				T19_ = (int)0;
 				T19_ = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyModule_AddObject(p, (*m).iterators->data[i_3].name, typ_2);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				(void)(T19_);
-				i_4 += ((NI) 1);
+				if (nimAddInt(i_4, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_13)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_4 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_13);
 			} LA17: ;
 		}
 	}
@@ -1097,6 +1148,8 @@ NIM_BOOL* nimErr_;
 	{
 		void* py;
 		if (!!((Py_InitModule4 == 0))) goto LA9_;
+		if ((NU)(((NI) 0)) >= (NU)((*m).methods ? (*m).methods->Sup.len : 0)){ raiseIndexError2(((NI) 0),((*m).methods ? (*m).methods->Sup.len : 0)-1); goto BeforeRet_;
+}
 		py = Py_InitModule4((*m).name, (&(*m).methods->data[((NI) 0)]), (*m).doc, NIM_NIL, ((int) 1013));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		initModuleTypes__csb2z5UIH3D9cgBHISzH54g(py, (&(*m)));
@@ -1106,11 +1159,14 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 }
 static N_INLINE(void, initPyModule__DD6uuT0cNlotk9a8nyu9bE7wnimpy)(tyObject_PyModuleDef__QZDAPlXtpUM7Y9asxNBUBwg* p, tyObject_PyModuleDesc__gBC8z6Ez5xj3dXoP0ylCRA* m) {
-	(*p).m_base.ob_base.ob_refcnt = ((NI) 1);
+{	(*p).m_base.ob_base.ob_refcnt = ((NI) 1);
 	(*p).m_name = (*m).name;
 	(*p).m_doc = (*m).doc;
 	(*p).m_size = ((NI) -1);
+	if ((NU)(((NI) 0)) >= (NU)((*m).methods ? (*m).methods->Sup.len : 0)){ raiseIndexError2(((NI) 0),((*m).methods ? (*m).methods->Sup.len : 0)-1); goto BeforeRet_;
+}
 	(*p).m_methods = (&(*m).methods->data[((NI) 0)]);
+	}BeforeRet_: ;
 }
 static N_INLINE(tyObject_PyModuleDef__QZDAPlXtpUM7Y9asxNBUBwg*, to__wt9cwaSUiMGJ5i7qopVibqApy_lib)(void* p) {
 	tyObject_PyModuleDef__QZDAPlXtpUM7Y9asxNBUBwg* result;
@@ -1164,6 +1220,7 @@ NIM_BOOL* nimErr_;
 N_LIB_PRIVATE N_NIMCALL(void, addMethod__TpUnmhxGlZgxTBTLPiE3nw)(tyObject_PyModuleDesc__gBC8z6Ez5xj3dXoP0ylCRA* m, NCSTRING name, NCSTRING doc, tyProc__uQWqJp3WAx8fOY1h9aCwjIg f) {
 	tyObject_PyMethodDef__9aWi1PsmvCuTKIYDHHnhfcw def;
 	NI T1_;
+	chckNil((void*)(&def));
 	nimZeroMem((void*)(&def), sizeof(tyObject_PyMethodDef__9aWi1PsmvCuTKIYDHHnhfcw));
 	def.ml_name = name;
 	def.ml_meth = f;
@@ -1184,7 +1241,7 @@ static N_INLINE(void, GC_enable__RsY2eAkO9aEvlDhb7ZyRF8g_2system)(void) {
 		T5_ = (tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA*) newObj((&NTI__ShBqCFAISBSH2YqBfe6zjg_), sizeof(tyObject_AssertionError__G9cUlLvU4AFC26wbFxLFkFA));
 		(*T5_).Sup.Sup.Sup.m_type = (&NTI__G9cUlLvU4AFC26wbFxLFkFA_);
 		(*T5_).Sup.Sup.name = "AssertionError";
-		(*T5_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_12));
+		(*T5_).Sup.Sup.message = copyString(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_18));
 		(*T5_).Sup.Sup.parent = NIM_NIL;
 		raiseExceptionEx((Exception*)T5_, "AssertionError", "GC_enable", "gc_ms.nim", 498);
 		goto BeforeRet_;
@@ -1284,7 +1341,7 @@ NIM_BOOL* nimErr_;
 		T4_ = NIM_UNLIKELY(!(T3_));
 		if (!T4_) goto LA5_;
 		typ = ((tyObject_PyTypeObject3Obj__cRsC9bGvH9bX6A9aVx8UB6I5g*) ((*((tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*) (o))).ob_type));
-		errString = copyString(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_15));
+		errString = copyString(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_27));
 		T7_ = (Exception*)0;
 		T7_ = (Exception*) newObj((&NTI__vU9aO9cTqOMn6CBzhV8rX7Sw_), sizeof(Exception));
 		(*T7_).Sup.m_type = (&NTI__XEycrCsme5C8CVWAYEcdBQ_);
@@ -1306,6 +1363,12 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, dollar___rh9a6aY6urF0Nohf9aeDyH4Q)(void*
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (NimStringDesc*)0;
+	{
+		if (!!(!((p == 0)))) goto LA3_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_26));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA3_: ;
 	s = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyObject_Str(p);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	pyObjToNimStr__eEwHrfmOllfqMcr3IQY2zQ(s, (&result));
@@ -1320,6 +1383,7 @@ N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, verifyArgs__8sVYJT4zfbIXMNXtJ2cTng)(void* argT
 	NI nargs;
 	NI nkwargs;
 	NI sz;
+	NI TM__LoH0foxqckmmftA2y2Dp9aw_14;
 	NI nkwarg_left;
 NIM_BOOL oldNimErrFin73_;
 NIM_BOOL* nimErr_;
@@ -1347,7 +1411,9 @@ NIM_BOOL* nimErr_;
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA6_: ;
-	sz = (NI)(nargs + nkwargs);
+	if (nimAddInt(nargs, nkwargs, &TM__LoH0foxqckmmftA2y2Dp9aw_14)) { raiseOverflow(); goto BeforeRet_;
+};
+	sz = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_14);
 	nkwarg_left = nkwargs;
 	{
 		NIM_BOOL T15_;
@@ -1378,11 +1444,11 @@ NIM_BOOL* nimErr_;
 		T24_ = nimIntToStr(sz);
 		T22_ = rawNewString((funcName ? funcName->Sup.len : 0) + (T23_ ? T23_->Sup.len : 0) + (T24_ ? T24_->Sup.len : 0) + 36);
 appendString(T22_, funcName);
-appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_9));
+appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_15));
 appendString(T22_, T23_);
-appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_10));
+appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_16));
 appendString(T22_, T24_);
-appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_11));
+appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_17));
 		(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_SetString((*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyExc_TypeError, nimToCStringConv(T22_));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		GC_enable__RsY2eAkO9aEvlDhb7ZyRF8g_2system();
@@ -1398,6 +1464,7 @@ appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_11));
 		i_2 = ((NI) 0);
 		{
 			while (1) {
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_22;
 				if (!(i_2 < sz)) goto LA27;
 				i = i_2;
 				{
@@ -1419,17 +1486,21 @@ appendString(T22_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_11));
 							NIM_BOOL T40_;
 							NimStringDesc* T43_;
 							NimStringDesc* T44_;
+							if ((NU)(i) >= (NU)(argNamesLen_0)){ raiseIndexError2(i,argNamesLen_0-1); goto BeforeRet_;
+}
 							T40_ = (NIM_BOOL)0;
 							T40_ = pyDictHasKey__gPPk6uJ9bWMpMyW6uS9azQWg(kwargsDict, argNames[i]);
 							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 							if (!!(T40_)) goto LA41_;
 							GC_disable__RsY2eAkO9aEvlDhb7ZyRF8gsystem();
 							T43_ = (NimStringDesc*)0;
+							if ((NU)(i) >= (NU)(argNamesLen_0)){ raiseIndexError2(i,argNamesLen_0-1); goto BeforeRet_;
+}
 							T44_ = (NimStringDesc*)0;
 							T44_ = cstrToNimstr(argNames[i]);
 							T43_ = rawNewString((funcName ? funcName->Sup.len : 0) + (T44_ ? T44_->Sup.len : 0) + 43);
 appendString(T43_, funcName);
-appendString(T43_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_13));
+appendString(T43_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_19));
 appendString(T43_, T44_);
 							(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_SetString((*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyExc_TypeError, nimToCStringConv(T43_));
 							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -1441,7 +1512,10 @@ appendString(T43_, T44_);
 						goto LA38_;
 						LA41_: ;
 						{
-							nkwarg_left -= ((NI) 1);
+							NI TM__LoH0foxqckmmftA2y2Dp9aw_20;
+							if (nimSubInt(nkwarg_left, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_20)) { raiseOverflow(); goto BeforeRet_;
+};
+							nkwarg_left = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_20);
 						}
 						LA38_: ;
 					}
@@ -1451,11 +1525,16 @@ appendString(T43_, T44_);
 						if (!(((NI) 0) < nkwargs)) goto LA47_;
 						{
 							NIM_BOOL T51_;
+							NI TM__LoH0foxqckmmftA2y2Dp9aw_21;
+							if ((NU)(i) >= (NU)(argNamesLen_0)){ raiseIndexError2(i,argNamesLen_0-1); goto BeforeRet_;
+}
 							T51_ = (NIM_BOOL)0;
 							T51_ = pyDictHasKey__gPPk6uJ9bWMpMyW6uS9azQWg(kwargsDict, argNames[i]);
 							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 							if (!T51_) goto LA52_;
-							nkwarg_left -= ((NI) 1);
+							if (nimSubInt(nkwarg_left, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_21)) { raiseOverflow(); goto BeforeRet_;
+};
+							nkwarg_left = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_21);
 						}
 						LA52_: ;
 					}
@@ -1463,7 +1542,9 @@ appendString(T43_, T44_);
 					LA47_: ;
 					LA29_: ;
 				} LA28: ;
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_22)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_22);
 			} LA27: ;
 		}
 	}
@@ -1478,23 +1559,28 @@ appendString(T43_, T44_);
 				res = ((NI) 0);
 				{
 					while (1) {
+						NI TM__LoH0foxqckmmftA2y2Dp9aw_24;
 						if (!(res <= nargs)) goto LA64;
 						i_3 = res;
 						{
 							NIM_BOOL T67_;
 							NimStringDesc* T70_;
 							NimStringDesc* T71_;
+							if ((NU)(i_3) >= (NU)(argNamesLen_0)){ raiseIndexError2(i_3,argNamesLen_0-1); goto BeforeRet_;
+}
 							T67_ = (NIM_BOOL)0;
 							T67_ = pyDictHasKey__gPPk6uJ9bWMpMyW6uS9azQWg(kwargsDict, argNames[i_3]);
 							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 							if (!T67_) goto LA68_;
 							GC_disable__RsY2eAkO9aEvlDhb7ZyRF8gsystem();
 							T70_ = (NimStringDesc*)0;
+							if ((NU)(i_3) >= (NU)(argNamesLen_0)){ raiseIndexError2(i_3,argNamesLen_0-1); goto BeforeRet_;
+}
 							T71_ = (NimStringDesc*)0;
 							T71_ = cstrToNimstr(argNames[i_3]);
 							T70_ = rawNewString((funcName ? funcName->Sup.len : 0) + (T71_ ? T71_->Sup.len : 0) + 36);
 appendString(T70_, funcName);
-appendString(T70_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_14));
+appendString(T70_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_23));
 appendString(T70_, T71_);
 							(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_SetString((*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyExc_TypeError, nimToCStringConv(T70_));
 							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -1504,7 +1590,9 @@ appendString(T70_, T71_);
 							goto BeforeRet_;
 						}
 						LA68_: ;
-						res += ((NI) 1);
+						if (nimAddInt(res, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_24)) { raiseOverflow(); goto BeforeRet_;
+};
+						res = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_24);
 					} LA64: ;
 				}
 			}
@@ -1536,7 +1624,10 @@ appendString(T70_, T71_);
 						i_5 = ((NI) 0);
 						{
 							while (1) {
+								NI TM__LoH0foxqckmmftA2y2Dp9aw_25;
 								if (!(i_5 < argNamesLen_0)) goto LA82;
+								if ((NU)(i_5) >= (NU)(argNamesLen_0)){ raiseIndexError2(i_5,argNamesLen_0-1); goto LA73_;
+}
 								a = argNames[i_5];
 								{
 									NIM_BOOL T85_;
@@ -1548,7 +1639,9 @@ appendString(T70_, T71_);
 									goto LA80;
 								}
 								LA86_: ;
-								i_5 += ((NI) 1);
+								if (nimAddInt(i_5, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_25)) { raiseOverflow(); goto LA73_;
+};
+								i_5 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_25);
 							} LA82: ;
 						}
 					} LA80: ;
@@ -1573,7 +1666,7 @@ appendString(T70_, T71_);
 						T94_ = (NimStringDesc*)0;
 						T94_ = rawNewString((funcName ? funcName->Sup.len : 0) + (kStr ? kStr->Sup.len : 0) + 38);
 appendString(T94_, funcName);
-appendString(T94_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_16));
+appendString(T94_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_28));
 appendString(T94_, kStr);
 						(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_SetString((*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyExc_TypeError, nimToCStringConv(T94_));
 						if (NIM_UNLIKELY(*nimErr_)) goto LA73_;
@@ -1687,7 +1780,7 @@ N_LIB_PRIVATE N_NIMCALL(void, raiseConversionError__z8PFXg0IwDVDHYuZ87EtFg_2)(Ni
 	(*T1_).name = "Exception";
 	T2_ = (NimStringDesc*)0;
 	T2_ = rawNewString((toType ? toType->Sup.len : 0) + 32);
-appendString(T2_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_17));
+appendString(T2_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_29));
 appendString(T2_, toType);
 	(*T1_).message = T2_;
 	(*T1_).parent = NIM_NIL;
@@ -1721,12 +1814,14 @@ NIM_BOOL* nimErr_;
 			T8_ = (NIM_BOOL)0;
 			T8_ = NIM_UNLIKELY(!((T7_ == 0)));
 			if (!T8_) goto LA9_;
-			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_18));
+			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_30));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA9_: ;
 	}
 	LA3_: ;
+	if ((ll) < 0 || (ll) > 255){ raiseRangeErrorU(ll, 0, 255); goto BeforeRet_;
+}
 	(*v) = ((NIM_CHAR) (ll));
 	}BeforeRet_: ;
 }
@@ -1752,6 +1847,8 @@ NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (void*)0;
 	cs = nimToCStringConv(s);
+	if (((s ? s->Sup.len : 0)) < ((int) (-2147483647 -1)) || ((s ? s->Sup.len : 0)) > ((int) 2147483647)){ raiseRangeErrorI((s ? s->Sup.len : 0), ((int) (-2147483647 -1)), ((int) 2147483647)); goto BeforeRet_;
+}
 	ln = ((int) ((s ? s->Sup.len : 0)));
 	result = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).Py_BuildValue("s#", cs, ln);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -1763,6 +1860,12 @@ NIM_BOOL* nimErr_;
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA3_: ;
+	{
+		if (!!(!((result == 0)))) goto LA7_;
+		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_31));
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	}
+	LA7_: ;
 	}BeforeRet_: ;
 	return result;
 }
@@ -1794,15 +1897,20 @@ NIM_BOOL* nimErr_;
 			while (1) {
 				void* o;
 				int T4_;
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_32;
 				if (!(i_2 < sz)) goto LA3;
 				i = i_2;
+				if ((NU)(i) >= (NU)(sLen_0)){ raiseIndexError2(i,sLen_0-1); goto BeforeRet_;
+}
 				o = nimValueToPy__JCDkP8wgVvgrZH49cYEzgDAnimpy(s[i]);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				T4_ = (int)0;
 				T4_ = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyList_SetItem(result, i, o);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				(void)(T4_);
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_32)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_32);
 			} LA3: ;
 		}
 	}
@@ -1839,7 +1947,7 @@ N_LIB_PRIVATE N_NIMCALL(void, cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ)(NimSt
 	(*T1_).name = "Exception";
 	T2_ = (NimStringDesc*)0;
 	T2_ = rawNewString((k ? k->Sup.len : 0) + 32);
-appendString(T2_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_19));
+appendString(T2_, ((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_33));
 appendString(T2_, k);
 	(*T1_).message = T2_;
 	(*T1_).parent = NIM_NIL;
@@ -1874,17 +1982,24 @@ NIM_BOOL* nimErr_;
 			res = ((NI) 0);
 			{
 				while (1) {
+					NI TM__LoH0foxqckmmftA2y2Dp9aw_35;
 					if (!(res <= colontmp_)) goto LA5;
 					h = res;
 					{
 						NIM_BOOL T8_;
 						void* vv;
 						int ret;
+						if ((NU)(h) >= (NU)(t.data ? t.data->Sup.len : 0)){ raiseIndexError2(h,(t.data ? t.data->Sup.len : 0)-1); goto BeforeRet_;
+}
 						T8_ = (NIM_BOOL)0;
 						T8_ = isFilled__5Qpmu5QqwDY0esVXn6wf7wtables(t.data->data[h].Field0);
 						if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 						if (!T8_) goto LA9_;
+						if ((NU)(h) >= (NU)(t.data ? t.data->Sup.len : 0)){ raiseIndexError2(h,(t.data ? t.data->Sup.len : 0)-1); goto BeforeRet_;
+}
 						k = t.data->data[h].Field1;
+						if ((NU)(h) >= (NU)(t.data ? t.data->Sup.len : 0)){ raiseIndexError2(h,(t.data ? t.data->Sup.len : 0)-1); goto BeforeRet_;
+}
 						v = t.data->data[h].Field2;
 						vv = nimValueToPy__JCDkP8wgVvgrZH49cYEzgDAnimpy(v);
 						if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -1898,9 +2013,21 @@ NIM_BOOL* nimErr_;
 							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 						}
 						LA13_: ;
+						{
+							NI T17_;
+							T17_ = (NI)0;
+							T17_ = len__5HyJrijzw6C9busX1MaqvCw(t);
+							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+							if (!!((T17_ == L))) goto LA18_;
+							failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_34));
+							if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+						}
+						LA18_: ;
 					}
 					LA9_: ;
-					res += ((NI) 1);
+					if (nimAddInt(res, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_35)) { raiseOverflow(); goto BeforeRet_;
+};
+					res = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_35);
 				} LA5: ;
 			}
 		}
@@ -1936,15 +2063,20 @@ NIM_BOOL* nimErr_;
 			while (1) {
 				void* o;
 				int T4_;
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_36;
 				if (!(i_2 < sz)) goto LA3;
 				i = i_2;
+				if ((NU)(i) >= (NU)(sLen_0)){ raiseIndexError2(i,sLen_0-1); goto BeforeRet_;
+}
 				o = nimValueToPy__zXY4sY8ktz8SKCRtLhP9bkwnimpy(s[i]);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				T4_ = (int)0;
 				T4_ = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyList_SetItem(result, i, o);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				(void)(T4_);
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_36)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_36);
 			} LA3: ;
 		}
 	}
@@ -1968,7 +2100,7 @@ NIM_BOOL* nimErr_;
 			T8_ = (NIM_BOOL)0;
 			T8_ = NIM_UNLIKELY(!((T7_ == 0)));
 			if (!T8_) goto LA9_;
-			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_20));
+			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_37));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA9_: ;
@@ -2008,12 +2140,14 @@ NIM_BOOL* nimErr_;
 			T8_ = (NIM_BOOL)0;
 			T8_ = NIM_UNLIKELY(!((T7_ == 0)));
 			if (!T8_) goto LA9_;
-			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_21));
+			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_38));
 			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		}
 		LA9_: ;
 	}
 	LA3_: ;
+	if ((ll) < ((NI) 0) || (ll) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(ll, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	(*v) = ((NI) (ll));
 	}BeforeRet_: ;
 }
@@ -2074,7 +2208,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret == ((NI32) 0)))) goto LA3_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_22));
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_39));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA3_: ;
@@ -2086,7 +2220,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret_2 == ((NI32) 0)))) goto LA7_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_23));
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_40));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA7_: ;
@@ -2098,7 +2232,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret_3 == ((NI32) 0)))) goto LA11_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_24));
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_41));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA11_: ;
@@ -2110,7 +2244,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret_4 == ((NI32) 0)))) goto LA15_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_25));
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(((NimStringDesc*) &TM__LoH0foxqckmmftA2y2Dp9aw_42));
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA15_: ;
@@ -2145,15 +2279,20 @@ NIM_BOOL* nimErr_;
 			while (1) {
 				void* o;
 				int T4_;
+				NI TM__LoH0foxqckmmftA2y2Dp9aw_43;
 				if (!(i_2 < sz)) goto LA3;
 				i = i_2;
+				if ((NU)(i) >= (NU)(sLen_0)){ raiseIndexError2(i,sLen_0-1); goto BeforeRet_;
+}
 				o = nimValueToPy__xMvtbvt119c9ccS3nBepOLIwnimpy((&s[i]));
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				T4_ = (int)0;
 				T4_ = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyList_SetItem(result, i, o);
 				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				(void)(T4_);
-				i_2 += ((NI) 1);
+				if (nimAddInt(i_2, ((NI) 1), &TM__LoH0foxqckmmftA2y2Dp9aw_43)) { raiseOverflow(); goto BeforeRet_;
+};
+				i_2 = (NI)(TM__LoH0foxqckmmftA2y2Dp9aw_43);
 			} LA3: ;
 		}
 	}

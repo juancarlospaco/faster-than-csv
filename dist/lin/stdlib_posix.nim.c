@@ -36,14 +36,21 @@ void* finalizer;
 tyProc__ojoeKfW4VYIm36I9cpDTQIg marker;
 tyProc__WSm2xU5ARYv9aAR4l0z9c9auQ deepcopy;
 };
+N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_LIB_PRIVATE N_NIMCALL(int, WTERMSIG__T7ZeAv6ofGPBA29bsuGG1ug)(int s);
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE TNimType NTI__r9bTMVI8f19ah9b11jMgY4kPg_;
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, WIFSIGNALED__o9b5GK70QLj9ahJeczQ2LyRg)(int s) {
 	NIM_BOOL result;
-	result = (NIM_BOOL)0;
-	result = (((NI8) 0) < (NI8)((NI64)(((NI8) ((NI32)((NI32)(s & ((NI32) 127)) + ((NI32) 1))))) >> (NU64)(((NI) 1))));
+	NI TM__mJPr4mHlDfNAl9asG6X7NFA_2;
+{	result = (NIM_BOOL)0;
+	if (nimAddInt((NI32)(s & ((NI32) 127)), ((NI32) 1), &TM__mJPr4mHlDfNAl9asG6X7NFA_2)) { raiseOverflow(); goto BeforeRet_;
+};
+	if (TM__mJPr4mHlDfNAl9asG6X7NFA_2 < (-2147483647 -1) || TM__mJPr4mHlDfNAl9asG6X7NFA_2 > 2147483647){ raiseOverflow(); goto BeforeRet_;
+}
+	result = (((NI8) 0) < (NI8)((NI64)(((NI8) ((NI32)(TM__mJPr4mHlDfNAl9asG6X7NFA_2)))) >> (NU64)(((NI) 1))));
+	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(int, WTERMSIG__T7ZeAv6ofGPBA29bsuGG1ug)(int s) {

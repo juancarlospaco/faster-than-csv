@@ -228,9 +228,12 @@ N_LIB_PRIVATE N_NIMCALL(NimStringDesc*, copyString)(NimStringDesc* src);
 N_LIB_PRIVATE N_NIMCALL(void, raiseExceptionEx)(Exception* e, NCSTRING ename, NCSTRING procname, NCSTRING filename, NI line);
 static N_INLINE(void, decRef__CnqcscfOCAX2jCHv3dRPDw_2py_utils)(void* p);
 static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs6wfSrqsEApy_lib)(void* p);
+N_LIB_PRIVATE N_NOINLINE(void, raiseOverflow)(void);
 N_NIMCALL(NimStringDesc*, mnewString)(NI len);
+N_LIB_PRIVATE N_NOINLINE(void, raiseRangeErrorI)(NI64 i, NI64 a, NI64 b);
 static N_INLINE(void, copyMem__i80o3k0SgEI5gTRCzYdyWAsystem)(void* dest, void* source, NI size);
 static N_INLINE(void, nimCopyMem)(void* dest, void* source, NI size);
+N_LIB_PRIVATE N_NOINLINE(void, raiseIndexError2)(NI i, NI n);
 extern TNimType NTI__vU9aO9cTqOMn6CBzhV8rX7Sw_;
 extern TNimType NTI__XEycrCsme5C8CVWAYEcdBQ_;
 STRING_LITERAL(TM__yNJ2G9b01RlVILlUjgj0ESA_2, "Can\'t convert python obj to string", 34);
@@ -288,11 +291,14 @@ static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs
 }
 static N_INLINE(void, decRef__CnqcscfOCAX2jCHv3dRPDw_2py_utils)(void* p) {
 	tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg* o;
+	NI TM__yNJ2G9b01RlVILlUjgj0ESA_3;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	o = to__4gaYCHYBaCTIs6wfSrqsEApy_lib(p);
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	(*o).ob_refcnt -= ((NI) 1);
+	if (nimSubInt((*o).ob_refcnt, ((NI) 1), &TM__yNJ2G9b01RlVILlUjgj0ESA_3)) { raiseOverflow(); goto BeforeRet_;
+};
+	(*o).ob_refcnt = (NI)(TM__yNJ2G9b01RlVILlUjgj0ESA_3);
 	{
 		if (!((*o).ob_refcnt == ((NI) 0))) goto LA3_;
 		(*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyDealloc(p);
@@ -372,9 +378,15 @@ NIM_BOOL* nimErr_;
 		goto BeforeRet_;
 	}
 	LA1_: ;
+	if ((l) < ((NI) 0) || (l) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(l, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 	(*output) = mnewString(((NI) (l)));
 	{
 		if (!!((l == ((NI) 0)))) goto LA27_;
+		if ((NU)(((NI) 0)) >= (NU)((*output) ? (*output)->Sup.len : 0)){ raiseIndexError2(((NI) 0),((*output) ? (*output)->Sup.len : 0)-1); goto BeforeRet_;
+}
+		if ((l) < ((NI) 0) || (l) > ((NI) IL64(9223372036854775807))){ raiseRangeErrorI(l, ((NI) 0), ((NI) IL64(9223372036854775807))); goto BeforeRet_;
+}
 		copyMem__i80o3k0SgEI5gTRCzYdyWAsystem(((void*) ((&(*output)->data[((NI) 0)]))), ((void*) (s)), ((NI) (l)));
 	}
 	LA27_: ;

@@ -19,6 +19,20 @@
 #undef unix
 #define nimfr_(x, y)
 #define nimln_(x, y)
+N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, isPowerOfTwo__1xdTQapFveM9bImKot7h9cdw)(NI x) {
+	NIM_BOOL result;
+	NIM_BOOL T1_;
+{	result = (NIM_BOOL)0;
+	T1_ = (NIM_BOOL)0;
+	T1_ = (((NI) 0) < x);
+	if (!(T1_)) goto LA2_;
+	T1_ = ((NI)(x & (NI)(x - ((NI) 1))) == ((NI) 0));
+	LA2_: ;
+	result = T1_;
+	goto BeforeRet_;
+	}BeforeRet_: ;
+	return result;
+}
 N_LIB_PRIVATE N_NIMCALL(NI, nextPowerOfTwo__v2qC0V55wqa9bmqc7eHTz8A)(NI x) {
 	NI result;
 	result = (NI)0;
