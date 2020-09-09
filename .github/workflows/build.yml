@@ -61,6 +61,7 @@ jobs:
     - name: Clone Nim                   # Clone Nim
       run: |
         git clone -q --depth 1 --branch v${{ env.NIM_VERSION }} https://github.com/nim-lang/Nim.git
+        git reset --hard v${{ env.NIM_VERSION }}
         echo "::add-path::$PWD/Nim/bin"
 
 
@@ -79,12 +80,10 @@ jobs:
         ./build_all.bat
 
 
-    - name: Nimble Refresh              # Refresh Nimble packages list
-      run: nimble -y refresh
-
-
     - name: Nimble Install dependencies # Install Nimpy
-      run: nimble -y install nimpy
+      run: |
+        nimble -y refresh
+        nimble -y install nimpy
 
 
     - name: Prepare Folders             # Prepare folders for the Python package
