@@ -7,7 +7,6 @@ package_name = "faster_than_csv"
 
 assert platform.architecture()[0] == "64bit", "ERROR: Python must be 64 Bit!. OS must be 64 Bit!."
 assert sys.version_info > (3, 5, 0), "ERROR: Python version must be > 3.5!."
-logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 atexit.register(lambda: print(importlib.metadata.distribution(package_name).files))
 atexit.register(lambda: print(__import__(package_name).__file__))
 
