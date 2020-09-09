@@ -61,7 +61,6 @@ jobs:
     - name: Clone Nim                   # Clone Nim
       run: |
         git clone -q --depth 1 --branch v${{ env.NIM_VERSION }} https://github.com/nim-lang/Nim.git
-        git reset --hard v${{ env.NIM_VERSION }}
         echo "::add-path::$PWD/Nim/bin"
 
 
@@ -71,6 +70,7 @@ jobs:
         cd Nim
         chmod +x ./build_all.sh
         ./build_all.sh
+        nim --version
 
 
     - name: Build Nim (Windows)         # Build Nim for Windows
@@ -78,6 +78,7 @@ jobs:
       run: |
         cd Nim
         ./build_all.bat
+        nim --version
 
 
     - name: Nimble Install dependencies # Install Nimpy
