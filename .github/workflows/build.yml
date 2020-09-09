@@ -49,7 +49,7 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
-        NIM_VERSION:           "1.2.2"
+        NIM_VERSION:           "1.2.6"
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
         PACKAGE_VERSION:       ${{ steps.vars.outputs.sha_short }}
@@ -130,7 +130,7 @@ jobs:
     - name: Compile (Linux) # Compile to C for Linux
       if: runner.os == 'Linux'
       run: |
-        nim compileToC --compileOnly:on --noLinking:off --nimcache:dist/lin/ \
+        nim compileToC --nimcache:dist/lin/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
         --stackTrace:off --gc:markAndSweep --excessiveStackTrace:off        \
@@ -140,7 +140,7 @@ jobs:
     - name: Compile (Mac) # Compile to C for Mac
       if: runner.os == 'macOS'
       run: |
-        nim compileToC --compileOnly:on --noLinking:off --nimcache:dist/mac/ \
+        nim compileToC --nimcache:dist/mac/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
         --stackTrace:off --gc:markAndSweep --excessiveStackTrace:off        \
@@ -149,7 +149,7 @@ jobs:
 
     - name: Compile (Windows) # Compile to C for Windows
       if: runner.os == 'Windows'
-      run: nim compileToC --compileOnly:on --noLinking:off --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
+      run: nim compileToC --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
