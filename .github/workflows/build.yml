@@ -58,6 +58,7 @@ jobs:
 
 
     - name: Update Python PIP
+      if: runner.os == 'Linux'
       run: pip3 install --quiet --upgrade --disable-pip-version-check pip twine
 
 
