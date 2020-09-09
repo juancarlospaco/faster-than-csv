@@ -131,6 +131,7 @@ jobs:
       if: runner.os == 'Linux'
       shell: bash
       run: |
+        rm -f dist/lin/*.c
         nim compileToC --nimcache:dist/lin/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
@@ -142,6 +143,7 @@ jobs:
       if: runner.os == 'macOS'
       shell: bash
       run: |
+        rm -f dist/mac/*.c
         nim compileToC --nimcache:dist/mac/ \
         -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl    \
         --app:lib --opt:speed --cpu:amd64 --forceBuild --tlsEmulation:off   \
@@ -151,7 +153,10 @@ jobs:
 
     - name: Compile (Windows) # Compile to C for Windows
       if: runner.os == 'Windows'
-      run: nim compileToC --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
+      shell: bash
+      run: |
+        rm -f dist/win/*.c
+        nim compileToC --nimcache:dist/win/ --out:${{ env.PACKAGE_NAME }}.pyd -d:release -d:nimBinaryStdFiles -d:noSignalHandler -d:lto -d:ssl -d:nimDisableCertificateValidation --app:lib --opt:speed --cpu:amd64 --forceBuild --compileOnly --tlsEmulation:on --stackTrace:off --gc:markAndSweep  --excessiveStackTrace:off ${{ env.MAIN_MODULE }}
 
 
     - name: Clean out
