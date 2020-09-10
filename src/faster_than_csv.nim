@@ -6,7 +6,7 @@ const html_table_header = """<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css" async defer >
 </head>
 <body><br><br>
   <div class="container is-fluid">
@@ -228,6 +228,25 @@ proc csv2htmltable*(csv_file_path, html_file_path: string = "",
     writeFile(html_file_path , html_content[])
   result = html_content[]
   dealloc html_content
+  dealloc parser
+
+
+proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
+    separator: char = ',', quote: char = '"',
+    skipInitialSpace: bool = false, verbose: bool = false): string {.exportpy.} =
+  ## CSV to MarkDown Table file and string.
+  let parser = create(CsvParser, sizeOf CsvParser)
+  parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
+  parser[].readHeaderRow()
+  for column in parser[].headers.items: result.add "| " & $column & " "
+  result.add "|\n| " & "---- | ".repeat(parser[].headers.len) & "\n"
+  while parser[].readRow():
+    for column in parser[].headers.items: result.add "| " & parser[].rowEntry(column) & " "
+    result.add "|\n"
+    if unlikely(verbose): echo parser[].processedRows()
+  parser[].close()
+  if md_file_path.len > 0:
+    writeFile(md_file_path , result)
   dealloc parser
 
 
