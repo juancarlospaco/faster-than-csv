@@ -114,11 +114,11 @@ jobs:
         cp -f $PWD/Nim/lib/nimbase.h  dist/mac/nimbase.h
 
 
-    - name: Generate Documentation (Linux)
-      if: runner.os == 'Linux'
-      run: |
-        nim doc --out:docs/index.html ${{ env.MAIN_MODULE }}
-        nim rst2tex --out:docs/${{ env.PACKAGE_NAME }}.tex ${{ env.MAIN_MODULE }}
+    # - name: Generate Documentation (Linux)
+    #   if: runner.os == 'Linux'
+    #   run: |
+    #     nim doc --out:docs/index.html ${{ env.MAIN_MODULE }}
+    #     nim rst2tex --out:docs/${{ env.PACKAGE_NAME }}.tex ${{ env.MAIN_MODULE }}
 
 
     - name: Compile Debug & import (Unix)
