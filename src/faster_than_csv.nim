@@ -16,7 +16,7 @@ const html_table_header = """<!DOCTYPE html>
 proc csv2list*(csv_file_path: string, has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[string] {.exportpy.} =
   ## Stream Read CSV to a list of strings.
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
   if has_header:
     parser[].readHeaderRow()
@@ -36,7 +36,7 @@ proc csv2list*(csv_file_path: string, has_header: bool = true, separator: char =
 proc csv2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(filename)``.
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
   if has_header:
     parser[].readHeaderRow()
@@ -67,7 +67,7 @@ proc read_clipboard*(has_header: bool = true, separator: char = ',',
     elif defined(windows): "Get-Clipboard"
     else: "")
   if likely(exitCode[] == 0):
-    let parser = create(CsvParser, sizeOf CsvParser)
+    let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
     parser[].open(newStringStream(output[]), "read_clipboard", separator, quote, skipInitialSpace=skipInitialSpace)
     if has_header:
       parser[].readHeaderRow()
@@ -98,7 +98,7 @@ proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
   let csv_content = create(string, sizeOf string)
   csv_content[] = newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout).getContent(url)  # opciones
   if likely(csv_content[].len > 0):
-    let parser = create(CsvParser, sizeOf CsvParser)
+    let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
     parser[].open(newStringStream(csv_content[]), "url2csv", separator, quote, skipInitialSpace=skipInitialSpace)
     if has_header:
       parser[].readHeaderRow()
@@ -123,7 +123,7 @@ proc csv2json*(csv_file_path: string, has_header: bool = true,
   separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
   verbose: bool = false, indentation: Natural = 0): seq[string] {.exportpy.} =
   ## Stream Read CSV to JSON, Pretty-printed or Minified.
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   let temp = create(string, sizeOf string)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
   if has_header:
@@ -161,7 +161,7 @@ proc csv2json*(csv_file_path: string, has_header: bool = true,
 proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false) {.discardable, exportpy.} =
   ## Stream Read CSV to NDJSON https://github.com/ndjson/ndjson-spec
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   let ndjson = create(string, sizeOf string)
   let temp = create(string, sizeOf string)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
@@ -195,7 +195,7 @@ proc csv2htmltable*(csv_file_path, html_file_path: string = "",
     skipInitialSpace: bool = false, verbose: bool = false,
     header_html: string = html_table_header): string {.exportpy.} =
   ## Stream Read CSV to HTML Table file and string.
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   let html_content = create(string, sizeOf string)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
   html_content[].add header_html
@@ -235,7 +235,7 @@ proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
     separator: char = ',', quote: char = '"',
     skipInitialSpace: bool = false, verbose: bool = false): string {.exportpy.} =
   ## CSV to MarkDown Table file and string.
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
   parser[].readHeaderRow()
   for column in parser[].headers.items: result.add "| " & $column & " "
@@ -254,7 +254,7 @@ proc csv2xml*(csv_file_path: string, has_header: bool = true,
   separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
   verbose: bool = false, header_xml: string = xmlHeader): string {.exportpy.} =
   ## Stream Read CSV to XML.
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   let temp = create(seq[XmlNode], sizeOf seq[XmlNode])
   let e = create(XmlNode, sizeOf XmlNode)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
@@ -285,7 +285,7 @@ proc csv2xml*(csv_file_path: string, has_header: bool = true,
 proc csv_punycode2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
   quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream read PunyCode encoded CSV to Dict (Punycode encodes Unicode as ASCII). http://wikipedia.org/wiki/Punycode
-  let parser = create(CsvParser, sizeOf CsvParser)
+  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
   parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
   if has_header:
     parser[].readHeaderRow()
