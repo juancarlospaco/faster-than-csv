@@ -326,7 +326,7 @@ N_LIB_PRIVATE N_NIMCALL(void, eq___hf0dTehZytuPaBioHlpymw)(tySequence__JiteSJxrv
 N_LIB_PRIVATE N_NIMCALL(void, setLen__PcYMT3JyvFtxhn6UuSMDgg)(tySequence__JiteSJxrvz63iP2o9bcn2Sg* s, NI newlen);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___2Gf5YfVIVw0iQzZBcX83xg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* dest);
 N_LIB_PRIVATE N_NIMCALL(NI, rawGet__U8BE8F1hkorXEqb1x9baemQ)(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg* t, NimStringV2 key, NI* hc);
-N_LIB_PRIVATE N_NIMCALL(void, eq___6EHV9bhKKq4NxDKi7tw1gBg_2)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src);
+N_LIB_PRIVATE N_NIMCALL(void, eq___6EHV9bhKKq4NxDKi7tw1gBg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src);
 static N_INLINE(NIM_BOOL, mustRehash__8nOTuA2SxOsL8hlNzSF4Dwtables)(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg* t);
 N_LIB_PRIVATE N_NIMCALL(void, enlarge__9cAm9cItwB6y9bUzyB9bE1NBlA)(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg* t);
 N_LIB_PRIVATE N_NIMCALL(void, rawInsert__K9b9aplmUERncrp49bmzOdPnw)(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg* t, tySequence__MlAD6nAPq9bHKla9cWiIZP0g* data, NimStringV2 key, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* val, NI hc, NI h);
@@ -1266,7 +1266,7 @@ static N_INLINE(NIM_BOOL, mustRehash__8nOTuA2SxOsL8hlNzSF4Dwtables)(tyObject_Ord
 }
 N_LIB_PRIVATE N_NIMCALL(void, rawInsert__K9b9aplmUERncrp49bmzOdPnw)(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg* t, tySequence__MlAD6nAPq9bHKla9cWiIZP0g* data, NimStringV2 key, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* val, NI hc, NI h) {
 	eq___aBBXmHFBEivKqERloP6zmA_2((&(*data).p->data[h].Field2), key);
-	eq___6EHV9bhKKq4NxDKi7tw1gBg_2(&(*data).p->data[h].Field3, val);
+	eq___6EHV9bhKKq4NxDKi7tw1gBg(&(*data).p->data[h].Field3, val);
 	(*data).p->data[h].Field0 = hc;
 	(*data).p->data[h].Field1 = ((NI) -1);
 	{
@@ -1408,7 +1408,7 @@ N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___vlnBr1uIbtu0ntnZh6Askg)(tyObject_Ordere
 	index = rawGet__U8BE8F1hkorXEqb1x9baemQ((&(*t)), key, (&hc));
 	{
 		if (!(((NI) 0) <= index)) goto LA8_;
-		eq___6EHV9bhKKq4NxDKi7tw1gBg_2(&(*t).data.p->data[index].Field3, val);
+		eq___6EHV9bhKKq4NxDKi7tw1gBg(&(*t).data.p->data[index].Field3, val);
 	}
 	goto LA6_;
 	LA8_: ;

@@ -676,8 +676,8 @@ appendString((&(*result)), (*n)._k_2.fTag);
 							h = res;
 							{
 								if (!(*colontmp_).data.p->data[h].Field2) goto LA27_;
-								key = (*colontmp_).data.p->data[h].Field0;
-								val = (*colontmp_).data.p->data[h].Field1;
+								eq___aBBXmHFBEivKqERloP6zmA_2((&key), (*colontmp_).data.p->data[h].Field0);
+								eq___aBBXmHFBEivKqERloP6zmA_2((&val), (*colontmp_).data.p->data[h].Field1);
 								nimAddCharV1((&(*result)), 32);
 								prepareAdd((&(*result)), key.len + 0);
 appendString((&(*result)), key);
@@ -691,6 +691,8 @@ appendString((&(*result)), TM__qYyKc6OpDWHHaBXL9bX9aQ2A_7);
 						} LA24: ;
 					}
 				}
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&val));
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&key));
 			}
 		}
 		LA18_: ;

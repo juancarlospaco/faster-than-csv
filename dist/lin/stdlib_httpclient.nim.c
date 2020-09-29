@@ -93,6 +93,7 @@ NimStringV2 path;
 NimStringV2 query;
 NimStringV2 anchor;
 NIM_BOOL opaque;
+NIM_BOOL isIpv6;
 };
 struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ {
   NI len; tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content* p;
@@ -1357,7 +1358,7 @@ appendString((&result), colontmpD__5);
 							T54_ = (NIM_BOOL)0;
 							T54_ = isFilled__5Qpmu5QqwDY0esVXn6wf7wtables((*(*headers).table).data.p->data[h].Field0);
 							if (!T54_) goto LA55_;
-							eq___aBBXmHFBEivKqERloP6zmA_2((&k), (*(*headers).table).data.p->data[h].Field1);
+							k = (*(*headers).table).data.p->data[h].Field1;
 							v = (*(*headers).table).data.p->data[h].Field2;
 							{
 								NimStringV2* value;
@@ -1376,7 +1377,7 @@ appendString((&result), colontmpD__5);
 										colontmpD__6.len = 0; colontmpD__6.p = NIM_NIL;
 										value = (&v.p->data[i]);
 										eq___aBBXmHFBEivKqERloP6zmA_2((&key), k);
-										val = (*value);
+										eq___aBBXmHFBEivKqERloP6zmA_2((&val), (*value));
 										T61_.len = 0; T61_.p = NIM_NIL;
 										T61_ = rawNewString(key.len + val.len + 4);
 appendString((&T61_), key);
@@ -1397,8 +1398,8 @@ appendString((&result), colontmpD__6);
 					} LA51: ;
 				}
 			}
-			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&k));
 		}
+		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&val));
 		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&key));
 	}
 	prepareAdd((&result), 2);
@@ -2882,18 +2883,17 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROC
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
-	lastURL.len = 0; lastURL.p = NIM_NIL;
 	{
-		NIM_BOOL T4_;
-		T4_ = (NIM_BOOL)0;
-		T4_ = contains__wAzSnEu9cCHHjvPQlWBZUeQ(url, TM__9brjMmGFaIx4wBkLyxxXZxw_2);
-		if (!!(!(T4_))) goto LA5_;
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = contains__wAzSnEu9cCHHjvPQlWBZUeQ(url, TM__9brjMmGFaIx4wBkLyxxXZxw_2);
+		if (!!(!(T3_))) goto LA4_;
 		failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(TM__9brjMmGFaIx4wBkLyxxXZxw_4);
 	}
-	LA5_: ;
+	LA4_: ;
 	result = requestAux__nrxBG9atKB7KhRUylZop7gA_2(client, url, httpMethod, body, headers, multipart);
-	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-	eq___aBBXmHFBEivKqERloP6zmA_2((&lastURL), url);
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	lastURL = url;
 	{
 		NI i;
 		NI colontmp_;
@@ -2904,61 +2904,53 @@ NIM_BOOL* nimErr_;
 		res = ((NI) 1);
 		{
 			while (1) {
-				if (!(res <= colontmp_)) goto LA9;
+				if (!(res <= colontmp_)) goto LA8;
 				i = res;
 				{
-					NIM_BOOL T12_;
+					NIM_BOOL T11_;
 					NimStringV2 redirectTo;
 					NimStringV2 colontmpD_;
 					NimStringV2 colontmpD__2;
 					NimStringV2 meth;
-					tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* T21_;
-					T12_ = (NIM_BOOL)0;
-					T12_ = redirection__7c9c0MkLRudbFZ1hPGI7gVw((*result).status);
-					if (!T12_) goto LA13_;
+					tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* T20_;
+					T11_ = (NIM_BOOL)0;
+					T11_ = redirection__7c9c0MkLRudbFZ1hPGI7gVw((*result).status);
+					if (!T11_) goto LA12_;
 					redirectTo.len = 0; redirectTo.p = NIM_NIL;
 					colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 					colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
 					redirectTo = getNewLocation__zVcgYlyVeZFDopwaR9ao7Jg(lastURL, (*result).headers);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA15_;
+					if (NIM_UNLIKELY(*nimErr_)) goto LA14_;
 					{
-						if (!eqStrings((*result).status, TM__9brjMmGFaIx4wBkLyxxXZxw_148)) goto LA18_;
+						if (!eqStrings((*result).status, TM__9brjMmGFaIx4wBkLyxxXZxw_148)) goto LA17_;
 						eq___aBBXmHFBEivKqERloP6zmA_2((&colontmpD_), httpMethod);
 						meth = colontmpD_;
 					}
-					goto LA16_;
-					LA18_: ;
+					goto LA15_;
+					LA17_: ;
 					{
 						colontmpD__2 = TM__9brjMmGFaIx4wBkLyxxXZxw_150;
 						meth = colontmpD__2;
 					}
-					LA16_: ;
-					T21_ = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
-					T21_ = requestAux__nrxBG9atKB7KhRUylZop7gA_2(client, redirectTo, meth, body, headers, multipart);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA15_;
-					eqsink___8PoGYtGK2aJ4uGgFszak3w(&result, T21_);
-					eqsink___aBBXmHFBEivKqERloP6zmA((&lastURL), redirectTo);
-					redirectTo.len = 0; redirectTo.p = NIM_NIL;
+					LA15_: ;
+					T20_ = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
+					T20_ = requestAux__nrxBG9atKB7KhRUylZop7gA_2(client, redirectTo, meth, body, headers, multipart);
+					if (NIM_UNLIKELY(*nimErr_)) goto LA14_;
+					eqsink___8PoGYtGK2aJ4uGgFszak3w(&result, T20_);
+					lastURL = redirectTo;
 					{
-						LA15_:;
+						LA14_:;
 					}
 					{
 						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&redirectTo));
 					}
-					if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
+					if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 				}
-				LA13_: ;
+				LA12_: ;
 				res += ((NI) 1);
-			} LA9: ;
+			} LA8: ;
 		}
 	}
-	{
-		LA1_:;
-	}
-	{
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&lastURL));
-	}
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 	return result;
 }
