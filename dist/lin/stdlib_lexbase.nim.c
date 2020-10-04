@@ -73,7 +73,7 @@ NI b;
 };
 
 /* section: NIM_merge_PROC_HEADERS */
-N_LIB_PRIVATE N_NIMCALL(void, eq___uD7PP9aMywYClkkmJVib7sg)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___uD7PP9aMywYClkkmJVib7sg)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
 static N_INLINE(void, nimCopyMem)(void* dest, void* source, NI size);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___aBBXmHFBEivKqERloP6zmA)(NimStringV2* dest, NimStringV2 src);
 N_NIMCALL(NimStringV2, mnewString)(NI len);
@@ -88,6 +88,7 @@ N_LIB_PRIVATE N_NIMCALL(void, nimPrepareStrMutationImpl__C0YoABEefTaYbWLv9aVOzZA
 N_LIB_PRIVATE N_NIMCALL(void, setLengthStrV2)(NimStringV2* s, NI newLen);
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NIMCALL(void, skipUtf8Bom__m9bpQUVeRkyuyv4zAGVgY9bw_2)(tyObject_BaseLexer__MAw8rJZtJ279bVV3TWMtXSg* L);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___cfyDNt89cvZ8cfv9aORtdSFA)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest);
 N_LIB_PRIVATE N_NIMCALL(NI, fillBaseLexer__sLQC1Z9cokufE3lZEw9b42Cw_2)(tyObject_BaseLexer__MAw8rJZtJ279bVV3TWMtXSg* L, NI pos);
 N_LIB_PRIVATE N_NIMCALL(void, close__y1KA3B0U09bKtU09am9a9avRYQ_3)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s);
 
@@ -262,22 +263,30 @@ N_LIB_PRIVATE N_NIMCALL(void, skipUtf8Bom__m9bpQUVeRkyuyv4zAGVgY9bw_2)(tyObject_
 	LA7_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, open__P89aGatd6bDNJ0Ak5E9cQgWw)(tyObject_BaseLexer__MAw8rJZtJ279bVV3TWMtXSg* L, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* input, NI bufLen, tySet_tyChar__nmiMWKVIe46vacnhAFrQvw refillChars) {
-	NimStringV2 T1_;
+	NimStringV2 T2_;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
-	eq___uD7PP9aMywYClkkmJVib7sg(&(*L).input, input);
+	eqsink___uD7PP9aMywYClkkmJVib7sg(&(*L).input, input);
+	input = 0;
 	(*L).bufpos = ((NI) 0);
 	(*L).offsetBase = ((NI) 0);
 	nimCopyMem((void*)(*L).refillChars, (NIM_CONST void*)refillChars, 32);
-	T1_.len = 0; T1_.p = NIM_NIL;
-	T1_ = mnewString(((NI) (bufLen)));
-	eqsink___aBBXmHFBEivKqERloP6zmA((&(*L).buf), T1_);
+	T2_.len = 0; T2_.p = NIM_NIL;
+	T2_ = mnewString(((NI) (bufLen)));
+	eqsink___aBBXmHFBEivKqERloP6zmA((&(*L).buf), T2_);
 	(*L).sentinel = (NI)(bufLen - ((NI) 1));
 	(*L).lineStart = ((NI) 0);
 	(*L).lineNumber = ((NI) 1);
 	fillBuffer__m9bpQUVeRkyuyv4zAGVgY9bw(L);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	skipUtf8Bom__m9bpQUVeRkyuyv4zAGVgY9bw_2(L);
+	{
+		LA1_:;
+	}
+	{
+		eqdestroy___cfyDNt89cvZ8cfv9aORtdSFA(&input);
+	}
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(NI, fillBaseLexer__sLQC1Z9cokufE3lZEw9b42Cw_2)(tyObject_BaseLexer__MAw8rJZtJ279bVV3TWMtXSg* L, NI pos) {

@@ -83,9 +83,8 @@ struct tySequence__xv3aaFd3JCw8NbmALHiezQ_Content { NI cap; tyTuple__sPaDkVPSC0M
 
       
 /* section: NIM_merge_PROC_HEADERS */
-static N_INLINE(void, nimIncRef)(void* p);
-static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y);
 static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p);
+static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y);
 N_LIB_PRIVATE N_NIMCALL(void, nimDestroyAndDispose)(void* p);
 
 /* section: NIM_merge_PROCS */
@@ -100,12 +99,6 @@ static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y) {
 	result = (NI)0;
 	result = ((NI) ((NU)((NU64)(((NU) (x))) - (NU64)(((NU) (y))))));
 	return result;
-}
-static N_INLINE(void, nimIncRef)(void* p) {
-	NI T1_;
-	T1_ = (NI)0;
-	T1_ = minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system(((NI) (ptrdiff_t) (p)), ((NI) 8));
-	(*((tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A*) (T1_))).rc += ((NI) 8);
 }
 static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p) {
 	NIM_BOOL result;
@@ -131,19 +124,14 @@ static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p) {
 	LA3_: ;
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(void, eq___feu9aAavbJIn9cC0RBSe7CHw)(tyObject_StringTableObj__V5PVrt9bIxZEeV7lfvqqtNg** dest, tyObject_StringTableObj__V5PVrt9bIxZEeV7lfvqqtNg* src) {
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___feu9aAavbJIn9cC0RBSe7CHw)(tyObject_StringTableObj__V5PVrt9bIxZEeV7lfvqqtNg** dest, tyObject_StringTableObj__V5PVrt9bIxZEeV7lfvqqtNg* src) {
 	{
-		if (!src) goto LA3_;
-		nimIncRef(src);
-	}
-	LA3_: ;
-	{
-		NIM_BOOL T7_;
-		T7_ = (NIM_BOOL)0;
-		T7_ = nimDecRefIsLast((*dest));
-		if (!T7_) goto LA8_;
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = nimDecRefIsLast((*dest));
+		if (!T3_) goto LA4_;
 		nimDestroyAndDispose((*dest));
 	}
-	LA8_: ;
+	LA4_: ;
 	(*dest) = src;
 }

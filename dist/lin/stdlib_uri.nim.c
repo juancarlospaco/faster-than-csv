@@ -715,3 +715,31 @@ N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___9cxLel6KY8YRc2RBVO9bQhjw)(tyObject_Uri
 	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).query));
 	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).anchor));
 }
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___OydxUV9ad0I3qVcqasXV7RQ_2)(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ* dest, tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ* src) {
+	if ((*dest).scheme.p != (*src).scheme.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).scheme));
+	}
+(*dest).scheme.len = (*src).scheme.len; (*dest).scheme.p = (*src).scheme.p;
+	if ((*dest).username.p != (*src).username.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).username));
+	}
+(*dest).username.len = (*src).username.len; (*dest).username.p = (*src).username.p;
+	if ((*dest).password.p != (*src).password.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).password));
+	}
+(*dest).password.len = (*src).password.len; (*dest).password.p = (*src).password.p;
+	if ((*dest).hostname.p != (*src).hostname.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).hostname));
+	}
+(*dest).hostname.len = (*src).hostname.len; (*dest).hostname.p = (*src).hostname.p;
+	if ((*dest).port.p != (*src).port.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).port));
+	}
+(*dest).port.len = (*src).port.len; (*dest).port.p = (*src).port.p;
+	if ((*dest).path.p != (*src).path.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).path));
+	}
+(*dest).path.len = (*src).path.len; (*dest).path.p = (*src).path.p;
+	if ((*dest).query.p != (*src).query.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).query));
+	}
+(*dest).query.len = (*src).query.len; (*dest).query.p = (*src).query.p;
+	if ((*dest).anchor.p != (*src).anchor.p) {	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).anchor));
+	}
+(*dest).anchor.len = (*src).anchor.len; (*dest).anchor.p = (*src).anchor.p;
+	(*dest).opaque = (*src).opaque;
+	(*dest).isIpv6 = (*src).isIpv6;
+}

@@ -909,10 +909,18 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, percent
 		i = ((NI) 0);
 		{
 			while (1) {
+				NimStringV2 colontmpD_;
+				tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* colontmpD__2;
 				if (!(i < keyValsLen_0)) goto LA8;
+				colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+				colontmpD__2 = (tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*)0;
 				key = (&keyVals[i].Field0);
 				val = &keyVals[i].Field1;
-				X5BX5Deq___vlnBr1uIbtu0ntnZh6Askg((&(*result)._kind_6.fields), (*key), (*val));
+				colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+				eq___aBBXmHFBEivKqERloP6zmA_2((&colontmpD_), (*key));
+				colontmpD__2 = 0;
+				eq___6EHV9bhKKq4NxDKi7tw1gBg(&colontmpD__2, (*val));
+				X5BX5Deq___vlnBr1uIbtu0ntnZh6Askg((&(*result)._kind_6.fields), colontmpD_, colontmpD__2);
 				i += ((NI) 1);
 			} LA8: ;
 		}
@@ -922,16 +930,14 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, percent
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, percent___19ag6cl4fMjxytc9arHmLIbw)(NimStringV2 s) {
 	tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* result;
-	NimStringV2 colontmpD_;
 	tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* T1_;
+	NimStringV2 blitTmp;
 	result = (tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*)0;
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 	T1_ = (tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*)0;
 	T1_ = (tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*) nimNewObjUninit(sizeof(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q));
 	(*T1_).kind = ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 4);
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-	eq___aBBXmHFBEivKqERloP6zmA_2((&colontmpD_), s);
-	(*T1_)._kind_1.str = colontmpD_;
+	blitTmp = s;
+	(*T1_)._kind_1.str = blitTmp;
 	result = T1_;
 	return result;
 }

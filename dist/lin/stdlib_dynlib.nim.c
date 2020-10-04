@@ -126,7 +126,6 @@ static N_INLINE(void, nimCopyMem)(void* dest, void* source, NI size);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, rawNewString)(NI space);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ)(NimStringV2* dest);
 N_LIB_PRIVATE N_NIMCALL(void, add__dK9ajFgX5RSWQx0eHjjpjSQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* x, NimStringV2 value);
-N_LIB_PRIVATE N_NIMCALL(void, eq___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NIMCALL(void*, loadLib__Yq5XYz2ycX5V5B9bUM4Uyiw)(NimStringV2 path, NIM_BOOL globalSymbols);
 static N_INLINE(NCSTRING, nimToCStringConv)(NimStringV2 s);
@@ -194,15 +193,15 @@ NIM_BOOL* nimErr_;
 	le = nsuFindChar(s, 40, ((NI) 0), ((NI) 0));
 	ri = nsuFindChar(s, 41, ((NI) ((NI)(le + ((NI) 1)))), ((NI) 0));
 	{
-		NIM_BOOL T3_;
+		NIM_BOOL T4_;
 		NimStringV2 prefix;
 		NimStringV2 suffix;
-		T3_ = (NIM_BOOL)0;
-		T3_ = (((NI) 0) <= le);
-		if (!(T3_)) goto LA4_;
-		T3_ = (le < ri);
-		LA4_: ;
-		if (!T3_) goto LA5_;
+		T4_ = (NIM_BOOL)0;
+		T4_ = (((NI) 0) <= le);
+		if (!(T4_)) goto LA5_;
+		T4_ = (le < ri);
+		LA5_: ;
+		if (!T4_) goto LA6_;
 		prefix.len = 0; prefix.p = NIM_NIL;
 		suffix.len = 0; suffix.p = NIM_NIL;
 		prefix = substr__2yh9cer0ymNRHlOOg8P7IuA(s, ((NI) 0), (NI)(le - ((NI) 1)));
@@ -219,12 +218,10 @@ NIM_BOOL* nimErr_;
 			splitsX60gensym26_ = ((NI) -1);
 			{
 				while (1) {
-					NimStringV2 colontmpD_;
 					NI firstX60gensym26_;
 					NimStringV2 T21_;
 					NimStringV2 T22_;
-					if (!(lastX60gensym26_ <= colontmp_.len)) goto LA11;
-					colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+					if (!(lastX60gensym26_ <= colontmp_.len)) goto LA12;
 					firstX60gensym26_ = lastX60gensym26_;
 					{
 						while (1) {
@@ -251,53 +248,50 @@ NIM_BOOL* nimErr_;
 appendString((&T22_), prefix);
 appendString((&T22_), middle);
 appendString((&T22_), suffix);
-					colontmpD_ = T22_;
-					libCandidates__TEY9aqiaMWVK2l0NzZy7BwQ(colontmpD_, dest);
+					libCandidates__TEY9aqiaMWVK2l0NzZy7BwQ(T22_, dest);
 					{
 						if (!(splitsX60gensym26_ == ((NI) 0))) goto LA25_;
-						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
-						goto LA10;
+						goto LA11;
 					}
 					LA25_: ;
 					splitsX60gensym26_ -= ((NI) 1);
 					lastX60gensym26_ += ((NI) 1);
-					{
-						LA12_:;
-					}
-					{
-						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
-					}
-					if (NIM_UNLIKELY(*nimErr_)) goto LA9_;
-				} LA11: ;
-			} LA10: ;
+				} LA12: ;
+			} LA11: ;
 			{
-				LA9_:;
+				LA10_:;
 			}
 			{
 				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmp_));
 				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&middle));
 			}
-			if (NIM_UNLIKELY(*nimErr_)) goto LA7_;
+			if (NIM_UNLIKELY(*nimErr_)) goto LA8_;
 		}
 		{
-			LA7_:;
+			LA8_:;
 		}
 		{
 			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&suffix));
 			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&prefix));
 		}
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	}
-	goto LA1_;
-	LA5_: ;
+	goto LA2_;
+	LA6_: ;
 	{
-		NimStringV2 colontmpD__2;
-		colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-		colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-		eq___aBBXmHFBEivKqERloP6zmA_2((&colontmpD__2), s);
-		add__dK9ajFgX5RSWQx0eHjjpjSQ((&(*dest)), colontmpD__2);
+		NimStringV2 blitTmp;
+		blitTmp = s;
+		s.len = 0; s.p = NIM_NIL;
+		add__dK9ajFgX5RSWQx0eHjjpjSQ((&(*dest)), blitTmp);
 	}
-	LA1_: ;
+	LA2_: ;
+	{
+		LA1_:;
+	}
+	{
+		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&s));
+	}
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 }
 static N_INLINE(NCSTRING, nimToCStringConv)(NimStringV2 s) {
@@ -341,12 +335,14 @@ N_LIB_PRIVATE N_NIMCALL(void*, loadLib__Yq5XYz2ycX5V5B9bUM4Uyiw)(NimStringV2 pat
 N_LIB_PRIVATE N_NIMCALL(void*, loadLibPattern__b9aH5C9aWbfFKSp3nIx1lqTA)(NimStringV2 pattern, NIM_BOOL globalSymbols) {
 	void* result;
 	tySequence__sM4lkSb7zS6F7OVMvW9cffQ candidates;
+	NimStringV2 blitTmp;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (void*)0;
 	candidates.len = 0; candidates.p = NIM_NIL;
 	candidates = newSeq__q7W9bxIQ7BrFLngLO9cYelsA(((NI) 0));
-	libCandidates__TEY9aqiaMWVK2l0NzZy7BwQ(pattern, (&candidates));
+	blitTmp = pattern;
+	libCandidates__TEY9aqiaMWVK2l0NzZy7BwQ(blitTmp, (&candidates));
 	{
 		NimStringV2* c;
 		NI i;

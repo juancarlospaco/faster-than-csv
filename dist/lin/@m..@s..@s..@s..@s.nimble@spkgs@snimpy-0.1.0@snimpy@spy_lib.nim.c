@@ -332,7 +332,6 @@ static N_INLINE(tyObject_PyObjectObj__aD5pkFWInXrZXinZ42cDEg*, to__4gaYCHYBaCTIs
 N_LIB_PRIVATE N_NIMCALL(void, add__tXoS41N8tpGl9a5fRivX89bA)(tySequence__M73GJ9bOx1XdoIRnhIyhqTQ* x, tyObject_ExportedModule__fxDBwb9c9c8NsdRe9bmg8Q9a2A* value);
 static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
-N_LIB_PRIVATE N_NIMCALL(void, eq___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
 
 /* section: NIM_merge_DATA */
 extern TNimTypeV2 NTIv2__XEycrCsme5C8CVWAYEcdBQ_;
@@ -1348,21 +1347,19 @@ static N_INLINE(void, nimZeroMem)(void* p, NI size) {
 	nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory(p, ((int) 0), size);
 }
 N_LIB_PRIVATE N_NIMCALL(void, registerExportedModule__2aw5dpL5lVZZ9cjH0apWcXA)(NimStringV2 name, void* initAddr2, void* initAddr3) {
-	NimStringV2 colontmpD_;
+	void* colontmpD_;
 	void* colontmpD__2;
-	void* colontmpD__3;
 	tyObject_ExportedModule__fxDBwb9c9c8NsdRe9bmg8Q9a2A T1_;
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+	NimStringV2 blitTmp;
+	colontmpD_ = (void*)0;
 	colontmpD__2 = (void*)0;
-	colontmpD__3 = (void*)0;
 	nimZeroMem((void*)(&T1_), sizeof(tyObject_ExportedModule__fxDBwb9c9c8NsdRe9bmg8Q9a2A));
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-	eq___aBBXmHFBEivKqERloP6zmA_2((&colontmpD_), name);
-	T1_.name = colontmpD_;
-	colontmpD__2 = initAddr2;
-	T1_.initAddr2 = colontmpD__2;
-	colontmpD__3 = initAddr3;
-	T1_.initAddr3 = colontmpD__3;
+	blitTmp = name;
+	T1_.name = blitTmp;
+	colontmpD_ = initAddr2;
+	T1_.initAddr2 = colontmpD_;
+	colontmpD__2 = initAddr3;
+	T1_.initAddr3 = colontmpD__2;
 	add__tXoS41N8tpGl9a5fRivX89bA((&exportedModules__8kMAOMTFJYz2QnlnegLbYw), (&T1_));
 }
 N_LIB_PRIVATE N_NIMCALL(void, nimpy_py_libInit000)(void) {

@@ -345,6 +345,7 @@ N_LIB_PRIVATE N_NIMCALL(NI, nsuParseInt)(NimStringV2 s);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___uz5bm6GTj6lhUqoWSCWdvg)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ** dest, tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* src);
 N_LIB_PRIVATE N_NIMCALL(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*, dial__oD5cdlP49a1aM6tVxzT4h1Q)(NimStringV2 address, NU16 port, tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg protocol, NIM_BOOL buffered);
 N_LIB_PRIVATE N_NIMCALL(void, wrapConnectedSocket__zB421aJ04hXbpUeGq3doVQ)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* ctx, tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, tyEnum_SslHandshakeType__9aZhh5f9bRDKgYB8GLASDSqg handshake, NimStringV2 hostname);
+N_LIB_PRIVATE N_NIMCALL(void, eq___Maxw2KUIYGcdUEJ9aO5a9bpw_2)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w** dest, tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* src);
 static N_INLINE(Exception*, getCurrentException)(void);
 N_LIB_PRIVATE N_NIMCALL(void, eq___rR9boD7urcxl7uyUtE46AOA)(Exception** dest, Exception* src);
 static N_INLINE(void, popCurrentException)(void);
@@ -388,9 +389,9 @@ N_LIB_PRIVATE N_NIMCALL(NI, len__u7Y7mis1lgEx9cfeUB58mwA)(tyObject_HttpHeadersco
 N_LIB_PRIVATE N_NIMCALL(NI, code__74MIEFap0tx9bAcFdN6ES7Q)(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* response);
 static N_INLINE(NimStringV2, X5BX5D___FPvLvuwqfYMFkcbGfPM8QQsystem)(NimStringV2 s, tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA x);
 static N_INLINE(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA, dotdot___BokNSDrKN1xmV1nA01G9brAsystem)(NI a, NI b);
-N_LIB_PRIVATE N_NIMCALL(void, eqsink___uD7PP9aMywYClkkmJVib7sg_2)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___uD7PP9aMywYClkkmJVib7sg)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
 N_LIB_PRIVATE N_NIMCALL(tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw*, newStringStream__9aLRtgEYeRMrZKrObtoOslQ)(NimStringV2 s);
-N_LIB_PRIVATE N_NIMCALL(void, eq___uD7PP9aMywYClkkmJVib7sg)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
+N_LIB_PRIVATE N_NIMCALL(void, eq___uD7PP9aMywYClkkmJVib7sg_2)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
 N_LIB_PRIVATE N_NIMCALL(void, parseBody__nesWh4uP9aaR2HAQTFYAzUA)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, NimStringV2 httpVersion);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, toString__vY9b9br9btFmrOxuFGpY9cNqbQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ values);
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, getOrDefault__aSNwyYYZ2RsZRzsI4edhhA)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, NimStringV2 key, tySequence__sM4lkSb7zS6F7OVMvW9cffQ default_0);
@@ -406,10 +407,12 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_MonoTime__FEvFMlkqJiSSGVO6HgTv8w, getMonoTime__
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___9cEHZYAST9afMf7sM41NLYIQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* dest);
 N_LIB_PRIVATE N_NIMCALL(void, setPosition__cci01mizUCs1g9a9bQPBwweQ_3)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s, NI pos);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___W6vnarVEjHAKSygcoFfE4A)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA** dest);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___OydxUV9ad0I3qVcqasXV7RQ_2)(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ* dest, tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ* src);
 N_LIB_PRIVATE N_NIMCALL(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA*, override__FtvT5N1bkQfcJQGIp9aKlhQ)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* fallback, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* override);
 N_LIB_PRIVATE N_NIMCALL(void, eq___mcVzTPma3mVmolqKCGb1Iw_2)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA** dest, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* src);
 N_LIB_PRIVATE N_NIMCALL(void, eq___ic9a3GZ2Kbgw2QwLw0A1dMQ_2)(tyObject_Table__qagh2zcXAhSb9aRfetCb26g* dest, tyObject_Table__qagh2zcXAhSb9aRfetCb26g src);
 N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___ot6ARD7jycF5zD3Vxo4ZCw)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, NimStringV2 key, tySequence__sM4lkSb7zS6F7OVMvW9cffQ value);
+N_LIB_PRIVATE N_NIMCALL(void, eq___r6aagoRVuov7HvfEjIi3Uw_2)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* dest, tySequence__sM4lkSb7zS6F7OVMvW9cffQ src);
 N_LIB_PRIVATE N_NIMCALL(void, setLengthStrV2)(NimStringV2* s, NI newLen);
 N_LIB_PRIVATE N_NIMCALL(void, sendFile__Yb9cHECVaxEDx9bEF54vo7fg)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* socket, tyObject_MultipartEntry__35QV9aWmZhP0gkh6RoJTWcw* entry);
 N_LIB_PRIVATE N_NIMCALL(tyObject_FileStreamObj__9bEVSsOIpkY9cf5lCtaS39bPQ*, newFileStream__cwYJiP3D7DOTCJxCdBqBZQ)(NimStringV2 filename, tyEnum_FileMode__ZJfK20XeZ9bv2j1pZjw9aswg mode, NI bufSize);
@@ -432,11 +435,9 @@ N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0AogzSEAggCYyLR2kz88Dg)(tyObject_HttpC
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___1TCKL9aWTg3J2fdjyrLXdQw)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* dest);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___NRThnU6XgZ4MqObKZkAZBw)(tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* dest);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___ZuTHUhKQj9ccvMg2Qe8JVcg)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* dest);
-N_LIB_PRIVATE N_NIMCALL(void, eq___i709c9bs9aE2bIcudNSMg20UQ)(tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ** dest, tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* src);
-static N_INLINE(void, nimIncRef)(void* p);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___i709c9bs9aE2bIcudNSMg20UQ)(tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ** dest, tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* src);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___sQXQN9ay09bfcfti3uWgci4A)(tyProc__TSOsjF4c9aXotPerq9cEE56A* dest, tyProc__TSOsjF4c9aXotPerq9cEE56A src);
-N_LIB_PRIVATE N_NIMCALL(void, eq___Maxw2KUIYGcdUEJ9aO5a9bpw)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w** dest, tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* src);
-N_LIB_PRIVATE N_NIMCALL(void, eqsink___Maxw2KUIYGcdUEJ9aO5a9bpw_2)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w** dest, tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* src);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___Maxw2KUIYGcdUEJ9aO5a9bpw)(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w** dest, tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* src);
 N_LIB_PRIVATE N_NIMCALL(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*, newContext__p45vOS9b3iK2JJ1Y7aIJ9bUA)(tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw protVersion, tyEnum_SslCVerifyMode__t9a9cuHiKUd7w4o8XPQAbfJg verifyMode, NimStringV2 certFile, NimStringV2 keyFile, NimStringV2 cipherList, NimStringV2 caDir, NimStringV2 caFile);
 
 /* section: NIM_merge_DATA */
@@ -976,24 +977,20 @@ appendString((&result), colontmpD__4);
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, format__N4eE9a9au9cfobiXawLjYLIIw)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart) {
 	tySequence__sM4lkSb7zS6F7OVMvW9cffQ result;
 	NimStringV2 bound;
-	NimStringV2 colontmpD_;
-	NimStringV2 colontmpD__2;
 	NimStringV2 T2_;
 	NI64 length;
 	NimStringV2 T12_;
+	NimStringV2 T17_;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result.len = 0; result.p = NIM_NIL;
 	bound.len = 0; bound.p = NIM_NIL;
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-	colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
 	bound = getBoundary__YX3WF0FwpX3W1dnYusiiXw(multipart);
 	T2_.len = 0; T2_.p = NIM_NIL;
 	T2_ = rawNewString(bound.len + 30);
 appendString((&T2_), TM__9brjMmGFaIx4wBkLyxxXZxw_10);
 appendString((&T2_), bound);
-	colontmpD_ = T2_;
-	X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw((*client).headers, TM__9brjMmGFaIx4wBkLyxxXZxw_8, colontmpD_);
+	X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw((*client).headers, TM__9brjMmGFaIx4wBkLyxxXZxw_8, T2_);
 	readFileSizes__cRvnVPBe4rJR9cIs5w6AJww(client, multipart);
 	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	length = (NI64)0;
@@ -1008,15 +1005,15 @@ appendString((&T2_), bound);
 		L = T4_;
 		{
 			while (1) {
-				NimStringV2 colontmpD__3;
+				NimStringV2 colontmpD_;
 				NimStringV2 T7_;
 				if (!(i < L)) goto LA6;
-				colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
+				colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 				entry = (&(*multipart).content.p->data[i]);
 				T7_.len = 0; T7_.p = NIM_NIL;
-				colontmpD__3 = format__gVWUjCpNHhBYO9ai6KMPMKA((&(*entry)), bound);
-				T7_ = rawNewString(colontmpD__3.len + 2);
-appendString((&T7_), colontmpD__3);
+				colontmpD_ = format__gVWUjCpNHhBYO9ai6KMPMKA((&(*entry)), bound);
+				T7_ = rawNewString(colontmpD_.len + 2);
+appendString((&T7_), colontmpD_);
 appendString((&T7_), TM__9brjMmGFaIx4wBkLyxxXZxw_28);
 				add__dK9ajFgX5RSWQx0eHjjpjSQ((&result), T7_);
 				{
@@ -1025,7 +1022,7 @@ appendString((&T7_), TM__9brjMmGFaIx4wBkLyxxXZxw_28);
 				}
 				LA10_: ;
 				i += ((NI) 1);
-				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__3));
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
 			} LA6: ;
 		}
 	}
@@ -1053,14 +1050,13 @@ appendString((&T12_), TM__9brjMmGFaIx4wBkLyxxXZxw_30);
 			} LA16: ;
 		}
 	}
-	colontmpD__2 = nimInt64ToStr(length);
-	X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw((*client).headers, TM__9brjMmGFaIx4wBkLyxxXZxw_32, colontmpD__2);
+	T17_.len = 0; T17_.p = NIM_NIL;
+	T17_ = nimInt64ToStr(length);
+	X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw((*client).headers, TM__9brjMmGFaIx4wBkLyxxXZxw_32, T17_);
 	{
 		LA1_:;
 	}
 	{
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
 		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&bound));
 	}
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -1479,7 +1475,8 @@ NIM_BOOL* nimErr_;
 	e = (tyObject_ProtocolError__G5GO9cu1ofZT8sZOJbdrvJQ*) nimNewObj(sizeof(tyObject_ProtocolError__G5GO9cu1ofZT8sZOJbdrvJQ));
 	(*e).Sup.Sup.Sup.Sup.m_type = (&NTIv2__G5GO9cu1ofZT8sZOJbdrvJQ_);
 	(*e).Sup.Sup.Sup.name = "ProtocolError";
-	eq___aBBXmHFBEivKqERloP6zmA_2((&(*e).Sup.Sup.Sup.message), msg);
+	eqsink___aBBXmHFBEivKqERloP6zmA((&(*e).Sup.Sup.Sup.message), msg);
+	msg.len = 0; msg.p = NIM_NIL;
 	blitTmp = e;
 	e = 0;
 	raiseExceptionEx((Exception*)blitTmp, "ProtocolError", "httpError", "httpclient.nim", 308);
@@ -1488,6 +1485,7 @@ NIM_BOOL* nimErr_;
 		LA1_:;
 	}
 	{
+		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&msg));
 		eqdestroy___8spWQEcy8cWEUfdgbLNs4A(&e);
 	}
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
@@ -1773,22 +1771,12 @@ NIM_BOOL* nimErr_;
 					break;
 					default:
 					{
-						NimStringV2 colontmpD_;
-						NimStringV2 T16_;
-						colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-						T16_.len = 0; T16_.p = NIM_NIL;
-						T16_ = rawNewString(chunkSizeStr.len + 20);
-appendString((&T16_), TM__9brjMmGFaIx4wBkLyxxXZxw_106);
-appendString((&T16_), chunkSizeStr);
-						colontmpD_ = T16_;
-						httpError__QP4vBkFseuds6dKm2yqk9cw(colontmpD_);
-						if (NIM_UNLIKELY(*nimErr_)) goto LA15_;
-						{
-							LA15_:;
-						}
-						{
-							eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
-						}
+						NimStringV2 T15_;
+						T15_.len = 0; T15_.p = NIM_NIL;
+						T15_ = rawNewString(chunkSizeStr.len + 20);
+appendString((&T15_), TM__9brjMmGFaIx4wBkLyxxXZxw_106);
+appendString((&T15_), chunkSizeStr);
+						httpError__QP4vBkFseuds6dKm2yqk9cw(T15_);
 						if (NIM_UNLIKELY(*nimErr_)) goto LA3_;
 					}
 					break;
@@ -1797,32 +1785,32 @@ appendString((&T16_), chunkSizeStr);
 				} LA9: ;
 			} LA8: ;
 			{
-				NI T23_;
-				if (!(chunkSize <= ((NI) 0))) goto LA21_;
-				T23_ = (NI)0;
-				T23_ = recvFull__yQD3rUDgVn4FSoNLCDnXQQ(client, ((NI) 2), (*client).timeout, NIM_FALSE);
+				NI T20_;
+				if (!(chunkSize <= ((NI) 0))) goto LA18_;
+				T20_ = (NI)0;
+				T20_ = recvFull__yQD3rUDgVn4FSoNLCDnXQQ(client, ((NI) 2), (*client).timeout, NIM_FALSE);
 				if (NIM_UNLIKELY(*nimErr_)) goto LA3_;
-				(void)(T23_);
+				(void)(T20_);
 				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&chunkSizeStr));
 				goto LA1;
 			}
-			LA21_: ;
+			LA18_: ;
 			bytesRead = recvFull__yQD3rUDgVn4FSoNLCDnXQQ(client, chunkSize, (*client).timeout, NIM_TRUE);
 			if (NIM_UNLIKELY(*nimErr_)) goto LA3_;
 			{
-				if (!!((bytesRead == chunkSize))) goto LA26_;
+				if (!!((bytesRead == chunkSize))) goto LA23_;
 				httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_108);
 				if (NIM_UNLIKELY(*nimErr_)) goto LA3_;
 			}
-			LA26_: ;
+			LA23_: ;
 			bytesRead = recvFull__yQD3rUDgVn4FSoNLCDnXQQ(client, ((NI) 2), (*client).timeout, NIM_FALSE);
 			if (NIM_UNLIKELY(*nimErr_)) goto LA3_;
 			{
-				if (!!((bytesRead == ((NI) 2)))) goto LA30_;
+				if (!!((bytesRead == ((NI) 2)))) goto LA27_;
 				httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_109);
 				if (NIM_UNLIKELY(*nimErr_)) goto LA3_;
 			}
-			LA30_: ;
+			LA27_: ;
 			{
 				LA3_:;
 			}
@@ -1894,12 +1882,10 @@ NIM_BOOL* nimErr_;
 				{
 					NimStringV2 colontmpD__7;
 					NimStringV2 colontmpD__8;
-					NimStringV2 colontmpD__9;
 					NimStringV2 T27_;
 					if (!!((recvLen == length))) goto LA24_;
 					colontmpD__7.len = 0; colontmpD__7.p = NIM_NIL;
 					colontmpD__8.len = 0; colontmpD__8.p = NIM_NIL;
-					colontmpD__9.len = 0; colontmpD__9.p = NIM_NIL;
 					T27_.len = 0; T27_.p = NIM_NIL;
 					colontmpD__7 = nimIntToStr(length);
 					colontmpD__8 = nimIntToStr(recvLen);
@@ -1908,14 +1894,12 @@ appendString((&T27_), TM__9brjMmGFaIx4wBkLyxxXZxw_115);
 appendString((&T27_), colontmpD__7);
 appendString((&T27_), TM__9brjMmGFaIx4wBkLyxxXZxw_117);
 appendString((&T27_), colontmpD__8);
-					colontmpD__9 = T27_;
-					httpError__QP4vBkFseuds6dKm2yqk9cw(colontmpD__9);
+					httpError__QP4vBkFseuds6dKm2yqk9cw(T27_);
 					if (NIM_UNLIKELY(*nimErr_)) goto LA26_;
 					{
 						LA26_:;
 					}
 					{
-						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__9));
 						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__8));
 						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__7));
 					}
@@ -1935,27 +1919,27 @@ appendString((&T27_), colontmpD__8);
 		goto LA9_;
 		LA11_: ;
 		{
-			tySequence__sM4lkSb7zS6F7OVMvW9cffQ colontmpD__10;
-			NimStringV2 colontmpD__11;
-			tySequence__sM4lkSb7zS6F7OVMvW9cffQ colontmpD__12;
-			NimStringV2 colontmpD__13;
+			tySequence__sM4lkSb7zS6F7OVMvW9cffQ colontmpD__9;
+			NimStringV2 colontmpD__10;
+			tySequence__sM4lkSb7zS6F7OVMvW9cffQ colontmpD__11;
+			NimStringV2 colontmpD__12;
 			NIM_BOOL implicitConnectionClose;
 			NIM_BOOL T34_;
 			NIM_BOOL T36_;
+			colontmpD__9.len = 0; colontmpD__9.p = NIM_NIL;
 			colontmpD__10.len = 0; colontmpD__10.p = NIM_NIL;
 			colontmpD__11.len = 0; colontmpD__11.p = NIM_NIL;
 			colontmpD__12.len = 0; colontmpD__12.p = NIM_NIL;
-			colontmpD__13.len = 0; colontmpD__13.p = NIM_NIL;
 			T34_ = (NIM_BOOL)0;
 			T34_ = eqStrings(httpVersion, TM__9brjMmGFaIx4wBkLyxxXZxw_118);
 			if (T34_) goto LA35_;
 			T36_ = (NIM_BOOL)0;
 			T36_ = eqStrings(httpVersion, TM__9brjMmGFaIx4wBkLyxxXZxw_119);
 			if (!(T36_)) goto LA37_;
-			colontmpD__10 = getOrDefault__aSNwyYYZ2RsZRzsI4edhhA(headers, TM__9brjMmGFaIx4wBkLyxxXZxw_121, TM__9brjMmGFaIx4wBkLyxxXZxw_99);
+			colontmpD__9 = getOrDefault__aSNwyYYZ2RsZRzsI4edhhA(headers, TM__9brjMmGFaIx4wBkLyxxXZxw_121, TM__9brjMmGFaIx4wBkLyxxXZxw_99);
 			if (NIM_UNLIKELY(*nimErr_)) goto LA33_;
-			colontmpD__11 = toString__vY9b9br9btFmrOxuFGpY9cNqbQ(colontmpD__10);
-			T36_ = (colontmpD__11.len == 0);
+			colontmpD__10 = toString__vY9b9br9btFmrOxuFGpY9cNqbQ(colontmpD__9);
+			T36_ = (colontmpD__10.len == 0);
 			LA37_: ;
 			T34_ = T36_;
 			LA35_: ;
@@ -1963,10 +1947,10 @@ appendString((&T27_), colontmpD__8);
 			{
 				NIM_BOOL T40_;
 				T40_ = (NIM_BOOL)0;
-				colontmpD__12 = getOrDefault__aSNwyYYZ2RsZRzsI4edhhA(headers, TM__9brjMmGFaIx4wBkLyxxXZxw_122, TM__9brjMmGFaIx4wBkLyxxXZxw_99);
+				colontmpD__11 = getOrDefault__aSNwyYYZ2RsZRzsI4edhhA(headers, TM__9brjMmGFaIx4wBkLyxxXZxw_122, TM__9brjMmGFaIx4wBkLyxxXZxw_99);
 				if (NIM_UNLIKELY(*nimErr_)) goto LA33_;
-				colontmpD__13 = toString__vY9b9br9btFmrOxuFGpY9cNqbQ(colontmpD__12);
-				T40_ = eqStrings(colontmpD__13, TM__9brjMmGFaIx4wBkLyxxXZxw_124);
+				colontmpD__12 = toString__vY9b9br9btFmrOxuFGpY9cNqbQ(colontmpD__11);
+				T40_ = eqStrings(colontmpD__12, TM__9brjMmGFaIx4wBkLyxxXZxw_124);
 				if (T40_) goto LA41_;
 				T40_ = implicitConnectionClose;
 				LA41_: ;
@@ -1991,10 +1975,10 @@ appendString((&T27_), colontmpD__8);
 				LA33_:;
 			}
 			{
-				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__13));
-				eqdestroy___9cEHZYAST9afMf7sM41NLYIQ((&colontmpD__12));
-				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__11));
-				eqdestroy___9cEHZYAST9afMf7sM41NLYIQ((&colontmpD__10));
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__12));
+				eqdestroy___9cEHZYAST9afMf7sM41NLYIQ((&colontmpD__11));
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__10));
+				eqdestroy___9cEHZYAST9afMf7sM41NLYIQ((&colontmpD__9));
 			}
 			if (NIM_UNLIKELY(*nimErr_)) goto LA8_;
 		}
@@ -2075,109 +2059,98 @@ NIM_BOOL* nimErr_;
 			LA12_: ;
 			{
 				NI le;
-				NI T35_;
-				tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T36_;
-				NimStringV2 T37_;
+				NI T32_;
+				tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T33_;
+				NimStringV2 T34_;
 				if (!!(parsedStatus)) goto LA16_;
 				le = skipIgnoreCase__Z630VYBL4pZDWlOyn05K5w(line, TM__9brjMmGFaIx4wBkLyxxXZxw_74, linei);
 				{
-					NimStringV2 colontmpD_;
-					NimStringV2 T23_;
+					NimStringV2 T22_;
 					if (!(le <= ((NI) 0))) goto LA20_;
-					colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-					T23_.len = 0; T23_.p = NIM_NIL;
-					T23_ = rawNewString(line.len + 24);
-appendString((&T23_), TM__9brjMmGFaIx4wBkLyxxXZxw_76);
-appendString((&T23_), line);
-appendString((&T23_), TM__9brjMmGFaIx4wBkLyxxXZxw_78);
-					colontmpD_ = T23_;
-					httpError__QP4vBkFseuds6dKm2yqk9cw(colontmpD_);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA22_;
-					{
-						LA22_:;
-					}
-					{
-						eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
-					}
+					T22_.len = 0; T22_.p = NIM_NIL;
+					T22_ = rawNewString(line.len + 24);
+appendString((&T22_), TM__9brjMmGFaIx4wBkLyxxXZxw_76);
+appendString((&T22_), line);
+appendString((&T22_), TM__9brjMmGFaIx4wBkLyxxXZxw_78);
+					httpError__QP4vBkFseuds6dKm2yqk9cw(T22_);
 					if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 				}
 				LA20_: ;
 				linei += le;
 				le = skipIgnoreCase__Z630VYBL4pZDWlOyn05K5w(line, TM__9brjMmGFaIx4wBkLyxxXZxw_80, linei);
 				{
-					if (!(((NI) 0) < le)) goto LA28_;
+					if (!(((NI) 0) < le)) goto LA25_;
 					eqsink___aBBXmHFBEivKqERloP6zmA((&(*result).version), TM__9brjMmGFaIx4wBkLyxxXZxw_81);
 				}
-				goto LA26_;
-				LA28_: ;
+				goto LA23_;
+				LA25_: ;
 				{
 					le = skipIgnoreCase__Z630VYBL4pZDWlOyn05K5w(line, TM__9brjMmGFaIx4wBkLyxxXZxw_83, linei);
 					{
-						if (!(le <= ((NI) 0))) goto LA33_;
+						if (!(le <= ((NI) 0))) goto LA30_;
 						httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_85);
 						if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 					}
-					LA33_: ;
+					LA30_: ;
 					eqsink___aBBXmHFBEivKqERloP6zmA((&(*result).version), TM__9brjMmGFaIx4wBkLyxxXZxw_86);
 				}
-				LA26_: ;
+				LA23_: ;
 				linei += le;
-				T35_ = (NI)0;
-				T35_ = skipWhitespace__6WuCTfsk2bOGNtGSxg9cZWAparseutils(line, linei);
-				linei += T35_;
-				T36_ = dotdot___xNR8BVBMWzS9bXXNMikmyLgsystem(linei, ((NI) 1));
-				T37_.len = 0; T37_.p = NIM_NIL;
-				T37_ = X5BX5D___ogYTOKbgqbjPfyC123US1gsystem(line, T36_);
-				eqsink___aBBXmHFBEivKqERloP6zmA((&(*result).status), T37_);
+				T32_ = (NI)0;
+				T32_ = skipWhitespace__6WuCTfsk2bOGNtGSxg9cZWAparseutils(line, linei);
+				linei += T32_;
+				T33_ = dotdot___xNR8BVBMWzS9bXXNMikmyLgsystem(linei, ((NI) 1));
+				T34_.len = 0; T34_.p = NIM_NIL;
+				T34_ = X5BX5D___ogYTOKbgqbjPfyC123US1gsystem(line, T33_);
+				eqsink___aBBXmHFBEivKqERloP6zmA((&(*result).status), T34_);
 				parsedStatus = NIM_TRUE;
 			}
 			goto LA14_;
 			LA16_: ;
 			{
 				NimStringV2 name;
-				NimStringV2 colontmpD__2;
-				NimStringV2 colontmpD__3;
+				NimStringV2 colontmpD_;
 				NI le_2;
-				tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T48_;
+				tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T45_;
+				NimStringV2 T46_;
 				name.len = 0; name.p = NIM_NIL;
-				colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-				colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
+				colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 				name = TM__9brjMmGFaIx4wBkLyxxXZxw_87;
 				le_2 = parseUntil__jfFErPNXs9cw9bvuw3hS0GVAparseutils(line, (&name), 58, linei);
 				{
-					if (!(le_2 <= ((NI) 0))) goto LA42_;
+					if (!(le_2 <= ((NI) 0))) goto LA39_;
 					httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_89);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA39_;
+					if (NIM_UNLIKELY(*nimErr_)) goto LA36_;
 				}
-				LA42_: ;
+				LA39_: ;
 				linei += le_2;
 				{
-					if (!!(((NU8)(line.p->data[linei]) == (NU8)(58)))) goto LA46_;
+					if (!!(((NU8)(line.p->data[linei]) == (NU8)(58)))) goto LA43_;
 					httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_90);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA39_;
+					if (NIM_UNLIKELY(*nimErr_)) goto LA36_;
 				}
-				LA46_: ;
+				LA43_: ;
 				linei += ((NI) 1);
-				T48_ = dotdot___xNR8BVBMWzS9bXXNMikmyLgsystem(linei, ((NI) 1));
-				colontmpD__2 = X5BX5D___ogYTOKbgqbjPfyC123US1gsystem(line, T48_);
-				colontmpD__3 = nsuStrip(colontmpD__2, NIM_TRUE, NIM_TRUE, TM__9brjMmGFaIx4wBkLyxxXZxw_91);
-				add__Iy0txpq5svlfrlKS9bU28Kw_2((*result).headers, name, colontmpD__3);
-				if (NIM_UNLIKELY(*nimErr_)) goto LA39_;
+				T45_ = dotdot___xNR8BVBMWzS9bXXNMikmyLgsystem(linei, ((NI) 1));
+				colontmpD_ = X5BX5D___ogYTOKbgqbjPfyC123US1gsystem(line, T45_);
+				T46_.len = 0; T46_.p = NIM_NIL;
+				T46_ = nsuStrip(colontmpD_, NIM_TRUE, NIM_TRUE, TM__9brjMmGFaIx4wBkLyxxXZxw_91);
+				add__Iy0txpq5svlfrlKS9bU28Kw_2((*result).headers, name, T46_);
+				if (NIM_UNLIKELY(*nimErr_)) goto LA36_;
 				{
-					NI T51_;
-					T51_ = (NI)0;
-					T51_ = len__u7Y7mis1lgEx9cfeUB58mwA((*result).headers);
-					if (!(((NI) 10000) < T51_)) goto LA52_;
+					NI T49_;
+					T49_ = (NI)0;
+					T49_ = len__u7Y7mis1lgEx9cfeUB58mwA((*result).headers);
+					if (!(((NI) 10000) < T49_)) goto LA50_;
 					httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_93);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA39_;
+					if (NIM_UNLIKELY(*nimErr_)) goto LA36_;
 				}
-				LA52_: ;
+				LA50_: ;
 				{
-					LA39_:;
+					LA36_:;
 				}
 				{
-					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__3));
-					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
+					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
 					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&name));
 				}
 				if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
@@ -2186,35 +2159,35 @@ appendString((&T23_), TM__9brjMmGFaIx4wBkLyxxXZxw_78);
 		}
 	} LA3: ;
 	{
-		if (!!(fullyRead)) goto LA58_;
+		if (!!(fullyRead)) goto LA56_;
 		httpError__QP4vBkFseuds6dKm2yqk9cw(TM__9brjMmGFaIx4wBkLyxxXZxw_95);
 		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	}
-	LA58_: ;
+	LA56_: ;
 	{
-		NIM_BOOL T62_;
-		NI T64_;
-		tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw* T67_;
-		tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* T68_;
-		T62_ = (NIM_BOOL)0;
-		T62_ = getBody;
-		if (!(T62_)) goto LA63_;
-		T64_ = (NI)0;
-		T64_ = code__74MIEFap0tx9bAcFdN6ES7Q(result);
+		NIM_BOOL T60_;
+		NI T62_;
+		tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw* T65_;
+		tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* T66_;
+		T60_ = (NIM_BOOL)0;
+		T60_ = getBody;
+		if (!(T60_)) goto LA61_;
+		T62_ = (NI)0;
+		T62_ = code__74MIEFap0tx9bAcFdN6ES7Q(result);
 		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-		T62_ = !((T64_ == ((NI) 204)));
-		LA63_: ;
-		if (!T62_) goto LA65_;
-		T67_ = (tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw*)0;
-		T67_ = newStringStream__9aLRtgEYeRMrZKrObtoOslQ(TM__9brjMmGFaIx4wBkLyxxXZxw_96);
-		T68_ = (tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ*)0;
-		T68_ = &T67_->Sup;
-		eqsink___uD7PP9aMywYClkkmJVib7sg_2(&(*client).bodyStream, T68_);
-		eq___uD7PP9aMywYClkkmJVib7sg(&(*result).bodyStream, (*client).bodyStream);
+		T60_ = !((T62_ == ((NI) 204)));
+		LA61_: ;
+		if (!T60_) goto LA63_;
+		T65_ = (tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw*)0;
+		T65_ = newStringStream__9aLRtgEYeRMrZKrObtoOslQ(TM__9brjMmGFaIx4wBkLyxxXZxw_96);
+		T66_ = (tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ*)0;
+		T66_ = &T65_->Sup;
+		eqsink___uD7PP9aMywYClkkmJVib7sg(&(*client).bodyStream, T66_);
+		eq___uD7PP9aMywYClkkmJVib7sg_2(&(*result).bodyStream, (*client).bodyStream);
 		parseBody__nesWh4uP9aaR2HAQTFYAzUA(client, (*result).headers, (*result).version);
 		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	}
-	LA65_: ;
+	LA63_: ;
 	{
 		LA1_:;
 	}
@@ -2229,223 +2202,239 @@ N_LIB_PRIVATE N_NIMCALL(void, newConnection__OTRwNmMCrM24z6RZ2ZmLqg)(tyObject_Ht
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	{
-		NIM_BOOL T3_;
 		NIM_BOOL T4_;
 		NIM_BOOL T5_;
+		NIM_BOOL T6_;
 		tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ connectionUrl;
 		NimStringV2 colontmpD_;
 		NU16 colontmpD__2;
 		NU16 colontmpD__3;
-		tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ T12_;
+		tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ T13_;
 		NIM_BOOL isSsl;
 		NU16 port;
-		tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* T43_;
-		T3_ = (NIM_BOOL)0;
+		tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* T44_;
 		T4_ = (NIM_BOOL)0;
 		T5_ = (NIM_BOOL)0;
-		T5_ = !(eqStrings((*client).currentURL.hostname, (*url).hostname));
-		if (T5_) goto LA6_;
-		T5_ = !(eqStrings((*client).currentURL.scheme, (*url).scheme));
-		LA6_: ;
-		T4_ = T5_;
-		if (T4_) goto LA7_;
-		T4_ = !(eqStrings((*client).currentURL.port, (*url).port));
+		T6_ = (NIM_BOOL)0;
+		T6_ = !(eqStrings((*client).currentURL.hostname, (*url).hostname));
+		if (T6_) goto LA7_;
+		T6_ = !(eqStrings((*client).currentURL.scheme, (*url).scheme));
 		LA7_: ;
-		T3_ = T4_;
-		if (T3_) goto LA8_;
-		T3_ = !((*client).connected);
+		T5_ = T6_;
+		if (T5_) goto LA8_;
+		T5_ = !(eqStrings((*client).currentURL.port, (*url).port));
 		LA8_: ;
-		if (!T3_) goto LA9_;
+		T4_ = T5_;
+		if (T4_) goto LA9_;
+		T4_ = !((*client).connected);
+		LA9_: ;
+		if (!T4_) goto LA10_;
 		nimZeroMem((void*)(&connectionUrl), sizeof(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ));
 		colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 		colontmpD__2 = (NU16)0;
 		colontmpD__3 = (NU16)0;
 		{
-			if (!((*client).proxy == 0)) goto LA15_;
+			if (!((*client).proxy == 0)) goto LA16_;
 			eq___OydxUV9ad0I3qVcqasXV7RQ((&connectionUrl), url);
 		}
-		goto LA13_;
-		LA15_: ;
+		goto LA14_;
+		LA16_: ;
 		{
 			eq___OydxUV9ad0I3qVcqasXV7RQ((&connectionUrl), (&(*(*client).proxy).url));
 		}
-		LA13_: ;
+		LA14_: ;
 		colontmpD_ = nsuToLowerAsciiStr(connectionUrl.scheme);
 		isSsl = eqStrings(colontmpD_, TM__9brjMmGFaIx4wBkLyxxXZxw_35);
 		{
-			NIM_BOOL T20_;
-			tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA* T24_;
-			T20_ = (NIM_BOOL)0;
-			T20_ = isSsl;
-			if (!(T20_)) goto LA21_;
-			T20_ = NIM_FALSE;
-			LA21_: ;
-			if (!T20_) goto LA22_;
-			T24_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*)0;
-			T24_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*) nimNewObj(sizeof(tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA));
-			(*T24_).Sup.Sup.Sup.Sup.m_type = (&NTIv2__L1L9b70HFrKWeYV59a3EWeaA_);
-			(*T24_).Sup.Sup.Sup.name = "HttpRequestError";
-			(*T24_).Sup.Sup.Sup.message = TM__9brjMmGFaIx4wBkLyxxXZxw_37;
-			(*T24_).Sup.Sup.Sup.parent = NIM_NIL;
-			raiseExceptionEx((Exception*)T24_, "HttpRequestError", "newConnection", "httpclient.nim", 862);
-			goto LA11_;
+			NIM_BOOL T21_;
+			tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA* T25_;
+			T21_ = (NIM_BOOL)0;
+			T21_ = isSsl;
+			if (!(T21_)) goto LA22_;
+			T21_ = NIM_FALSE;
+			LA22_: ;
+			if (!T21_) goto LA23_;
+			T25_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*)0;
+			T25_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*) nimNewObj(sizeof(tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA));
+			(*T25_).Sup.Sup.Sup.Sup.m_type = (&NTIv2__L1L9b70HFrKWeYV59a3EWeaA_);
+			(*T25_).Sup.Sup.Sup.name = "HttpRequestError";
+			(*T25_).Sup.Sup.Sup.message = TM__9brjMmGFaIx4wBkLyxxXZxw_37;
+			(*T25_).Sup.Sup.Sup.parent = NIM_NIL;
+			raiseExceptionEx((Exception*)T25_, "HttpRequestError", "newConnection", "httpclient.nim", 862);
+			goto LA12_;
 		}
-		LA22_: ;
+		LA23_: ;
 		{
-			if (!(*client).connected) goto LA27_;
+			if (!(*client).connected) goto LA28_;
 			close__LSkbNH0VA1HBcOjYrAgBmA(client);
-			if (NIM_UNLIKELY(*nimErr_)) goto LA11_;
+			if (NIM_UNLIKELY(*nimErr_)) goto LA12_;
 			(*client).connected = NIM_FALSE;
 		}
-		LA27_: ;
+		LA28_: ;
 		{
 			NU16 colontmpD__4;
 			NU16 colontmpD__5;
-			if (!(connectionUrl.port.len == 0)) goto LA31_;
+			if (!(connectionUrl.port.len == 0)) goto LA32_;
 			colontmpD__4 = (NU16)0;
 			colontmpD__5 = (NU16)0;
 			{
-				if (!isSsl) goto LA35_;
+				if (!isSsl) goto LA36_;
 				colontmpD__4 = ((NU16) 443);
 				colontmpD__2 = colontmpD__4;
 			}
-			goto LA33_;
-			LA35_: ;
+			goto LA34_;
+			LA36_: ;
 			{
 				colontmpD__5 = ((NU16) 80);
 				colontmpD__2 = colontmpD__5;
 			}
-			LA33_: ;
+			LA34_: ;
 			port = colontmpD__2;
 		}
-		goto LA29_;
-		LA31_: ;
+		goto LA30_;
+		LA32_: ;
 		{
-			NI T40_;
-			T40_ = (NI)0;
-			T40_ = nsuParseInt(connectionUrl.port);
-			if (NIM_UNLIKELY(*nimErr_)) goto LA39_;
-			colontmpD__3 = ((NU16) (T40_));
+			NI T41_;
+			T41_ = (NI)0;
+			T41_ = nsuParseInt(connectionUrl.port);
+			if (NIM_UNLIKELY(*nimErr_)) goto LA40_;
+			colontmpD__3 = ((NU16) (T41_));
 			port = colontmpD__3;
 			{
-				LA39_:;
+				LA40_:;
 			}
 			{
 			}
-			if (NIM_UNLIKELY(*nimErr_)) goto LA11_;
+			if (NIM_UNLIKELY(*nimErr_)) goto LA12_;
 		}
-		LA29_: ;
-		T43_ = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*)0;
-		T43_ = dial__oD5cdlP49a1aM6tVxzT4h1Q(connectionUrl.hostname, port, ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 6), NIM_TRUE);
-		if (NIM_UNLIKELY(*nimErr_)) goto LA11_;
-		eqsink___uz5bm6GTj6lhUqoWSCWdvg(&(*client).socket, T43_);
+		LA30_: ;
+		T44_ = (tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ*)0;
+		T44_ = dial__oD5cdlP49a1aM6tVxzT4h1Q(connectionUrl.hostname, port, ((tyEnum_Protocol__dqJ1OqRGclxIMMdSLRzzXg) 6), NIM_TRUE);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA12_;
+		eqsink___uz5bm6GTj6lhUqoWSCWdvg(&(*client).socket, T44_);
 		{
-			if (!isSsl) goto LA46_;
-			wrapConnectedSocket__zB421aJ04hXbpUeGq3doVQ((*client).sslContext, (*client).socket, ((tyEnum_SslHandshakeType__9aZhh5f9bRDKgYB8GLASDSqg) 0), connectionUrl.hostname);
-			if (NIM_UNLIKELY(*nimErr_)) goto LA48_;
+			tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* colontmpD__6;
+			if (!isSsl) goto LA47_;
+			colontmpD__6 = (tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*)0;
+			colontmpD__6 = 0;
+			eq___Maxw2KUIYGcdUEJ9aO5a9bpw_2(&colontmpD__6, (*client).sslContext);
+			wrapConnectedSocket__zB421aJ04hXbpUeGq3doVQ(colontmpD__6, (*client).socket, ((tyEnum_SslHandshakeType__9aZhh5f9bRDKgYB8GLASDSqg) 0), connectionUrl.hostname);
+			if (NIM_UNLIKELY(*nimErr_)) goto LA49_;
 			if (NIM_UNLIKELY(*nimErr_)) {
-				LA48_:;
+				LA49_:;
 				{
-					Exception* T52_;
+					Exception* T53_;
 					*nimErr_ = NIM_FALSE;
 					close__dPXIsN1nx9bPvap47WTEMow((*client).socket, 2);
-					if (NIM_UNLIKELY(*nimErr_)) goto LA50_;
-					T52_ = (Exception*)0;
-					T52_ = getCurrentException();
-					raiseExceptionEx((Exception*)T52_, "Exception", "newConnection", "httpclient.nim", 891);
-					goto LA50_;
+					if (NIM_UNLIKELY(*nimErr_)) goto LA51_;
+					T53_ = (Exception*)0;
+					T53_ = getCurrentException();
+					raiseExceptionEx((Exception*)T53_, "Exception", "newConnection", "httpclient.nim", 891);
+					goto LA51_;
 					popCurrentException();
-					LA50_:;
+					LA51_:;
 				}
 			}
-			if (NIM_UNLIKELY(*nimErr_)) goto LA11_;
+			if (NIM_UNLIKELY(*nimErr_)) goto LA12_;
 		}
-		LA46_: ;
+		LA47_: ;
 		{
-			NIM_BOOL T55_;
+			NIM_BOOL T56_;
 			tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ connectUrl;
 			NimStringV2 proxyHeaderString;
-			NimStringV2 colontmpD__6;
-			tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* colontmpD__7;
+			NimStringV2 colontmpD__7;
+			tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* colontmpD__8;
 			tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* proxyResp;
-			NimStringV2 T60_;
-			tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* T66_;
-			T55_ = (NIM_BOOL)0;
-			T55_ = eqStrings((*url).scheme, TM__9brjMmGFaIx4wBkLyxxXZxw_38);
-			if (!(T55_)) goto LA56_;
-			T55_ = !(((*client).proxy == 0));
-			LA56_: ;
-			if (!T55_) goto LA57_;
+			tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* colontmpD__9;
+			NimStringV2 T61_;
+			tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* T67_;
+			T56_ = (NIM_BOOL)0;
+			T56_ = eqStrings((*url).scheme, TM__9brjMmGFaIx4wBkLyxxXZxw_38);
+			if (!(T56_)) goto LA57_;
+			T56_ = !(((*client).proxy == 0));
+			LA57_: ;
+			if (!T56_) goto LA58_;
 			nimZeroMem((void*)(&connectUrl), sizeof(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ));
 			proxyHeaderString.len = 0; proxyHeaderString.p = NIM_NIL;
-			colontmpD__6.len = 0; colontmpD__6.p = NIM_NIL;
-			colontmpD__7 = (tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA*)0;
+			colontmpD__7.len = 0; colontmpD__7.p = NIM_NIL;
+			colontmpD__8 = (tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA*)0;
 			proxyResp = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
+			colontmpD__9 = (tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*)0;
 			connectUrl = initUri__zcwd3ynrfDQcP9c8k9cEeg9aQ();
 			eq___aBBXmHFBEivKqERloP6zmA_2((&connectUrl.hostname), (*url).hostname);
-			T60_.len = 0; T60_.p = NIM_NIL;
+			T61_.len = 0; T61_.p = NIM_NIL;
 			{
-				if (!!(((*url).port.len == 0))) goto LA63_;
+				if (!!(((*url).port.len == 0))) goto LA64_;
 				eq___aBBXmHFBEivKqERloP6zmA_2((&connectUrl.port), (*url).port);
 			}
-			goto LA61_;
-			LA63_: ;
+			goto LA62_;
+			LA64_: ;
 			{
 				eqsink___aBBXmHFBEivKqERloP6zmA((&connectUrl.port), TM__9brjMmGFaIx4wBkLyxxXZxw_40);
 			}
-			LA61_: ;
-			colontmpD__6 = dollar___JcSadDOgpYarTBAbeNWqTw(((tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA) 7));
-			colontmpD__7 = newHttpHeaders__m5XuFRjmtJnvrQCk25khAA(NIM_FALSE);
-			proxyHeaderString = generateHeaders__BYtup6hw7Ii2LjHd19cuuhA((&connectUrl), colontmpD__6, colontmpD__7, (*client).proxy);
+			LA62_: ;
+			colontmpD__7 = dollar___JcSadDOgpYarTBAbeNWqTw(((tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA) 7));
+			colontmpD__8 = newHttpHeaders__m5XuFRjmtJnvrQCk25khAA(NIM_FALSE);
+			proxyHeaderString = generateHeaders__BYtup6hw7Ii2LjHd19cuuhA((&connectUrl), colontmpD__7, colontmpD__8, (*client).proxy);
 			send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, proxyHeaderString, 2);
-			if (NIM_UNLIKELY(*nimErr_)) goto LA59_;
-			T66_ = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
-			T66_ = parseResponse__3AoUMM1jyrz8BUdsjBoKYQ(client, NIM_FALSE);
-			if (NIM_UNLIKELY(*nimErr_)) goto LA59_;
-			proxyResp = T66_;
+			if (NIM_UNLIKELY(*nimErr_)) goto LA60_;
+			T67_ = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
+			T67_ = parseResponse__3AoUMM1jyrz8BUdsjBoKYQ(client, NIM_FALSE);
+			if (NIM_UNLIKELY(*nimErr_)) goto LA60_;
+			proxyResp = T67_;
 			{
-				NIM_BOOL T69_;
-				tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA* T72_;
-				T69_ = (NIM_BOOL)0;
-				T69_ = nsuStartsWith((*proxyResp).status, TM__9brjMmGFaIx4wBkLyxxXZxw_128);
-				if (!!(T69_)) goto LA70_;
-				T72_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*)0;
-				T72_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*) nimNewObj(sizeof(tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA));
-				(*T72_).Sup.Sup.Sup.Sup.m_type = (&NTIv2__L1L9b70HFrKWeYV59a3EWeaA_);
-				(*T72_).Sup.Sup.Sup.name = "HttpRequestError";
-				(*T72_).Sup.Sup.Sup.message = TM__9brjMmGFaIx4wBkLyxxXZxw_130;
-				(*T72_).Sup.Sup.Sup.parent = NIM_NIL;
-				raiseExceptionEx((Exception*)T72_, "HttpRequestError", "newConnection", "httpclient.nim", 907);
-				goto LA59_;
+				NIM_BOOL T70_;
+				tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA* T73_;
+				T70_ = (NIM_BOOL)0;
+				T70_ = nsuStartsWith((*proxyResp).status, TM__9brjMmGFaIx4wBkLyxxXZxw_128);
+				if (!!(T70_)) goto LA71_;
+				T73_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*)0;
+				T73_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*) nimNewObj(sizeof(tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA));
+				(*T73_).Sup.Sup.Sup.Sup.m_type = (&NTIv2__L1L9b70HFrKWeYV59a3EWeaA_);
+				(*T73_).Sup.Sup.Sup.name = "HttpRequestError";
+				(*T73_).Sup.Sup.Sup.message = TM__9brjMmGFaIx4wBkLyxxXZxw_130;
+				(*T73_).Sup.Sup.Sup.parent = NIM_NIL;
+				raiseExceptionEx((Exception*)T73_, "HttpRequestError", "newConnection", "httpclient.nim", 907);
+				goto LA60_;
 			}
-			LA70_: ;
-			wrapConnectedSocket__zB421aJ04hXbpUeGq3doVQ((*client).sslContext, (*client).socket, ((tyEnum_SslHandshakeType__9aZhh5f9bRDKgYB8GLASDSqg) 0), (*url).hostname);
-			if (NIM_UNLIKELY(*nimErr_)) goto LA59_;
+			LA71_: ;
+			colontmpD__9 = 0;
+			eq___Maxw2KUIYGcdUEJ9aO5a9bpw_2(&colontmpD__9, (*client).sslContext);
+			wrapConnectedSocket__zB421aJ04hXbpUeGq3doVQ(colontmpD__9, (*client).socket, ((tyEnum_SslHandshakeType__9aZhh5f9bRDKgYB8GLASDSqg) 0), (*url).hostname);
+			if (NIM_UNLIKELY(*nimErr_)) goto LA60_;
 			{
-				LA59_:;
+				LA60_:;
 			}
 			{
 				eqdestroy___b19aGGEWVnlKBxGOhME5IOA(&proxyResp);
-				eqdestroy___W6vnarVEjHAKSygcoFfE4A(&colontmpD__7);
-				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__6));
+				eqdestroy___W6vnarVEjHAKSygcoFfE4A(&colontmpD__8);
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__7));
 				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&proxyHeaderString));
 				eqdestroy___9cxLel6KY8YRc2RBVO9bQhjw((&connectUrl));
 			}
-			if (NIM_UNLIKELY(*nimErr_)) goto LA11_;
+			if (NIM_UNLIKELY(*nimErr_)) goto LA12_;
 		}
-		LA57_: ;
-		eq___OydxUV9ad0I3qVcqasXV7RQ((&(*client).currentURL), url);
+		LA58_: ;
+		eqsink___OydxUV9ad0I3qVcqasXV7RQ_2((&(*client).currentURL), url);
+		nimZeroMem((void*)url, sizeof(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ));
 		(*client).connected = NIM_TRUE;
 		{
-			LA11_:;
+			LA12_:;
 		}
 		{
 			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
 			eqdestroy___9cxLel6KY8YRc2RBVO9bQhjw((&connectionUrl));
 		}
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	}
-	LA9_: ;
+	LA10_: ;
+	{
+		LA1_:;
+	}
+	{
+		eqdestroy___9cxLel6KY8YRc2RBVO9bQhjw(url);
+	}
+	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA*, override__FtvT5N1bkQfcJQGIp9aKlhQ)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* fallback, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* override) {
@@ -2485,12 +2474,16 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcu
 					h = res;
 					{
 						NIM_BOOL T13_;
+						tySequence__sM4lkSb7zS6F7OVMvW9cffQ colontmpD_;
 						T13_ = (NIM_BOOL)0;
 						T13_ = isFilled__5Qpmu5QqwDY0esVXn6wf7wtables((*(*override).table).data.p->data[h].Field0);
 						if (!T13_) goto LA14_;
+						colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 						k = (*(*override).table).data.p->data[h].Field1;
 						vs = (*(*override).table).data.p->data[h].Field2;
-						X5BX5Deq___ot6ARD7jycF5zD3Vxo4ZCw(result, k, vs);
+						colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+						eq___r6aagoRVuov7HvfEjIi3Uw_2((&colontmpD_), vs);
+						X5BX5Deq___ot6ARD7jycF5zD3Vxo4ZCw(result, k, colontmpD_);
 					}
 					LA14_: ;
 					res += ((NI) 1);
@@ -2591,20 +2584,22 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROC
 	tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* result;
 	tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ requestUrl;
 	tySequence__sM4lkSb7zS6F7OVMvW9cffQ data;
+	tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ colontmpD_;
 	tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* newHeaders;
 	NimStringV2 headerString;
-	NimStringV2 colontmpD_;
+	NimStringV2 colontmpD__2;
 	NIM_BOOL getBody;
-	NIM_BOOL T53_;
 	NIM_BOOL T54_;
+	NIM_BOOL T55_;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
 	nimZeroMem((void*)(&requestUrl), sizeof(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ));
 	data.len = 0; data.p = NIM_NIL;
+	nimZeroMem((void*)(&colontmpD_), sizeof(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ));
 	newHeaders = (tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA*)0;
 	headerString.len = 0; headerString.p = NIM_NIL;
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
+	colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
 	requestUrl = parseUri__rbZTAh57otUDsvMlWgTQog(url);
 	{
 		tyObject_ValueError__yoNlBGx0D2tRizIdhQuENw* T6_;
@@ -2635,137 +2630,142 @@ NIM_BOOL* nimErr_;
 	goto LA7_;
 	LA12_: ;
 	{
-		NimStringV2 colontmpD__2;
-		colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-		colontmpD__2 = nimIntToStr(body.len);
-		X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw((*client).headers, TM__9brjMmGFaIx4wBkLyxxXZxw_33, colontmpD__2);
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
+		NimStringV2 T15_;
+		T15_.len = 0; T15_.p = NIM_NIL;
+		T15_ = nimIntToStr(body.len);
+		X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw((*client).headers, TM__9brjMmGFaIx4wBkLyxxXZxw_33, T15_);
 	}
 	LA7_: ;
-	newConnection__OTRwNmMCrM24z6RZ2ZmLqg(client, (&requestUrl));
+	nimZeroMem((void*)(&colontmpD_), sizeof(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ));
+	eq___OydxUV9ad0I3qVcqasXV7RQ((&colontmpD_), (&requestUrl));
+	newConnection__OTRwNmMCrM24z6RZ2ZmLqg(client, (&colontmpD_));
 	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	newHeaders = override__FtvT5N1bkQfcJQGIp9aKlhQ((*client).headers, headers);
 	{
-		NIM_BOOL T17_;
 		NIM_BOOL T18_;
-		T17_ = (NIM_BOOL)0;
+		NIM_BOOL T19_;
+		NimStringV2 colontmpD__3;
 		T18_ = (NIM_BOOL)0;
-		T18_ = hasKey__jz0AniI5No9bnkMo9aqdkc2A(newHeaders, TM__9brjMmGFaIx4wBkLyxxXZxw_132);
-		T17_ = !(T18_);
-		if (!(T17_)) goto LA19_;
-		T17_ = (((NI) 0) < (*client).userAgent.len);
-		LA19_: ;
-		if (!T17_) goto LA20_;
-		X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw(newHeaders, TM__9brjMmGFaIx4wBkLyxxXZxw_134, (*client).userAgent);
+		T19_ = (NIM_BOOL)0;
+		T19_ = hasKey__jz0AniI5No9bnkMo9aqdkc2A(newHeaders, TM__9brjMmGFaIx4wBkLyxxXZxw_132);
+		T18_ = !(T19_);
+		if (!(T18_)) goto LA20_;
+		T18_ = (((NI) 0) < (*client).userAgent.len);
+		LA20_: ;
+		if (!T18_) goto LA21_;
+		colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
+		colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
+		eq___aBBXmHFBEivKqERloP6zmA_2((&colontmpD__3), (*client).userAgent);
+		X5BX5Deq___Iy0txpq5svlfrlKS9bU28Kw(newHeaders, TM__9brjMmGFaIx4wBkLyxxXZxw_134, colontmpD__3);
 	}
-	LA20_: ;
+	LA21_: ;
 	headerString = generateHeaders__BYtup6hw7Ii2LjHd19cuuhA((&requestUrl), httpMethod, newHeaders, (*client).proxy);
 	send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, headerString, 2);
 	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	{
-		NI T24_;
+		NI T25_;
 		NimStringV2 buffer;
-		NimStringV2 colontmpD__3;
-		NimStringV2 T46_;
-		NimStringV2* T47_;
-		T24_ = data.len;
-		if (!(((NI) 0) < T24_)) goto LA25_;
+		NimStringV2 colontmpD__4;
+		NimStringV2 T47_;
+		NimStringV2* T48_;
+		T25_ = data.len;
+		if (!(((NI) 0) < T25_)) goto LA26_;
 		buffer.len = 0; buffer.p = NIM_NIL;
-		colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
+		colontmpD__4.len = 0; colontmpD__4.p = NIM_NIL;
 		{
 			NI i;
 			tyObject_MultipartEntry__35QV9aWmZhP0gkh6RoJTWcw entry;
 			NI i_2;
 			NI L;
-			NI T29_;
+			NI T30_;
 			i = (NI)0;
 			nimZeroMem((void*)(&entry), sizeof(tyObject_MultipartEntry__35QV9aWmZhP0gkh6RoJTWcw));
 			i_2 = ((NI) 0);
-			T29_ = (*multipart).content.len;
-			L = T29_;
+			T30_ = (*multipart).content.len;
+			L = T30_;
 			{
 				while (1) {
-					if (!(i_2 < L)) goto LA31;
+					if (!(i_2 < L)) goto LA32;
 					i = i_2;
 					entry = (*multipart).content.p->data[i_2];
 					{
 						prepareAdd((&buffer), data.p->data[i].len + 0);
 appendString((&buffer), data.p->data[i]);
 						{
-							if (!!(entry.isFile)) goto LA35_;
-							goto LA32;
+							if (!!(entry.isFile)) goto LA36_;
+							goto LA33;
 						}
-						LA35_: ;
+						LA36_: ;
 						{
-							if (!(((NI) 0) < buffer.len)) goto LA39_;
+							if (!(((NI) 0) < buffer.len)) goto LA40_;
 							send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, buffer, 2);
-							if (NIM_UNLIKELY(*nimErr_)) goto LA27_;
+							if (NIM_UNLIKELY(*nimErr_)) goto LA28_;
 							setLengthStrV2((&buffer), ((NI) 0));
 						}
-						LA39_: ;
+						LA40_: ;
 						{
-							if (!entry._isFile_1.isStream) goto LA43_;
+							if (!entry._isFile_1.isStream) goto LA44_;
 							sendFile__Yb9cHECVaxEDx9bEF54vo7fg((*client).socket, (&entry));
-							if (NIM_UNLIKELY(*nimErr_)) goto LA27_;
+							if (NIM_UNLIKELY(*nimErr_)) goto LA28_;
 						}
-						goto LA41_;
-						LA43_: ;
+						goto LA42_;
+						LA44_: ;
 						{
 							send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, entry.content, 2);
-							if (NIM_UNLIKELY(*nimErr_)) goto LA27_;
+							if (NIM_UNLIKELY(*nimErr_)) goto LA28_;
 						}
-						LA41_: ;
+						LA42_: ;
 						prepareAdd((&buffer), 2);
 appendString((&buffer), TM__9brjMmGFaIx4wBkLyxxXZxw_135);
-					} LA32: ;
+					} LA33: ;
 					i_2 += ((NI) 1);
-				} LA31: ;
+				} LA32: ;
 			}
 		}
-		T46_.len = 0; T46_.p = NIM_NIL;
-		T47_ = (NimStringV2*)0;
-		T47_ = X5BX5D___qAX9aHx35KUFY79aX8PJ3xRgsystem(data.p->data, data.len, ((NI) 1));
-		T46_ = rawNewString(buffer.len + (*T47_).len + 0);
-appendString((&T46_), buffer);
-appendString((&T46_), (*T47_));
-		colontmpD__3 = T46_;
-		send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, colontmpD__3, 2);
-		if (NIM_UNLIKELY(*nimErr_)) goto LA27_;
+		T47_.len = 0; T47_.p = NIM_NIL;
+		T48_ = (NimStringV2*)0;
+		T48_ = X5BX5D___qAX9aHx35KUFY79aX8PJ3xRgsystem(data.p->data, data.len, ((NI) 1));
+		T47_ = rawNewString(buffer.len + (*T48_).len + 0);
+appendString((&T47_), buffer);
+appendString((&T47_), (*T48_));
+		colontmpD__4 = T47_;
+		send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, colontmpD__4, 2);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA28_;
 		{
-			LA27_:;
+			LA28_:;
 		}
 		{
-			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__3));
+			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__4));
 			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&buffer));
 		}
 		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	}
-	goto LA22_;
-	LA25_: ;
+	goto LA23_;
+	LA26_: ;
 	{
-		if (!(((NI) 0) < body.len)) goto LA51_;
+		if (!(((NI) 0) < body.len)) goto LA52_;
 		send__sP9af4zGpnwmZkRofZDfbQQ((*client).socket, body, 2);
 		if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	}
-	goto LA22_;
-	LA51_: ;
-	LA22_: ;
-	T53_ = (NIM_BOOL)0;
-	colontmpD_ = nsuToLowerAsciiStr(httpMethod);
+	goto LA23_;
+	LA52_: ;
+	LA23_: ;
 	T54_ = (NIM_BOOL)0;
-	T54_ = contains__MghwuKjQqmVLYE8A59cNGHgsystem(TM__9brjMmGFaIx4wBkLyxxXZxw_136, 2, colontmpD_);
-	T53_ = !(T54_);
-	if (!(T53_)) goto LA55_;
-	T53_ = (*client).getBody;
-	LA55_: ;
-	getBody = T53_;
+	colontmpD__2 = nsuToLowerAsciiStr(httpMethod);
+	T55_ = (NIM_BOOL)0;
+	T55_ = contains__MghwuKjQqmVLYE8A59cNGHgsystem(TM__9brjMmGFaIx4wBkLyxxXZxw_136, 2, colontmpD__2);
+	T54_ = !(T55_);
+	if (!(T54_)) goto LA56_;
+	T54_ = (*client).getBody;
+	LA56_: ;
+	getBody = T54_;
 	result = parseResponse__3AoUMM1jyrz8BUdsjBoKYQ(client, getBody);
 	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
 	{
 		LA1_:;
 	}
 	{
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
+		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
 		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&headerString));
 		eqdestroy___W6vnarVEjHAKSygcoFfE4A(&newHeaders);
 		eqdestroy___0RiuPw9cXhtLB9a2rQ2jA69cg((&data));
@@ -3138,27 +3138,16 @@ N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___1XZft5a5dikeHY9a7ro8T7Q)(tyObject_Http
 	}
 	LA4_: ;
 }
-static N_INLINE(void, nimIncRef)(void* p) {
-	NI T1_;
-	T1_ = (NI)0;
-	T1_ = minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system(((NI) (ptrdiff_t) (p)), ((NI) 8));
-	(*((tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A*) (T1_))).rc += ((NI) 8);
-}
-N_LIB_PRIVATE N_NIMCALL(void, eq___i709c9bs9aE2bIcudNSMg20UQ)(tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ** dest, tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* src) {
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___i709c9bs9aE2bIcudNSMg20UQ)(tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ** dest, tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* src) {
 	{
-		if (!src) goto LA3_;
-		nimIncRef(src);
-	}
-	LA3_: ;
-	{
-		NIM_BOOL T7_;
-		T7_ = (NIM_BOOL)0;
-		T7_ = nimDecRefIsLast((*dest));
-		if (!T7_) goto LA8_;
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = nimDecRefIsLast((*dest));
+		if (!T3_) goto LA4_;
 		eqdestroy___NRThnU6XgZ4MqObKZkAZBw((*dest));
 		nimRawDispose((*dest));
 	}
-	LA8_: ;
+	LA4_: ;
 	(*dest) = src;
 }
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___sQXQN9ay09bfcfti3uWgci4A)(tyProc__TSOsjF4c9aXotPerq9cEE56A* dest, tyProc__TSOsjF4c9aXotPerq9cEE56A src) {
@@ -3180,19 +3169,19 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioe
 	result = (tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA*)0;
 	eqdestroy___1XZft5a5dikeHY9a7ro8T7Q(&result);
 	result = (tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA*) nimNewObj(sizeof(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA));
-	eq___mcVzTPma3mVmolqKCGb1Iw_2(&(*result).headers, headers);
-	eq___aBBXmHFBEivKqERloP6zmA_2((&(*result).userAgent), userAgent);
+	eqsink___mcVzTPma3mVmolqKCGb1Iw(&(*result).headers, headers);
+	eqsink___aBBXmHFBEivKqERloP6zmA((&(*result).userAgent), userAgent);
 	(*result).maxRedirects = ((NI) (maxRedirects));
-	eq___i709c9bs9aE2bIcudNSMg20UQ(&(*result).proxy, proxy);
+	eqsink___i709c9bs9aE2bIcudNSMg20UQ(&(*result).proxy, proxy);
 	(*result).timeout = timeout;
 	eqsink___sQXQN9ay09bfcfti3uWgci4A((&(*result).onProgressChanged), TM__9brjMmGFaIx4wBkLyxxXZxw_152);
 	T1_ = (tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw*)0;
 	T1_ = newStringStream__9aLRtgEYeRMrZKrObtoOslQ(TM__9brjMmGFaIx4wBkLyxxXZxw_153);
 	T2_ = (tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ*)0;
 	T2_ = &T1_->Sup;
-	eqsink___uD7PP9aMywYClkkmJVib7sg_2(&(*result).bodyStream, T2_);
+	eqsink___uD7PP9aMywYClkkmJVib7sg(&(*result).bodyStream, T2_);
 	(*result).getBody = NIM_TRUE;
-	eq___Maxw2KUIYGcdUEJ9aO5a9bpw(&(*result).sslContext, sslContext);
+	eqsink___Maxw2KUIYGcdUEJ9aO5a9bpw(&(*result).sslContext, sslContext);
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*, getDefaultSSL__gZuBS086zrhExFFDxdhPzA)(void) {
@@ -3200,15 +3189,15 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*)0;
-	eq___Maxw2KUIYGcdUEJ9aO5a9bpw(&result, defaultSslContext__3GZQajZtKdLpqTTN2RjTzw);
+	eq___Maxw2KUIYGcdUEJ9aO5a9bpw_2(&result, defaultSslContext__3GZQajZtKdLpqTTN2RjTzw);
 	{
 		tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* T5_;
 		if (!(result == NIM_NIL)) goto LA3_;
 		T5_ = (tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*)0;
 		T5_ = newContext__p45vOS9b3iK2JJ1Y7aIJ9bUA(((tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw) 3), ((tyEnum_SslCVerifyMode__t9a9cuHiKUd7w4o8XPQAbfJg) 0), TM__9brjMmGFaIx4wBkLyxxXZxw_154, TM__9brjMmGFaIx4wBkLyxxXZxw_155, TM__9brjMmGFaIx4wBkLyxxXZxw_157, TM__9brjMmGFaIx4wBkLyxxXZxw_158, TM__9brjMmGFaIx4wBkLyxxXZxw_159);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		eqsink___Maxw2KUIYGcdUEJ9aO5a9bpw_2(&defaultSslContext__3GZQajZtKdLpqTTN2RjTzw, T5_);
-		eq___Maxw2KUIYGcdUEJ9aO5a9bpw(&result, defaultSslContext__3GZQajZtKdLpqTTN2RjTzw);
+		eqsink___Maxw2KUIYGcdUEJ9aO5a9bpw(&defaultSslContext__3GZQajZtKdLpqTTN2RjTzw, T5_);
+		eq___Maxw2KUIYGcdUEJ9aO5a9bpw_2(&result, defaultSslContext__3GZQajZtKdLpqTTN2RjTzw);
 		{
 			if (!!(!((result == NIM_NIL)))) goto LA8_;
 			failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(TM__9brjMmGFaIx4wBkLyxxXZxw_161);

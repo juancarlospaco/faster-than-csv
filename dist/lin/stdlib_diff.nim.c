@@ -290,9 +290,12 @@ NIM_BOOL* nimErr_;
 				LA37_: ;
 				{
 					NI colontmpD__4;
+					NimStringV2 blitTmp;
 					colontmpD__4 = (NI)0;
 					lastUsedCode += ((NI) 1);
-					X5BX5Deq___HfxZpUfki4UkuP38hbwROA(h, s, lastUsedCode);
+					blitTmp = s;
+					s.len = 0; s.p = NIM_NIL;
+					X5BX5Deq___HfxZpUfki4UkuP38hbwROA(h, blitTmp, lastUsedCode);
 					colontmpD__4 = lastUsedCode;
 					add__MIAbjRZGBQlNfywJeCn8AQ((&result.data), colontmpD__4);
 				}
