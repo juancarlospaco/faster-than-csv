@@ -228,6 +228,7 @@ N_LIB_PRIVATE N_NIMCALL(NCSTRING*, envToCStringArray__ycBq0pnoixEzCDQfJtZIrQ)(ty
 N_LIB_PRIVATE N_NIMCALL(NI, nstlen)(tyObject_StringTableObj__V5PVrt9bIxZEeV7lfvqqtNg* t);
 static N_INLINE(NCSTRING, nimToCStringConv)(NimStringV2 s);
 N_LIB_PRIVATE N_NIMCALL(pid_t, startProcessAuxFork__fxpm29cY48fSnfKctT4HQMg)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* data);
+N_LIB_PRIVATE N_NIMCALL(void, eq___l1Qmxnd5LvDYDPdTt9bdc8Q)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* dest, tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* src);
 N_LIB_PRIVATE N_CDECL(void, startProcessAfterFork__5VTCS7mBulbz9a1M2vwi9bew)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* data);
 N_LIB_PRIVATE N_NIMCALL(void, startProcessFail__10xTBd9all9cp1ewzkhU9arJA)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* data);
 static N_INLINE(NI, nimCStrLen)(NCSTRING a);
@@ -235,11 +236,11 @@ N_LIB_PRIVATE N_NIMCALL(NimStringV2, findExe__9cov9c3aI19bfbEIyMe9bNCSEA)(NimStr
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuFormatOpenArray)(NimStringV2 formatstr, NimStringV2* a, NI aLen_0);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, cstrToNimstr)(NCSTRING str);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___OhQS2saEqyVSW2s1ZpqZCQ)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* dest);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuJoinSep)(NimStringV2* a, NI aLen_0, NimStringV2 sep);
 N_LIB_PRIVATE N_NIMCALL(void, echoBinSafe)(NimStringV2* args, NI argsLen_0);
 N_LIB_PRIVATE N_NIMCALL(void, deallocCStringArray__4ixt9bnFA4tfz1dFgECtQLw)(NCSTRING* a);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0RiuPw9cXhtLB9a2rQ2jA69cg)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* dest);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___OhQS2saEqyVSW2s1ZpqZCQ)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* dest);
 N_LIB_PRIVATE N_NIMCALL(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ*, nospoutputStream)(tyObject_ProcessObj__2rGNQnv9bU4hanI2g3svReg* p);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___uD7PP9aMywYClkkmJVib7sg_2)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ** dest, tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* src);
 N_LIB_PRIVATE N_NIMCALL(tyObject_FileStreamObj__9bEVSsOIpkY9cf5lCtaS39bPQ*, createStream__EPawtSz2oQtNs9cbkODc9bIQ)(int* handle, tyEnum_FileMode__ZJfK20XeZ9bv2j1pZjw9aswg fileMode);
@@ -595,6 +596,17 @@ static N_INLINE(NCSTRING, nimToCStringConv)(NimStringV2 s) {
 	LA1_: ;
 	return result;
 }
+N_LIB_PRIVATE N_NIMCALL(void, eq___l1Qmxnd5LvDYDPdTt9bdc8Q)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* dest, tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* src) {
+	eq___aBBXmHFBEivKqERloP6zmA_2((&(*dest).sysCommand), (*src).sysCommand);
+	(*dest).sysArgs = (*src).sysArgs;
+	(*dest).sysEnv = (*src).sysEnv;
+	(*dest).workingDir = (*src).workingDir;
+	nimCopyMem((void*)(*dest).pStdin, (NIM_CONST void*)(*src).pStdin, sizeof(tyArray__SKEqGXcReU4NvbQlH779b5Q));
+	nimCopyMem((void*)(*dest).pStdout, (NIM_CONST void*)(*src).pStdout, sizeof(tyArray__SKEqGXcReU4NvbQlH779b5Q));
+	nimCopyMem((void*)(*dest).pStderr, (NIM_CONST void*)(*src).pStderr, sizeof(tyArray__SKEqGXcReU4NvbQlH779b5Q));
+	nimCopyMem((void*)(*dest).pErrorPipe, (NIM_CONST void*)(*src).pErrorPipe, sizeof(tyArray__SKEqGXcReU4NvbQlH779b5Q));
+	(*dest).options = (*src).options;
+}
 N_LIB_PRIVATE N_NIMCALL(void, startProcessFail__10xTBd9all9cp1ewzkhU9arJA)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* data) {
 	int error;
 	NI T1_;
@@ -728,14 +740,17 @@ NIM_BOOL* nimErr_;
 	startProcessFail__10xTBd9all9cp1ewzkhU9arJA(data);
 	}BeforeRet_: ;
 }
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___OhQS2saEqyVSW2s1ZpqZCQ)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* dest) {
+	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).sysCommand));
+}
 N_LIB_PRIVATE N_NIMCALL(pid_t, startProcessAuxFork__fxpm29cY48fSnfKctT4HQMg)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* data) {
 	pid_t result;
-	pid_t pid;
 	tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA dataCopy;
-	int T12_;
+	pid_t pid;
+	int T13_;
 	int error;
 	NI sizeRead;
-	int T28_;
+	int T29_;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result = (pid_t)0;
@@ -751,80 +766,86 @@ NIM_BOOL* nimErr_;
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA4_: ;
+	nimZeroMem((void*)(&dataCopy), sizeof(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA));
 	pid = (pid_t)0;
-	dataCopy = (*data);
+	eq___l1Qmxnd5LvDYDPdTt9bdc8Q((&dataCopy), data);
 	pid = fork();
 	{
-		if (!(pid == ((NI32) 0))) goto LA10_;
+		if (!(pid == ((NI32) 0))) goto LA11_;
 		startProcessAfterFork__5VTCS7mBulbz9a1M2vwi9bew((&dataCopy));
-		if (NIM_UNLIKELY(*nimErr_)) goto LA7_;
+		if (NIM_UNLIKELY(*nimErr_)) goto LA8_;
 		_exit(((NI) 1));
 	}
-	LA10_: ;
-	T12_ = (int)0;
-	T12_ = close((*data).pErrorPipe[(((NI) 1))- 0]);
-	(void)(T12_);
+	LA11_: ;
+	T13_ = (int)0;
+	T13_ = close((*data).pErrorPipe[(((NI) 1))- 0]);
+	(void)(T13_);
 	{
-		NI32 T17_;
-		if (!(pid < ((NI32) 0))) goto LA15_;
-		T17_ = (NI32)0;
-		T17_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
-		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T17_, TM__HZdw8BhppcTQo8DIK46LSg_13);
-		if (NIM_UNLIKELY(*nimErr_)) goto LA7_;
+		NI32 T18_;
+		if (!(pid < ((NI32) 0))) goto LA16_;
+		T18_ = (NI32)0;
+		T18_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
+		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T18_, TM__HZdw8BhppcTQo8DIK46LSg_13);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA8_;
 	}
-	LA15_: ;
+	LA16_: ;
 	error = (int)0;
 	sizeRead = read((*data).pErrorPipe[(((NI) 0))- 0], ((void*) ((&error))), ((NI) 4));
 	{
 		NimStringV2 colontmpD_;
 		NimStringV2 colontmpD__2;
-		NI32 T23_;
-		tyArray__Re75IspeoxXy2oCZHwcRrA T24_;
-		NCSTRING T25_;
-		if (!(sizeRead == ((NI) 4))) goto LA20_;
+		NI32 T24_;
+		tyArray__Re75IspeoxXy2oCZHwcRrA T25_;
+		NCSTRING T26_;
+		if (!(sizeRead == ((NI) 4))) goto LA21_;
 		colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
 		colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-		T23_ = (NI32)0;
-		T23_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
-		T24_[0] = (*data).sysCommand;
-		T25_ = (NCSTRING)0;
-		T25_ = strerror(error);
-		colontmpD_ = cstrToNimstr(T25_);
-		T24_[1] = colontmpD_;
-		colontmpD__2 = nsuFormatOpenArray(TM__HZdw8BhppcTQo8DIK46LSg_15, T24_, 2);
-		if (NIM_UNLIKELY(*nimErr_)) goto LA22_;
-		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T23_, colontmpD__2);
-		if (NIM_UNLIKELY(*nimErr_)) goto LA22_;
+		T24_ = (NI32)0;
+		T24_ = osLastError__9bUWNxbcGnToMWA9b79aTXLIw();
+		T25_[0] = (*data).sysCommand;
+		T26_ = (NCSTRING)0;
+		T26_ = strerror(error);
+		colontmpD_ = cstrToNimstr(T26_);
+		T25_[1] = colontmpD_;
+		colontmpD__2 = nsuFormatOpenArray(TM__HZdw8BhppcTQo8DIK46LSg_15, T25_, 2);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA23_;
+		raiseOSError__CWyPYlyH9a6rAuZckFyVxPA(T24_, colontmpD__2);
+		if (NIM_UNLIKELY(*nimErr_)) goto LA23_;
 		{
-			LA22_:;
+			LA23_:;
 		}
 		{
 			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
 			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
 		}
-		if (NIM_UNLIKELY(*nimErr_)) goto LA7_;
+		if (NIM_UNLIKELY(*nimErr_)) goto LA8_;
 	}
-	LA20_: ;
+	LA21_: ;
 	result = pid;
-	T28_ = (int)0;
-	T28_ = close((*data).pErrorPipe[(((NI) 0))- 0]);
-	(void)(T28_);
+	eqdestroy___OhQS2saEqyVSW2s1ZpqZCQ((&dataCopy));
+	T29_ = (int)0;
+	T29_ = close((*data).pErrorPipe[(((NI) 0))- 0]);
+	(void)(T29_);
 	goto BeforeRet_;
+	{
+		LA8_:;
+	}
+	{
+		eqdestroy___OhQS2saEqyVSW2s1ZpqZCQ((&dataCopy));
+	}
+	if (NIM_UNLIKELY(*nimErr_)) goto LA7_;
 	{
 		LA7_:;
 	}
 	{
-		int T31_;
-		T31_ = (int)0;
-		T31_ = close((*data).pErrorPipe[(((NI) 0))- 0]);
-		(void)(T31_);
+		int T34_;
+		T34_ = (int)0;
+		T34_ = close((*data).pErrorPipe[(((NI) 0))- 0]);
+		(void)(T34_);
 	}
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___OhQS2saEqyVSW2s1ZpqZCQ)(tyObject_StartProcessData__xgRnKnLIYRtnOkshMKhc9cA* dest) {
-	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).sysCommand));
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_ProcessObj__2rGNQnv9bU4hanI2g3svReg*, nospstartProcess)(NimStringV2 command, NimStringV2 workingDir, NimStringV2* args, NI argsLen_0, tyObject_StringTableObj__V5PVrt9bIxZEeV7lfvqqtNg* env, tySet_tyEnum_ProcessOption__bnU6W8LhTMnT4JaSWtGlSA options) {
 	tyObject_ProcessObj__2rGNQnv9bU4hanI2g3svReg* result;

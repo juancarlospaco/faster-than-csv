@@ -234,6 +234,7 @@ NimStringV2 path;
 NimStringV2 query;
 NimStringV2 anchor;
 NIM_BOOL opaque;
+NIM_BOOL isIpv6;
 };
 typedef struct {
 N_NIMCALL_PTR(void, ClP_0) (NI64 total, NI64 progress, NI64 speed, void* ClE_0);
@@ -1192,7 +1193,7 @@ NIM_BOOL* nimErr_;
 }
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, csv2list__GoxOfodCk0biTU4ozQQTSw)(NimStringV2 csv_file_path, NIM_BOOL has_header, NIM_CHAR separator, NIM_CHAR quote, NIM_BOOL skipInitialSpace, NIM_BOOL verbose) {
 	tySequence__sM4lkSb7zS6F7OVMvW9cffQ result;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result.len = 0; result.p = NIM_NIL;
@@ -1480,7 +1481,7 @@ static N_INLINE(NI*, create__xvct3PlWDVO1QDeqx6tg0Qsystem)(NI size) {
 }
 N_LIB_PRIVATE N_NIMCALL(tySequence__rgubAid5B4Ixbg70snLJsg, csv2dict__ZQyIPZA39bI9cqRCCBt3ea0w)(NimStringV2 csv_file_path, NIM_BOOL has_header, NIM_CHAR separator, NIM_CHAR quote, NIM_BOOL skipInitialSpace, NIM_BOOL verbose) {
 	tySequence__rgubAid5B4Ixbg70snLJsg result;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result.len = 0; result.p = NIM_NIL;
@@ -1784,7 +1785,7 @@ NIM_BOOL* nimErr_;
 	{
 		NIM_BOOL T3_;
 		tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw* colontmpD_;
-		tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+		tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 		tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* T7_;
 		T3_ = (NIM_BOOL)0;
 		T3_ = NIM_LIKELY(((*exitCode) == ((NI) 0)));
@@ -2084,7 +2085,7 @@ NIM_BOOL* nimErr_;
 	{
 		NIM_BOOL T16_;
 		tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw* colontmpD__4;
-		tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+		tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 		tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* T20_;
 		T16_ = (NIM_BOOL)0;
 		T16_ = NIM_LIKELY((((NI) 0) < (*csv_content).len));
@@ -2378,7 +2379,7 @@ N_LIB_PRIVATE N_CDECL(void*, url2csvPy_wrapper__MjWXvWwg6eDUTDnWRYM9aYw)(void* s
 }
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, csv2json__7qtPFBzuAS8qJ4CLz2r1IQ)(NimStringV2 csv_file_path, NIM_BOOL has_header, NIM_CHAR separator, NIM_CHAR quote, NIM_BOOL skipInitialSpace, NIM_BOOL verbose, NI indentation) {
 	tySequence__sM4lkSb7zS6F7OVMvW9cffQ result;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 	NimStringV2* temp;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
@@ -2822,7 +2823,7 @@ static N_INLINE(void, appendString)(NimStringV2* dest, NimStringV2 src) {
 	LA3_: ;
 }
 N_LIB_PRIVATE N_NIMCALL(void, csv2ndjson__f9ctOP7DWvKFpNNp9aizA66g)(NimStringV2 csv_file_path, NimStringV2 ndjson_file_path, NIM_BOOL has_header, NIM_CHAR separator, NIM_CHAR quote, NIM_BOOL skipInitialSpace, NIM_BOOL verbose) {
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 	NimStringV2* ndjson;
 	NimStringV2* temp;
 NIM_BOOL* nimErr_;
@@ -3133,7 +3134,7 @@ NIM_BOOL* nimErr_;
 }
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, csv2htmltable__Y5TlkLzjHIAX9blTXj1h29bA)(NimStringV2 csv_file_path, NimStringV2 html_file_path, NIM_BOOL has_header, NIM_CHAR separator, NIM_CHAR quote, NIM_BOOL skipInitialSpace, NIM_BOOL verbose, NimStringV2 header_html) {
 	NimStringV2 result;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 	NimStringV2* html_content;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
@@ -3503,7 +3504,7 @@ N_LIB_PRIVATE N_NIMCALL(NimStringV2, csv2markdowntable__uIoqgTFlweyhGCZgP5XePg)(
 	NimStringV2 result;
 	NimStringV2 colontmpD_;
 	NimStringV2 colontmpD__2;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 	NimStringV2 T7_;
 	NI T8_;
 NIM_BOOL* nimErr_;
@@ -3789,7 +3790,7 @@ N_LIB_PRIVATE N_NIMCALL(NimStringV2, csv2xml__Fr9b7daLjWzTbgnWaLP3ieQ)(NimString
 	NimStringV2 result;
 	tyObject_XmlNodeObj__X79bE2j9a1V7tizbx9blALudQ* colontmpD_;
 	NimStringV2 colontmpD__2;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 	tySequence__AjV3cEUgs0Y9c7dCt9aItdIA* temp;
 	tyObject_XmlNodeObj__X79bE2j9a1V7tizbx9blALudQ** e;
 	NimStringV2 T51_;
@@ -4106,7 +4107,7 @@ N_LIB_PRIVATE N_CDECL(void*, csv2xmlPy_wrapper__8IrtC9aD9bJ8lB13DHUWnolQ)(void* 
 }
 N_LIB_PRIVATE N_NIMCALL(tySequence__rgubAid5B4Ixbg70snLJsg, csv_punycode2dict__ZQyIPZA39bI9cqRCCBt3ea0w_2)(NimStringV2 csv_file_path, NIM_BOOL has_header, NIM_CHAR separator, NIM_CHAR quote, NIM_BOOL skipInitialSpace, NIM_BOOL verbose) {
 	tySequence__rgubAid5B4Ixbg70snLJsg result;
-	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* parser;
+	tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* NIM_NOALIAS parser;
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
 	result.len = 0; result.p = NIM_NIL;

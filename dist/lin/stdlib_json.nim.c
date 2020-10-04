@@ -35,8 +35,8 @@ typedef struct tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content tySequence__MlAD6nAP
 typedef struct tySequence__oLpBKXzW3hF9aCVMo5EymfQ tySequence__oLpBKXzW3hF9aCVMo5EymfQ;
 typedef struct tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content;
 typedef struct tyTuple__awOivLjlO76sGdHY7nQUjQ tyTuple__awOivLjlO76sGdHY7nQUjQ;
-typedef struct tyTuple__jq7X5k7hWG0tdTZTDkiyGQ tyTuple__jq7X5k7hWG0tdTZTDkiyGQ;
 typedef struct tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A;
+typedef struct tyTuple__jq7X5k7hWG0tdTZTDkiyGQ tyTuple__jq7X5k7hWG0tdTZTDkiyGQ;
 
 /* section: NIM_merge_TYPES */
 struct NimStrPayload {
@@ -106,16 +106,16 @@ struct tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content { NI cap; tyObject_JsonNodeOb
 
       
 
-#ifndef tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content_PP
-#define tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content_PP
-struct tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content { NI cap; tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* data[SEQ_DECL_SIZE];};
+#ifndef tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content_PP
+#define tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content_PP
+struct tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content { NI cap; tyTuple__awOivLjlO76sGdHY7nQUjQ data[SEQ_DECL_SIZE];};
 #endif
 
       
 
-#ifndef tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content_PP
-#define tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content_PP
-struct tySequence__MlAD6nAPq9bHKla9cWiIZP0g_Content { NI cap; tyTuple__awOivLjlO76sGdHY7nQUjQ data[SEQ_DECL_SIZE];};
+#ifndef tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content_PP
+#define tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content_PP
+struct tySequence__oLpBKXzW3hF9aCVMo5EymfQ_Content { NI cap; tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* data[SEQ_DECL_SIZE];};
 #endif
 
       
@@ -134,6 +134,16 @@ N_LIB_PRIVATE N_NIMCALL(void, nl__cdUf7ymWwwJY69aiEWqMGfg)(NimStringV2* s, NIM_B
 static N_INLINE(void, nimZeroMem)(void* p, NI size);
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
 static N_INLINE(NIM_BOOL, isFilled__5Qpmu5QqwDY0esVXn6wf7wtables)(NI hcode);
+N_LIB_PRIVATE N_NIMCALL(void, eq___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
+N_LIB_PRIVATE N_NIMCALL(void, eq___6EHV9bhKKq4NxDKi7tw1gBg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src);
+static N_INLINE(void, nimIncRef)(void* p);
+static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y);
+static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___2Gf5YfVIVw0iQzZBcX83xg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* dest);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___J0sr7TMAM42EcoM50oQONA)(tySequence__MlAD6nAPq9bHKla9cWiIZP0g* dest);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0jmzf9bwnp7lsUqveAjsMpQ)(tySequence__oLpBKXzW3hF9aCVMo5EymfQ* dest);
+N_LIB_PRIVATE N_NIMCALL(void, nimRawDispose)(void* p);
+N_LIB_PRIVATE N_NOCONV(void, deallocShared)(void* p);
 N_LIB_PRIVATE N_NIMCALL(NI, newIndent__8dltImVNwFyjNtT9boLnYdg)(NI curr, NI indent, NIM_BOOL ml);
 N_LIB_PRIVATE N_NIMCALL(void, escapeJson__YID1CO5Pb6vZOjpjrUt6Lw)(NimStringV2 s, NimStringV2* result);
 N_LIB_PRIVATE N_NIMCALL(void, escapeJsonUnquoted__YID1CO5Pb6vZOjpjrUt6Lw_2)(NimStringV2 s, NimStringV2* result);
@@ -141,24 +151,16 @@ N_LIB_PRIVATE N_NIMCALL(NimStringV2, nimIntToStr)(NI x);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, rawNewString)(NI space);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuToHex)(NI64 x, NI len);
 static N_INLINE(void, nimAddCharV1)(NimStringV2* s, NIM_CHAR c);
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___AdQn4YUpyFgIhgyr47lZ7Q)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest);
 N_LIB_PRIVATE N_NIMCALL(void, addInt__mftMOxbyu0h4yByfs3sqjA)(NimStringV2* result, NI64 x);
 N_LIB_PRIVATE N_NIMCALL(void, addFloat__R7rBahgTSmBayFrvvbK9bKQ)(NimStringV2* result, NF x);
 N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, newJArray__nXwnFPu9beTnGPwglrr7ztA)(void);
 N_LIB_PRIVATE N_NIMCALL(void*, nimNewObjUninit)(NI size);
 N_LIB_PRIVATE N_NIMCALL(void*, newSeqPayload)(NI cap, NI elemSize, NI elemAlign);
-N_LIB_PRIVATE N_NIMCALL(void, eqsink___6EHV9bhKKq4NxDKi7tw1gBg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src);
-static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p);
-static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___2Gf5YfVIVw0iQzZBcX83xg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* dest);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___J0sr7TMAM42EcoM50oQONA)(tySequence__MlAD6nAPq9bHKla9cWiIZP0g* dest);
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0jmzf9bwnp7lsUqveAjsMpQ)(tySequence__oLpBKXzW3hF9aCVMo5EymfQ* dest);
-N_LIB_PRIVATE N_NIMCALL(void, nimRawDispose)(void* p);
-N_LIB_PRIVATE N_NOCONV(void, deallocShared)(void* p);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___6EHV9bhKKq4NxDKi7tw1gBg_2)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src);
 N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, newJObject__nXwnFPu9beTnGPwglrr7ztA_2)(void);
 N_LIB_PRIVATE N_NIMCALL(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg, initOrderedTable__Xnq4D4mCe8fymnuh9c7PQlw)(NI initialSize);
 N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___vlnBr1uIbtu0ntnZh6Askg)(tyObject_OrderedTable__ZZvSdVkA2s2sIyifu4cpkg* t, NimStringV2 key, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* val);
-static N_INLINE(void, nimIncRef)(void* p);
-N_LIB_PRIVATE N_NIMCALL(void, eq___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
 N_LIB_PRIVATE N_NIMCALL(void, toUgly__6GftN2FLfP2Tuz9csidVHFA)(NimStringV2* result, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* node);
 
 /* section: NIM_merge_DATA */
@@ -351,6 +353,118 @@ static N_INLINE(NIM_BOOL, isFilled__5Qpmu5QqwDY0esVXn6wf7wtables)(NI hcode) {
 	result = !((hcode == ((NI) 0)));
 	return result;
 }
+static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y) {
+	NI result;
+	result = (NI)0;
+	result = ((NI) ((NU)((NU64)(((NU) (x))) - (NU64)(((NU) (y))))));
+	return result;
+}
+static N_INLINE(void, nimIncRef)(void* p) {
+	NI T1_;
+	T1_ = (NI)0;
+	T1_ = minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system(((NI) (ptrdiff_t) (p)), ((NI) 8));
+	(*((tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A*) (T1_))).rc += ((NI) 8);
+}
+static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p) {
+	NIM_BOOL result;
+	result = (NIM_BOOL)0;
+	{
+		tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A* cell;
+		NI T5_;
+		if (!!((p == NIM_NIL))) goto LA3_;
+		T5_ = (NI)0;
+		T5_ = minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system(((NI) (ptrdiff_t) (p)), ((NI) 8));
+		cell = ((tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A*) (T5_));
+		{
+			if (!((NI)((*cell).rc & ((NI) -8)) == ((NI) 0))) goto LA8_;
+			result = NIM_TRUE;
+		}
+		goto LA6_;
+		LA8_: ;
+		{
+			(*cell).rc -= ((NI) 8);
+		}
+		LA6_: ;
+	}
+	LA3_: ;
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0jmzf9bwnp7lsUqveAjsMpQ)(tySequence__oLpBKXzW3hF9aCVMo5EymfQ* dest) {
+	NI colontmp_;
+	colontmp_ = ((NI) 0);
+	{
+		while (1) {
+			NI T3_;
+			T3_ = (*dest).len;
+			if (!(colontmp_ < T3_)) goto LA2;
+			{
+				NIM_BOOL T6_;
+				T6_ = (NIM_BOOL)0;
+				T6_ = nimDecRefIsLast((*dest).p->data[colontmp_]);
+				if (!T6_) goto LA7_;
+				eqdestroy___2Gf5YfVIVw0iQzZBcX83xg((*dest).p->data[colontmp_]);
+				nimRawDispose((*dest).p->data[colontmp_]);
+			}
+			LA7_: ;
+			colontmp_ += ((NI) 1);
+		} LA2: ;
+	}
+	if ((*dest).p && !((*dest).p->cap & NIM_STRLIT_FLAG)) {
+ deallocShared((*dest).p);
+}
+}
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___2Gf5YfVIVw0iQzZBcX83xg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* dest) {
+	switch ((*dest).kind) {
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 4):
+	{
+		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest)._kind_1.str));
+	}
+	break;
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 2):
+	{
+	}
+	break;
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 3):
+	{
+	}
+	break;
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 1):
+	{
+	}
+	break;
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 0):
+	{
+	}
+	break;
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 5):
+	{
+		eqdestroy___J0sr7TMAM42EcoM50oQONA((&(*dest)._kind_6.fields.data));
+	}
+	break;
+	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 6):
+	{
+		eqdestroy___0jmzf9bwnp7lsUqveAjsMpQ((&(*dest)._kind_7.elems));
+	}
+	break;
+	}
+}
+N_LIB_PRIVATE N_NIMCALL(void, eq___6EHV9bhKKq4NxDKi7tw1gBg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src) {
+	{
+		if (!src) goto LA3_;
+		nimIncRef(src);
+	}
+	LA3_: ;
+	{
+		NIM_BOOL T7_;
+		T7_ = (NIM_BOOL)0;
+		T7_ = nimDecRefIsLast((*dest));
+		if (!T7_) goto LA8_;
+		eqdestroy___2Gf5YfVIVw0iQzZBcX83xg((*dest));
+		nimRawDispose((*dest));
+	}
+	LA8_: ;
+	(*dest) = src;
+}
 N_LIB_PRIVATE N_NIMCALL(NI, newIndent__8dltImVNwFyjNtT9boLnYdg)(NI curr, NI indent, NIM_BOOL ml) {
 	NI result;
 {	result = (NI)0;
@@ -492,6 +606,17 @@ appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_13);
 	prepareAdd((&(*result)), 1);
 appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_34);
 }
+N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___AdQn4YUpyFgIhgyr47lZ7Q)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest) {
+	{
+		NIM_BOOL T3_;
+		T3_ = (NIM_BOOL)0;
+		T3_ = nimDecRefIsLast((*dest));
+		if (!T3_) goto LA4_;
+		eqdestroy___2Gf5YfVIVw0iQzZBcX83xg((*dest));
+		nimRawDispose((*dest));
+	}
+	LA4_: ;
+}
 N_LIB_PRIVATE N_NIMCALL(void, toPretty__T9c9a1po9b6rWzf9b9b4cv2n9aUQ)(NimStringV2* result, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* node, NI indent, NIM_BOOL ml, NIM_BOOL lstArr, NI currIndent) {
 	switch ((*node).kind) {
 	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 5):
@@ -539,8 +664,8 @@ appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_5);
 								T20_ = (NIM_BOOL)0;
 								T20_ = isFilled__5Qpmu5QqwDY0esVXn6wf7wtables(colontmp_.data.p->data[h].Field0);
 								if (!T20_) goto LA21_;
-								key = colontmp_.data.p->data[h].Field2;
-								val = colontmp_.data.p->data[h].Field3;
+								eq___aBBXmHFBEivKqERloP6zmA_2((&key), colontmp_.data.p->data[h].Field2);
+								eq___6EHV9bhKKq4NxDKi7tw1gBg(&val, colontmp_.data.p->data[h].Field3);
 								{
 									if (!(((NI) 0) < i)) goto LA25_;
 									prepareAdd((&(*result)), 1);
@@ -569,6 +694,8 @@ appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_36);
 					}
 				}
 				LA14_: ;
+				eqdestroy___AdQn4YUpyFgIhgyr47lZ7Q(&val);
+				eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&key));
 			}
 			nl__cdUf7ymWwwJY69aiEWqMGfg(result, ml);
 			indent__5gehovIFYjiBH1k6tFdATg(result, currIndent);
@@ -737,96 +864,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, newJArr
 	result = T1_;
 	return result;
 }
-static N_INLINE(NI, minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system)(NI x, NI y) {
-	NI result;
-	result = (NI)0;
-	result = ((NI) ((NU)((NU64)(((NU) (x))) - (NU64)(((NU) (y))))));
-	return result;
-}
-static N_INLINE(NIM_BOOL, nimDecRefIsLast)(void* p) {
-	NIM_BOOL result;
-	result = (NIM_BOOL)0;
-	{
-		tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A* cell;
-		NI T5_;
-		if (!!((p == NIM_NIL))) goto LA3_;
-		T5_ = (NI)0;
-		T5_ = minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system(((NI) (ptrdiff_t) (p)), ((NI) 8));
-		cell = ((tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A*) (T5_));
-		{
-			if (!((NI)((*cell).rc & ((NI) -8)) == ((NI) 0))) goto LA8_;
-			result = NIM_TRUE;
-		}
-		goto LA6_;
-		LA8_: ;
-		{
-			(*cell).rc -= ((NI) 8);
-		}
-		LA6_: ;
-	}
-	LA3_: ;
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0jmzf9bwnp7lsUqveAjsMpQ)(tySequence__oLpBKXzW3hF9aCVMo5EymfQ* dest) {
-	NI colontmp_;
-	colontmp_ = ((NI) 0);
-	{
-		while (1) {
-			NI T3_;
-			T3_ = (*dest).len;
-			if (!(colontmp_ < T3_)) goto LA2;
-			{
-				NIM_BOOL T6_;
-				T6_ = (NIM_BOOL)0;
-				T6_ = nimDecRefIsLast((*dest).p->data[colontmp_]);
-				if (!T6_) goto LA7_;
-				eqdestroy___2Gf5YfVIVw0iQzZBcX83xg((*dest).p->data[colontmp_]);
-				nimRawDispose((*dest).p->data[colontmp_]);
-			}
-			LA7_: ;
-			colontmp_ += ((NI) 1);
-		} LA2: ;
-	}
-	if ((*dest).p && !((*dest).p->cap & NIM_STRLIT_FLAG)) {
- deallocShared((*dest).p);
-}
-}
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___2Gf5YfVIVw0iQzZBcX83xg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* dest) {
-	switch ((*dest).kind) {
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 4):
-	{
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest)._kind_1.str));
-	}
-	break;
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 2):
-	{
-	}
-	break;
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 3):
-	{
-	}
-	break;
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 1):
-	{
-	}
-	break;
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 0):
-	{
-	}
-	break;
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 5):
-	{
-		eqdestroy___J0sr7TMAM42EcoM50oQONA((&(*dest)._kind_6.fields.data));
-	}
-	break;
-	case ((tyEnum_JsonNodeKind__RUngo7nCHe6O8aBGIcrhtg) 6):
-	{
-		eqdestroy___0jmzf9bwnp7lsUqveAjsMpQ((&(*dest)._kind_7.elems));
-	}
-	break;
-	}
-}
-N_LIB_PRIVATE N_NIMCALL(void, eqsink___6EHV9bhKKq4NxDKi7tw1gBg)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src) {
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___6EHV9bhKKq4NxDKi7tw1gBg_2)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src) {
 	{
 		NIM_BOOL T3_;
 		T3_ = (NIM_BOOL)0;
@@ -849,40 +887,6 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, newJObj
 	result = T1_;
 	return result;
 }
-static N_INLINE(void, nimIncRef)(void* p) {
-	NI T1_;
-	T1_ = (NI)0;
-	T1_ = minuspercent___dgYAo7RfdUVVpvkfKDym8w_2system(((NI) (ptrdiff_t) (p)), ((NI) 8));
-	(*((tyObject_RefHeader__Gi7WQzlT1ZRToh9a2ueYb4A*) (T1_))).rc += ((NI) 8);
-}
-N_LIB_PRIVATE N_NIMCALL(void, eq___6EHV9bhKKq4NxDKi7tw1gBg_2)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest, tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* src) {
-	{
-		if (!src) goto LA3_;
-		nimIncRef(src);
-	}
-	LA3_: ;
-	{
-		NIM_BOOL T7_;
-		T7_ = (NIM_BOOL)0;
-		T7_ = nimDecRefIsLast((*dest));
-		if (!T7_) goto LA8_;
-		eqdestroy___2Gf5YfVIVw0iQzZBcX83xg((*dest));
-		nimRawDispose((*dest));
-	}
-	LA8_: ;
-	(*dest) = src;
-}
-N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___AdQn4YUpyFgIhgyr47lZ7Q)(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** dest) {
-	{
-		NIM_BOOL T3_;
-		T3_ = (NIM_BOOL)0;
-		T3_ = nimDecRefIsLast((*dest));
-		if (!T3_) goto LA4_;
-		eqdestroy___2Gf5YfVIVw0iQzZBcX83xg((*dest));
-		nimRawDispose((*dest));
-	}
-	LA4_: ;
-}
 N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, percent___HoVDUa0lAOcINNYBrrSTiA)(tyTuple__jq7X5k7hWG0tdTZTDkiyGQ* keyVals, NI keyValsLen_0) {
 	tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* result;
 	tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q* T5_;
@@ -895,7 +899,7 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*, percent
 	LA3_: ;
 	T5_ = (tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q*)0;
 	T5_ = newJObject__nXwnFPu9beTnGPwglrr7ztA_2();
-	eqsink___6EHV9bhKKq4NxDKi7tw1gBg(&result, T5_);
+	eqsink___6EHV9bhKKq4NxDKi7tw1gBg_2(&result, T5_);
 	{
 		NimStringV2* key;
 		tyObject_JsonNodeObj__df9bshXB7C9cTiWPIOtX3j1Q** val;
@@ -1003,8 +1007,8 @@ appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_57);
 							T21_ = (NIM_BOOL)0;
 							T21_ = isFilled__5Qpmu5QqwDY0esVXn6wf7wtables(colontmp__2.data.p->data[h].Field0);
 							if (!T21_) goto LA22_;
-							key = colontmp__2.data.p->data[h].Field2;
-							value = colontmp__2.data.p->data[h].Field3;
+							eq___aBBXmHFBEivKqERloP6zmA_2((&key), colontmp__2.data.p->data[h].Field2);
+							eq___6EHV9bhKKq4NxDKi7tw1gBg(&value, colontmp__2.data.p->data[h].Field3);
 							{
 								if (!comma) goto LA26_;
 								prepareAdd((&(*result)), 1);
@@ -1027,6 +1031,8 @@ appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_60);
 				}
 			}
 			LA15_: ;
+			eqdestroy___AdQn4YUpyFgIhgyr47lZ7Q(&value);
+			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&key));
 		}
 		prepareAdd((&(*result)), 1);
 appendString((&(*result)), TM__9b9bytt1stv9cZ8uqII7HFgew_61);
