@@ -59,7 +59,7 @@ jobs:
         TWINE_NON_INTERACTIVE: 1
         NIM_COMMON_OPTIONS:    >-
           compileToC --compileOnly:on --colors:off --threads:off
-          -d:release -d:danger -d:lto -d:strip -d:ssl --app:lib
+          -d:release -d:danger -d:lto -d:strip -d:ssl --app:lib --sinkInference:on
           -d:nimBinaryStdFiles -d:noSignalHandler -d:nimDisableCertificateValidation
           --opt:speed --cpu:amd64 --forceBuild --gc:arc --panics:on
           --stackTrace:off --excessiveStackTrace:off --experimental:parallel
