@@ -112,7 +112,6 @@ N_LIB_PRIVATE N_NIMCALL(void, eqsink___d7gAg5L4VylfG9broPtLixg)(tyObject_Table__
 N_LIB_PRIVATE N_NIMCALL(tyObject_Table__qagh2zcXAhSb9aRfetCb26g*, newTable__j9aovL9c5jjTLwk0JUYr9b7Tg)(NI initialSize);
 N_LIB_PRIVATE N_NIMCALL(void, add__dK9ajFgX5RSWQx0eHjjpjSQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* x, NimStringV2 value);
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ*, X5BX5D___Nb82lIHpq89cl6q2YU4EZlg)(tyObject_Table__qagh2zcXAhSb9aRfetCb26g* t, NimStringV2 key);
-N_LIB_PRIVATE N_NIMCALL(NI, len__J4hnoSPhc6KiK07n7KgZ9cQ)(tyObject_Table__qagh2zcXAhSb9aRfetCb26g* t);
 N_LIB_PRIVATE N_NIMCALL(void, eq___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, hasKey__jz0AniI5No9bnkMo9aqdkc2A)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, NimStringV2 key);
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, X5BX5D___F8UGF8XOf3lJ0eLDjh362w)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, NimStringV2 key);
@@ -545,14 +544,6 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}BeforeRet_: ;
 }
-N_LIB_PRIVATE N_NIMCALL(NI, len__u7Y7mis1lgEx9cfeUB58mwA)(tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers) {
-	NI result;
-{	result = (NI)0;
-	result = len__J4hnoSPhc6KiK07n7KgZ9cQ((*headers).table);
-	goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, toString__vY9b9br9btFmrOxuFGpY9cNqbQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ values) {
 	NimStringV2 result;
 {	result.len = 0; result.p = NIM_NIL;
@@ -682,20 +673,4 @@ N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___ot6ARD7jycF5zD3Vxo4ZCw)(tyObject_HttpHe
 	T2_ = toCaseInsensitive__61qaIoqIEFnR1irnyarMvQhttpcore(headers, key);
 	blitTmp = value;
 	X5BX5Deq___cCZ4Lm3CwSTyjJEZ4An8yw(T1_, T2_, blitTmp);
-}
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, is4xx__H9bBool5Ke9ajYGN7CfPerhw)(NI code) {
-	NIM_BOOL result;
-{	result = (NIM_BOOL)0;
-	result = (((NI) (code)) >= ((NI) 400) && ((NI) (code)) <= ((NI) 499));
-	goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, is5xx__H9bBool5Ke9ajYGN7CfPerhw_2)(NI code) {
-	NIM_BOOL result;
-{	result = (NIM_BOOL)0;
-	result = (((NI) (code)) >= ((NI) 500) && ((NI) (code)) <= ((NI) 599));
-	goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
 }

@@ -539,7 +539,6 @@ N_LIB_PRIVATE N_NIMCALL(NI, len__5HyJrijzw6C9busX1MaqvCw)(tyObject_Table__Ji6x6J
 static N_INLINE(NIM_BOOL, isFilled__5Qpmu5QqwDY0esVXn6wf7wtables)(NI hcode);
 N_LIB_PRIVATE N_NIMCALL(void, cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ)(NimStringV2 k);
 static N_INLINE(void, pyObjToNim__BgfcSbBa0ZAfhYwnCVXo7Qnimpy)(void* o, NI* v);
-static N_INLINE(void, pyObjToNim__9bNDYgHmXHXyL1GRMrzOWJgnimpy)(void* o, NI* v);
 static N_INLINE(void*, nimValueToPy__xMvtbvt119c9ccS3nBepOLIwnimpy)(tyObject_Item__T8diAqAiCs9bhc5T1iInskQ* v);
 N_LIB_PRIVATE N_NIMCALL(void*, nimObjToPy__9bWGKFyimDI0SfdpBuvzj9aQ)(tyObject_Item__T8diAqAiCs9bhc5T1iInskQ* o);
 static N_INLINE(void*, nimValueToPy__51yER2WxA8YMw5rLcQX7Dgnimpy)(NI v);
@@ -608,25 +607,21 @@ static const struct {
 } TM__LoH0foxqckmmftA2y2Dp9aw_31 = { 3 | NIM_STRLIT_FLAG, "int" };
 static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_32 = {3, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_31};
 static const struct {
-  NI cap; NIM_CHAR data[7+1];
-} TM__LoH0foxqckmmftA2y2Dp9aw_33 = { 7 | NIM_STRLIT_FLAG, "Natural" };
-static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_34 = {7, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_33};
+  NI cap; NIM_CHAR data[6+1];
+} TM__LoH0foxqckmmftA2y2Dp9aw_33 = { 6 | NIM_STRLIT_FLAG, "startA" };
+static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_34 = {6, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_33};
 static const struct {
   NI cap; NIM_CHAR data[6+1];
-} TM__LoH0foxqckmmftA2y2Dp9aw_35 = { 6 | NIM_STRLIT_FLAG, "startA" };
+} TM__LoH0foxqckmmftA2y2Dp9aw_35 = { 6 | NIM_STRLIT_FLAG, "startB" };
 static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_36 = {6, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_35};
 static const struct {
-  NI cap; NIM_CHAR data[6+1];
-} TM__LoH0foxqckmmftA2y2Dp9aw_37 = { 6 | NIM_STRLIT_FLAG, "startB" };
-static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_38 = {6, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_37};
-static const struct {
   NI cap; NIM_CHAR data[8+1];
-} TM__LoH0foxqckmmftA2y2Dp9aw_39 = { 8 | NIM_STRLIT_FLAG, "deletedA" };
-static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_40 = {8, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_39};
+} TM__LoH0foxqckmmftA2y2Dp9aw_37 = { 8 | NIM_STRLIT_FLAG, "deletedA" };
+static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_38 = {8, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_37};
 static const struct {
   NI cap; NIM_CHAR data[9+1];
-} TM__LoH0foxqckmmftA2y2Dp9aw_41 = { 9 | NIM_STRLIT_FLAG, "insertedB" };
-static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_42 = {9, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_41};
+} TM__LoH0foxqckmmftA2y2Dp9aw_39 = { 9 | NIM_STRLIT_FLAG, "insertedB" };
+static const NimStringV2 TM__LoH0foxqckmmftA2y2Dp9aw_40 = {9, (NimStrPayload*)&TM__LoH0foxqckmmftA2y2Dp9aw_39};
 
 /* section: NIM_merge_VARS */
 extern tyObject_PyLibcolonObjectType___bTw708kK89b8Vj9cmSu9a4zig* pyLib__nxKBiAukGMNwnUq9bpn9adyw;
@@ -2041,44 +2036,6 @@ NIM_BOOL* nimErr_;
 	LA3_: ;
 	}BeforeRet_: ;
 }
-static N_INLINE(void, pyObjToNim__9bNDYgHmXHXyL1GRMrzOWJgnimpy)(void* o, NI* v) {
-	NI64 ll;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	ll = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyLong_AsLongLong(o);
-	{
-		if (!(ll == IL64(-1))) goto LA3_;
-		{
-			void* T7_;
-			NIM_BOOL T8_;
-			T7_ = (void*)0;
-			T7_ = (*pyLib__nxKBiAukGMNwnUq9bpn9adyw).PyErr_Occurred();
-			T8_ = (NIM_BOOL)0;
-			T8_ = NIM_UNLIKELY(!((T7_ == 0)));
-			if (!T8_) goto LA9_;
-			clearAndRaiseConversionError__z8PFXg0IwDVDHYuZ87EtFg(TM__LoH0foxqckmmftA2y2Dp9aw_34);
-			if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		}
-		LA9_: ;
-	}
-	LA3_: ;
-	(*v) = ((NI) (ll));
-	}BeforeRet_: ;
-}
-N_LIB_PRIVATE N_NIMCALL(void, parseArg__xmYXac9crrH7kNzmNMPO4Tw)(void* argTuple, void* kwargsDict, NI argIdx, NCSTRING argName, NI* result) {
-	void* arg;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	arg = getPyArg__NkJdiXLR244lRh2jwrl9clw(argTuple, kwargsDict, argIdx, argName);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	{
-		if (!!((arg == 0))) goto LA3_;
-		pyObjToNim__9bNDYgHmXHXyL1GRMrzOWJgnimpy(arg, result);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}
-	LA3_: ;
-	}BeforeRet_: ;
-}
 static N_INLINE(void*, nimValueToPy__FMP3wd9c9bjD79cOF9bBVzjY0Qnimpy)(NI64 v) {
 	void* result;
 	result = (void*)0;
@@ -2117,7 +2074,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret == ((NI32) 0)))) goto LA3_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_36);
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_34);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA3_: ;
@@ -2128,7 +2085,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret_2 == ((NI32) 0)))) goto LA7_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_38);
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_36);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA7_: ;
@@ -2139,7 +2096,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret_3 == ((NI32) 0)))) goto LA11_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_40);
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_38);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA11_: ;
@@ -2150,7 +2107,7 @@ NIM_BOOL* nimErr_;
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	{
 		if (!!((ret_4 == ((NI32) 0)))) goto LA15_;
-		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_42);
+		cannotSerializeErr__i9c8TXOdJNX0v1Y3vnKHHNQ(TM__LoH0foxqckmmftA2y2Dp9aw_40);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 	}
 	LA15_: ;

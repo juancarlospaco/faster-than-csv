@@ -98,6 +98,7 @@ N_LIB_PRIVATE N_NIMCALL(void*, nimNewObj)(NI size);
 N_LIB_PRIVATE N_NIMCALL(void, raiseExceptionEx)(Exception* e, NCSTRING ename, NCSTRING procname, NCSTRING filename, NI line);
 static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 static N_INLINE(NIM_CHAR, toLower__eK9b2e49aPf4wAIdUwhbmZsQparseutils)(NIM_CHAR c);
+N_NIMCALL(NI, nimParseBiggestFloat)(NimStringV2 s, NF* number, NI start);
 
 /* section: NIM_merge_DATA */
 extern TNimTypeV2 NTIv2__yoNlBGx0D2tRizIdhQuENw_;
@@ -343,5 +344,18 @@ N_LIB_PRIVATE N_NIMCALL(NI, skipIgnoreCase__Z630VYBL4pZDWlOyn05K5w)(NimStringV2 
 		result = ((NI) 0);
 	}
 	LA11_: ;
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(NI, npuParseFloat)(NimStringV2 s, NF* number, NI start) {
+	NI result;
+	NF bf;
+	result = (NI)0;
+	bf = 0.0;
+	result = nimParseBiggestFloat(s, (&bf), start);
+	{
+		if (!!((result == ((NI) 0)))) goto LA3_;
+		(*number) = bf;
+	}
+	LA3_: ;
 	return result;
 }
