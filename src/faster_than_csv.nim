@@ -132,7 +132,7 @@ proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
   dealloc parser
 
 
-proc csv2json*(csv_string: string; has_header: bool = true; separator: char = ','; nl: char = '\n'): seq[string] {.exportpy.} =
+proc csv2json*(csv_string: string; has_header: bool = true; separator: char = ','; nl: char = '\n'): string {.exportpy.} =
   ## CSV string to JSON string Pretty-printed.
   assert csv_string.len > 0, "Argument must not be empty string"
   assert separator != nl and separator notin {' ', '\n'} and nl notin {' ', ',', ';', '\t'}
