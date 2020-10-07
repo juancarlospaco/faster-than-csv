@@ -132,39 +132,37 @@ proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
   dealloc parser
 
 
-proc csv2json*(csv_file_path: string, has_header: bool = true,
-  separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
-  verbose: bool = false, indentation: Natural = 0): seq[string] {.exportpy.} =
-  ## Stream Read CSV to JSON, Pretty-printed or Minified.
-  let parser {.noalias.} = create(CsvParser)
-  mema (temp := ""; counter := 0):
-    parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-    if has_header:
-      parser.readHeaderRow()
-      while parser.readRow():
-        if unlikely(indentation != 0):
-          for column in parser.headers.items:
-            result.add json.pretty(%*{$column: parser.rowEntry(column)}, indentation)
-        else:
-          for column in parser.headers.items:
-            temp[] = ""
-            temp.toUgly %*{$column: parser.rowEntry(column)}
-            result.add temp[]
-        if unlikely(verbose): echo parser.processedRows()
-    else:
-      while parser.readRow():
-        if unlikely(indentation != 0):
-          for value in parser.row.items:
-            result.add json.pretty(%*{$counter: $value}, indentation)
-        else:
-          for value in parser.row.items:
-            temp[] = ""
-            temp.toUgly %*{$counter: $value}
-            result.add temp[]
-        inc counter
-        if unlikely(verbose): echo parser.processedRows()
-    parser.close()
-  dealloc parser
+proc csv2json*(csv_string: string; has_header: bool = true; separator: char = ','; nl: char = '\n'): seq[string] {.exportpy.} =
+  ## CSV string to JSON string Pretty-printed.
+  assert csv_string.len > 0, "Argument must not be empty string"
+  assert separator != nl and separator notin {' ', '\n'} and nl notin {' ', ',', ';', '\t'}
+  var temp = newJObject()
+  let csvlines = csv_string.split(nl)
+  let firstLine = csvlines[0].split(separator)
+  var headers = newSeqOfCap[string](firstLine.len)
+  if has_header:
+    for item in firstLine: headers.add item
+  else:
+    for item in 0 ..< firstLine.len: headers.add $item
+  for y in headers: temp[y] = newJArray()
+  for z in csvlines[(if has_header: 1 else: 0) .. ^1]:
+    var i = 0
+    for x in z.split(separator): # horizontal
+      if x == "true": temp[headers[i]].add newJBool(true)
+      elif x == "false": temp[headers[i]].add newJBool(false)
+      elif x == "null": temp[headers[i]].add newJNull()
+      elif unlikely(x == "NaN"): temp[headers[i]].add newJFloat(NaN)
+      elif unlikely(x == "undefined"): temp[headers[i]].add newJNull()
+      elif unlikely(x == "+inf"): temp[headers[i]].add newJFloat(+1e9999)
+      elif unlikely(x == "-inf"): temp[headers[i]].add newJFloat(-1e9999)
+      elif (func (ss: string): bool =
+            for v in ss: result = v in {'.', '-', '+', 'e', '0'..'9'})(x):
+        if '.' in x and 'e' notin x:   temp[headers[i]].add newJFloat(parseFloat(x))
+        elif 'e' in x and '.' notin x: temp[headers[i]].add newJFloat(parseFloat(x))
+        else:                          temp[headers[i]].add newJInt(parseInt(x))
+      else: temp[headers[i]].add newJString(x)
+      inc i
+  result = temp.pretty
 
 
 proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = true, separator: char = ',',
