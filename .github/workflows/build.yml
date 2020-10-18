@@ -51,7 +51,7 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
-        NIM_VERSION:           "devel"  # "1.2.6"
+        NIM_VERSION:           "1.4.0"
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
         TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
@@ -67,7 +67,7 @@ jobs:
 
     - name: Clone Nim
       run: |
-        git clone -q --depth 1 --branch ${{ env.NIM_VERSION }} https://github.com/nim-lang/Nim.git
+        git clone -q --depth 1 --branch v${{ env.NIM_VERSION }} https://github.com/nim-lang/Nim.git
         echo "::add-path::$PWD/Nim/bin"
 
 
