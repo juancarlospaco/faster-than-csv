@@ -53,7 +53,7 @@ csv.read_clipboard()                            # CSV from the Clipboard.
 
 csv.diff_csvs("example.csv", "anotherfile.csv") # Diff optimized for CSVs.
 ```
-- Input:  CSV, TSV, Clipboard, File, URL, PunyCode, Custom.
+- Input:  CSV, TSV, Clipboard, File, URL, Custom.
 - Output: CSV, TSV, HTML, JSON, NDJSON, Diff, File, Custom.
 
 
@@ -66,6 +66,7 @@ This is very similar to `pandas.read_csv(filename)`.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
@@ -85,7 +86,7 @@ Reads CSV string from Clipboard, process CSV and returns a list of dictionaries.
 This is very similar to `pandas.read_clipboard()`. This works on Linux, Mac, Windows.
 
 **Arguments:**
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
@@ -104,7 +105,7 @@ Takes a path of a CSV file string, process CSV and returns JSON.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
@@ -125,7 +126,7 @@ Takes a path of a CSV file string, process CSV and returns NDJSON.
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
 - `ndjson_file_path` path of the NDJSON file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
@@ -145,7 +146,7 @@ Takes a path of a CSV file string, process CSV and returns the data rendered on 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string, defaults to `""`, if its empty string then No file is written.
 - `html_file_path` path of the CSV file, `str` type, optional, can be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
@@ -166,13 +167,32 @@ Takes a path of a CSV file string, process CSV and returns the data rendered on 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
 - `csv_file_path` path of the HTML file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
 
 **Returns:**
 Data from the CSV as HTML Table, `str` type, [human-friendly, ready for display (basic style so is usable).](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/example/sample.html)
+
+</details>
+
+
+# csv2terminal()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and prints to terminal a colored prety-printed table.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string, defaults to `""`, if its empty string then No file is written.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
+-  `column_width` column width of the wider column, required, `int` type, must not be `0`, must not be negative.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+**Returns:** None.
 
 </details>
 
@@ -186,7 +206,7 @@ Output is guaranteed to be always Valid XML.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
@@ -197,29 +217,7 @@ Output is guaranteed to be always Valid XML.
 </details>
 
 
-# csv_punycode2dict()
-<details>
-
-**Description:**
-Takes a path of a [PunyCode encoded](http://wikipedia.org/wiki/Punycode) CSV file string,
-process CSV, Decodes [PunyCode](http://wikipedia.org/wiki/Punycode) and returns a list of dictionaries.
-[PunyCode](http://wikipedia.org/wiki/Punycode) encodes Unicode as ASCII,
-is used on system where Unicode is not fully supported (IoT, Legacy, Embebed, etc).
-
-**Arguments:**
-- `csv_file_path` path of the [PunyCode encoded](http://wikipedia.org/wiki/Punycode) CSV file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
-- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
-- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
-- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
-
-**Returns:**
-Data from the CSV, `dict` type.
-
-</details>
-
-
-# csv2tsv()
+# tsv2csv()
 <details>
 
 **Description:**
@@ -227,38 +225,15 @@ Takes a path of a CSV file string, process CSV and returns a TSV.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
-- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
+- `separator1` Separator character of the CSV data, `str` type, optional, must not be empty string.
+- `separator2` Separator character of the CSV data, `str` type, optional, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
 - `reversed` Set to `True` for the opposite behaviour TSV-to-CSV, `bool` type, optional, defaults to `False`.
 
 **Returns:**
 Data from the CSV as TSV, `str` type.
-
-</details>
-
-
-# csv2custom()
-<details>
-
-**Description:**
-Takes a path of a CSV file string, process CSV and returns the data rendered as Custom formatted values.
-
-**Arguments:**
-- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
-- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
-- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
-- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
-- `reversed` Set to `True` for the opposite behaviour Custom-to-CSV, `bool` type, optional, defaults to `False`.
-
-Examples:
-
-- `csv2custom(separator="💩")` :arrow_right: Poo Separated Values.
-
-**Returns:**
-Data from the CSV as Custom formatted values, `str` type.
 
 </details>
 
