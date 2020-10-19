@@ -378,11 +378,11 @@ static N_INLINE(NI, slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables)(NI count) {
 }
 N_LIB_PRIVATE N_NIMCALL(tyObject_Table__Ji6x6JQ0gVMaFr8AIk18Ug, initTable__70Pc0gZKXvzWyIAY49a3CBA)(NI initialSize) {
 	tyObject_Table__Ji6x6JQ0gVMaFr8AIk18Ug result;
-	NI correctSizeX60gensym29_;
+	NI correctSizeX60gensym25_;
 	nimZeroMem((void*)(&result), sizeof(tyObject_Table__Ji6x6JQ0gVMaFr8AIk18Ug));
-	correctSizeX60gensym29_ = slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables(((NI) (initialSize)));
+	correctSizeX60gensym25_ = slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables(((NI) (initialSize)));
 	result.counter = ((NI) 0);
-	result.data.len = ((NI) (correctSizeX60gensym29_)); result.data.p = (tySequence__SFipDZIkFtPcrLs0AGBBjQ_Content*) newSeqPayload(((NI) (correctSizeX60gensym29_)), sizeof(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg), NIM_ALIGNOF(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg));
+	result.data.len = ((NI) (correctSizeX60gensym25_)); result.data.p = (tySequence__SFipDZIkFtPcrLs0AGBBjQ_Content*) newSeqPayload(((NI) (correctSizeX60gensym25_)), sizeof(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg), NIM_ALIGNOF(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg));
 	return result;
 }
 static N_INLINE(NIM_BOOL, isFilled__5Qpmu5QqwDY0esVXn6wf7wtables)(NI hcode) {
@@ -637,12 +637,12 @@ N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___n7H2lOZnf3GlRkWmu9b3zmw)(tyObject_Table
 	NI index;
 	{
 		NI T3_;
-		NI correctSizeX60gensym32_;
+		NI correctSizeX60gensym28_;
 		T3_ = (*t).data.len;
 		if (!(T3_ == ((NI) 0))) goto LA4_;
-		correctSizeX60gensym32_ = slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables(((NI) 32));
+		correctSizeX60gensym28_ = slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables(((NI) 32));
 		(*t).counter = ((NI) 0);
-		(*t).data.len = ((NI) (correctSizeX60gensym32_)); (*t).data.p = (tySequence__SFipDZIkFtPcrLs0AGBBjQ_Content*) newSeqPayload(((NI) (correctSizeX60gensym32_)), sizeof(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg), NIM_ALIGNOF(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg));
+		(*t).data.len = ((NI) (correctSizeX60gensym28_)); (*t).data.p = (tySequence__SFipDZIkFtPcrLs0AGBBjQ_Content*) newSeqPayload(((NI) (correctSizeX60gensym28_)), sizeof(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg), NIM_ALIGNOF(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg));
 	}
 	LA4_: ;
 	hc = (NI)0;
@@ -659,12 +659,12 @@ N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___n7H2lOZnf3GlRkWmu9b3zmw)(tyObject_Table
 		NimStringV2 blitTmp_2;
 		{
 			NI T13_;
-			NI correctSizeX60gensym37_;
+			NI correctSizeX60gensym33_;
 			T13_ = (*t).data.len;
 			if (!(T13_ == ((NI) 0))) goto LA14_;
-			correctSizeX60gensym37_ = slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables(((NI) 32));
+			correctSizeX60gensym33_ = slotsNeeded__LvRw9cAKRC9b1pD3bnSd1DdAtables(((NI) 32));
 			(*t).counter = ((NI) 0);
-			(*t).data.len = ((NI) (correctSizeX60gensym37_)); (*t).data.p = (tySequence__SFipDZIkFtPcrLs0AGBBjQ_Content*) newSeqPayload(((NI) (correctSizeX60gensym37_)), sizeof(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg), NIM_ALIGNOF(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg));
+			(*t).data.len = ((NI) (correctSizeX60gensym33_)); (*t).data.p = (tySequence__SFipDZIkFtPcrLs0AGBBjQ_Content*) newSeqPayload(((NI) (correctSizeX60gensym33_)), sizeof(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg), NIM_ALIGNOF(tyTuple__8ZxhPt1NwfElsJs8zUSV9bg));
 		}
 		LA14_: ;
 		{

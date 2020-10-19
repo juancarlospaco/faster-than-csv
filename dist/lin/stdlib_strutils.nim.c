@@ -37,6 +37,7 @@ typedef struct tySequence__uB9b75OUPRENsBAu4AnoePA tySequence__uB9b75OUPRENsBAu4
 typedef struct tySequence__uB9b75OUPRENsBAu4AnoePA_Content tySequence__uB9b75OUPRENsBAu4AnoePA_Content;
 typedef struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ tySequence__sM4lkSb7zS6F7OVMvW9cffQ;
 typedef struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content;
+typedef struct tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA;
 typedef struct tyObject_StackTraceEntry__oLyohQ7O2XOvGnflOss8EA tyObject_StackTraceEntry__oLyohQ7O2XOvGnflOss8EA;
 
 /* section: NIM_merge_TYPES */
@@ -81,6 +82,10 @@ typedef NU8 tySet_tyChar__nmiMWKVIe46vacnhAFrQvw[32];
 typedef NI tyArray__9cc9aPiDa8VaWjVcFLabEDZQ[256];
 struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ {
   NI len; tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content* p;
+};
+struct tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA {
+NI a;
+NI b;
 };
 struct tyObject_StackTraceEntry__oLyohQ7O2XOvGnflOss8EA {
 NCSTRING procname;
@@ -150,8 +155,11 @@ N_LIB_PRIVATE N_NIMCALL(void*, newSeqPayload)(NI cap, NI elemSize, NI elemAlign)
 N_LIB_PRIVATE N_NIMCALL(void, add__dK9ajFgX5RSWQx0eHjjpjSQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* x, NimStringV2 value);
 N_LIB_PRIVATE N_NIMCALL(NI, npuParseFloat)(NimStringV2 s, NF* number, NI start);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, toHexImpl__izPdbsQUP8KddbeBZ2srrw)(NU64 x, NI len, NIM_BOOL handleNegative);
+N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___nzw30OOxYaJmEInmJdKSvg)(NimStringV2* s, tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA x, NimStringV2 b);
+static N_INLINE(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA, dotdot___BokNSDrKN1xmV1nA01G9brAsystem)(NI a, NI b);
+static N_INLINE(void, nimZeroMem)(void* p, NI size);
+static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size);
 N_LIB_PRIVATE N_NIMCALL(void, eqcopy___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, substr__iGg0RIKceRvsmvq8FUHOEw)(NimStringV2 s, NI first);
 
 /* section: NIM_merge_DATA */
 extern TNimTypeV2 NTIv2__yoNlBGx0D2tRizIdhQuENw_;
@@ -175,7 +183,6 @@ static const struct {
   NI cap; NIM_CHAR data[16+1];
 } TM__JGc9b9bh2D3nTdUR7TGyq8aA_10 = { 16 | NIM_STRLIT_FLAG, "0123456789ABCDEF" };
 static const NimStringV2 TM__JGc9b9bh2D3nTdUR7TGyq8aA_11 = {16, (NimStrPayload*)&TM__JGc9b9bh2D3nTdUR7TGyq8aA_10};
-static const NimStringV2 TM__JGc9b9bh2D3nTdUR7TGyq8aA_12 = {0, (NimStrPayload*)&TM__JGc9b9bh2D3nTdUR7TGyq8aA_4};
 
 /* section: NIM_merge_VARS */
 extern NIM_BOOL nimInErrorMode__759bT87luu8XGcbkw13FUjA;
@@ -1365,51 +1372,63 @@ appendString((&result), s);
 	}
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NI, nsuRFindChar)(NimStringV2 s, NIM_CHAR sub, NI start, NI last) {
-	NI result;
-	NI colontmpD_;
-	NI colontmpD__2;
-	NI last_2;
-{	result = (NI)0;
-	colontmpD_ = (NI)0;
-	colontmpD__2 = (NI)0;
+static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size) {
+	void* T1_;
+	T1_ = (void*)0;
+	T1_ = memset(a, v, ((size_t) (size)));
+}
+static N_INLINE(void, nimZeroMem)(void* p, NI size) {
+	nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory(p, ((int) 0), size);
+}
+static N_INLINE(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA, dotdot___BokNSDrKN1xmV1nA01G9brAsystem)(NI a, NI b) {
+	tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA result;
+	nimZeroMem((void*)(&result), sizeof(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA));
+	nimZeroMem((void*)(&result), sizeof(tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA));
+	result.a = a;
+	result.b = b;
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, alignLeft__J6nzJGsekGLihvDbS6XWDA)(NimStringV2 s, NI count, NIM_CHAR padding) {
+	NimStringV2 result;
+	result.len = 0; result.p = NIM_NIL;
 	{
-		if (!(last == ((NI) -1))) goto LA3_;
-		colontmpD_ = (s.len-1);
-		last_2 = colontmpD_;
+		if (!(s.len < ((NI) (count)))) goto LA3_;
+		result = mnewString(count);
+		{
+			tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA T9_;
+			if (!(((NI) 0) < s.len)) goto LA7_;
+			T9_ = dotdot___BokNSDrKN1xmV1nA01G9brAsystem(((NI) 0), (NI)(s.len - ((NI) 1)));
+			X5BX5Deq___nzw30OOxYaJmEInmJdKSvg((&result), T9_, s);
+		}
+		LA7_: ;
+		{
+			NI i;
+			NI colontmp_;
+			NI colontmp__2;
+			NI i_2;
+			i = (NI)0;
+			colontmp_ = (NI)0;
+			colontmp__2 = (NI)0;
+			colontmp_ = s.len;
+			colontmp__2 = ((NI) (count));
+			i_2 = colontmp_;
+			{
+				while (1) {
+					if (!(i_2 < colontmp__2)) goto LA12;
+					i = i_2;
+					nimPrepareStrMutationV2((&result));
+					result.p->data[i] = padding;
+					i_2 += ((NI) 1);
+				} LA12: ;
+			}
+		}
 	}
 	goto LA1_;
 	LA3_: ;
 	{
-		colontmpD__2 = last;
-		last_2 = colontmpD__2;
+		eqcopy___aBBXmHFBEivKqERloP6zmA_2((&result), s);
 	}
 	LA1_: ;
-	{
-		NI i;
-		NI colontmp_;
-		NI res;
-		i = (NI)0;
-		colontmp_ = (NI)0;
-		colontmp_ = ((NI) (start));
-		res = last_2;
-		{
-			while (1) {
-				if (!(colontmp_ <= res)) goto LA8;
-				i = res;
-				{
-					if (!((NU8)(sub) == (NU8)(s.p->data[i]))) goto LA11_;
-					result = i;
-					goto BeforeRet_;
-				}
-				LA11_: ;
-				res -= ((NI) 1);
-			} LA8: ;
-		}
-	}
-	result = ((NI) -1);
-	goto BeforeRet_;
-	}BeforeRet_: ;
 	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuReplaceChar)(NimStringV2 s, NIM_CHAR sub, NIM_CHAR by) {
@@ -1436,120 +1455,5 @@ N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuReplaceChar)(NimStringV2 s, NIM_CHAR sub
 			i += ((NI) 1);
 		} LA2: ;
 	}
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuReplaceStr)(NimStringV2 s, NimStringV2 sub, NimStringV2 by) {
-	NimStringV2 result;
-	NI subLen;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	result = TM__JGc9b9bh2D3nTdUR7TGyq8aA_12;
-	subLen = sub.len;
-	{
-		if (!(subLen == ((NI) 0))) goto LA3_;
-		eqcopy___aBBXmHFBEivKqERloP6zmA_2((&result), s);
-	}
-	goto LA1_;
-	LA3_: ;
-	{
-		NimStringV2 colontmpD_;
-		NIM_CHAR c;
-		NI last;
-		NI i;
-		if (!(subLen == ((NI) 1))) goto LA6_;
-		colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-		c = sub.p->data[((NI) 0)];
-		last = (s.len-1);
-		i = ((NI) 0);
-		{
-			while (1) {
-				NimStringV2 colontmpD__2;
-				NI j;
-				colontmpD__2.len = 0; colontmpD__2.p = NIM_NIL;
-				j = nsuFindChar(s, c, ((NI) (i)), last);
-				{
-					if (!(j < ((NI) 0))) goto LA14_;
-					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
-					goto LA9;
-				}
-				LA14_: ;
-				colontmpD__2 = substr__2yh9cer0ymNRHlOOg8P7IuA(s, i, (NI)(j - ((NI) 1)));
-				prepareAdd((&result), colontmpD__2.len + 0);
-appendString((&result), colontmpD__2);
-				prepareAdd((&result), by.len + 0);
-appendString((&result), by);
-				i = (NI)(j + subLen);
-				{
-					LA11_:;
-				}
-				{
-					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__2));
-				}
-				if (NIM_UNLIKELY(*nimErr_)) goto LA8_;
-			}
-		} LA9: ;
-		colontmpD_ = substr__iGg0RIKceRvsmvq8FUHOEw(s, i);
-		prepareAdd((&result), colontmpD_.len + 0);
-appendString((&result), colontmpD_);
-		{
-			LA8_:;
-		}
-		{
-			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
-		}
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}
-	goto LA1_;
-	LA6_: ;
-	{
-		NimStringV2 colontmpD__3;
-		tyArray__9cc9aPiDa8VaWjVcFLabEDZQ a;
-		NI last_2;
-		NI i_2;
-		colontmpD__3.len = 0; colontmpD__3.p = NIM_NIL;
-		nsuInitSkipTable(a, sub);
-		last_2 = (s.len-1);
-		i_2 = ((NI) 0);
-		{
-			while (1) {
-				NimStringV2 colontmpD__4;
-				NI j_2;
-				colontmpD__4.len = 0; colontmpD__4.p = NIM_NIL;
-				j_2 = nsuFindStrA(a, s, sub, ((NI) (i_2)), last_2);
-				{
-					if (!(j_2 < ((NI) 0))) goto LA27_;
-					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__4));
-					goto LA22;
-				}
-				LA27_: ;
-				colontmpD__4 = substr__2yh9cer0ymNRHlOOg8P7IuA(s, i_2, (NI)(j_2 - ((NI) 1)));
-				prepareAdd((&result), colontmpD__4.len + 0);
-appendString((&result), colontmpD__4);
-				prepareAdd((&result), by.len + 0);
-appendString((&result), by);
-				i_2 = (NI)(j_2 + subLen);
-				{
-					LA24_:;
-				}
-				{
-					eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__4));
-				}
-				if (NIM_UNLIKELY(*nimErr_)) goto LA21_;
-			}
-		} LA22: ;
-		colontmpD__3 = substr__iGg0RIKceRvsmvq8FUHOEw(s, i_2);
-		prepareAdd((&result), colontmpD__3.len + 0);
-appendString((&result), colontmpD__3);
-		{
-			LA21_:;
-		}
-		{
-			eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD__3));
-		}
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}
-	LA1_: ;
-	}BeforeRet_: ;
 	return result;
 }

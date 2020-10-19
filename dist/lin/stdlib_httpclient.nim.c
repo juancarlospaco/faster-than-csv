@@ -30,10 +30,10 @@
 typedef struct tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w;
 typedef struct NimStrPayload NimStrPayload;
 typedef struct NimStringV2 NimStringV2;
-typedef struct tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA;
 typedef struct tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA;
 typedef struct tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA;
 typedef struct tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ;
+typedef struct tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA;
 typedef struct tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g;
 typedef struct tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ;
 typedef struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ tySequence__sM4lkSb7zS6F7OVMvW9cffQ;
@@ -81,7 +81,6 @@ tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers;
 NimStringV2 body;
 tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* bodyStream;
 };
-typedef NU8 tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA;
 typedef NU8 tySet_tyChar__nmiMWKVIe46vacnhAFrQvw[32];
 struct tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ {
 NimStringV2 scheme;
@@ -202,6 +201,7 @@ NI Field0;
 NimStringV2 Field1;
 tySequence__sM4lkSb7zS6F7OVMvW9cffQ Field2;
 };
+typedef NU8 tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA;
 struct tyObject_ProtocolError__G5GO9cu1ofZT8sZOJbdrvJQ {
   tyObject_IOError__iLZrPn9anoh9ad1MmO0RczFw Sup;
 };
@@ -298,9 +298,10 @@ struct tySequence__sM4lkSb7zS6F7OVMvW9cffQ_Content { NI cap; NimStringV2 data[SE
 
       
 /* section: NIM_merge_PROC_HEADERS */
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*, get__SQXTd9b9cyXE8FwfJt6Pnkvg)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url);
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*, request__l3ySZTtQYFo8zbxxzy3QLQ)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url, tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA httpMethod, NimStringV2 body, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart);
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*, request__nrxBG9atKB7KhRUylZop7gA)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url, NimStringV2 httpMethod, NimStringV2 body, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart);
+N_LIB_PRIVATE N_NIMCALL(void, eqsink___aBBXmHFBEivKqERloP6zmA)(NimStringV2* dest, NimStringV2 src);
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, readAll__Z3k8HYNsCnt82WLNxaYQiQ)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s);
+N_LIB_PRIVATE N_NIMCALL(void, eqcopy___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
+static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, contains__wAzSnEu9cCHHjvPQlWBZUeQ)(NimStringV2 s, tySet_tyChar__nmiMWKVIe46vacnhAFrQvw chars);
 N_LIB_PRIVATE N_NIMCALL(void, failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A)(NimStringV2 msg);
 N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*, requestAux__nrxBG9atKB7KhRUylZop7gA_2)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url, NimStringV2 httpMethod, NimStringV2 body, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart);
@@ -311,7 +312,6 @@ N_LIB_PRIVATE N_NIMCALL(void*, nimNewObj)(NI size);
 N_LIB_PRIVATE N_NIMCALL(void, raiseExceptionEx)(Exception* e, NCSTRING ename, NCSTRING procname, NCSTRING filename, NI line);
 N_LIB_PRIVATE N_NIMCALL(tySequence__sM4lkSb7zS6F7OVMvW9cffQ, format__N4eE9a9au9cfobiXawLjYLIIw)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, getBoundary__YX3WF0FwpX3W1dnYusiiXw)(tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* p);
-N_LIB_PRIVATE N_NIMCALL(void, eqsink___aBBXmHFBEivKqERloP6zmA)(NimStringV2* dest, NimStringV2 src);
 N_LIB_PRIVATE N_NIMCALL(NI, rand__v7jZDEs4VOsrcpvk0yo8Rg)(NI max);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nimIntToStr)(NI x);
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, contains__KV0xCsBzaN9coqb7PG9au0oQ)(NimStringV2 s, NimStringV2 sub);
@@ -322,7 +322,6 @@ static N_INLINE(void, nimCopyMem)(void* dest, void* source, NI size);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, rawNewString)(NI space);
 N_LIB_PRIVATE N_NIMCALL(void, readFileSizes__cRvnVPBe4rJR9cIs5w6AJww)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart);
 N_LIB_PRIVATE N_NIMCALL(NI64, nosgetFileSize)(NimStringV2 file);
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void);
 N_LIB_PRIVATE N_NIMCALL(void, add__dK9ajFgX5RSWQx0eHjjpjSQ)(tySequence__sM4lkSb7zS6F7OVMvW9cffQ* x, NimStringV2 value);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, format__gVWUjCpNHhBYO9ai6KMPMKA)(tyObject_MultipartEntry__35QV9aWmZhP0gkh6RoJTWcw* entry, NimStringV2 boundary);
 N_LIB_PRIVATE N_NIMCALL(void, prepareAdd)(NimStringV2* s, NI addlen);
@@ -350,7 +349,6 @@ static N_INLINE(Exception*, getCurrentException)(void);
 N_LIB_PRIVATE N_NIMCALL(void, eqcopy___rR9boD7urcxl7uyUtE46AOA)(Exception** dest, Exception* src);
 static N_INLINE(void, popCurrentException)(void);
 N_LIB_PRIVATE N_NIMCALL(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ, initUri__zcwd3ynrfDQcP9c8k9cEeg9aQ)(void);
-N_LIB_PRIVATE N_NIMCALL(void, eqcopy___aBBXmHFBEivKqERloP6zmA_2)(NimStringV2* dest, NimStringV2 src);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, generateHeaders__BYtup6hw7Ii2LjHd19cuuhA)(tyObject_Uri__j49bukNPrq747O1GRd4Ng9bQ* requestUrl, NimStringV2 httpMethod, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* proxy);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, nsuToUpperAsciiStr)(NimStringV2 s);
 static N_INLINE(void, nimAddCharV1)(NimStringV2* s, NIM_CHAR c);
@@ -426,10 +424,6 @@ N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0RiuPw9cXhtLB9a2rQ2jA69cg)(tySequence_
 N_LIB_PRIVATE N_NIMCALL(NIM_BOOL, redirection__7c9c0MkLRudbFZ1hPGI7gVw)(NimStringV2 status);
 N_LIB_PRIVATE N_NIMCALL(NimStringV2, getNewLocation__zVcgYlyVeZFDopwaR9ao7Jg)(NimStringV2 lastURL, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers);
 N_LIB_PRIVATE N_NIMCALL(void, eqsink___8PoGYtGK2aJ4uGgFszak3w)(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA** dest, tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* src);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, responseContent__DKrroZapW6BixNtwAIldXw)(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* resp);
-static N_INLINE(NIM_BOOL, is4xx__YunQ2brk3QLtD9cHZIITEnQhttpcore)(NI code);
-static N_INLINE(NIM_BOOL, is5xx__YunQ2brk3QLtD9cHZIITEnQ_2httpcore)(NI code);
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, readAll__Z3k8HYNsCnt82WLNxaYQiQ)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___1XZft5a5dikeHY9a7ro8T7Q)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA** dest);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___0AogzSEAggCYyLR2kz88Dg)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* dest);
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___1TCKL9aWTg3J2fdjyrLXdQw)(tyObject_SocketImpl__aIhANOOoETolVz9cccNO9cRQ* dest);
@@ -735,26 +729,25 @@ static const struct {
   NI cap; NIM_CHAR data[3+1];
 } TM__9brjMmGFaIx4wBkLyxxXZxw_149 = { 3 | NIM_STRLIT_FLAG, "GET" };
 static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_150 = {3, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_149};
-static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_151 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
-static NIM_CONST tyProc__TSOsjF4c9aXotPerq9cEE56A TM__9brjMmGFaIx4wBkLyxxXZxw_152 = {NIM_NIL,NIM_NIL};
+static NIM_CONST tyProc__TSOsjF4c9aXotPerq9cEE56A TM__9brjMmGFaIx4wBkLyxxXZxw_151 = {NIM_NIL,NIM_NIL};
+static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_152 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
 static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_153 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
 static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_154 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
-static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_155 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
 static const struct {
   NI cap; NIM_CHAR data[300+1];
-} TM__9brjMmGFaIx4wBkLyxxXZxw_156 = { 300 | NIM_STRLIT_FLAG, "TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY"
+} TM__9brjMmGFaIx4wBkLyxxXZxw_155 = { 300 | NIM_STRLIT_FLAG, "TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY"
 "1305_SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-S"
 "HA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:"
 "ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RS"
 "A-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384" };
-static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_157 = {300, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_156};
+static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_156 = {300, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_155};
+static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_157 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
 static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_158 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
-static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_159 = {0, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_47};
 static const struct {
   NI cap; NIM_CHAR data[77+1];
-} TM__9brjMmGFaIx4wBkLyxxXZxw_160 = { 77 | NIM_STRLIT_FLAG, "httpclient.nim(326, 16) `result != nil` failure to initialize t"
+} TM__9brjMmGFaIx4wBkLyxxXZxw_159 = { 77 | NIM_STRLIT_FLAG, "httpclient.nim(326, 16) `result != nil` failure to initialize t"
 "he SSL context" };
-static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_161 = {77, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_160};
+static const NimStringV2 TM__9brjMmGFaIx4wBkLyxxXZxw_160 = {77, (NimStrPayload*)&TM__9brjMmGFaIx4wBkLyxxXZxw_159};
 
 /* section: NIM_merge_VARS */
 N_LIB_PRIVATE tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* defaultSslContext__3GZQajZtKdLpqTTN2RjTzw;
@@ -764,6 +757,31 @@ extern Exception* currException__9bVPeDJlYTi9bQApZpfH8wjg;
 extern Exception* currException__9bVPeDJlYTi9bQApZpfH8wjg;
 
 /* section: NIM_merge_PROCS */
+static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
+	NIM_BOOL* result;
+	result = (NIM_BOOL*)0;
+	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, body__mkX1oYuRqAkh0RDJcoDCgQ)(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* response) {
+	NimStringV2 result;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
+	result.len = 0; result.p = NIM_NIL;
+	{
+		NimStringV2 T5_;
+		if (!((*response).body.len == ((NI) 0))) goto LA3_;
+		T5_.len = 0; T5_.p = NIM_NIL;
+		T5_ = readAll__Z3k8HYNsCnt82WLNxaYQiQ((*response).bodyStream);
+		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+		eqsink___aBBXmHFBEivKqERloP6zmA((&(*response).body), T5_);
+	}
+	LA3_: ;
+	eqcopy___aBBXmHFBEivKqERloP6zmA_2((&result), (*response).body);
+	goto BeforeRet_;
+	}BeforeRet_: ;
+	return result;
+}
 static N_INLINE(void, nimSetMem__zxfKBYntu9cBapkhrCOk1fgmemory)(void* a, int v, NI size) {
 	void* T1_;
 	T1_ = (void*)0;
@@ -861,12 +879,6 @@ static N_INLINE(void, appendString)(NimStringV2* dest, NimStringV2 src) {
 		(*dest).len += src.len;
 	}
 	LA3_: ;
-}
-static N_INLINE(NIM_BOOL*, nimErrorFlag)(void) {
-	NIM_BOOL* result;
-	result = (NIM_BOOL*)0;
-	result = (&nimInErrorMode__759bT87luu8XGcbkw13FUjA);
-	return result;
 }
 N_LIB_PRIVATE N_NIMCALL(void, readFileSizes__cRvnVPBe4rJR9cIs5w6AJww)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart) {
 NIM_BOOL* nimErr_;
@@ -2960,117 +2972,6 @@ NIM_BOOL* nimErr_;
 	}BeforeRet_: ;
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*, request__l3ySZTtQYFo8zbxxzy3QLQ)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url, tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA httpMethod, NimStringV2 body, tyObject_HttpHeaderscolonObjectType___GM611pWlOrQ7hvMPcuAACA* headers, tyObject_MultipartDatacolonObjectType___pa59bn7R9cBmjUm9clF5koL7g* multipart) {
-	tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* result;
-	NimStringV2 colontmpD_;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	result = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
-	colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-	colontmpD_ = dollar___JcSadDOgpYarTBAbeNWqTw(httpMethod);
-	result = request__nrxBG9atKB7KhRUylZop7gA(client, url, colontmpD_, body, headers, multipart);
-	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-	{
-		LA1_:;
-	}
-	{
-		eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&colontmpD_));
-	}
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*, get__SQXTd9b9cyXE8FwfJt6Pnkvg)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url) {
-	tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* result;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	result = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
-	result = request__l3ySZTtQYFo8zbxxzy3QLQ(client, url, ((tyEnum_HttpMethod__wfZHspwVKQPl9aWhkIcMrAA) 1), TM__9brjMmGFaIx4wBkLyxxXZxw_151, NIM_NIL, NIM_NIL);
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
-static N_INLINE(NIM_BOOL, is4xx__YunQ2brk3QLtD9cHZIITEnQhttpcore)(NI code) {
-	NIM_BOOL result;
-	result = (NIM_BOOL)0;
-	result = (((NI) (code)) >= ((NI) 400) && ((NI) (code)) <= ((NI) 499));
-	return result;
-}
-static N_INLINE(NIM_BOOL, is5xx__YunQ2brk3QLtD9cHZIITEnQ_2httpcore)(NI code) {
-	NIM_BOOL result;
-	result = (NIM_BOOL)0;
-	result = (((NI) (code)) >= ((NI) 500) && ((NI) (code)) <= ((NI) 599));
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, responseContent__DKrroZapW6BixNtwAIldXw)(tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* resp) {
-	NimStringV2 result;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	{
-		NIM_BOOL T3_;
-		NI T4_;
-		NI T6_;
-		NimStringV2 colontmpD_;
-		tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA* T9_;
-		T3_ = (NIM_BOOL)0;
-		T4_ = (NI)0;
-		T4_ = code__74MIEFap0tx9bAcFdN6ES7Q(resp);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		T3_ = is4xx__YunQ2brk3QLtD9cHZIITEnQhttpcore(T4_);
-		if (T3_) goto LA5_;
-		T6_ = (NI)0;
-		T6_ = code__74MIEFap0tx9bAcFdN6ES7Q(resp);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		T3_ = is5xx__YunQ2brk3QLtD9cHZIITEnQ_2httpcore(T6_);
-		LA5_: ;
-		if (!T3_) goto LA7_;
-		colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-		T9_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*)0;
-		T9_ = (tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA*) nimNewObj(sizeof(tyObject_HttpRequestError__L1L9b70HFrKWeYV59a3EWeaA));
-		(*T9_).Sup.Sup.Sup.Sup.m_type = (&NTIv2__L1L9b70HFrKWeYV59a3EWeaA_);
-		(*T9_).Sup.Sup.Sup.name = "HttpRequestError";
-		colontmpD_.len = 0; colontmpD_.p = NIM_NIL;
-		eqcopy___aBBXmHFBEivKqERloP6zmA_2((&colontmpD_), (*resp).status);
-		(*T9_).Sup.Sup.Sup.message = colontmpD_;
-		(*T9_).Sup.Sup.Sup.parent = NIM_NIL;
-		raiseExceptionEx((Exception*)T9_, "HttpRequestError", "responseContent", "httpclient.nim", 1074);
-		goto BeforeRet_;
-	}
-	goto LA1_;
-	LA7_: ;
-	{
-		result = readAll__Z3k8HYNsCnt82WLNxaYQiQ((*resp).bodyStream);
-		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-		goto BeforeRet_;
-	}
-	LA1_: ;
-	}BeforeRet_: ;
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, getContent__lWe89bib79cxIZGUQ68PwJ2w)(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioeMjzFgefA* client, NimStringV2 url) {
-	NimStringV2 result;
-	tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA* resp;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	resp = (tyObject_ResponsecolonObjectType___83PZH4UFHIivphKu7iROCA*)0;
-	resp = get__SQXTd9b9cyXE8FwfJt6Pnkvg(client, url);
-	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-	result = responseContent__DKrroZapW6BixNtwAIldXw(resp);
-	if (NIM_UNLIKELY(*nimErr_)) goto LA1_;
-	eqdestroy___b19aGGEWVnlKBxGOhME5IOA(&resp);
-	goto BeforeRet_;
-	{
-		LA1_:;
-	}
-	{
-		eqdestroy___b19aGGEWVnlKBxGOhME5IOA(&resp);
-	}
-	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___NRThnU6XgZ4MqObKZkAZBw)(tyObject_ProxycolonObjectType___CigKkL8U2DnJdbYRi9aI9aoQ* dest) {
 	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).url.scheme));
 	eqdestroy___dS1BF3Vxjg9aJMmmhVJKSpQ((&(*dest).url.username));
@@ -3192,9 +3093,9 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_HttpClientBasecolonObjectType___UPZdfed89aNSioe
 	(*result).maxRedirects = ((NI) (maxRedirects));
 	eqsink___i709c9bs9aE2bIcudNSMg20UQ(&(*result).proxy, proxy);
 	(*result).timeout = timeout;
-	eqsink___sQXQN9ay09bfcfti3uWgci4A((&(*result).onProgressChanged), TM__9brjMmGFaIx4wBkLyxxXZxw_152);
+	eqsink___sQXQN9ay09bfcfti3uWgci4A((&(*result).onProgressChanged), TM__9brjMmGFaIx4wBkLyxxXZxw_151);
 	T1_ = (tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw*)0;
-	T1_ = newStringStream__9aLRtgEYeRMrZKrObtoOslQ(TM__9brjMmGFaIx4wBkLyxxXZxw_153);
+	T1_ = newStringStream__9aLRtgEYeRMrZKrObtoOslQ(TM__9brjMmGFaIx4wBkLyxxXZxw_152);
 	T2_ = (tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ*)0;
 	T2_ = &T1_->Sup;
 	eqsink___uD7PP9aMywYClkkmJVib7sg(&(*result).bodyStream, T2_);
@@ -3212,13 +3113,13 @@ NIM_BOOL* nimErr_;
 		tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w* T5_;
 		if (!(result == NIM_NIL)) goto LA3_;
 		T5_ = (tyObject_SslContextcolonObjectType___nNdejAl9bbVbX7sP6RJ4h0w*)0;
-		T5_ = newContext__p45vOS9b3iK2JJ1Y7aIJ9bUA(((tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw) 3), ((tyEnum_SslCVerifyMode__t9a9cuHiKUd7w4o8XPQAbfJg) 0), TM__9brjMmGFaIx4wBkLyxxXZxw_154, TM__9brjMmGFaIx4wBkLyxxXZxw_155, TM__9brjMmGFaIx4wBkLyxxXZxw_157, TM__9brjMmGFaIx4wBkLyxxXZxw_158, TM__9brjMmGFaIx4wBkLyxxXZxw_159);
+		T5_ = newContext__p45vOS9b3iK2JJ1Y7aIJ9bUA(((tyEnum_SslProtVersion__zq9bkhgPAE6ngdz7HLdOTDw) 3), ((tyEnum_SslCVerifyMode__t9a9cuHiKUd7w4o8XPQAbfJg) 0), TM__9brjMmGFaIx4wBkLyxxXZxw_153, TM__9brjMmGFaIx4wBkLyxxXZxw_154, TM__9brjMmGFaIx4wBkLyxxXZxw_156, TM__9brjMmGFaIx4wBkLyxxXZxw_157, TM__9brjMmGFaIx4wBkLyxxXZxw_158);
 		if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
 		eqsink___Maxw2KUIYGcdUEJ9aO5a9bpw(&defaultSslContext__3GZQajZtKdLpqTTN2RjTzw, T5_);
 		eqcopy___Maxw2KUIYGcdUEJ9aO5a9bpw_2(&result, defaultSslContext__3GZQajZtKdLpqTTN2RjTzw);
 		{
 			if (!!(!((result == NIM_NIL)))) goto LA8_;
-			failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(TM__9brjMmGFaIx4wBkLyxxXZxw_161);
+			failedAssertImpl__W9cjVocn1tjhW7p7xohJj6A(TM__9brjMmGFaIx4wBkLyxxXZxw_160);
 		}
 		LA8_: ;
 	}
