@@ -4883,6 +4883,119 @@ N_LIB_PRIVATE N_NIMCALL(void, addFloat__R7rBahgTSmBayFrvvbK9bKQ)(NimStringV2* re
 	n = writeFloatToBuffer__UrA9aquvUwHFUFx78eUQk3A(buffer, x);
 	addCstringN__DuMbk0Tea09bkpFWJtZlU6A(result, ((NCSTRING) ((&buffer[(((NI) 0))- 0]))), n);
 }
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, nimCharToStr)(NIM_CHAR x) {
+	NimStringV2 result;
+	result.len = 0; result.p = NIM_NIL;
+	result = mnewString(((NI) 1));
+	nimPrepareStrMutationV2((&result));
+	result.p->data[((NI) 0)] = x;
+	return result;
+}
+N_LIB_PRIVATE N_NIMCALL(void, X5BX5Deq___nzw30OOxYaJmEInmJdKSvg)(NimStringV2* s, tyObject_HSlice__EE5dzjqoOrHT6HJhIPXAvA x, NimStringV2 b) {
+	NI a;
+	NI L;
+	a = x.a;
+	L = (NI)((NI)(x.b - a) + ((NI) 1));
+	{
+		if (!(L == b.len)) goto LA3_;
+		{
+			NI i;
+			NI i_2;
+			i = (NI)0;
+			i_2 = ((NI) 0);
+			{
+				while (1) {
+					if (!(i_2 < L)) goto LA7;
+					i = i_2;
+					nimPrepareStrMutationV2((&(*s)));
+					(*s).p->data[(NI)(i + a)] = b.p->data[i];
+					i_2 += ((NI) 1);
+				} LA7: ;
+			}
+		}
+	}
+	goto LA1_;
+	LA3_: ;
+	{
+		NI shiftX60gensym381_;
+		NI newLenX60gensym381_;
+		shiftX60gensym381_ = (NI)(b.len - ((((NI) 0) >= L) ? ((NI) 0) : L));
+		newLenX60gensym381_ = (NI)((*s).len + shiftX60gensym381_);
+		{
+			if (!(((NI) 0) < shiftX60gensym381_)) goto LA11_;
+			setLengthStrV2((&(*s)), ((NI) (newLenX60gensym381_)));
+			{
+				NI iX60gensym381_;
+				NI colontmp_;
+				NI colontmp__2;
+				NI res;
+				iX60gensym381_ = (NI)0;
+				colontmp_ = (NI)0;
+				colontmp__2 = (NI)0;
+				colontmp_ = (NI)(newLenX60gensym381_ - ((NI) 1));
+				colontmp__2 = (NI)(a + b.len);
+				res = colontmp_;
+				{
+					while (1) {
+						if (!(colontmp__2 <= res)) goto LA15;
+						iX60gensym381_ = res;
+						nimPrepareStrMutationV2((&(*s)));
+						(*s).p->data[iX60gensym381_] = (*s).p->data[(NI)(iX60gensym381_ - shiftX60gensym381_)];
+						(*s).p->data[(NI)(iX60gensym381_ - shiftX60gensym381_)] = 0;
+						res -= ((NI) 1);
+					} LA15: ;
+				}
+			}
+		}
+		goto LA9_;
+		LA11_: ;
+		{
+			{
+				NI iX60gensym381__2;
+				NI colontmp__3;
+				NI colontmp__4;
+				NI res_2;
+				iX60gensym381__2 = (NI)0;
+				colontmp__3 = (NI)0;
+				colontmp__4 = (NI)0;
+				colontmp__3 = (NI)(a + b.len);
+				colontmp__4 = (NI)(newLenX60gensym381_ - ((NI) 1));
+				res_2 = colontmp__3;
+				{
+					while (1) {
+						if (!(res_2 <= colontmp__4)) goto LA19;
+						iX60gensym381__2 = res_2;
+						nimPrepareStrMutationV2((&(*s)));
+						(*s).p->data[iX60gensym381__2] = (*s).p->data[(NI)(iX60gensym381__2 - shiftX60gensym381_)];
+						(*s).p->data[(NI)(iX60gensym381__2 - shiftX60gensym381_)] = 0;
+						res_2 += ((NI) 1);
+					} LA19: ;
+				}
+			}
+			setLengthStrV2((&(*s)), ((NI) (newLenX60gensym381_)));
+		}
+		LA9_: ;
+		{
+			NI iX60gensym381__3;
+			NI colontmp__5;
+			NI i_3;
+			iX60gensym381__3 = (NI)0;
+			colontmp__5 = (NI)0;
+			colontmp__5 = b.len;
+			i_3 = ((NI) 0);
+			{
+				while (1) {
+					if (!(i_3 < colontmp__5)) goto LA22;
+					iX60gensym381__3 = i_3;
+					nimPrepareStrMutationV2((&(*s)));
+					(*s).p->data[(NI)(a + iX60gensym381__3)] = b.p->data[iX60gensym381__3];
+					i_3 += ((NI) 1);
+				} LA22: ;
+			}
+		}
+	}
+	LA1_: ;
+}
 N_LIB_PRIVATE N_NIMCALL(void, add__n1noU49a59c3SzQ4PiBl0J6w)(tySequence__AjV3cEUgs0Y9c7dCt9aItdIA* x, tyObject_XmlNodeObj__X79bE2j9a1V7tizbx9blALudQ* value) {
 	NI oldLen;
 	NI T1_;
@@ -4906,30 +5019,6 @@ N_LIB_PRIVATE N_NIMCALL(void, add__n1noU49a59c3SzQ4PiBl0J6w)(tySequence__AjV3cEU
 	LA6_: ;
 	(*xu).len = (NI)(oldLen + ((NI) 1));
 	(*(*xu).p).data[oldLen] = value;
-}
-N_LIB_PRIVATE N_NIMCALL(void, insert__bnB13E7BS4dZJaaSQFdX5w)(NimStringV2* x, NimStringV2 item, NI i) {
-	NI xl;
-	NI j;
-	xl = (*x).len;
-	setLengthStrV2((&(*x)), ((NI) ((NI)(xl + item.len))));
-	j = (NI)(xl - ((NI) 1));
-	{
-		while (1) {
-			if (!(((NI) (i)) <= j)) goto LA2;
-			nimPrepareStrMutationV2((&(*x)));
-			(*x).p->data[(NI)(j + item.len)] = (*x).p->data[j];
-			j -= ((NI) 1);
-		} LA2: ;
-	}
-	j = ((NI) 0);
-	{
-		while (1) {
-			if (!(j < item.len)) goto LA4;
-			nimPrepareStrMutationV2((&(*x)));
-			(*x).p->data[(NI)(j + ((NI) (i)))] = item.p->data[j];
-			j += ((NI) 1);
-		} LA4: ;
-	}
 }
 N_LIB_PRIVATE N_NIMCALL(void, eqdestroy___SAcH79b5ZePfUS16V9akl1gA)(tySequence__qwqHTkRvwhrRyENtudHQ7g* dest) {
 	NI colontmp_;

@@ -803,6 +803,38 @@ N_LIB_PRIVATE N_NIMCALL(tyObject_StringStreamObj__Olau5FPRehZBBEB77FHnfw*, newSt
 	(*result).Sup.writeDataImpl = ssWriteData__4hIni0uSy3RpPUiO9aB3JUQ_3;
 	return result;
 }
+N_LIB_PRIVATE N_NIMCALL(NimStringV2, readAll__Z3k8HYNsCnt82WLNxaYQiQ)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s) {
+	NimStringV2 result;
+NIM_BOOL* nimErr_;
+{nimErr_ = nimErrorFlag();
+	result.len = 0; result.p = NIM_NIL;
+	{
+		tyArray__9bKy7UA2LOi2vzOViufaW1Q buffer;
+		{
+			while (1) {
+				NI readBytes;
+				NI prevLen;
+				readBytes = readData__xdahQHwcesKp9bR6BAtJSqA_3(s, ((void*) ((&buffer[(((NI) 0))- 0]))), ((NI) 1024));
+				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
+				{
+					if (!(readBytes == ((NI) 0))) goto LA6_;
+					goto LA2;
+				}
+				LA6_: ;
+				prevLen = result.len;
+				setLengthStrV2((&result), ((NI) ((NI)(prevLen + readBytes))));
+				copyMem__i80o3k0SgEI5gTRCzYdyWAsystem(((void*) ((&result.p->data[prevLen]))), ((void*) ((&buffer[(((NI) 0))- 0]))), ((NI) (readBytes)));
+				{
+					if (!(readBytes < ((NI) 1024))) goto LA10_;
+					goto LA2;
+				}
+				LA10_: ;
+			}
+		} LA2: ;
+	}
+	}BeforeRet_: ;
+	return result;
+}
 N_LIB_PRIVATE N_NIMCALL(void, setPosition__cci01mizUCs1g9a9bQPBwweQ_3)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s, NI pos) {
 NIM_BOOL* nimErr_;
 {nimErr_ = nimErrorFlag();
@@ -836,38 +868,6 @@ NIM_BOOL* nimErr_;
 	result = mnewString(((NI) (length)));
 	readStrPrivate__pcXflCnf8VofeOajxSPfUg(s, length, (&result));
 	if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
-N_LIB_PRIVATE N_NIMCALL(NimStringV2, readAll__Z3k8HYNsCnt82WLNxaYQiQ)(tyObject_StreamObj__THYguAi9bSgidczZ3ywEIMQ* s) {
-	NimStringV2 result;
-NIM_BOOL* nimErr_;
-{nimErr_ = nimErrorFlag();
-	result.len = 0; result.p = NIM_NIL;
-	{
-		tyArray__9bKy7UA2LOi2vzOViufaW1Q buffer;
-		{
-			while (1) {
-				NI readBytes;
-				NI prevLen;
-				readBytes = readData__xdahQHwcesKp9bR6BAtJSqA_3(s, ((void*) ((&buffer[(((NI) 0))- 0]))), ((NI) 1024));
-				if (NIM_UNLIKELY(*nimErr_)) goto BeforeRet_;
-				{
-					if (!(readBytes == ((NI) 0))) goto LA6_;
-					goto LA2;
-				}
-				LA6_: ;
-				prevLen = result.len;
-				setLengthStrV2((&result), ((NI) ((NI)(prevLen + readBytes))));
-				copyMem__i80o3k0SgEI5gTRCzYdyWAsystem(((void*) ((&result.p->data[prevLen]))), ((void*) ((&buffer[(((NI) 0))- 0]))), ((NI) (readBytes)));
-				{
-					if (!(readBytes < ((NI) 1024))) goto LA10_;
-					goto LA2;
-				}
-				LA10_: ;
-			}
-		} LA2: ;
-	}
 	}BeforeRet_: ;
 	return result;
 }

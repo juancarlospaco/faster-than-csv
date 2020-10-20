@@ -1038,14 +1038,6 @@ appendString((&T7_), TM__3rBY6NOHI29c34PPPPzLAdQ_28);
 	}BeforeRet_: ;
 	return result;
 }
-N_LIB_PRIVATE N_NIMCALL(NI, processedRows__00gniKnRH4BwlOFNHExbvw)(tyObject_CsvParser__Db2TWjG9cPe5dYnhFvawyIw* my) {
-	NI result;
-{	result = (NI)0;
-	result = (*my).currRow;
-	goto BeforeRet_;
-	}BeforeRet_: ;
-	return result;
-}
 N_LIB_PRIVATE N_NIMCALL(void, stdlib_parsecsvDatInit000)(void) {
 
 /* section: NIM_merge_TYPE_INIT3 */
