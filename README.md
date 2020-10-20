@@ -158,22 +158,20 @@ Data from the CSV as HTML Table, `str` type, raw HTML (no style at all).
 </details>
 
 
-# csv2htmlfile()
+# csv2karax()
 <details>
 
 **Description:**
-Takes a path of a CSV file string, process CSV and returns the data rendered on HTML Table.
+Takes a path of a CSV file string, process CSV and returns the data rendered as a [Karax](https://github.com/pragmagic/karax) HTML Table.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `csv_file_path` path of the HTML file, `str` type, required, must not be empty string.
 - `columns` total column count, optional, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
 
-**Returns:**
-Data from the CSV as HTML Table, `str` type, [human-friendly, ready for display (basic style so is usable).](http://htmlpreview.github.io/?https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/example/sample.html)
+**Returns:** Karax DSL, `str` type.
 
 </details>
 

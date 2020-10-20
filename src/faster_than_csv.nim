@@ -12,6 +12,15 @@ const html_table_header = """<!DOCTYPE html>
   <div class="container is-fluid">
     <table class="table is-bordered is-striped is-hoverable is-fullwidth">"""
 
+const karax_header = """
+include karax/prelude # nimble install karax http://github.com/pragmagic/karax
+
+proc createDom(): VNode {.discardable.} =
+  result = buildHtml(table):
+    thead(class="thead"):
+      tr(class="has-background-grey-light"):
+"""
+
 
 proc csv2list*(csv_file_path: string; columns: Natural; rows: Natural; separator: char = ',';
     quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[string] {.exportpy.} =
@@ -186,6 +195,28 @@ proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natura
     stdout.styledWrite bgBlack, c, styleUnderscore, "|\n"
     if i > 7: i = 0 else: inc i
   resetAttributes()
+  parser[].close()
+  dealloc parser
+
+
+proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: char = ',',
+  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): string {.exportpy.} =
+  ## CSV to Karax HTML Table.
+  let parser {.noalias.} = create(CsvParser)
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  result = karax_header
+  for column in parser[].headers.items:
+    result.add "        th:\n          text(\"\"\"" & $column & "\"\"\")\n"
+  result.add "    tfoot(class=\"tfoot has-text-primary\"):\n      tr(class=\"has-background-grey-light\"):\n"
+  for column in parser[].headers.items:
+    result.add "        th:\n         text(\"\"\"" & $column & "\"\"\")\n"
+  result.add "    tbody(class=\"tbody\"):\n"
+  while parser[].readRow(columns):
+    result.add "      tr:\n"
+    for column in parser[].headers.items:
+      result.add "        td:\n          text(\"\"\"" & parser[].rowEntry(column) & "\"\"\")\n"
+  result.add "\n\nsetRenderer(createDom)\n"
   parser[].close()
   dealloc parser
 
