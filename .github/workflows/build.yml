@@ -15,20 +15,8 @@ on:
       - '.gitignore'
 
 jobs:
-  check_skip:
-    runs-on: ubuntu-latest
-    if: |
-      !contains(format('{0} {1} {2}', github.event.head_commit.message, github.event.pull_request.title, github.event.pull_request.body), '[skip ci]')
-    steps:
-      - run: |
-          cat <<'MESSAGE'
-          github.event_name: ${{ toJson(github.event_name) }}
-          github.event:
-          ${{ toJson(github.event) }}
-          MESSAGE
-
   build:
-    needs: check_skip
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       fail-fast: true
       matrix:
@@ -51,7 +39,7 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v1.0.0
       with:
-        NIM_VERSION:           "1.4.0"
+        NIM_VERSION:           "1.4.2"
         MAIN_MODULE:           "src/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
         TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
@@ -97,6 +85,11 @@ jobs:
     - name: Nim Check
       shell: bash
       run: nim check --styleCheck:hint ${{ env.MAIN_MODULE }}
+
+
+    - uses: juancarlospaco/nimpretty-action@main
+      with:
+        folders: "src"
 
 
     - name: Prepare Folders
