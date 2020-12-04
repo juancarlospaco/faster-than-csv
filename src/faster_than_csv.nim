@@ -26,14 +26,12 @@ proc csv2list*(csv_file_path: string; columns: Natural; rows: Natural; separator
     quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[string] {.exportpy, noinit.} =
   ## Stream Read CSV to a list of strings.
   result = newSeqOfCap[string](columns * rows)
-  let parser {.noalias.} = create(CsvParser)
+  let parser {.noalias.} = create CsvParser
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
   while parser[].readRow(columns):
-    var i = 0.uint64
     for column in parser[].headers.items:
-      result[i] = parser[].rowEntry(column)
-      inc i
+      result.add parser[].rowEntry(column)
   parser[].close()
   dealloc parser
 
@@ -41,7 +39,7 @@ proc csv2list*(csv_file_path: string; columns: Natural; rows: Natural; separator
 proc csv2dict*(csv_file_path: string; columns: Natural = 0; separator: char = ',';
   quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(filename)``.
-  let parser {.noalias.} = create(CsvParser)
+  let parser {.noalias.} = create CsvParser
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
   while parser[].readRow(columns):
@@ -226,7 +224,7 @@ proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: cha
 
 proc csv2xml*(csv_file_path: string, columns: Natural = 0;
   separator: char = ',', quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false,
-  header_xml: string = xmlHeader): string {.exportpy, noinit.} =
+  header_xml: string = xmlHeader): string {.exportpy.} =
   ## Stream Read CSV to XML.
   result = header_xml
   let parser {.noalias.} = create(CsvParser)
