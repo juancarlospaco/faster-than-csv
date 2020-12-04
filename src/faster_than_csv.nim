@@ -23,7 +23,7 @@ proc createDom(): VNode {.discardable.} =
 
 
 proc csv2list*(csv_file_path: string; columns: Natural; rows: Natural; separator: char = ',';
-    quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[string] {.exportpy.} =
+    quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[string] {.exportpy, noinit.} =
   ## Stream Read CSV to a list of strings.
   result = newSeqOfCap[string](columns * rows)
   let parser {.noalias.} = create(CsvParser)
@@ -137,12 +137,12 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, columns: Natural = 0; 
 
 proc csv2htmltable*(csv_file_path, html_file_path: string = "",
     columns: Natural = 0; separator: char = ',', quote: char = '"', escape: char = '\x00';
-    skipInitialSpace: bool = false, header_html: string = html_table_header): string {.exportpy.} =
+    skipInitialSpace: bool = false, header_html: string = html_table_header): string {.exportpy, noinit.} =
   ## Stream Read CSV to HTML Table file and string.
+  result = header_html & "<thead class='thead'>\n<tr>\n"
   let parser {.noalias.} = create(CsvParser)
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
-  result = header_html & "<thead class='thead'>\n<tr>\n"
   for column in parser[].headers.items:
     result.add "<th class='has-background-grey-light'>" & $column & "</th>"
   result.add "</tr>\n</thead>\n<tfoot class='tfoot has-text-primary'>\n<tr>\n"
@@ -200,12 +200,12 @@ proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natura
 
 
 proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: char = ',',
-  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): string {.exportpy.} =
+  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): string {.exportpy, noinit.} =
   ## CSV to Karax HTML Table.
+  result = karax_header
   let parser {.noalias.} = create(CsvParser)
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
-  result = karax_header
   for column in parser[].headers.items:
     result.add "        th:\n          text(\"\"\"" & $column & "\"\"\")\n"
   result.add "    tfoot(class=\"tfoot has-text-primary\"):\n      tr(class=\"has-background-grey-light\"):\n"
@@ -223,8 +223,9 @@ proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: cha
 
 proc csv2xml*(csv_file_path: string, columns: Natural = 0;
   separator: char = ',', quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false,
-  header_xml: string = xmlHeader): string {.exportpy.} =
+  header_xml: string = xmlHeader): string {.exportpy, noinit.} =
   ## Stream Read CSV to XML.
+  result = header_xml
   let parser {.noalias.} = create(CsvParser)
   let temp = create(seq[XmlNode])
   let e = create(XmlNode)
@@ -236,7 +237,7 @@ proc csv2xml*(csv_file_path: string, columns: Natural = 0;
       e[].add newText(parser[].rowEntry(column))
       temp[].add e[]
   parser[].close()
-  result = header_xml & $newXmlTree("csv", temp[])
+  result.add $newXmlTree("csv", temp[])
   dealloc parser
   dealloc temp
   dealloc e
