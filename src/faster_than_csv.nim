@@ -109,7 +109,8 @@ proc csv2json*(csv_string: string; separator: char = ','; nl: char = '\n'): stri
       elif unlikely(x == "+inf"): temp[headers[i]].add newJFloat(+1e9999)
       elif unlikely(x == "-inf"): temp[headers[i]].add newJFloat(-1e9999)
       elif (func (ss: string): bool =
-            for v in ss: result = v in {'.', '-', '+', 'e', '0'..'9'})(x):
+            for v in ss:
+              result = v in {'.', '-', '+', 'e', '0'..'9'})(x):
         if '.' in x and 'e' notin x:   temp[headers[i]].add newJFloat(parseFloat(x))
         elif 'e' in x and '.' notin x: temp[headers[i]].add newJFloat(parseFloat(x))
         else:                          temp[headers[i]].add newJInt(parseInt(x))
