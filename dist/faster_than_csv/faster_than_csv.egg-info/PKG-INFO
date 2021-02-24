@@ -43,4 +43,8 @@ Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Topic :: Software Development
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
+<<<<<<< HEAD:dist/faster_than_csv/faster_than_csv.egg-info/PKG-INFO
 Version: 21.03.03
+=======
+Version: 20.12.04
+>>>>>>> fe9efb0b75864972748132eb9c0bcc2737d62c00:dist/faster_than_csv.egg-info/PKG-INFO

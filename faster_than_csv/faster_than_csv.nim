@@ -1,4 +1,4 @@
-import macros, parsecsv, json, tables, streams, strutils, os, osproc, xmltree, punycode, httpclient, experimental/diff, nimpy
+import parsecsv, json, tables, streams, strutils, os, osproc, xmltree, httpclient, terminal, experimental/diff, nimpy
 
 
 const html_table_header = """<!DOCTYPE html>
@@ -12,127 +12,81 @@ const html_table_header = """<!DOCTYPE html>
   <div class="container is-fluid">
     <table class="table is-bordered is-striped is-hoverable is-fullwidth">"""
 
+const karax_header = """
+include karax/prelude # nimble install karax http://github.com/pragmagic/karax
 
-template `:=`(name: untyped; value: any) =
-  var name {.inject.} = createU(type(value))
-  name[] = value
-
-macro mema(variables: untyped; code: untyped) =
-  assert variables.len > 0, "Variables assign expression must not be empty"
-  result = newStmtList()
-  result.add variables
-  result.add nnkStmtList.newTree(nnkPragma.newTree(newIdentNode("push"),
-    nnkExprColonExpr.newTree(newIdentNode("experimental"), newLit("implicitDeref"))))
-  result.add code
-  result.add nnkStmtList.newTree(nnkPragma.newTree(newIdentNode("pop")))
-  var i = 0
-  for it in variables:
-    var temp = it.repr.split":="
-    if temp.len == 2:
-      inc i
-      result.add newCall(bindSym"dealloc", temp[0].strip.ident)
-  assert variables.len - 1 == i, "Compile-time dealloc injection fail"
+proc createDom(): VNode {.discardable.} =
+  result = buildHtml(table):
+    thead(class="thead"):
+      tr(class="has-background-grey-light"):
+"""
 
 
-proc csv2list*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[string] {.exportpy.} =
+proc csv2list*(csv_file_path: string; columns: Natural; rows: Natural; separator: char = ',';
+    quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[string] {.exportpy, noinit.} =
   ## Stream Read CSV to a list of strings.
-  let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  if has_header:
-    parser[].readHeaderRow()
-    while parser[].readRow():
-      for column in parser[].headers.items:
-        result.add parser[].rowEntry(column)
-      if unlikely(verbose): echo parser[].processedRows()
-  else:
-    while parser[].readRow():
-      for value in parser[].row.items:
-        result.add $value
-      if unlikely(verbose): echo parser[].processedRows()
+  result = newSeqOfCap[string](columns * rows)
+  let parser {.noalias.} = create CsvParser
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  while parser[].readRow(columns):
+    for column in parser[].headers.items:
+      result.add parser[].rowEntry(column)
   parser[].close()
   dealloc parser
 
 
-proc csv2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
+proc csv2dict*(csv_file_path: string; columns: Natural = 0; separator: char = ',';
+  quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(filename)``.
-  let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  if has_header:
-    parser[].readHeaderRow()
-    while parser[].readRow():
-      for column in parser[].headers.items:
-        result.add {$column: parser[].rowEntry(column)}.toTable
-      if unlikely(verbose): echo parser[].processedRows()
-  else:
-    let counter = create(int)
-    while parser[].readRow():
-      for value in parser[].row.items:
-        result.add {$counter[]: $value}.toTable
-      if unlikely(verbose): echo parser[].processedRows()
-      inc counter[]
-    dealloc counter
+  let parser {.noalias.} = create CsvParser
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  while parser[].readRow(columns):
+    for column in parser[].headers.items:
+      result.add {$column: parser[].rowEntry(column)}.toTable
   parser[].close()
   dealloc parser
 
 
-proc read_clipboard*(has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
+proc read_clipboard*(columns: Natural = 0; has_header: bool = true, separator: char = ',',
+  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
   let parser {.noalias.} = create(CsvParser)
-  mema (output := TaintedString""; exitCode := 0; counter := 0):
-    (output[], exitCode[]) = execCmdEx(
-      when defined(linux):   "xclip -out"
-      elif defined(macos):   "pbpaste"
-      elif defined(windows): "Get-Clipboard"
-      else: "")
-    if likely(exitCode == 0):
-      parser.open(newStringStream(output), "read_clipboard", separator, quote, skipInitialSpace=skipInitialSpace)
-      if has_header:
-        parser.readHeaderRow()
-        while parser.readRow():
-          for column in parser.headers.items:
-            result.add {$column: parser.rowEntry(column)}.toTable
-          if unlikely(verbose): echo parser.processedRows()
-      else:
-        while parser.readRow():
-          for value in parser.row.items:
-            result.add {$counter: $value}.toTable
-          if unlikely(verbose): echo parser.processedRows()
-          inc counter
-      parser.close()
+  let (output, exitCode) = execCmdEx(
+    when defined(linux):   "xclip -out"
+    elif defined(macos):   "pbpaste"
+    elif defined(windows): "Get-Clipboard"
+    else:                  "")
+  if likely(exitCode == 0):
+    parser[].open(newStringStream(output), "read_clipboard", separator, quote, escape, skipInitialSpace)
+    if has_header:
+      parser[].readHeaderRow()
+      while parser[].readRow(columns):
+        for column in parser[].headers.items: result.add {$column: parser[].rowEntry(column)}.toTable
+    else:
+      var counter = 0
+      while parser[].readRow(columns):
+        for value in parser[].row.items: result.add {$counter: $value}.toTable
+        inc counter
+  parser[].close()
   dealloc parser
 
 
-proc url2csv*(url: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false,
-  agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1): seq[Table[string, string]] {.exportpy.} =
+proc url2csv*(url: string; columns: Natural = 0; separator: char = ','; quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false;
+  agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1; http_method: string = "GET", body: string = ""): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(url)``.
-  doAssert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
-  if unlikely(verbose): echo url
+  assert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
   let parser {.noalias.} = create(CsvParser)
-  mema (csv_content := ""; counter := 0):
-    csv_content[] = newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout).getContent(url)  # opciones
-    if likely(csv_content.len > 0):
-      parser.open(newStringStream(csv_content), "url2csv", separator, quote, skipInitialSpace=skipInitialSpace)
-      if has_header:
-        parser.readHeaderRow()
-        while parser.readRow():
-          for column in parser.headers.items:
-            result.add {$column: parser.rowEntry(column)}.toTable
-          if unlikely(verbose): echo parser.processedRows()
-      else:
-        while parser.readRow():
-          for value in parser.row.items:
-            result.add {$counter: $value}.toTable
-          if unlikely(verbose): echo parser.processedRows()
-          inc counter
-      parser.close()
+  parser[].open(newStringStream(newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout).request(url, http_method, body).body), "url2csv", separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  while parser[].readRow(columns):
+    for column in parser.headers.items: result.add {$column: parser[].rowEntry(column)}.toTable
+  parser[].close()
   dealloc parser
 
 
-proc csv2json*(csv_string: string; has_header: bool = true; separator: char = ','; nl: char = '\n'): string {.exportpy.} =
+proc csv2json*(csv_string: string; separator: char = ','; nl: char = '\n'): string {.exportpy.} =
   ## CSV string to JSON string Pretty-printed.
   assert csv_string.len > 0, "Argument must not be empty string"
   assert separator != nl and separator notin {' ', '\n'} and nl notin {' ', ',', ';', '\t'}
@@ -140,12 +94,9 @@ proc csv2json*(csv_string: string; has_header: bool = true; separator: char = ',
   let csvlines = csv_string.split(nl)
   let firstLine = csvlines[0].split(separator)
   var headers = newSeqOfCap[string](firstLine.len)
-  if has_header:
-    for item in firstLine: headers.add item
-  else:
-    for item in 0 ..< firstLine.len: headers.add $item
+  for item in firstLine: headers.add item
   for y in headers: temp[y] = newJArray()
-  for z in csvlines[(if has_header: 1 else: 0) .. ^1]:
+  for z in csvlines[1 .. ^1]:
     var i = 0
     for x in z.split(separator): # horizontal
       if x == "true": temp[headers[i]].add newJBool(true)
@@ -155,175 +106,147 @@ proc csv2json*(csv_string: string; has_header: bool = true; separator: char = ',
       elif unlikely(x == "undefined"): temp[headers[i]].add newJNull()
       elif unlikely(x == "+inf"): temp[headers[i]].add newJFloat(+1e9999)
       elif unlikely(x == "-inf"): temp[headers[i]].add newJFloat(-1e9999)
-      elif (func (ss: string): bool =
-            for v in ss: result = v in {'.', '-', '+', 'e', '0'..'9'})(x):
-        if '.' in x and 'e' notin x:   temp[headers[i]].add newJFloat(parseFloat(x))
-        elif 'e' in x and '.' notin x: temp[headers[i]].add newJFloat(parseFloat(x))
-        else:                          temp[headers[i]].add newJInt(parseInt(x))
-      else: temp[headers[i]].add newJString(x)
+      elif (func (ss: string): bool = (for v in ss: result = v in {'.', '-', '+', 'e', '0'..'9'}))(x):
+        if '.' in x and 'e' notin x:
+          temp[headers[i]].add newJFloat(parseFloat(x))
+        elif 'e' in x and '.' notin x:
+          temp[headers[i]].add newJFloat(parseFloat(x))
+        else:
+          temp[headers[i]].add newJInt(parseInt(x))
+      else:
+        temp[headers[i]].add newJString(x)
       inc i
   result = temp.pretty
 
 
-proc csv2ndjson*(csv_file_path, ndjson_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false) {.discardable, exportpy.} =
+proc csv2ndjson*(csv_file_path, ndjson_file_path: string, columns: Natural = 0; separator: char = ',',
+  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false) {.discardable, exportpy.} =
   ## Stream Read CSV to NDJSON https://github.com/ndjson/ndjson-spec
   let parser {.noalias.} = create(CsvParser)
-  mema (ndjson := ""; temp := ""; counter := 0):
-    parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-    if has_header:
-      parser.readHeaderRow()
-      while parser.readRow():
-        for column in parser.headers.items:
-          temp[] = ""
-          temp.toUgly %*{$column: parser.rowEntry(column)}
-          ndjson.add temp[] & "\n"
-        if unlikely(verbose): echo parser.processedRows()
-    else:
-      while parser.readRow():
-        for value in parser.row.items:
-          temp[] = ""
-          temp.toUgly %*{$counter: $value}
-          ndjson.add temp[] & "\n"
-        inc counter[]
-        if unlikely(verbose): echo parser.processedRows()
-    writeFile(ndjson_file_path, $ndjson)
-    parser.close()
+  var ndjson, temp: string
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  while parser[].readRow(columns):
+    for column in parser[].headers.items:
+      temp = ""
+      temp.toUgly %*{$column: parser[].rowEntry(column)}
+      ndjson.add temp & "\n"
+  writeFile(ndjson_file_path, $ndjson)
+  parser[].close()
   dealloc parser
 
 
 proc csv2htmltable*(csv_file_path, html_file_path: string = "",
-    has_header: bool = true, separator: char = ',', quote: char = '"',
-    skipInitialSpace: bool = false, verbose: bool = false,
-    header_html: string = html_table_header): string {.exportpy.} =
+    columns: Natural = 0; separator: char = ',', quote: char = '"', escape: char = '\x00';
+    skipInitialSpace: bool = false, header_html: string = html_table_header): string {.exportpy, noinit.} =
   ## Stream Read CSV to HTML Table file and string.
+  result = header_html & "<thead class='thead'>\n<tr>\n"
   let parser {.noalias.} = create(CsvParser)
-  mema (html_content := ""; name := "Zoe"; age := 25):
-    parser.open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-    html_content.add header_html
-    if has_header:
-      parser.readHeaderRow()
-      html_content.add "<thead class='thead'><tr>"
-      for column in parser.headers.items:
-        html_content.add "<th class='has-background-grey-light'>" & $column & "</th>"
-      html_content.add "</tr>\n</thead><tfoot class='tfoot has-text-primary'><tr>"
-      for column in parser.headers.items:
-        html_content.add "<th class='has-background-grey-light'>" & $column & "</th>"
-      html_content.add "</tr>\n</tfoot><tbody class='tbody'>"
-      while parser.readRow():
-        html_content.add "<tr>"
-        for column in parser.headers.items:
-          html_content.add "<td>" & parser[].rowEntry(column) & "</td>"
-        html_content.add "</tr>\n"
-        if unlikely(verbose): echo parser[].processedRows()
-      html_content.add "</tbody>\n"
-    else:
-      while parser.readRow():
-        html_content.add "<tbody>"
-        for value in parser.row.items:
-          html_content.add "<td>" & $value & "</td>"
-        html_content.add "</tbody>\n"
-        if unlikely(verbose): echo parser[].processedRows()
-    html_content.add "</table></div></body></html>\n"
-    parser.close()
-    if html_file_path.len > 0:
-      writeFile(html_file_path , $html_content)
-    result = $html_content
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  for column in parser[].headers.items:
+    result.add "<th class='has-background-grey-light'>" & $column & "</th>"
+  result.add "</tr>\n</thead>\n<tfoot class='tfoot has-text-primary'>\n<tr>\n"
+  for column in parser[].headers.items:
+    result.add "<th class='has-background-grey-light'>" & $column & "</th>"
+  result.add "</tr>\n</tfoot>\n<tbody class='tbody'>\n"
+  while parser[].readRow(columns):
+    result.add "<tr>"
+    for column in parser[].headers.items:
+      result.add "<td>" & parser[].rowEntry(column) & "</td>"
+    result.add "</tr>\n"
+  result.add "</tbody>\n</table>\n</div>\n</body>\n</html>\n"
+  parser[].close()
+  if html_file_path.len > 0: writeFile(html_file_path , result)
   dealloc parser
 
 
 proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
-    separator: char = ',', quote: char = '"',
-    skipInitialSpace: bool = false, verbose: bool = false): string {.exportpy.} =
+    separator: char = ',', quote: char = '"', escape: char = '\x00'; columns: Natural = 0;
+    skipInitialSpace: bool = false): string {.exportpy.} =
   ## CSV to MarkDown Table file and string.
   let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
   for column in parser[].headers.items: result.add "| " & $column & " "
   result.add "|\n| " & "---- | ".repeat(parser[].headers.len) & "\n"
-  while parser[].readRow():
+  while parser[].readRow(columns):
     for column in parser[].headers.items: result.add "| " & parser[].rowEntry(column) & " "
     result.add "|\n"
-    if unlikely(verbose): echo parser[].processedRows()
   parser[].close()
-  if md_file_path.len > 0:
-    writeFile(md_file_path , result)
+  if md_file_path.len > 0: writeFile(md_file_path , result)
   dealloc parser
 
 
-proc csv2xml*(csv_file_path: string, has_header: bool = true,
-  separator: char = ',', quote: char = '"', skipInitialSpace: bool = false,
-  verbose: bool = false, header_xml: string = xmlHeader): string {.exportpy.} =
+proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natural = 0; separator: char = ',';
+    quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false) {.exportpy.} =
+  ## CSV to pretty-printed colored terminal table.
+  let parser {.noalias.} = create(CsvParser)
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  const colors = [fgRed, fgGreen, fgYellow, fgBlue, fgDefault, fgMagenta, fgCyan, fgWhite, fg8Bit]
+  var i = 0
+  for column in parser[].headers.items:
+    stdout.styledWrite bgBlack, styleUnderscore, "| " & $column & " ".repeat(column_width - len($column) + 1)
+  stdout.styledWrite bgBlack, styleUnderscore, "|\n"
+  while parser[].readRow(columns):
+    var c = colors[i]
+    for col in parser[].headers.items:
+      stdout.styledWrite bgBlack, c, styleUnderscore, "| " & alignLeft(parser[].rowEntry(col), column_width + 1)
+    stdout.styledWrite bgBlack, c, styleUnderscore, "|\n"
+    if i > 7: i = 0 else: inc i
+  resetAttributes()
+  parser[].close()
+  dealloc parser
+
+
+proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: char = ',',
+  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): string {.exportpy, noinit.} =
+  ## CSV to Karax HTML Table.
+  result = karax_header
+  let parser {.noalias.} = create(CsvParser)
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  for column in parser[].headers.items:
+    result.add "        th:\n          text(\"\"\"" & $column & "\"\"\")\n"
+  result.add "    tfoot(class=\"tfoot has-text-primary\"):\n      tr(class=\"has-background-grey-light\"):\n"
+  for column in parser[].headers.items:
+    result.add "        th:\n         text(\"\"\"" & $column & "\"\"\")\n"
+  result.add "    tbody(class=\"tbody\"):\n"
+  while parser[].readRow(columns):
+    result.add "      tr:\n"
+    for column in parser[].headers.items:
+      result.add "        td:\n          text(\"\"\"" & parser[].rowEntry(column) & "\"\"\")\n"
+  result.add "\n\nsetRenderer(createDom)\n"
+  parser[].close()
+  dealloc parser
+
+
+proc csv2xml*(csv_file_path: string, columns: Natural = 0;
+  separator: char = ',', quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false,
+  header_xml: string = xmlHeader): string {.exportpy.} =
   ## Stream Read CSV to XML.
+  result = header_xml
   let parser {.noalias.} = create(CsvParser)
   let temp = create(seq[XmlNode])
   let e = create(XmlNode)
-  parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  if has_header:
-    parser[].readHeaderRow()
-    while parser[].readRow():
-      for column in parser[].headers.items:
-        e[] = newElement($column)
-        e[].add newText(parser[].rowEntry(column))
-        temp[].add e[]
-      if unlikely(verbose): echo parser[].processedRows()
-  else:
-    let counter = create(int)
-    while parser[].readRow():
-      for column in parser[].headers.items:
-        e[] = newElement($counter[])
-        e[].add newText(parser[].rowEntry(column))
-        temp[].add e[]
-      if unlikely(verbose): echo parser[].processedRows()
-    dealloc counter
+  parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
+  parser[].readHeaderRow()
+  while parser[].readRow(columns):
+    for column in parser[].headers.items:
+      e[] = newElement($column)
+      e[].add newText(parser[].rowEntry(column))
+      temp[].add e[]
   parser[].close()
-  result = header_xml & $newXmlTree("csv", temp[])
+  result.add $newXmlTree("csv", temp[])
   dealloc parser
   dealloc temp
   dealloc e
 
 
-proc csv_punycode2dict*(csv_file_path: string, has_header: bool = true, separator: char = ',',
-  quote: char = '"', skipInitialSpace: bool = false, verbose: bool = false): seq[Table[string, string]] {.exportpy.} =
-  ## Stream read PunyCode encoded CSV to Dict (Punycode encodes Unicode as ASCII). http://wikipedia.org/wiki/Punycode
-  let parser {.noalias.} = create(CsvParser, sizeOf CsvParser)
-  parser[].open(csv_file_path, separator, quote, skipInitialSpace=skipInitialSpace)
-  if has_header:
-    parser[].readHeaderRow()
-    while parser[].readRow():
-      for column in parser[].headers.items:
-        result.add {punycode.decode($column): punycode.decode(parser[].rowEntry(column))}.toTable
-      if unlikely(verbose): echo parser[].processedRows()
-  else:
-    let counter = create(int)
-    while parser[].readRow():
-      for value in parser[].row.items:
-        result.add {$counter[]: punycode.decode($value)}.toTable
-      if unlikely(verbose): echo parser[].processedRows()
-      inc counter[]
-    dealloc counter
-  parser[].close()
-  dealloc parser
-
-
-proc csv2tsv*(csv_file_path: string, reversed: bool = false): string {.exportpy.} =
-  ## Stream Read CSV to TSV, simple replace of "," to "\t".
-  if unlikely(reversed):
-    for line in csv_file_path.lines:
-      result.add line.replace(',', '\t')
-  else:
-    for line in csv_file_path.lines:
-      result.add line.replace('\t', ',')
-
-
-proc csv2custom*(csv_file_path: string, separator: string, reversed: bool = false): string {.exportpy.} =
-  ## Stream Read CSV to TSV, simple replace of "," to "\t".
-  if unlikely(reversed):
-    for line in csv_file_path.lines:
-      result.add line.replace(separator, ",")
-  else:
-    for line in csv_file_path.lines:
-      result.add line.replace(",", separator)
+proc tsv2csv*(csv_file_path: string; separator1: char = '\t'; separator2: char = ','): string {.exportpy.} =
+  ## Stream Read TSV to CSV, or any custom format to CSV, simple replace of "," to "\t".
+  for line in csv_file_path.lines: result.add line.replace(separator1, separator2)
 
 
 proc diff_csvs*(csv_file_path0, csv_file_path1: string): seq[Item] {.exportpy.} =
