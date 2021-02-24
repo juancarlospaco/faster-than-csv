@@ -4,4 +4,5 @@
 __pycache__/
 *.pyc
 *.c.o
-
+dist/faster_than_csv/faster_than_csv/
+dist/*.zip
