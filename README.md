@@ -72,10 +72,39 @@ This is very similar to `pandas.read_csv(filename)`.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
 
+For the `columns` and `rows` description/explanation see
+https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443
+
 **Returns:**
 Data from the CSV, `dict` type.
 
 </details>
+
+
+
+# csv2list()
+<details>
+
+**Description:**
+Takes a path of a CSV file string, process CSV and returns a list.
+
+**Arguments:**
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
+- `columns` total column count, OPTIONAL, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
+- `rows` total row count, OPTIONAL, `int` type, ignored if `0`, default to `0`, **faster performance if is not `0`**.
+- `has_header` Set to `True` for CSV with Header, `bool` type, optional, defaults to `True`.
+- `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
+- `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
+- `skipInitialSpace` Set to `True` to ignore empty blank whitespace at the start of the CSV file, `bool` type, optional, defaults to `False` since is not technically valid.
+
+For the `columns` and `rows` description/explanation see
+https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443
+
+**Returns:**
+Data from the CSV, `list` type.
+
+</details>
+
 
 
 # read_clipboard()
