@@ -6,14 +6,14 @@ const html_table_header = """<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css" async defer >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css" async defer >
 </head>
 <body><br><br>
   <div class="container is-fluid">
     <table class="table is-bordered is-striped is-hoverable is-fullwidth">"""
 
 const karax_header = """
-include karax/prelude # nimble install karax http://github.com/pragmagic/karax
+include karax/prelude  # nimble install karax http://github.com/pragmagic/karax
 
 proc createDom(): VNode {.discardable.} =
   result = buildHtml(table):
@@ -33,7 +33,7 @@ proc csv2list*(csv_file_path: string; columns: Natural = 9; rows: Natural = 9; s
     for column in parser[].headers.items:
       result.add parser[].rowEntry(column)
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2dict*(csv_file_path: string; columns: Natural = 0; separator: char = ',';
@@ -46,7 +46,7 @@ proc csv2dict*(csv_file_path: string; columns: Natural = 0; separator: char = ',
     for column in parser[].headers.items:
       result.add {$column: parser[].rowEntry(column)}.toTable
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc read_clipboard*(columns: Natural = 0; has_header: bool = true, separator: char = ',',
@@ -70,7 +70,7 @@ proc read_clipboard*(columns: Natural = 0; has_header: bool = true, separator: c
         for value in parser[].row.items: result.add {$counter: $value}.toTable
         inc counter
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc url2csv*(url: string; columns: Natural = 0; separator: char = ','; quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false;
@@ -83,7 +83,7 @@ proc url2csv*(url: string; columns: Natural = 0; separator: char = ','; quote: c
   while parser[].readRow(columns):
     for column in parser.headers.items: result.add {$column: parser[].rowEntry(column)}.toTable
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2json*(csv_string: string; separator: char = ','; nl: char = '\n'): string {.exportpy.} =
@@ -133,7 +133,7 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, columns: Natural = 0; 
       ndjson.add temp & "\n"
   writeFile(ndjson_file_path, $ndjson)
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2htmltable*(csv_file_path, html_file_path: string = "",
@@ -158,7 +158,7 @@ proc csv2htmltable*(csv_file_path, html_file_path: string = "",
   result.add "</tbody>\n</table>\n</div>\n</body>\n</html>\n"
   parser[].close()
   if html_file_path.len > 0: writeFile(html_file_path , result)
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
@@ -175,7 +175,7 @@ proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
     result.add "|\n"
   parser[].close()
   if md_file_path.len > 0: writeFile(md_file_path , result)
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natural = 0; separator: char = ',';
@@ -197,7 +197,7 @@ proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natura
     if i > 7: i = 0 else: inc i
   resetAttributes()
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: char = ',',
@@ -219,7 +219,7 @@ proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: cha
       result.add "        td:\n          text(\"\"\"" & parser[].rowEntry(column) & "\"\"\")\n"
   result.add "\n\nsetRenderer(createDom)\n"
   parser[].close()
-  dealloc parser
+  if parser != nil: dealloc parser
 
 
 proc csv2xml*(csv_file_path: string, columns: Natural = 0;
@@ -239,9 +239,9 @@ proc csv2xml*(csv_file_path: string, columns: Natural = 0;
       temp[].add e[]
   parser[].close()
   result.add $newXmlTree("csv", temp[])
-  dealloc parser
-  dealloc temp
-  dealloc e
+  if parser != nil: dealloc parser
+  if temp != nil: dealloc temp
+  if e != nil: dealloc e
 
 
 proc tsv2csv*(csv_file_path: string; separator1: char = '\t'; separator2: char = ','): string {.exportpy.} =
