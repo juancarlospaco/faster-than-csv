@@ -78,7 +78,9 @@ proc url2csv*(url: string; columns: Natural = 0; separator: char = ','; quote: c
   ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(url)``.
   assert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
   let parser {.noalias.} = create(CsvParser)
-  parser[].open(newStringStream(newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout).request(url, http_method, body).body), "url2csv", separator, quote, escape, skipInitialSpace)
+  let client = newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout)
+  parser[].open(newStringStream(client.request(url, http_method, body).body), "url2csv", separator, quote, escape, skipInitialSpace)
+  client.close()
   parser[].readHeaderRow()
   while parser[].readRow(columns):
     for column in parser.headers.items: result.add {$column: parser[].rowEntry(column)}.toTable
