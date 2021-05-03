@@ -50,7 +50,7 @@ proc csv2dict*(csv_file_path: string; columns: Natural = 0; separator: char = ',
 
 
 proc read_clipboard*(columns: Natural = 0; has_header: bool = true, separator: char = ',',
-  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): seq[Table[string, string]] {.exportpy.} =
+  quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): seq[(string, string)] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
   let parser {.noalias.} = create(CsvParser)
   let (output, exitCode) = execCmdEx(
@@ -63,18 +63,18 @@ proc read_clipboard*(columns: Natural = 0; has_header: bool = true, separator: c
     if has_header:
       parser[].readHeaderRow()
       while parser[].readRow(columns):
-        for column in parser[].headers.items: result.add {$column: parser[].rowEntry(column)}.toTable
+        for column in parser[].headers.items: result.add {$column: parser[].rowEntry(column)}
     else:
       var counter = 0
       while parser[].readRow(columns):
-        for value in parser[].row.items: result.add {$counter: $value}.toTable
+        for value in parser[].row.items: result.add {$counter: $value}
         inc counter
   parser[].close()
   if parser != nil: dealloc parser
 
 
 proc url2csv*(url: string; columns: Natural = 0; separator: char = ','; quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false;
-  agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1; http_method: string = "GET", body: string = ""): seq[Table[string, string]] {.exportpy.} =
+  agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1; http_method: string = "GET", body: string = ""): seq[(string, string)] {.exportpy.} =
   ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(url)``.
   assert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
   let parser {.noalias.} = create(CsvParser)
@@ -83,7 +83,7 @@ proc url2csv*(url: string; columns: Natural = 0; separator: char = ','; quote: c
   client.close()
   parser[].readHeaderRow()
   while parser[].readRow(columns):
-    for column in parser.headers.items: result.add {$column: parser[].rowEntry(column)}.toTable
+    for column in parser.headers.items: result.add {$column: parser[].rowEntry(column)}
   parser[].close()
   if parser != nil: dealloc parser
 
