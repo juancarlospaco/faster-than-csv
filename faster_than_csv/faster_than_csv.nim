@@ -130,7 +130,8 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, columns: Natural = 0; 
     for column in parser[].headers.items:
       temp = ""
       temp.toUgly %*{$column: parser[].rowEntry(column)}
-      ndjson.add temp & "\n"
+      ndjson.add temp
+      ndjson.add '\n'
   writeFile(ndjson_file_path, $ndjson)
   parser[].close()
   if parser != nil: dealloc parser
@@ -140,20 +141,28 @@ proc csv2htmltable*(csv_file_path, html_file_path: string = "",
     columns: Natural = 0; separator: char = ',', quote: char = '"', escape: char = '\x00';
     skipInitialSpace: bool = false, header_html: string = html_table_header): string {.exportpy, noinit.} =
   ## Stream Read CSV to HTML Table file and string.
-  result = header_html & "<thead class='thead'>\n<tr>\n"
+  result = newStringOfCap(int16.high)
+  result.add header_html
+  result.add "<thead class='thead'>\n<tr>\n"
   let parser {.noalias.} = create(CsvParser)
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
   for column in parser[].headers.items:
-    result.add "<th class='has-background-grey-light'>" & $column & "</th>"
+    result.add "<th class='has-background-grey-light'>"
+    result.add $column
+    result.add "</th>"
   result.add "</tr>\n</thead>\n<tfoot class='tfoot has-text-primary'>\n<tr>\n"
   for column in parser[].headers.items:
-    result.add "<th class='has-background-grey-light'>" & $column & "</th>"
+    result.add "<th class='has-background-grey-light'>"
+    result.add $column
+    result.add "</th>"
   result.add "</tr>\n</tfoot>\n<tbody class='tbody'>\n"
   while parser[].readRow(columns):
     result.add "<tr>"
     for column in parser[].headers.items:
-      result.add "<td>" & parser[].rowEntry(column) & "</td>"
+      result.add "<td>"
+      result.add parser[].rowEntry(column)
+      result.add "</td>"
     result.add "</tr>\n"
   result.add "</tbody>\n</table>\n</div>\n</body>\n</html>\n"
   parser[].close()
@@ -165,14 +174,26 @@ proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
     separator: char = ',', quote: char = '"', escape: char = '\x00'; columns: Natural = 0;
     skipInitialSpace: bool = false): string {.exportpy.} =
   ## CSV to MarkDown Table file and string.
+  result = newStringOfCap(int16.high)
   let parser {.noalias.} = create(CsvParser)
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
-  for column in parser[].headers.items: result.add "| " & $column & " "
-  result.add "|\n| " & "---- | ".repeat(parser[].headers.len) & "\n"
+  for column in parser[].headers.items:
+    result.add '|'
+    result.add ' '
+    result.add $column
+    result.add ' '
+  result.add "|\n| "
+  result.add "---- | ".repeat(parser[].headers.len)
+  result.add '\n'
   while parser[].readRow(columns):
-    for column in parser[].headers.items: result.add "| " & parser[].rowEntry(column) & " "
-    result.add "|\n"
+    for column in parser[].headers.items:
+      result.add '|'
+      result.add ' '
+      result.add parser[].rowEntry(column)
+      result.add ' '
+    result.add '|'
+    result.add '\n'
   parser[].close()
   if md_file_path.len > 0: writeFile(md_file_path , result)
   if parser != nil: dealloc parser
@@ -203,7 +224,8 @@ proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natura
 proc csv2karax*(csv_file_path: string = "", columns: Natural = 0; separator: char = ',',
   quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false): string {.exportpy, noinit.} =
   ## CSV to Karax HTML Table.
-  result = karax_header
+  result = newStringOfCap(int16.high)
+  result.add karax_header
   let parser {.noalias.} = create(CsvParser)
   parser[].open(csv_file_path, separator, quote, escape, skipInitialSpace)
   parser[].readHeaderRow()
@@ -226,7 +248,8 @@ proc csv2xml*(csv_file_path: string, columns: Natural = 0;
   separator: char = ',', quote: char = '"', escape: char = '\x00'; skipInitialSpace: bool = false,
   header_xml: string = xmlHeader): string {.exportpy.} =
   ## Stream Read CSV to XML.
-  result = header_xml
+  result = newStringOfCap(int16.high)
+  result.add header_xml
   let parser {.noalias.} = create(CsvParser)
   let temp = create(seq[XmlNode])
   let e = create(XmlNode)
@@ -246,6 +269,7 @@ proc csv2xml*(csv_file_path: string, columns: Natural = 0;
 
 proc tsv2csv*(csv_file_path: string; separator1: char = '\t'; separator2: char = ','): string {.exportpy.} =
   ## Stream Read TSV to CSV, or any custom format to CSV, simple replace of "," to "\t".
+  result = newStringOfCap(int16.high)
   for line in csv_file_path.lines: result.add line.replace(separator1, separator2)
 
 
