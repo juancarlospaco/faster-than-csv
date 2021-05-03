@@ -33,7 +33,7 @@ jobs:
 
     - uses: jiro4989/setup-nim-action@v1
       with:
-        nim-version: '1.4.2'
+        nim-version: '1.4.6'
         no-color: true  # --noColor
 
     - name: Get Git Commit Short Hash
@@ -47,7 +47,7 @@ jobs:
     - name: Set Environment Variables
       uses: allenevans/set-env@v2.0.0
       with:
-        NIM_VERSION:           "1.4.2"
+        NIM_VERSION:           "1.4.6"
         MAIN_MODULE:           "faster_than_csv/faster_than_csv.nim"
         PACKAGE_NAME:          "faster_than_csv"
         TWINE_USERNAME:        ${{ secrets.PYPI_USERNAME }}
@@ -59,7 +59,7 @@ jobs:
       run: |
         nimble -y refresh
         nimble -y install nimpy
-
+        pip install nimporter
 
     - uses: juancarlospaco/nimpretty-action@main
       with:
