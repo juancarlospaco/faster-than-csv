@@ -22,7 +22,7 @@ proc createDom(): VNode {.discardable.} =
 """
 
 
-proc csv2list*(csv_file_path: string; columns: Positive = 9; rows: Positive = 9; separator: char = ',';
+proc csv2list*(csv_file_path: string; columns: Natural = 9; rows: Natural = 9; separator: char = ',';
     quote: char = '"'; escape: char = '\x00'; skipInitialSpace: bool = false): seq[string] {.exportpy, noinit.} =
   ## Stream Read CSV to a list of strings.
   result = newSeqOfCap[string](columns * rows)
