@@ -7,7 +7,7 @@ with open(path) as f:
 
 echo(csv2dict(path))
 
-echo(csv2list(path, columns = 10, rows = 53590))
+echo(csv2list(path))
 
 csv2ndjson(path, "out.ndjson")
 
