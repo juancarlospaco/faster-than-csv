@@ -99,6 +99,9 @@ proc rowEntry(self: var CsvParser; entry: var string) =
   if likely(index >= 0): entry = self.row[index] else: echo "ERROR: Key not found: " & entry
 
 
+# ^ CSV Parser ##################################### v CSV functions for Python
+
+
 const html_table_header = """<!DOCTYPE html>
 <html style="background-color:lightcyan">
 <head>
