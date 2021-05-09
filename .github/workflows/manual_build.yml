@@ -2,22 +2,6 @@
 
 name: "Manual Build and test Workflow"
 on: [workflow_dispatch]
-  push:
-    paths:
-      - 'setup.py'
-      - 'setup.cfg'
-      - 'PKG-INFO'
-      - 'faster_than_csv/*.*'
-      - 'faster_than_csv/**.py'
-      - 'faster_than_csv/**.nim'
-      - 'faster_than_csv/**.nims'
-      - 'faster_than_csv/**.cfg'
-      - 'faster_than_csv/**.so'
-      - 'faster_than_csv/**.dll'
-      - '.github/workflows/*.yml'
-      - '.github/workflows/*.yaml'
-      - '.gitignore'
-
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
