@@ -59,8 +59,8 @@ jobs:
     #     nim rst2tex --out:docs/${{ env.PACKAGE_NAME }}.tex ${{ env.MAIN_MODULE }}
 
 
-    - name: Compile Debug & import (Unix)
-      if: runner.os == 'Linux' || runner.os == 'macOS'
+    - name: Compile Debug & import (Linux)
+      if: runner.os == 'Linux'
       run: |
         nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
         python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
@@ -71,6 +71,14 @@ jobs:
       run: |
         nim c --app:lib --threads:on --out:${{ env.PACKAGE_NAME }}.pyd ${{ env.MAIN_MODULE }}
         python.exe -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
+
+    - name: Compile Debug & import (MacOs)
+      if: runner.os == 'macOS'
+      run: |
+        nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
+        python3 -c "print('${{ env.PACKAGE_NAME }}')"
+        python3 -c "print('${{ PACKAGE_NAME }}')"
+        python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
 
     # - name: Package
