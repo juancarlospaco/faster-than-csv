@@ -47,28 +47,21 @@ function main() {
 
   toggleSwitch.addEventListener('change', switchTheme, false);
 
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', "dark");
-    toggleSwitch.checked = true;
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-    document.documentElement.setAttribute('data-theme', "light");
-    toggleSwitch.checked = false;
-  } else {
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    if (currentTheme) {
-      document.documentElement.setAttribute('data-theme', currentTheme);
-
-      if (currentTheme === 'dark') {
-        toggleSwitch.checked = true;
-      }
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
     }
   }
 }
+
+window.addEventListener('DOMContentLoaded', main);
 </script>
 
 </head>
-<body onload="main()">
+<body>
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">faster_than_csv</h1>
@@ -83,6 +76,9 @@ function main() {
   </div>
   <div id="global-links">
     <ul class="simple">
+    <li>
+      <a href="theindex.html">Index</a>
+    </li>
     </ul>
   </div>
   <div id="searchInputDiv">
@@ -100,50 +96,107 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#csv2list%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"
-    title="csv2list(csv_file_path: string; has_header: bool = true; separator: char = &apos;,&apos;;
-         quote: char = &apos;\&quot;&apos;; skipInitialSpace: bool = false; verbose: bool = false): seq[
-    string]"><wbr />csv2list<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2dict%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"
-    title="csv2dict(csv_file_path: string; has_header: bool = true; separator: char = &apos;,&apos;;
-         quote: char = &apos;\&quot;&apos;; skipInitialSpace: bool = false; verbose: bool = false): seq[
-    Table[string, string]]"><wbr />csv2dict<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#read_clipboard%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"
-    title="read_clipboard(has_header: bool = true; separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;;
-               skipInitialSpace: bool = false; verbose: bool = false): seq[
-    Table[string, string]]"><wbr />read_<wbr />clipboard<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#url2csv%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2Cstring%2Cint%2Cint"
-    title="url2csv(url: string; has_header: bool = true; separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;;
-        skipInitialSpace: bool = false; verbose: bool = false;
-        agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1): seq[
-    Table[string, string]]"><wbr />url2csv<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2json%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2CNatural"
-    title="csv2json(csv_file_path: string; has_header: bool = true; separator: char = &apos;,&apos;;
-         quote: char = &apos;\&quot;&apos;; skipInitialSpace: bool = false; verbose: bool = false;
-         indentation: Natural = 0): seq[string]"><wbr />csv2json<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2ndjson%2Cstring%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"
-    title="csv2ndjson(csv_file_path, ndjson_file_path: string; has_header: bool = true;
-           separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; skipInitialSpace: bool = false;
-           verbose: bool = false)"><wbr />csv2ndjson<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2htmltable%2Cstring%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2Cstring"
-    title="csv2htmltable(csv_file_path, html_file_path: string = &quot;&quot;; has_header: bool = true;
-              separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; skipInitialSpace: bool = false;
-              verbose: bool = false; header_html: string = html_table_header): string"><wbr />csv2htmltable<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2xml%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2Cstring"
-    title="csv2xml(csv_file_path: string; has_header: bool = true; separator: char = &apos;,&apos;;
-        quote: char = &apos;\&quot;&apos;; skipInitialSpace: bool = false; verbose: bool = false;
-        header_xml: string = xmlHeader): string"><wbr />csv2xml<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv_punycode2dict%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"
-    title="csv_punycode2dict(csv_file_path: string; has_header: bool = true;
+      <ul class="simple nested-toc-section">csv2terminal
+      <li><a class="reference" href="#csv2terminal%2Cstring%2CNatural%2CNatural%2Cchar%2Cchar%2Cchar"
+    title="csv2terminal(csv_file_path: string; column_width: Natural;
+             columns: Natural = 32767; separator: char = &apos;,&apos;;
+             quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;)">csv2terminal(csv_file_path: string; column_width: Natural;
+             columns: Natural = 32767; separator: char = &apos;,&apos;;
+             quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;)</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2dict
+      <li><a class="reference" href="#csv2dict%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"
+    title="csv2dict(csv_file_path: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+         quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): seq[Table[string, string]]">csv2dict(csv_file_path: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+         quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): seq[Table[string, string]]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2list
+      <li><a class="reference" href="#csv2list%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"
+    title="csv2list(csv_file_path: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+         quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): seq[string]">csv2list(csv_file_path: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+         quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): seq[string]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2xml
+      <li><a class="reference" href="#csv2xml%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar%2Cstring"
+    title="csv2xml(csv_file_path: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+        quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;;
+        header_xml: string = xmlHeader): string">csv2xml(csv_file_path: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+        quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;;
+        header_xml: string = xmlHeader): string</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2htmltable
+      <li><a class="reference" href="#csv2htmltable%2Cstring%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar%2Cstring"
+    title="csv2htmltable(csv_file_path, html_file_path: string = &quot;&quot;;
+              columns: Natural = 32767; separator: char = &apos;,&apos;;
+              quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;;
+              header_html: string = html_table_header): string">csv2htmltable(csv_file_path, html_file_path: string = &quot;&quot;;
+              columns: Natural = 32767; separator: char = &apos;,&apos;;
+              quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;;
+              header_html: string = html_table_header): string</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">url2csv
+      <li><a class="reference" href="#url2csv%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar%2Cstring%2Cint%2Cint%2Cstring%2Cstring"
+    title="url2csv(url: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+        quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;; agent: string = defUserAgent;
+        maxRedirects: int = 5; timeout: int = -1; http_method: string = &quot;GET&quot;;
+        body: string = &quot;&quot;): seq[(string, string)]">url2csv(url: string; columns: Natural = 32767; separator: char = &apos;,&apos;;
+        quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;; agent: string = defUserAgent;
+        maxRedirects: int = 5; timeout: int = -1; http_method: string = &quot;GET&quot;;
+        body: string = &quot;&quot;): seq[(string, string)]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">diff_csvs
+      <li><a class="reference" href="#diff_csvs%2Cstring%2Cstring"
+    title="diff_csvs(csv_file_path0, csv_file_path1: string): seq[Item]">diff_csvs(csv_file_path0, csv_file_path1: string): seq[Item]</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2karax
+      <li><a class="reference" href="#csv2karax%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"
+    title="csv2karax(csv_file_path: string = &quot;&quot;; columns: Natural = 32767;
+          separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): string">csv2karax(csv_file_path: string = &quot;&quot;; columns: Natural = 32767;
+          separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): string</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2markdowntable
+      <li><a class="reference" href="#csv2markdowntable%2Cstring%2Cstring%2Cchar%2Cchar%2Cchar%2CNatural"
+    title="csv2markdowntable(csv_file_path, md_file_path: string = &quot;&quot;;
                   separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;;
-                  skipInitialSpace: bool = false; verbose: bool = false): seq[
-    Table[string, string]]"><wbr />csv_<wbr />punycode2dict<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2tsv%2Cstring%2Cbool"
-    title="csv2tsv(csv_file_path: string; reversed: bool = false): string"><wbr />csv2tsv<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#csv2custom%2Cstring%2Cstring%2Cbool"
-    title="csv2custom(csv_file_path: string; separator: string; reversed: bool = false): string"><wbr />csv2custom<span class="attachedType"></span></a></li>
-  <li><a class="reference" href="#diff_csvs%2Cstring%2Cstring"
-    title="diff_csvs(csv_file_path0, csv_file_path1: string): seq[Item]"><wbr />diff_<wbr />csvs<span class="attachedType"></span></a></li>
+                  escape: char = &apos;\x00&apos;; columns: Natural = 32767): string">csv2markdowntable(csv_file_path, md_file_path: string = &quot;&quot;;
+                  separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;;
+                  escape: char = &apos;\x00&apos;; columns: Natural = 32767): string</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2json
+      <li><a class="reference" href="#csv2json%2Cstring%2Cchar%2Cchar"
+    title="csv2json(csv_string: string; separator: char = &apos;,&apos;; nl: char = &apos;\n&apos;): string">csv2json(csv_string: string; separator: char = &apos;,&apos;; nl: char = &apos;\n&apos;): string</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">csv2ndjson
+      <li><a class="reference" href="#csv2ndjson%2Cstring%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"
+    title="csv2ndjson(csv_file_path, ndjson_file_path: string; columns: Natural = 32767;
+           separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;)">csv2ndjson(csv_file_path, ndjson_file_path: string; columns: Natural = 32767;
+           separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;)</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">tsv2csv
+      <li><a class="reference" href="#tsv2csv%2Cstring%2Cchar%2Cchar"
+    title="tsv2csv(csv_file_path: string; separator1: char = &apos;\t&apos;; separator2: char = &apos;,&apos;): string">tsv2csv(csv_file_path: string; separator1: char = &apos;\t&apos;; separator2: char = &apos;,&apos;): string</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">read_clipboard
+      <li><a class="reference" href="#read_clipboard%2CNatural%2Cbool%2Cchar%2Cchar%2Cchar"
+    title="read_clipboard(columns: Natural = 32767; has_header: bool = true;
+               separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): seq[
+    (string, string)]">read_clipboard(columns: Natural = 32767; has_header: bool = true;
+               separator: char = &apos;,&apos;; quote: char = &apos;\&quot;&apos;; escape: char = &apos;\x00&apos;): seq[
+    (string, string)]</a></li>
+
+  </ul>
 
   </ul>
 </li>
@@ -151,6 +204,7 @@ function main() {
 </ul>
 
   </div>
+  
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
@@ -158,126 +212,133 @@ function main() {
   <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<a id="csv2list,string,bool,char,char,bool,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2list%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"><span class="Identifier">csv2list</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
-             <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
-    <span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-             <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="csv2list,string,Natural,char,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2list%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"><span class="Identifier">csv2list</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span>
+              <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
+    <span class="Identifier">string</span><span class="Other">]</span> {.<span class="Identifier">noinit</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+              <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read CSV to a list of strings.
 
 </dd>
-<a id="csv2dict,string,bool,char,char,bool,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2dict%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"><span class="Identifier">csv2dict</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
-             <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
-    <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-                           <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="csv2dict,string,Natural,char,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2dict%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"><span class="Identifier">csv2dict</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span>
+              <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
+    <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+                             <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read CSV to a list of dictionaries. This is very similar to <tt class="docutils literal"><span class="pre">pandas.read_csv(filename)</span></tt>.
 
 </dd>
-<a id="read_clipboard,bool,char,char,bool,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#read_clipboard%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"><span class="Identifier">read_clipboard</span></a><span class="Other">(</span><span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span>
-                   <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
-    <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">CsvError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span>
-    <span class="Identifier">ExecIOEffect</span><span class="Other">,</span> <span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="read_clipboard,Natural,bool,char,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#read_clipboard%2CNatural%2Cbool%2Cchar%2Cchar%2Cchar"><span class="Identifier">read_clipboard</span></a><span class="Other">(</span><span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span>
+                    <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span>
+                    <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ExecIOEffect</span><span class="Other">,</span> <span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read CSV to a list of dictionaries. This is very similar to <tt class="docutils literal"><span class="pre">pandas.read_clipboard()</span></tt>.
 
 </dd>
-<a id="url2csv,string,bool,char,char,bool,bool,string,int,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#url2csv%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2Cstring%2Cint%2Cint"><span class="Identifier">url2csv</span></a><span class="Other">(</span><span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
-            <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
-            <span class="Identifier">agent</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">defUserAgent</span><span class="Other">;</span> <span class="Identifier">maxRedirects</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">5</span><span class="Other">;</span> <span class="Identifier">timeout</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="Operator">-</span><span class="DecNumber">1</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
-    <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">HttpRequestError</span><span class="Other">,</span>
-                                   <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">TimeoutError</span><span class="Other">,</span>
-                                   <span class="Identifier">ProtocolError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">,</span>
-                                   <span class="Identifier">LibraryError</span><span class="Other">,</span> <span class="Identifier">CsvError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span>
-    <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">,</span> <span class="Identifier">ReadDirEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="url2csv,string,Natural,char,char,char,string,int,int,string,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#url2csv%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar%2Cstring%2Cint%2Cint%2Cstring%2Cstring"><span class="Identifier">url2csv</span></a><span class="Other">(</span><span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
+             <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">;</span>
+             <span class="Identifier">agent</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">defUserAgent</span><span class="Other">;</span> <span class="Identifier">maxRedirects</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">5</span><span class="Other">;</span>
+             <span class="Identifier">timeout</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">-1</span><span class="Other">;</span> <span class="Identifier">http_method</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;GET&quot;</span><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
+    <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">LibraryError</span><span class="Other">,</span> <span class="Identifier">SslError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span>
+                                 <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">HttpRequestError</span><span class="Other">,</span>
+                                 <span class="Identifier">TimeoutError</span><span class="Other">,</span> <span class="Identifier">ProtocolError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span>
+    <span class="Identifier">RootEffect</span><span class="Other">,</span> <span class="Identifier">ReadDirEffect</span><span class="Other">,</span> <span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">,</span> <span class="Identifier">TimeEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read URL to CSV to a list of dictionaries. This is very similar to <tt class="docutils literal"><span class="pre">pandas.read_csv(url)</span></tt>.
 
 </dd>
-<a id="csv2json,string,bool,char,char,bool,bool,Natural"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2json%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2CNatural"><span class="Identifier">csv2json</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
-             <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
-             <span class="Identifier">indentation</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="csv2json,string,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2json%2Cstring%2Cchar%2Cchar"><span class="Identifier">csv2json</span></a><span class="Other">(</span><span class="Identifier">csv_string</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">nl</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\n'</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Stream Read CSV to JSON, Pretty-printed or Minified.
+CSV string to JSON string Pretty-printed.
 
 </dd>
-<a id="csv2ndjson,string,string,bool,char,char,bool,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2ndjson%2Cstring%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"><span class="Identifier">csv2ndjson</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">,</span> <span class="Identifier">ndjson_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span>
-               <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span>
-               <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">discardable</span><span class="Other">,</span>
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="csv2ndjson,string,string,Natural,char,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2ndjson%2Cstring%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"><span class="Identifier">csv2ndjson</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">,</span> <span class="Identifier">ndjson_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+                <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
+                <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">)</span> {.<span class="Identifier">discardable</span><span class="Other">,</span>
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read CSV to NDJSON <a class="reference external" href="https://github.com/ndjson/ndjson-spec">https://github.com/ndjson/ndjson-spec</a>
 
 </dd>
-<a id="csv2htmltable,string,string,bool,char,char,bool,bool,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2htmltable%2Cstring%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2Cstring"><span class="Identifier">csv2htmltable</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">,</span> <span class="Identifier">html_file_path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
-                  <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span>
-                  <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
-                  <span class="Identifier">header_html</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">html_table_header</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="csv2htmltable,string,string,Natural,char,char,char,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2htmltable%2Cstring%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar%2Cstring"><span class="Identifier">csv2htmltable</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">,</span> <span class="Identifier">html_file_path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
+                   <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
+                   <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">;</span>
+                   <span class="Identifier">header_html</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">html_table_header</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span class="Identifier">noinit</span><span class="Other">,</span>
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read CSV to HTML Table file and string.
 
 </dd>
-<a id="csv2xml,string,bool,char,char,bool,bool,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2xml%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool%2Cstring"><span class="Identifier">csv2xml</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
-            <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
-            <span class="Identifier">header_xml</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">xmlHeader</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="csv2markdowntable,string,string,char,char,char,Natural"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2markdowntable%2Cstring%2Cstring%2Cchar%2Cchar%2Cchar%2CNatural"><span class="Identifier">csv2markdowntable</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">,</span> <span class="Identifier">md_file_path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
+                       <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span>
+                       <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">;</span> <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+CSV to MarkDown Table file and string.
+
+</dd>
+<a id="csv2terminal,string,Natural,Natural,char,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2terminal%2Cstring%2CNatural%2CNatural%2Cchar%2Cchar%2Cchar"><span class="Identifier">csv2terminal</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">column_width</span><span class="Other">:</span> <span class="Identifier">Natural</span><span class="Other">;</span>
+                  <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span>
+                  <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+CSV to pretty-printed colored terminal table.
+
+</dd>
+<a id="csv2karax,string,Natural,char,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2karax%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar"><span class="Identifier">csv2karax</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span> <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span>
+               <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span class="Identifier">noinit</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+CSV to Karax HTML Table.
+
+</dd>
+<a id="csv2xml,string,Natural,char,char,char,string"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#csv2xml%2Cstring%2CNatural%2Cchar%2Cchar%2Cchar%2Cstring"><span class="Identifier">csv2xml</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">columns</span><span class="Other">:</span> <span class="Identifier">Natural</span> <span class="Other">=</span> <span class="DecNumber">32767</span><span class="Other">;</span>
+             <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span> <span class="Identifier">escape</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\x00'</span><span class="Other">;</span>
+             <span class="Identifier">header_xml</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Identifier">xmlHeader</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Stream Read CSV to XML.
 
 </dd>
-<a id="csv_punycode2dict,string,bool,char,char,bool,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv_punycode2dict%2Cstring%2Cbool%2Cchar%2Cchar%2Cbool%2Cbool"><span class="Identifier">csv_punycode2dict</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">has_header</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span>
-                      <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">;</span> <span class="Identifier">quote</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\&quot;'</span><span class="Other">;</span>
-                      <span class="Identifier">skipInitialSpace</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">verbose</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
-    <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">CsvError</span><span class="Other">,</span> <span class="Identifier">Defect</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">,</span> <span class="Identifier">OSError</span><span class="Other">,</span> <span class="Identifier">PunyError</span><span class="Other">,</span>
-                                   <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-                           <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">,</span> <span class="Identifier">WriteIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="tsv2csv,string,char,char"></a>
+<dt><pre><span class="Keyword">proc</span> <a href="#tsv2csv%2Cstring%2Cchar%2Cchar"><span class="Identifier">tsv2csv</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">separator1</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">'\t'</span><span class="Other">;</span>
+             <span class="Identifier">separator2</span><span class="Other">:</span> <span class="Identifier">char</span> <span class="Other">=</span> <span class="CharLit">','</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Stream read PunyCode encoded CSV to Dict (Punycode encodes Unicode as ASCII). <a class="reference external" href="http://wikipedia.org/wiki/Punycode">http://wikipedia.org/wiki/Punycode</a>
-
-</dd>
-<a id="csv2tsv,string,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2tsv%2Cstring%2Cbool"><span class="Identifier">csv2tsv</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">reversed</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-Stream Read CSV to TSV, simple replace of &quot;,&quot; to &quot;t&quot;.
-
-</dd>
-<a id="csv2custom,string,string,bool"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#csv2custom%2Cstring%2Cstring%2Cbool"><span class="Identifier">csv2custom</span></a><span class="Other">(</span><span class="Identifier">csv_file_path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">separator</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">reversed</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
-<dd>
-
-Stream Read CSV to TSV, simple replace of &quot;,&quot; to &quot;t&quot;.
+Stream Read TSV to CSV, or any custom format to CSV, simple replace of &quot;,&quot; to &quot;t&quot;.
 
 </dd>
 <a id="diff_csvs,string,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#diff_csvs%2Cstring%2Cstring"><span class="Identifier">diff_csvs</span></a><span class="Other">(</span><span class="Identifier">csv_file_path0</span><span class="Other">,</span> <span class="Identifier">csv_file_path1</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">Item</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadDirEffect</span><span class="Other">,</span> <span class="Identifier">ReadIOEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#diff_csvs%2Cstring%2Cstring"><span class="Identifier">diff_csvs</span></a><span class="Other">(</span><span class="Identifier">csv_file_path0</span><span class="Other">,</span> <span class="Identifier">csv_file_path1</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">Item</span><span class="Other">]</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">IOError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ReadDirEffect</span><span class="Other">,</span> <span class="Identifier">ReadIOEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Diff 2 CSV files.
@@ -293,7 +354,7 @@ Diff 2 CSV files.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-09-09 21:18:57 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-05-09 00:27:03 UTC</small>
       </div>
     </div>
   </div>
