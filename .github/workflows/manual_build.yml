@@ -73,7 +73,7 @@ jobs:
         python.exe -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
     - name: Compile Debug & import (MacOs)
-      if: runner.os == 'macOS'
+      if: runner.os == 'macos'
       run: |
         nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
         python3 -c "print('${{ env.PACKAGE_NAME }}')"
