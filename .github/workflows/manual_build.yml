@@ -75,9 +75,8 @@ jobs:
     - name: Compile Debug & import (MacOs)
       if: runner.os == 'macos'
       run: |
-        nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
+        nim c --app:lib --threads:on --out:${{ env.PACKAGE_NAME }}.so ${{ env.MAIN_MODULE }}
         python3 -c "print('${{ env.PACKAGE_NAME }}')"
-        python3 -c "print('${{ PACKAGE_NAME }}')"
         python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
 
