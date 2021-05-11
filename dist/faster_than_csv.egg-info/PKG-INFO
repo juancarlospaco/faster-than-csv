@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: faster-than-csv
 Summary: Faster & simpler CSV replacement for Python
-Home-page: https://github.com/juancarlospaco/faster-than-requests#faster-than-requests
+Home-page: https://github.com/juancarlospaco/faster-than-csv
 Author: Juan Carlos
-Author-email: JuanCarlospaco@gmail.com
+Author-email: UNKNOWN
 Maintainer: Juan Carlos
 License: MIT
 Download-URL: https://github.com/juancarlospaco
@@ -43,8 +43,4 @@ Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Topic :: Software Development
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
-<<<<<<< HEAD:dist/faster_than_csv/faster_than_csv.egg-info/PKG-INFO
-Version: 21.03.03
-=======
-Version: 20.12.04
->>>>>>> fe9efb0b75864972748132eb9c0bcc2737d62c00:dist/faster_than_csv.egg-info/PKG-INFO
+Version: 21.05.10
