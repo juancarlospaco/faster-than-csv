@@ -6,6 +6,7 @@ import time
 import string
 import argparse
 import csv
+import pandas as pd
 
 
 # Dead abandoned Python2 Lib https://github.com/draftcode/fastcsv
@@ -78,8 +79,11 @@ def run_all_benchmarks(filename='', repetitions=10_000, output_file="results.csv
     return results
 
 
-def plot_benchmark_results(results, path="results_graph.png"):
-    pass
+def plot_benchmark_results(input_path="results.csv", output_path="results_graph.png"):
+    data = pd.read_csv(input_path)
+    chart = data.plot(x="library", y="time", figsize=(10, 2))
+    chart.figure.savefig(output_path)
+    return
 
 
 if __name__ == '__main__':
@@ -92,4 +96,4 @@ if __name__ == '__main__':
     assert args.get('repetitions') > 100, "Repetitions must be > 100."
     print(args)
     benchmark_results = run_all_benchmarks(**args)
-    plot_benchmark_results(benchmark_results)
+    plot_benchmark_results(args.get('filename'))
