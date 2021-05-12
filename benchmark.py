@@ -78,7 +78,7 @@ def run_all_benchmarks(filename='', repetitions=10_000, output_file="results.csv
     return results
 
 
-def plot_benchmark_results(results, path):
+def plot_benchmark_results(results, path="results_graph.png"):
     pass
 
 
@@ -92,4 +92,4 @@ if __name__ == '__main__':
     assert args.get('repetitions') > 100, "Repetitions must be > 100."
     print(args)
     benchmark_results = run_all_benchmarks(**args)
-    plot_benchmark_results(benchmark_results)
+    plot_benchmark_results(benchmark_results, path)
