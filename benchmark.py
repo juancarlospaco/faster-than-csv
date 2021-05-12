@@ -81,7 +81,7 @@ def run_all_benchmarks(filename='', repetitions=10_000, output_file="results.csv
 
 def plot_benchmark_results(input_path="results.csv", output_path="results_graph.png"):
     data = pd.read_csv(input_path)
-    chart = data.plot(x="library", y="time", figsize=(10, 2))
+    chart = data.hist(x="library", y="time", figsize=(10, 2))
     chart.figure.savefig(output_path)
     return
 
