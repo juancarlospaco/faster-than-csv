@@ -92,3 +92,4 @@ if __name__ == '__main__':
     assert args.get('repetitions') > 100, "Repetitions must be > 100."
     print(args)
     benchmark_results = run_all_benchmarks(**args)
+    plot_benchmark_results(benchmark_results)
