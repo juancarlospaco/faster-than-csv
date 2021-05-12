@@ -75,6 +75,11 @@ def run_all_benchmarks(filename='', repetitions=10_000, output_file="results.csv
             outwriter.writerow(('library', 'time'))
             for result in results:
                 outwriter.writerow(result)
+    return results
+
+
+def plot_benchmark_results(results, path):
+    pass
 
 
 if __name__ == '__main__':
@@ -86,4 +91,4 @@ if __name__ == '__main__':
     assert args.get('filename') is not None, "filename must not be an empty string."
     assert args.get('repetitions') > 100, "Repetitions must be > 100."
     print(args)
-    run_all_benchmarks(**args)
+    benchmark_results = run_all_benchmarks(**args)
