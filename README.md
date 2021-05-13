@@ -23,6 +23,9 @@
 | csv (map)                     |  `0.37`      |
 | Faster_than_csv               |  `0.08`      |
 
+
+![Benchmark Results](results_graph.png "Results")
+
 - This CSV Lib is ~300 Lines of Code.
 
 <details>
@@ -317,6 +320,11 @@ $ ./run-benchmark.sh  # Inside Docker.
 # Stars
 
 ![Star faster-than-csv on GitHub](https://starchart.cc/juancarlospaco/faster-than-csv.svg "Star faster-than-csvon GitHub!")
+
+
+# Contributors
+
+- [SekouDiaoNlp](https://github.com/SekouDiaoNlp)
 
 
 # FAQ

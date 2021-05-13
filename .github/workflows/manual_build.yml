@@ -1,21 +1,7 @@
-name: Build
-on:
-  push:
-    paths:
-      - 'setup.py'
-      - 'setup.cfg'
-      - 'PKG-INFO'
-      - 'faster_than_csv/*.*'
-      - 'faster_than_csv/**.py'
-      - 'faster_than_csv/**.nim'
-      - 'faster_than_csv/**.nims'
-      - 'faster_than_csv/**.cfg'
-      - 'faster_than_csv/**.so'
-      - 'faster_than_csv/**.dll'
-      - '.github/workflows/*.yml'
-      - '.github/workflows/*.yaml'
-      - '.gitignore'
+# .github/workflows/manual_build.yml
 
+name: "Manual Build and test Workflow"
+on: [workflow_dispatch]
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
@@ -87,12 +73,12 @@ jobs:
         python.exe -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
     - name: Compile Debug & import (MacOs)
-      if: runner.os == 'macOS'
+      if: runner.os == 'macos'
       run: |
-        nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
+        nim c --app:lib --threads:on --out:${{ env.PACKAGE_NAME }}.so ${{ env.MAIN_MODULE }}
         python3 -c "print('${{ env.PACKAGE_NAME }}')"
-        python3 -c "print('${{ PACKAGE_NAME }}')"
         python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
+
 
     # - name: Package
     #   run: python setup.py sdist --format=zip
