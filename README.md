@@ -297,9 +297,7 @@ $ ./run-benchmark.sh  # Inside Docker.
 
 # Requisites
 
-- Python 3.
-- GCC.
-- 64 Bit.
+- Python 3.6+ 64Bit.
 
 
 # Windows
@@ -325,6 +323,8 @@ $ ./run-benchmark.sh  # Inside Docker.
 
 
 # FAQ
+
+<details>
 
 - Whats the idea, inspiration, reason, etc ?.
 
@@ -394,3 +394,5 @@ No.
 Unmmodified raw output of Python `timeit` module.
 
 Please send Pull Request to Python to improve the output of `timeit`.
+
+</details>
