@@ -322,6 +322,11 @@ $ ./run-benchmark.sh  # Inside Docker.
 ![Star faster-than-csv on GitHub](https://starchart.cc/juancarlospaco/faster-than-csv.svg "Star faster-than-csvon GitHub!")
 
 
+# Contributors
+
+- [SekouDiaoNlp](https://github.com/SekouDiaoNlp)
+
+
 # FAQ
 
 - Whats the idea, inspiration, reason, etc ?.
