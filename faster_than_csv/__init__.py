@@ -3,5 +3,4 @@ import sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
 import nimporter
-
 from . faster_than_csv import *
