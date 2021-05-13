@@ -12,6 +12,8 @@
 ![](https://img.shields.io/github/commit-activity/y/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/last-commit/juancarlospaco/faster-than-csv?style=for-the-badge "Commits")
 
+![Benchmark Results](https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/results_graph.png "Benchmark Results")
+
 | Library                       | Time (Speed) |
 |-------------------------------|--------------|
 | Pandas `read_csv()`           | `20.09`      |
@@ -22,9 +24,6 @@
 | csv (list)                    |  `0.38`      |
 | csv (map)                     |  `0.37`      |
 | Faster_than_csv               |  `0.08`      |
-
-
-![Benchmark Results](results_graph.png "Results")
 
 - This CSV Lib is ~300 Lines of Code.
 
