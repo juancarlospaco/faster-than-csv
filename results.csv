@@ -1,0 +1,9 @@
+library,time
+pandas_read_csv,20.09
+numpy_fromfile,3.88
+numpy_loadtxt,1.26
+numpy_genfromtxt,4.00
+csv,0.40
+csv_list,0.38
+csv_map,0.37
+faster_than_csv,0.08
