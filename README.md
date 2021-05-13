@@ -1,6 +1,6 @@
 # Faster-than-CSV
 
-[![screenshot](https://source.unsplash.com/eH_ftJYhaTY/800x402)](https://youtu.be/QiKwnlyhKrk?t=5)
+[![Benchmark Results](https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/results_graph.png "Benchmark Results")](https://youtu.be/QiKwnlyhKrk?t=5)
 
 ![](https://img.shields.io/github/languages/top/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/languages/count/juancarlospaco/faster-than-csv?logoColor=green&style=for-the-badge)
@@ -11,8 +11,6 @@
 ![](https://img.shields.io/github/issues-pr-raw/juancarlospaco/faster-than-csv?style=for-the-badge "PRs")
 ![](https://img.shields.io/github/commit-activity/y/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/last-commit/juancarlospaco/faster-than-csv?style=for-the-badge "Commits")
-
-![Benchmark Results](https://raw.githubusercontent.com/juancarlospaco/faster-than-csv/master/results_graph.png "Benchmark Results")
 
 | Library                       | Time (Speed) |
 |-------------------------------|--------------|
