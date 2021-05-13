@@ -23,6 +23,9 @@
 | csv (map)                     |  `0.37`      |
 | Faster_than_csv               |  `0.08`      |
 
+
+![Benchmark Results](results_graph.png "Results")
+
 - This CSV Lib is ~300 Lines of Code.
 
 <details>
