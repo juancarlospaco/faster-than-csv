@@ -175,8 +175,10 @@ Data from the CSV as HTML Table, `str` type, raw HTML (no style at all).
 # csv2karax()
 <details>
 
+![](https://user-images.githubusercontent.com/22755228/117183486-482b2a00-ade0-11eb-88e6-d8eeb28951ca.png)
+
 **Description:**
-Takes a path of a CSV file string, process CSV and returns the data rendered as a [Karax](https://github.com/pragmagic/karax) HTML Table.
+Takes a path of a CSV file string, process CSV and returns the data rendered as a [Karax](https://github.com/karaxnim/karax#karax) HTML Table.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
