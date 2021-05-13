@@ -76,12 +76,12 @@ def run_all_benchmarks(filename='', repetitions=10_000, output_file="results.csv
             outwriter.writerow(('library', 'time'))
             for result in results:
                 outwriter.writerow(result)
-    return results
+    return
 
 
-def plot_benchmark_results(input_path="results.csv", output_path="results_graph.png"):
-    data = pd.read_csv(input_path)
-    chart = data.hist(x="library", y="time", figsize=(10, 2))
+def plot_benchmark_results(in_path="results.csv", output_path="results_graph.png"):
+    data = pd.read_csv(in_path)
+    chart = data.plot.bar(x='library', y='time')
     chart.figure.savefig(output_path)
     return
 
@@ -95,5 +95,5 @@ if __name__ == '__main__':
     assert args.get('filename') is not None, "filename must not be an empty string."
     assert args.get('repetitions') > 100, "Repetitions must be > 100."
     print(args)
-    benchmark_results = run_all_benchmarks(**args)
-    plot_benchmark_results(args.get('filename'))
+    run_all_benchmarks(**args)
+    plot_benchmark_results()
