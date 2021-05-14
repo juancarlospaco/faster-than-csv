@@ -31,13 +31,13 @@ with open('$filename') as csvfile:
         map(data.append, row)"""
 
 numpy_loadtxt = """
-numpy.loadtxt(open('$filename'), delimiter="\t", skiprows=1)"""
+numpy.loadtxt(open('$filename'), delimiter=",", skiprows=1)"""
 
 numpy_genfromtxt = """
-numpy.genfromtxt('$filename', delimiter='\t', names=True, case_sensitive=True)"""
+numpy.genfromtxt('$filename', delimiter=',', names=True, case_sensitive=True)"""
 
 pandas_read_csv = """
-pandas.read_csv('$filename', sep='\t').values"""
+pandas.read_csv('$filename', sep=',').values"""
 
 
 def run_test(library, filename, repetitions, setup_test, run_test, timer=None):
