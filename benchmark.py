@@ -31,10 +31,10 @@ with open('$filename') as csvfile:
         map(data.append, row)"""
 
 numpy_loadtxt = """
-numpy.loadtxt(open('$filename'), delimiter=",", skiprows=1)"""
+numpy.loadtxt(open('$filename'), delimiter=";", skiprows=1)"""
 
 numpy_genfromtxt = """
-numpy.genfromtxt('$filename', delimiter=',', names=True, case_sensitive=True)"""
+numpy.genfromtxt('$filename', delimiter=';', names=True, case_sensitive=True)"""
 
 pandas_read_csv = """
 pandas.read_csv('$filename', sep=';').values"""
