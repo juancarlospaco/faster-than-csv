@@ -23,13 +23,6 @@ with open('$filename') as csvfile:
     csvreader = csv.reader(csvfile)
     data = list(csvreader)"""
 
-csv_map = """
-data = []
-with open('$filename') as csvfile:
-    csvreader = csv.reader(csvfile)
-    for row in csvreader:
-        map(data.append, row)"""
-
 numpy_loadtxt = """
 numpy.loadtxt(open('$filename'), delimiter=",", skiprows=1)"""
 
@@ -63,7 +56,6 @@ def run_all_benchmarks(filename='', repetitions=10_000, output_file="results.csv
     tests.append(('numpy_genfromtxt', 'import numpy', numpy_genfromtxt))
     tests.append(('csv', 'import csv', csv_reader))
     tests.append(('csv_list', 'import csv', csv_list))
-    tests.append(('csv_map', 'import csv', csv_map))
     tests.append(('faster_than_csv', 'import faster_than_csv', "faster_than_csv.csv2list('$filename')"))
 
     for test in tests:
