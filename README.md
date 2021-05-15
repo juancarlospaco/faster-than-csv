@@ -66,7 +66,6 @@ This is very similar to `pandas.read_csv(filename)`.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 
@@ -85,7 +84,6 @@ Takes a path of a CSV file string, process CSV and returns a list.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 
@@ -104,7 +102,7 @@ Reads CSV string from Clipboard, process CSV and returns a list of dictionaries.
 This is very similar to `pandas.read_clipboard()`. This works on Linux, Mac, Windows.
 
 **Arguments:**
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
+
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 
@@ -122,7 +120,6 @@ Takes a path of a CSV file string, process CSV and returns JSON.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `indentation` Pretty-Printed or Minified JSON output, `int` type, optional, `0` is Minified, `4` is Pretty-Printed, you can use any integer to adjust the indentation.
@@ -142,7 +139,6 @@ Takes a path of a CSV file string, process CSV and returns NDJSON.
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
 - `ndjson_file_path` path of the NDJSON file, `str` type, required, must not be empty string.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 
@@ -161,7 +157,6 @@ Takes a path of a CSV file string, process CSV and returns the data rendered on 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string, defaults to `""`, if its empty string then No file is written.
 - `html_file_path` path of the CSV file, `str` type, optional, can be empty string.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `header_html` HTML Header, `str` type, optional, defaults to Bulma CSS, can be empty string.
@@ -181,7 +176,7 @@ Data from the CSV as HTML Table, `str` type, raw HTML (no style at all).
 Takes a path of a CSV file string, process CSV and returns the data rendered as a [Karax](https://github.com/karaxnim/karax#karax) HTML Table.
 
 **Arguments:**
-- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
+- `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 
@@ -198,7 +193,6 @@ Takes a path of a CSV file string, process CSV and prints to terminal a colored 
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string, defaults to `""`, if its empty string then No file is written.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 -  `column_width` column width of the wider column, required, `int` type, must not be `0`, must not be negative.
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
@@ -217,7 +211,6 @@ Output is guaranteed to be always Valid XML.
 
 **Arguments:**
 - `csv_file_path` path of the CSV file, `str` type, required, must not be empty string.
-- `columns` total column count, OPTIONAL, `int` type, default to `32767`, **faster performance if is exactly the column count of the CSV**, [Description/explanation of columns](https://github.com/juancarlospaco/faster-than-csv/issues/12#issuecomment-831305443).
 - `separator` Separator character of the CSV data, `str` type, optional, defaults to `','`, must not be empty string.
 - `quote` Quote character of the CSV data, `str` type, optional, defaults to `'"'`, must not be empty string.
 - `header_xml` XML Header of the XML string, `str` type, optional, can be empty string, defaults to `"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"`.

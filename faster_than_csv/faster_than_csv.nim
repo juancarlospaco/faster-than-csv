@@ -5,62 +5,62 @@ type CsvParser = object of BaseLexer  # Custom copypasted from Nim stdlib "parse
   sep, quote, esc: char
   currRow: int
 
-proc open(self: var CsvParser, input: Stream, separator = ',', quote = '"', escape = '\0', columns = 32767) =
+template close(self: var CsvParser) = lexbase.close(self)
+
+template open(self: var CsvParser, input: Stream, separator = ',', quote = '"', escape = '\0') =
   lexbase.open(self, input)
   self.sep = separator
   self.quote = quote
   self.esc = escape
-  self.headers = newSeqOfCap[string](columns)
-  self.row = newSeqOfCap[string](columns)
 
-proc open(self: var CsvParser, filename: string, separator = ',', quote = '"', escape = '\0', columns = 32767) =
-  var s = newFileStream(filename, fmRead)
-  if s == nil: raise newException(IOError, "File not found: " & filename)
-  open(self, s, separator, quote, escape, columns)
+template open(self: var CsvParser, filename: string, separator = ',', quote = '"', escape = '\0') =
+  open(self, newFileStream(filename, fmRead), separator, quote, escape)
 
 proc parseField(self: var CsvParser, a: var string) =
-  var pos = self.bufpos
-  while self.buf[pos] in {' ', '\t'}: inc pos
+  var pos = create int
+  pos[] = self.bufpos
+  while self.buf[pos[]] in {' ', '\t'}: inc pos[]
   setLen(a, 0) # reuse memory
-  if self.buf[pos] == self.quote and self.quote != '\0':
-    inc(pos)
+  if self.buf[pos[]] == self.quote and self.quote != '\0':
+    inc pos[]
     while true:
-      let c = self.buf[pos]
+      let c = self.buf[pos[]]
       if c == '\0':
-        self.bufpos = pos # can continue after exception?
-        raise newException(IOError, self.quote & " expected")
+        self.bufpos = pos[]
+        raise newException(IOError, "CSV parse error, missing quotes at index " & $pos[])
       elif c == self.quote:
-        if self.esc == '\0' and self.buf[pos + 1] == self.quote:
+        if self.esc == '\0' and self.buf[pos[] + 1] == self.quote:
           add(a, self.quote)
-          inc(pos, 2)
+          inc pos[], 2
         else:
-          inc(pos)
+          inc(pos[])
           break
       elif c == self.esc:
-        add(a, self.buf[pos + 1])
-        inc(pos, 2)
+        add(a, self.buf[pos[] + 1])
+        inc pos[], 2
       else:
         case c
         of '\c':
-          pos = handleCR(self, pos)
+          pos[] = handleCR(self, pos[])
           add(a, '\n')
         of '\l':
-          pos = handleLF(self, pos)
+          pos[] = handleLF(self, pos[])
           add(a, '\n')
         else:
           add(a, c)
-          inc(pos)
+          inc(pos[])
   else:
     while true:
-      let c = self.buf[pos]
+      let c = self.buf[pos[]]
       if c == self.sep: break
       if c in {'\c', '\l', '\0'}: break
       add(a, c)
-      inc(pos)
-  self.bufpos = pos
+      inc pos[]
+  self.bufpos = pos[]
+  if likely(pos != nil): dealloc pos
 
 proc readRow(self: var CsvParser): bool =
-  var col = 0 # current column
+  var col {.noalias.} = create int
   while true:
     case self.buf[self.bufpos]
     of '\c': self.bufpos = handleCR(self, self.bufpos)
@@ -68,11 +68,11 @@ proc readRow(self: var CsvParser): bool =
     else: break
   while self.buf[self.bufpos] != '\0':
     let oldlen = self.row.len
-    if oldlen < col + 1:
-      setLen(self.row, col + 1)
-      self.row[col] = ""
-    parseField(self, self.row[col])
-    inc(col)
+    if oldlen < col[] + 1:
+      setLen(self.row, col[] + 1)
+      self.row[col[]] = ""
+    parseField(self, self.row[col[]])
+    inc col[]
     if self.buf[self.bufpos] == self.sep: inc(self.bufpos)
     else:
       case self.buf[self.bufpos]
@@ -83,20 +83,21 @@ proc readRow(self: var CsvParser): bool =
           of '\l': self.bufpos = handleLF(self, self.bufpos)
           else: break
       of '\0': discard
-      else: raise newException(IOError, self.sep & " expected")
+      else: raise newException(IOError, "CSV parse error, missing separators at column " & $col[])
       break
-  setLen(self.row, col)
-  result = col > 0
+  setLen(self.row, col[])
+  result = col[] > 0
   inc(self.currRow)
+  if likely(col != nil): dealloc col
 
-template close(self: var CsvParser) = lexbase.close(self)
+template rowEntry(self: var CsvParser; entry: var string) =
+  let index = create int
+  index[] = self.headers.find(entry)
+  if likely(index[] >= 0): entry = self.row[index[]] else: echo "ERROR: Key not found: " & entry
+  if likely(index != nil): dealloc index
 
 template readHeaderRow(self: var CsvParser) =
   if likely(self.readRow()): self.headers = self.row
-
-proc rowEntry(self: var CsvParser; entry: var string) =
-  let index = self.headers.find(entry)
-  if likely(index >= 0): entry = self.row[index] else: echo "ERROR: Key not found: " & entry
 
 
 # ^ CSV Parser ##################################### v CSV functions for Python
@@ -122,25 +123,24 @@ proc createDom(): VNode {.discardable.} =
       tr(class="has-background-grey-light"):
 """
 
-proc csv2list*(csv_file_path: string; columns: Natural = 32767; separator: char = ',';
-    quote: char = '"'; escape: char = '\x00'): seq[string] {.exportpy, noinit.} =
+proc csv2list*(csv_file_path: string; separator: char = ',';
+    quote: char = '"'; escape: char = '\x00'): seq[string] {.exportpy.} =
   ## Stream Read CSV to a list of strings.
-  result = newSeqOfCap[string](columns)
   let parser {.noalias.} = create CsvParser
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   while parser[].readRow():
     for column in parser[].headers.mitems:
       parser[].rowEntry(column)
       result.add column
   parser[].close()
-  if parser != nil: dealloc parser
+  if likely(parser != nil): dealloc parser
 
-proc csv2dict*(csv_file_path: string; columns: Natural = 32767; separator: char = ',';
+proc csv2dict*(csv_file_path: string; separator: char = ',';
   quote: char = '"'; escape: char = '\x00'): seq[Table[string, string]] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(filename)``.
   let parser {.noalias.} = create CsvParser
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   while parser[].readRow():
     for column in parser[].headers.items:
@@ -150,7 +150,7 @@ proc csv2dict*(csv_file_path: string; columns: Natural = 32767; separator: char 
   parser[].close()
   if parser != nil: dealloc parser
 
-proc read_clipboard*(columns: Natural = 32767; has_header: bool = true, separator: char = ',',
+proc read_clipboard*(has_header: bool = true, separator: char = ',',
   quote: char = '"', escape: char = '\x00'): seq[(string, string)] {.exportpy.} =
   ## Stream Read CSV to a list of dictionaries. This is very similar to ``pandas.read_clipboard()``.
   let parser {.noalias.} = create(CsvParser)
@@ -160,7 +160,7 @@ proc read_clipboard*(columns: Natural = 32767; has_header: bool = true, separato
     elif defined(windows): "Get-Clipboard"
     else:                  "")
   if likely(exitCode == 0):
-    parser[].open(newStringStream(output), separator, quote, escape, columns)
+    parser[].open(newStringStream(output), separator, quote, escape)
     if has_header:
       parser[].readHeaderRow()
       while parser[].readRow():
@@ -177,13 +177,13 @@ proc read_clipboard*(columns: Natural = 32767; has_header: bool = true, separato
   parser[].close()
   if parser != nil: dealloc parser
 
-proc url2csv*(url: string; columns: Natural = 32767; separator: char = ','; quote: char = '"'; escape: char = '\x00';
+proc url2csv*(url: string; separator: char = ','; quote: char = '"'; escape: char = '\x00';
   agent: string = defUserAgent; maxRedirects: int = 5; timeout: int = -1; http_method: string = "GET", body: string = ""): seq[(string, string)] {.exportpy.} =
   ## Stream Read URL to CSV to a list of dictionaries. This is very similar to ``pandas.read_csv(url)``.
   assert url.startsWith"http", "URL must be a valid, non empty string, HTTP URL Link"
   let parser {.noalias.} = create(CsvParser)
   let client = newHttpClient(userAgent = agent, maxRedirects = maxRedirects, timeout = timeout)
-  parser[].open(newStringStream(client.request(url, http_method, body).body), separator, quote, escape, columns)
+  parser[].open(newStringStream(client.request(url, http_method, body).body), separator, quote, escape)
   client.close()
   parser[].readHeaderRow()
   while parser[].readRow():
@@ -226,12 +226,12 @@ proc csv2json*(csv_string: string; separator: char = ','; nl: char = '\n'): stri
       inc i
   result = temp.pretty
 
-proc csv2ndjson*(csv_file_path, ndjson_file_path: string, columns: Natural = 32767; separator: char = ',',
+proc csv2ndjson*(csv_file_path, ndjson_file_path: string, separator: char = ',',
   quote: char = '"', escape: char = '\x00') {.discardable, exportpy.} =
   ## Stream Read CSV to NDJSON https://github.com/ndjson/ndjson-spec
   let parser {.noalias.} = create(CsvParser)
   var ndjson: string
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   while parser[].readRow():
     for column in parser[].headers.items:
@@ -244,14 +244,13 @@ proc csv2ndjson*(csv_file_path, ndjson_file_path: string, columns: Natural = 327
   if parser != nil: dealloc parser
 
 proc csv2htmltable*(csv_file_path, html_file_path: string = "",
-    columns: Natural = 32767; separator: char = ',', quote: char = '"', escape: char = '\x00';
-    header_html: string = html_table_header): string {.exportpy, noinit.} =
+    separator: char = ',', quote: char = '"', escape: char = '\x00';
+    header_html: string = html_table_header): string {.exportpy.} =
   ## Stream Read CSV to HTML Table file and string.
-  result = newStringOfCap(columns)
   result.add header_html
   result.add "<thead class='thead'>\n<tr>\n"
   let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   for column in parser[].headers.items:
     result.add "<th class='has-background-grey-light'>"
@@ -277,11 +276,10 @@ proc csv2htmltable*(csv_file_path, html_file_path: string = "",
   if parser != nil: dealloc parser
 
 proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
-    separator: char = ',', quote: char = '"', escape: char = '\x00'; columns: Natural = 32767): string {.exportpy.} =
+    separator: char = ',', quote: char = '"', escape: char = '\x00'): string {.exportpy.} =
   ## CSV to MarkDown Table file and string.
-  result = newStringOfCap(columns)
   let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   for column in parser[].headers.items:
     result.add '|'
@@ -304,11 +302,11 @@ proc csv2markdowntable*(csv_file_path, md_file_path: string = "",
   if md_file_path.len > 0: writeFile(md_file_path , result)
   if parser != nil: dealloc parser
 
-proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natural = 32767; separator: char = ',';
+proc csv2terminal*(csv_file_path: string; column_width: Natural; separator: char = ',';
     quote: char = '"'; escape: char = '\x00') {.exportpy.} =
   ## CSV to pretty-printed colored terminal table.
   let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   const colors = [fgRed, fgGreen, fgYellow, fgBlue, fgDefault, fgMagenta, fgCyan, fgWhite, fg8Bit]
   var i = 0
@@ -326,13 +324,12 @@ proc csv2terminal*(csv_file_path: string; column_width: Natural; columns: Natura
   parser[].close()
   if parser != nil: dealloc parser
 
-proc csv2karax*(csv_file_path: string = "", columns: Natural = 32767; separator: char = ',',
-  quote: char = '"', escape: char = '\x00'): string {.exportpy, noinit.} =
+proc csv2karax*(csv_file_path: string = "", separator: char = ',',
+  quote: char = '"', escape: char = '\x00'): string {.exportpy.} =
   ## CSV to Karax HTML Table.
-  result = newStringOfCap(columns)
   result.add karax_header
   let parser {.noalias.} = create(CsvParser)
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   for column in parser[].headers.items:
     result.add "        th:\n          text(\"\"\"" & $column & "\"\"\")\n"
@@ -352,12 +349,11 @@ proc csv2karax*(csv_file_path: string = "", columns: Natural = 32767; separator:
 proc csv2xml*(csv_file_path: string, columns: Natural = 32767; separator: char = ',',
     quote: char = '"', escape: char = '\x00'; header_xml: string = xmlHeader): string {.exportpy.} =
   ## Stream Read CSV to XML.
-  result = newStringOfCap(columns)
   result.add header_xml
   let parser {.noalias.} = create(CsvParser)
   let temp = create(seq[XmlNode])
   let e = create(XmlNode)
-  parser[].open(csv_file_path, separator, quote, escape, columns)
+  parser[].open(csv_file_path, separator, quote, escape)
   parser[].readHeaderRow()
   while parser[].readRow():
     for column in parser[].headers.mitems:
