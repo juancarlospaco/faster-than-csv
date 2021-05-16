@@ -69,14 +69,14 @@ jobs:
     - name: Compile Debug & import (Windows)
       if: runner.os == 'Windows'
       run: |
-        nim c --app:lib --threads:on --out:${{ env.PACKAGE_NAME }}.pyd ${{ env.MAIN_MODULE }}
+        nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
         python.exe -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
     - name: Compile Debug & import (MacOs)
       if: runner.os == 'macos'
       run: |
         choosenim 1.2.12
-        nim c --app:lib --threads:on --out:${{ env.PACKAGE_NAME }}.so ${{ env.MAIN_MODULE }}
+        nim c --app:lib --threads:on --out:$PACKAGE_NAME.so $MAIN_MODULE
         python3 -c "print('${{ env.PACKAGE_NAME }}')"
         python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
