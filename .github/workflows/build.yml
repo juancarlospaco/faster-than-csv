@@ -89,9 +89,8 @@ jobs:
     - name: Compile Debug & import (MacOs)
       if: runner.os == 'macOS'
       run: |
+        choosenim 1.2.12
         nim c --app:lib --threads:on --out:${{ env.PACKAGE_NAME }}.so ${{ env.MAIN_MODULE }}
-        python3 -c "print('${{ env.PACKAGE_NAME }}')"
-        python3 -c "print('${{ env.PACKAGE_NAME }}')"
         python3 -c "print(__import__('${{ env.PACKAGE_NAME }}').__file__)"
 
     # - name: Package
