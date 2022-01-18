@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/languages/top/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/languages/count/juancarlospaco/faster-than-csv?logoColor=green&style=for-the-badge)
 ![](https://img.shields.io/github/stars/juancarlospaco/faster-than-csv?style=for-the-badge "Star faster-than-csv on GitHub!")
-![](https://img.shields.io/maintenance/yes/2021?style=for-the-badge)
+![](https://img.shields.io/maintenance/yes/2022?style=for-the-badge)
 ![](https://img.shields.io/github/languages/code-size/juancarlospaco/faster-than-csv?style=for-the-badge)
 ![](https://img.shields.io/github/issues-raw/juancarlospaco/faster-than-csv?style=for-the-badge "Bugs")
 ![](https://img.shields.io/github/issues-pr-raw/juancarlospaco/faster-than-csv?style=for-the-badge "PRs")
