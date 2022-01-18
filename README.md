@@ -482,4 +482,3 @@ WM54DHVZQIQDVTHMPOH6FEZ4U2AU3OBPGAFTHSCYWMFE7ETKCUUOYAW24Q
   
 https://pay.binance.com/en/checkout/e92e536210fd4f62b426ea7ee65b49c3
 </details>
-<details>
